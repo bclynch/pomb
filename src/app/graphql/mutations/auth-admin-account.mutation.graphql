@@ -1,0 +1,8 @@
+mutation authAdminAccount($email: String!, $password: String!) {
+  authenticateAdminAccount(input:{
+    email: $email,
+    password: $password
+  }) {
+    jwtToken
+  }
+}

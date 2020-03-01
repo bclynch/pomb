@@ -1,0 +1,40 @@
+query fullJunctureById($id: Int!, $userId: Int) {
+  junctureById(id: $id) {
+    ...JunctureData
+    lat,
+    lon,
+    markerImg,
+    userId,
+    coordsByJunctureId {
+      nodes {
+        id,
+        lat,
+        lon,
+        elevation,
+        coordTime
+      }
+    },
+    tripByTripId {
+      id,
+      name,
+      juncturesByTripId {
+        nodes {
+          name
+          id
+        }
+      }
+    }
+    likesByUser: likesByJunctureId(
+      condition: {
+        userId: $userId
+      }
+    ) {
+      nodes {
+        id
+      }
+    },
+    totalLikes: likesByJunctureId {
+      totalCount
+    }
+  }
+}

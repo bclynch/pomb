@@ -1,0 +1,24 @@
+query currentAccount {
+  currentAccount {
+    id,
+    firstName,
+    lastName,
+    username,
+    profilePhoto,
+    heroPhoto,
+    userStatus,
+    city,
+    country,
+    autoUpdateLocation,
+    autoUpdateVisited,
+    userToCountriesByUserId {
+      nodes {
+        id,
+        countryByCountry {
+          code,
+          name
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,44 @@
+<div class="modalContainer" [attr.style]="sanitizer.bypassSecurityTrustStyle('--secondary:' + settingsService.secondaryColor)">
+  <div class="mockNav">
+    <div class="logoWrapper">
+      <span 
+        class="boldFont gradientText" 
+        [style.background-image]="'linear-gradient(to right, ' + settingsService.primaryColor + ', ' + settingsService.secondaryColor + ')'" 
+        (click)="dismiss('home')"
+      >POMB</span>
+    </div>
+    <div class="mobilePromptClose" (click)="dismiss()">
+      <div><ion-icon name="md-close"></ion-icon></div>
+    </div>
+  </div>
+  <div class="contentWrapper">
+    <div 
+      class="profileWrapper" 
+      (click)="viewCtrl.dismiss('profile')"
+      *ngIf="userService.signedIn"
+    >
+      <div class="signedInUser">Welcome back {{userService.user.firstName || userService.user.username}}</div>
+      <ProfilePicture [photo]="userService.user?.profilePhoto"></ProfilePicture>
+      <div class="logoutBtn" (click)="logout($event)">Logout</div>
+    </div>
+    <div class="paneSectionContent" (click)="viewCtrl.dismiss('register')" *ngIf="!userService.signedIn">
+      <div><ion-icon name="md-person"></ion-icon></div>
+      <div class="loginDescription">Looks like you aren't signed into an account yet. Login or signup to become a POMB member and start chronicling your journey.</div>
+      <div class="paneSectionBtn">Get Started</div>
+    </div>
+    <Search (searchSubmit)="viewCtrl.dismiss()" [hasBorder]="true"></Search>
+    <div class="section" *ngFor="let option of sectionOptions; let i = index;" [ngClass]="[activeSection === i ? 'active' : '', i === 2 && !userService.signedIn ? 'signedIn' : '']">
+      <div class="sectionHeader" (click)="activeSection === i ? activeSection = null : activeSection = i" *ngIf="i !== 2 || userService.signedIn">
+        <div class="sectionName">{{option.label}}</div>
+        <div class="arrowWrapper">
+          <ion-icon name="ios-arrow-forward"></ion-icon>
+        </div>
+      </div>
+      <div class="subSectionsWrapper">
+        <div *ngFor="let subSection of subSections[option.label];" class="subSection" (click)="viewCtrl.dismiss(subSection)">
+          {{subSection}}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

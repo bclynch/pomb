@@ -1,0 +1,5 @@
+query partialJunctureById($id: Int!, $userId: Int) {
+  junctureById(id: $id) {
+    ...JunctureData
+  }
+}

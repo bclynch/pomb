@@ -1,0 +1,9 @@
+mutation deleteTripById($tripId: Int!) {
+  deleteTripById (
+    input: {
+      id: $tripId
+    }
+  ) {
+    clientMutationId
+  }
+}

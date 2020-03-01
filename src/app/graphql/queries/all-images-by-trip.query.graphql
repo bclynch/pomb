@@ -1,0 +1,19 @@
+query allImagesByTrip($tripId: Int!, $first: Int, $offset: Int, $userId: Int) {
+  allImages(
+    condition: {
+      tripId: $tripId
+    },
+    first: $first,
+    offset: $offset,
+    filter: {
+      type: {
+        notEqualTo: LEAD_SMALL
+      }
+    },
+    orderBy: PRIMARY_KEY_DESC
+  ) {
+    nodes {
+      ...Image
+    }
+  }
+}

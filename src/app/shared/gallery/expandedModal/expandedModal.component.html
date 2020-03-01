@@ -1,0 +1,33 @@
+<div class="modalContainer" (window:keydown)="onKey($event)" (panstart)="panStart($event)" (panleft)="panGesture($event, 'left')" (panright)="panGesture($event, 'right')">
+  <div 
+    class="closeModal" 
+    name="close"
+    (click)="onCloseModal()"
+    title="Close gallery"
+  >
+    <ion-icon name="close"></ion-icon>
+  </div>
+  <div class="imgWrapper">
+    <img [src]="photos[currentIndex].url" />
+    <div class="forwardBtn" (click)="pan('forward')">
+      <ion-icon name="ios-arrow-forward"></ion-icon>
+    </div>
+    <div class="backBtn" (click)="pan('back')">
+      <ion-icon name="ios-arrow-back"></ion-icon>
+    </div>
+    <div class="imgOverlay" *ngIf="photos[currentIndex].description">{{photos[currentIndex].description}}</div>
+    <div class="photoCredit">Photo by: 
+      <span 
+        (click)="goToUser(photos[currentIndex].accountByUserId.username)" 
+        [style.color]="settingsService.secondaryColor"
+      >{{photos[currentIndex].accountByUserId.username}}</span>
+    </div>
+    <LikeCounter 
+      [totalLikes]="photos[currentIndex].totalLikes.totalCount" 
+      [userLikes]="photos[currentIndex].likesByUser.nodes" 
+      [assetId]="photos[currentIndex].id"
+      assetType="image"
+      color="white"
+    ></LikeCounter>
+  </div>
+</div>

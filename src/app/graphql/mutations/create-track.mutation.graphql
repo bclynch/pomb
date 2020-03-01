@@ -1,0 +1,12 @@
+mutation createTrack($userId: Int!, $trackUserId: Int!) {
+  createTrack(
+    input: {
+      track: {
+        userId: $userId,
+        trackUserId: $trackUserId
+      }
+    }
+  ) {
+    clientMutationId
+  }
+}

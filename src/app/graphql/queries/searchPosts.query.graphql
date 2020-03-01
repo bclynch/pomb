@@ -1,0 +1,15 @@
+query searchPosts($query: String!, $postStatus: String) {
+  searchPosts(
+    query: $query,
+    first: 10
+  ) {
+    nodes {
+      id,
+      title,
+      updatedAt,
+      isDraft,
+      isScheduled,
+      isPublished
+    }
+  }
+}

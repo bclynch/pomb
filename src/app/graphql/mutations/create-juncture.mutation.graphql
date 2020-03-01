@@ -1,0 +1,22 @@
+mutation createJuncture($userId: Int!, $tripId: Int!, $type: JunctureType!, $name: String!, $arrivalDate: BigInt!, $description: String, $lat: BigFloat!, $lon: BigFloat!, $city: String, $country: String, $isDraft: Boolean, $markerImg: String) {
+  createJuncture(input:{
+    juncture: {
+      userId: $userId,
+      tripId: $tripId,
+      type: $type,
+      name: $name,
+      arrivalDate: $arrivalDate,
+      description: $description,
+      lat: $lat,
+      lon: $lon,
+      city: $city,
+      country: $country,
+      isDraft: $isDraft,
+      markerImg: $markerImg
+    }
+  }) {
+    juncture {
+      id
+    }
+  }
+}

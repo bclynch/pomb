@@ -1,0 +1,19 @@
+query allImagesByUser($userId: Int, $first: Int, $offset: Int) {
+  allImages(
+    condition:{
+      userId: $userId
+    },
+    first: $first,
+    offset: $offset,
+    filter: {
+      type: {
+        notEqualTo: LEAD_SMALL
+      }
+    },
+    orderBy: PRIMARY_KEY_DESC
+  ) {
+    nodes {
+      ...Image
+    }
+  }
+}

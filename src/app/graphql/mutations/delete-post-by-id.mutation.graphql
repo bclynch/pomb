@@ -1,0 +1,9 @@
+mutation deletePostById($id: Int!) {
+  deletePostById(input: {
+    id: $id
+  }) {
+    post {
+      title
+    }
+  }
+}

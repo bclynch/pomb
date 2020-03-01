@@ -1,0 +1,12 @@
+mutation createPostTag($name: String!, $tagDescription: String) {
+  createPostTag(input:{
+    postTag:{
+      name: $name,
+      tagDescription: $tagDescription
+    }
+  }) {
+    postTag {
+      name
+    }
+  }
+}

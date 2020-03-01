@@ -1,0 +1,9 @@
+query tagsByName($tagName: String!) {
+  allPostTags(condition: {
+    name: $tagName
+  }) {
+    nodes {
+      tagDescription
+    }
+  }
+}

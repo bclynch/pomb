@@ -1,0 +1,70 @@
+fragment JunctureData on Juncture {
+  id,
+  name,
+  arrivalDate,
+  description,
+  city,
+  country,
+  type,
+  postsByJunctureId {
+    nodes {
+      id,
+      title,
+      accountByAuthor {
+        ...AccountByAuthor
+      },
+      publishedDate,
+      imagesByPostId {
+        nodes {
+          id,
+          url,
+          type,
+          accountByUserId {
+            id
+          }
+        }
+      }
+    }
+  },
+  imagesByJunctureId(
+    condition:{
+      type: GALLERY
+    }
+  ) {
+    nodes {
+      id,
+      postId,
+      type,
+      url,
+      description,
+      accountByUserId {
+        id,
+        username
+      },
+      likesByUser: likesByImageId(
+        condition: {
+          userId: $userId
+        }
+      ) {
+        nodes {
+          id
+        }
+      },
+      totalLikes: likesByImageId {
+        totalCount
+      }
+    }
+  }
+  likesByUser: likesByJunctureId(
+    condition: {
+      userId: $userId
+    }
+  ) {
+    nodes {
+      id
+    }
+  },
+  totalLikes: likesByJunctureId {
+    totalCount
+  }
+}

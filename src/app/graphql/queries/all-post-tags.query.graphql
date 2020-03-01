@@ -1,0 +1,8 @@
+query allPostTags {
+  allPostTags {
+    nodes {
+      name,
+      tagDescription
+    }
+  }
+}

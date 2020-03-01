@@ -1,0 +1,23 @@
+mutation updateJuncture($junctureId: Int!, $userId: Int, $tripId: Int, $type: JunctureType, $name: String, $arrivalDate: BigInt, $description: String, $lat: BigFloat, $lon: BigFloat, $city: String, $country: String, $isDraft: Boolean, $markerImg: String) {
+  updateJunctureById(input:{
+    id: $junctureId,
+    juncturePatch: {
+      userId: $userId,
+      tripId: $tripId,
+      name: $name,
+      arrivalDate: $arrivalDate,
+      description: $description,
+      type: $type,
+      lat: $lat,
+      lon: $lon,
+      city: $city,
+      country: $country,
+      isDraft: $isDraft,
+      markerImg: $markerImg
+    }
+  }) {
+    juncture {
+      id
+    }
+  }
+}

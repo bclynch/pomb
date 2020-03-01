@@ -1,0 +1,23 @@
+fragment Image on Image {
+  id,
+  url,
+  description,
+  title,
+  type,
+  accountByUserId {
+    id,
+    username
+  },
+  likesByUser: likesByImageId(
+    condition: {
+      userId: $userId
+    }
+  ) {
+    nodes {
+      id
+    }
+  },
+  totalLikes: likesByImageId {
+    totalCount
+  }
+}

@@ -1,0 +1,17 @@
+query allPostsByUser($author: Int!) {
+  allPosts(
+    orderBy: PRIMARY_KEY_DESC,
+    condition: {
+      author: $author
+    }
+  ) {
+    nodes {
+      id,
+      title,
+      publishedDate,
+      isDraft,
+      isScheduled,
+      isPublished
+    }
+  }
+}

@@ -1,0 +1,9 @@
+mutation deleteJunctureById($junctureId: Int!) {
+  deleteJunctureById (
+    input: {
+      id: $junctureId
+    }
+  ) {
+    clientMutationId
+  }
+}

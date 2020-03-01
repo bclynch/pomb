@@ -1,0 +1,8 @@
+fragment ImagesByPostId on Image {
+  id,
+  url,
+  type,
+  accountByUserId {
+    id
+  }
+}

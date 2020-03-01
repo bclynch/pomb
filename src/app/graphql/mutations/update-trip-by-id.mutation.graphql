@@ -1,0 +1,19 @@
+mutation updateTripById($tripId: Int!, $name: String, $description: String, $startDate: BigInt, $endDate: BigInt, $startLat: BigFloat, $startLon: BigFloat) {
+  updateTripById (
+    input: {
+      id: $tripId,
+      tripPatch:{
+        name: $name,
+        description: $description,
+        startDate: $startDate,
+        endDate: $endDate,
+        startLat: $startLat,
+        startLon: $startLon
+      }
+    }
+  ) {
+    trip {
+      id
+    }
+  }
+}

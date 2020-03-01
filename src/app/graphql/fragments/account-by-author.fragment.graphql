@@ -1,0 +1,6 @@
+fragment AccountByAuthor on Account {
+  id,
+  firstName,
+  lastName,
+  username
+}

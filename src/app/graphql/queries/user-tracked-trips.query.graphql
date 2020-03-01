@@ -1,0 +1,35 @@
+query userTrackedTrips($username: String!) {
+  accountByUsername(username: $username) {
+    id,
+    tracksByUserId {
+      totalCount,
+      nodes {
+        accountByTrackUserId {
+          ...AccountByAuthor
+          profilePhoto,
+          tripsByUserId (
+            orderBy: START_DATE_DESC
+          ) {
+            nodes {
+              id,
+              name,
+              startDate,
+              endDate,
+              imagesByTripId(
+                condition: {
+                  type: BANNER,
+                },
+                first: 1
+              ) {
+                nodes {
+                  id,
+                  url
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

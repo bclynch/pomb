@@ -1,0 +1,12 @@
+query recentImages($last: Int, $userId: Int) {
+  allImages(
+    condition: {
+      type: GALLERY
+    },
+    last: $last,
+  ) {
+    nodes {
+      ...Image
+    }
+  }
+}

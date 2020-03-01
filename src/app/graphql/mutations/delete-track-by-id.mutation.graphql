@@ -1,0 +1,9 @@
+mutation deleteTrackById($trackId: Int!) {
+  deleteTrackById(
+    input: {
+      id: $trackId
+    }
+  ) {
+    clientMutationId
+  }
+}

@@ -1,0 +1,19 @@
+mutation createLike($tripId: Int, $junctureId: Int, $postId: Int, $imageId: Int, $userId: Int!) {
+  createLike(
+    input: {
+      like: {
+        tripId: $tripId,
+        junctureId: $junctureId,
+        postId: $postId,
+        imageId: $imageId,
+        userId: $userId
+      }
+    }
+  ) {
+    likeEdge {
+      node {
+        id
+      }
+    }
+  }
+}

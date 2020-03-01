@@ -1,0 +1,7 @@
+mutation deleteImageById($id: Int!) {
+  deleteImageById(input:{
+    id: $id
+  }) {
+    clientMutationId
+  }
+}

@@ -1,0 +1,23 @@
+mutation updatePostById($postId: Int!, $title: String, $subtitle: String, $content: String, $tripId: Int, $junctureId: Int, $city: String, $country: String, $isDraft: Boolean, $isScheduled: Boolean, $isPublished: Boolean, $scheduledDate: BigInt, $publishedDate: BigInt) {
+  updatePostById(input:{
+    id: $postId,
+    postPatch:{
+      title: $title,
+      subtitle: $subtitle,
+      content: $content,
+      tripId: $tripId,
+      junctureId: $junctureId,
+      city: $city,
+      country: $country,
+      isDraft: $isDraft,
+      isScheduled: $isScheduled,
+      isPublished: $isPublished,
+      scheduledDate: $scheduledDate,
+      publishedDate: $publishedDate
+    }
+  }) {
+    post {
+      id
+    }
+  }
+}

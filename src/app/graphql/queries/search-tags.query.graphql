@@ -1,0 +1,7 @@
+query searchTags($query: String!) {
+  searchTags(query: $query) {
+    nodes {
+      name
+    }
+  }
+}

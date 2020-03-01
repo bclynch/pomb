@@ -1,0 +1,13 @@
+query tripsByUserId($userId: Int!) {
+  allTrips(
+    condition: {
+      userId: $userId
+    },
+    orderBy: PRIMARY_KEY_DESC
+  ) {
+    nodes {
+      id,
+      name
+    }
+  }
+}

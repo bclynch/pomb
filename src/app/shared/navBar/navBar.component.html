@@ -1,0 +1,42 @@
+<div 
+  class="navBarContainer" 
+  [ngClass]="collapsibleNav ? (utilService.scrollDirection === 'down' ? 'hidden' : null) : null" 
+  [style.height]="isExpanded ? '520px' : '40px'"
+  [style.background]="isExpanded || searchActive ? 'black' : ''"
+  (mouseleave)="navHover($event)"
+  id="navBar"
+>
+  <div class="navBarWrapper" [attr.style]="sanitizer.bypassSecurityTrustStyle('--secondary:' + settingsService.secondaryColor)">
+    <div class="barWrapper">
+      <div class="logoWrapper">
+        <span 
+          class="boldFont gradientText" 
+          [style.background-image]="'linear-gradient(to right, ' + settingsService.primaryColor + ', ' + settingsService.secondaryColor + ')'" 
+          (click)="routerService.navigateToPage('/')"
+        >POMB</span>
+      </div>
+      <div class="sectionsWrapper">
+        <div 
+          *ngFor="let option of sectionOptions; let i = index;" 
+          class="boldFont sectionOption"
+          (click)="navigate(option.value)"
+          (mouseenter)="navHover($event, i)"
+          [ngClass]="option.value === activeSection?.value ? 'active' : ''"
+        >{{option.label}}</div>
+      </div>
+      <div class="searchWrapper" [ngClass]="searchActive ? 'active' : ''">
+        <div (click)="openSearch()"><ion-icon class="searchBtn" name="ios-search"></ion-icon></div>
+        <Search [isActive]="searchActive" (close)="searchActive = false" [canToggle]="true"></Search>
+      </div>
+      <div class="mobilePrompt" (click)="openMobileNav()">
+        <div><ion-icon name="md-menu"></ion-icon></div>
+      </div>
+    </div>
+  </div>
+  <div class="sectionInfoPane">
+    <CommunityNavSection *ngIf="activeSection?.label === 'Community'" [socialOptions]="socialOptions"></CommunityNavSection>
+    <!-- <ExploreNavSection *ngIf="activeSection?.label === 'Explore'"></ExploreNavSection> -->
+    <StoriesNavSection *ngIf="activeSection?.label === 'Stories'"></StoriesNavSection>  
+    <MyPackNavSection *ngIf="activeSection?.label === 'My Pack'"></MyPackNavSection>    
+  </div>
+</div>

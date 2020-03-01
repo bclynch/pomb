@@ -1,0 +1,23 @@
+query allPublishedPosts($quantity: Int, $offset: Int) {
+  allPosts(
+    orderBy: PRIMARY_KEY_DESC
+    condition:{
+      isPublished: true
+    },
+    first: $quantity,
+    offset: $offset
+  ) {
+    totalCount,
+    nodes {
+      ...PostData
+      accountByAuthor {
+        ...AccountByAuthor
+      }
+      imagesByPostId {
+        nodes {
+          ...ImagesByPostId
+        }
+      }
+    }
+  }
+}

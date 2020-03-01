@@ -1,0 +1,25 @@
+mutation updateAccountById($id: Int!, $firstName: String!, $lastName: String!, $userStatus: String, $heroPhoto: String, $profilePhoto: String, $city: String, $country: String, $autoUpdate: Boolean!) {
+  updateAccountById(input:{
+    id: $id,
+    accountPatch:{
+      firstName: $firstName,
+      lastName: $lastName,
+      userStatus: $userStatus,
+      profilePhoto: $profilePhoto,
+      heroPhoto: $heroPhoto,
+      city: $city,
+      country: $country,
+      autoUpdateLocation: $autoUpdate
+    }
+  }) {
+    account {
+      ...AccountByAuthor
+      userStatus,
+      heroPhoto,
+      profilePhoto,
+      city,
+      country,
+      autoUpdateLocation
+    }
+  }
+}

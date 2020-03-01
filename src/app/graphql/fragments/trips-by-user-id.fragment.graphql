@@ -1,0 +1,16 @@
+fragment TripsByUserId on Trip {
+  id,
+  name,
+  startDate,
+  endDate,
+  imagesByTripId(
+    condition: {
+      type: BANNER,
+    },
+    first: 1
+  ) {
+    nodes {
+      url
+    }
+  }
+}

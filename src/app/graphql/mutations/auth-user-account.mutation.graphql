@@ -1,0 +1,8 @@
+mutation authUserAccount($email: String!, $password: String!) {
+  authenticateUserAccount(input:{
+    email: $email,
+    password: $password
+  }) {
+    jwtToken
+  }
+}

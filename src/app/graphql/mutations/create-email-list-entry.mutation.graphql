@@ -1,0 +1,9 @@
+mutation createEmailListEntry($email: String!) {
+  createEmailList(input:{
+    emailList: {
+      email: $email
+    }
+  }) {
+    clientMutationId
+  }
+}

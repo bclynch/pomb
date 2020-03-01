@@ -1,0 +1,20 @@
+query tripsByUser($id: Int!) {
+  allTrips (
+    condition: {
+      userId: $id
+    }
+  ) {
+    nodes {
+      id,
+      name,
+      juncturesByTripId {
+        nodes {
+          name,
+          id,
+          city,
+          country
+        }
+      }
+    }
+  }
+}

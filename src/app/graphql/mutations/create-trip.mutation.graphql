@@ -1,0 +1,17 @@
+mutation createTrip($userId: Int!, $name: String!, $description: String, $startDate: BigInt!, $endDate: BigInt, $startLat: BigFloat!, $startLon: BigFloat!) {
+  createTrip(input:{
+    trip:{
+      userId: $userId,
+      name: $name,
+      description: $description,
+      startDate: $startDate,
+      endDate: $endDate,
+      startLat: $startLat,
+      startLon: $startLon
+    }
+  }) {
+    trip {
+      id
+    }
+  }
+}

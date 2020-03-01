@@ -1,0 +1,25 @@
+pagewrapper {
+  position: fixed;
+  top:        0;
+  bottom:     0;
+  left:       0;
+  right:      0;
+  overflow:   scroll;
+  -ms-overflow-style: none;
+  background: black;
+
+  .pageWrapperContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    min-height: 100vh;
+    margin-top: 40px; //for area displaced by navbar
+    position: relative;
+
+    &.topo {
+      background: url('../../assets/images/topo.png') top center repeat-y !important;
+      background-color: mapGet($basecolor, background) !important;
+    }
+  }
+}

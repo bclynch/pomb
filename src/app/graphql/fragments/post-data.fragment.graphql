@@ -1,0 +1,8 @@
+fragment PostData on Post {
+    id,
+    title,
+    subtitle,
+    content,
+    publishedDate,
+    updatedAt
+  }

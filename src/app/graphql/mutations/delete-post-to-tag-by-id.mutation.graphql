@@ -1,0 +1,7 @@
+mutation deletePostToTagById($id: Int!) {
+  deletePostToTagById(input:{
+    id: $id
+  }) {
+    clientMutationId
+  }
+}

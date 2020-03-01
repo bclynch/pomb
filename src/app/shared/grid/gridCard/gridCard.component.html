@@ -1,0 +1,14 @@
+<div class="gridCardContainer" [ngClass]="size < 6 ? 'smallCard' : 'largeCard'">
+  <div 
+    class="cardThumb" 
+    [ngStyle]="{ 'background-image': 'url(' + thumbnailImage + ')'}"
+    (click)="navigateToPost()"
+  ></div>
+  <div class="contentContainer">
+    <div class="contentTitle" (click)="navigateToPost()">{{data.title}}</div>
+    <div class="boldFont authorContainer" (click)="routerService.navigateToPage('/user/' + data.accountByAuthor.username)">By 
+      <span [style.color]="settingsService.secondaryColor" *ngIf="data.accountByAuthor.firstName">{{data.accountByAuthor.firstName}} {{data.accountByAuthor.lastName}}</span>
+      <span [style.color]="settingsService.secondaryColor" *ngIf="!data.accountByAuthor.firstName">{{data.accountByAuthor.username}}</span>
+    </div>
+  </div>
+</div>

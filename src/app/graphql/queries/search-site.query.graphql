@@ -1,0 +1,30 @@
+query searchSite($query: String!) {
+  searchTrips(
+    query: $query,
+    first: 5
+  ) {
+    nodes {
+      id,
+      name
+    }
+  },
+  searchPosts(
+    query: $query,
+    first: 10
+  ) {
+    nodes {
+      id,
+      title,
+      subtitle,
+      createdAt
+    }
+  }
+  searchAccounts(
+    query: $query,
+    first: 10
+  ) {
+    nodes {
+      profilePhoto
+    }
+  }
+}

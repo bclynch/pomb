@@ -1,0 +1,26 @@
+query allPostToTags($tagId: String) {
+  allPostToTags(
+    condition: {
+      postTagId: $tagId
+    },
+    orderBy: PRIMARY_KEY_DESC
+  ) {
+    nodes {
+      postByPostId {
+        id,
+        title,
+        accountByAuthor {
+          ...AccountByAuthor
+        }
+        subtitle,
+        createdAt,
+        imagesByPostId {
+          nodes {
+            ...ImagesByPostId,
+            title
+          }
+        }
+      }
+    }
+  }
+}

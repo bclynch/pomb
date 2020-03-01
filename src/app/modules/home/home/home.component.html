@@ -1,0 +1,33 @@
+
+<PageWrapper 
+  backgroundColor="black" 
+  [displayHeroBanner]="true"
+>
+  <div class="mobileTopPost" *ngIf="gridPosts.length" (click)="navigateToPost(gridPosts[0])">
+    <div 
+      class="cardThumb" 
+      [ngStyle]="{ 'background-image': 'url(' + gridPosts[0].imagesByPostId.nodes[1].url + ')'}"
+    ></div>
+    <div class="cardContent">
+      <div class="title">{{gridPosts[0].title}}</div>
+      <div class="authorContainer" (click)="navigateToAuthor($event, gridPosts[0].accountByAuthor.username)">
+        <span [style.color]="settingsService.secondaryColor" *ngIf="gridPosts[0].accountByAuthor.firstName">{{gridPosts[0].accountByAuthor.firstName}} {{gridPosts[0].accountByAuthor.lastName}}</span>
+        <span [style.color]="settingsService.secondaryColor" *ngIf="!gridPosts[0].accountByAuthor.firstName">{{gridPosts[0].accountByAuthor.username}}</span>
+      </div>
+      <div>{{gridPosts[0].publishedDate | date: 'mediumDate'}}</div>
+      <div class="content">{{utilService.stripHTMLTags(gridPosts[0].content) | truncate:[200, '...']}}</div>
+    </div>
+  </div>
+  <Grid [elements]="gridPosts" [gridConfig]="gridConfiguration" *ngIf="gridPosts.length"></Grid>
+  <CompactHero [post]="compactHeroPost" *ngIf="compactHeroPost"></CompactHero>
+  <div class="featuredTitle boldFont">Featured Trip</div>
+  <TripCard [trip]="settingsService.featuredTrip"></TripCard>
+  <PostList [data]="otherPosts" [displayDescription]="true"></PostList>
+  <div 
+    class="more boldFont" 
+    *ngIf="posts.length === 20" 
+    [style.background]="settingsService.secondaryColor"
+    (click)="routerService.navigateToPage('/archive')"
+  >View More Posts</div>
+</PageWrapper>
+

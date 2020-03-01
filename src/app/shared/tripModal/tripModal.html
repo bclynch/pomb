@@ -1,0 +1,92 @@
+<div class="modalContainer">
+  <div class="initWrapper">
+    <div class="header">
+      <ion-icon name="close" (click)="viewCtrl.dismiss()" title="Close"></ion-icon>
+      <div class="headerTitle">{{params.data.tripId ? 'Edit Trip' : 'Create Trip'}}</div>
+      <div class="saveContainer boldFont">
+        <span (click)="saveTrip()">Save</span>
+      </div>
+    </div>
+    <div class="contentWrapper">
+      <div 
+        class="imgLoadWrapper" 
+        [ngStyle]="tripModel.bannerImages?.length ? { 'background-image': 'url(' + tripModel.bannerImages[0].url + ')'} : { 'background-image': 'url(../../../assets/images/trip-default.jpg)'}" 
+        (click)="presentBannerUploaderPopover()"
+      >
+        <div class="overlay">
+          <ion-icon name="md-cloud-upload"></ion-icon>
+          <div>Upload image</div>
+          <ion-icon 
+            class="editBtn" 
+            name="md-create" 
+            title="Edit banner photo" 
+            (click)="presentEditPopover($event, 0)" 
+            *ngIf="tripModel.bannerImages?.length"
+          ></ion-icon> 
+        </div>
+      </div>
+      <div class="gridWrapper" *ngIf="tripModel.bannerImages?.length > 1">
+        <div class="gridUnitWrapper" *ngFor="let image of tripModel.bannerImages | slice:1; let i = index">
+          <div class="imgWrapper">
+            <div [ngStyle]="{ 'background-image': 'url(' + image.url + ')'}"></div>
+            <ion-icon name="md-create" title="Edit banner photo" (click)="presentEditPopover($event, i + 1)"></ion-icon> 
+          </div>
+        </div>
+      </div>
+      <div class="mapContainer">
+        <div class="mapInited" *ngIf="inited">
+          <agm-map 
+            [latitude]="coords.lat" 
+            [longitude]="coords.lon"
+            [scrollwheel]="false"
+            [disableDefaultUI]="true"
+            [streetViewControl]="false"
+            [styles]=mapStyle
+            [zoom]="zoomLevel"
+            mapTypeId="terrain"
+            (centerChange)="moveCenter($event)"
+          ></agm-map>
+          <div class="target" [ngStyle]="{ 'background-image': 'url(' + junctureService.defaultStartImg + ')'}"></div>
+          <div class="directions">Center map on trip start location</div>
+        </div>
+        <div *ngIf="!inited"><ion-spinner name="crescent"></ion-spinner></div>
+      </div>
+      <div class="modalSection">
+        <label class="tripLabel">Trip Name</label>
+        <input 
+          type="text"
+          [(ngModel)]="tripModel.name" 
+          class="tripTextInput"
+          [ngClass]="tripModel.name ? 'valid' : 'invalid'"
+        />
+      </div>
+      <div class="timeContainer modalSection">
+        <div class="timeDisplay">
+          <div class="tripLabel">Trip Start Date</div>
+          <div class="dateWrapper" (click)="presentDatepickerModal($event, true)">
+            <div class="input">{{tripModel.timeStart | date: 'MMM d, y, h:mm a'}}</div>
+            <ion-icon name="md-calendar"></ion-icon>
+          </div>
+        </div>
+        <div class="timeDisplay">
+          <div class="tripLabel">Trip End Date</div>
+          <div class="dateWrapper" (click)="presentDatepickerModal($event, false)">
+            <div class="input">{{tripModel.timeEnd | date: 'MMM d, y, h:mm a'}}</div>
+            <ion-icon name="md-calendar"></ion-icon>
+          </div>
+        </div>
+      </div>
+      <div class="descriptionContainer modalSection">
+        <div class="tripLabel">Trip Description</div>
+        <div class="textEditorWrapper">
+          <div [froalaEditor]="editorOptions" [(froalaModel)]="tripModel.description"></div>
+        </div>
+      </div>
+      <div 
+        class="deleteBtn modalSection" 
+        (click)="deleteTrip()" 
+        *ngIf="params.data.tripId"
+      >Delete Trip</div>
+    </div>
+  </div>
+</div>

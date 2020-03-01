@@ -1,0 +1,25 @@
+<div class="paneHeader">A handpicked collection of travel and outdoor stories, each a unique look into an extraordinary trip.
+  <span [style.color]="settingsService.secondaryColor" (click)="routerService.navigateToPage('/stories')">View All</span>
+</div>
+<div class="paneContainer" [attr.style]="sanitizer.bypassSecurityTrustStyle('--secondary:' + settingsService.secondaryColor)">
+  <div 
+    class="paneSection story" 
+    *ngFor="let story of (settingsService.featuredStories[0] ? settingsService.featuredStories : []); let i = index" 
+    (click)="navigateToPost(story)"
+    [ngClass]="'story' + i"
+  >
+    <div class="paneSectionHeader">{{story.title}}</div>
+    <div [ngStyle]="{ 'background-image': 'url(' + story.imgURL + ')'}" class="storyImage"></div>
+    <div class="storyDescription">{{story.subtitle | truncate:[200, '...']}}</div>
+  </div>
+  <div class="paneSection categories">
+    <div class="paneSectionHeader">Popular Categories</div>
+    <div 
+      *ngFor="let category of settingsService.siteSections.Stories.subSections;" 
+      class="category" 
+      (click)="routerService.navigateToPage('/stories/' + category)"
+    >
+      {{category | uppercase}}
+    </div>
+  </div>
+</div>

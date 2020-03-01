@@ -1,0 +1,14 @@
+mutation registerAdminAccount($username: String!, $firstName: String!, $lastName: String!, $password: String!, $email: String!) {
+  registerAdminAccount(input:{
+    username: $username
+    firstName: $firstName,
+    lastName: $lastName,
+    password: $password,
+    email: $email,
+  })
+  {
+    account {
+      ...AccountByAuthor
+    }
+  }
+}

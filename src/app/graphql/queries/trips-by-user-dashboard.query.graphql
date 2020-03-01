@@ -1,0 +1,29 @@
+query tripsByUserDashboard($id: Int!) {
+  allTrips (
+    condition: {
+      userId: $id
+    }
+  ) {
+    nodes {
+      id,
+      name,
+      startDate,
+      endDate,
+      juncturesByTripId {
+        nodes {
+          id
+          name,
+          arrivalDate,
+          city,
+          country
+        }
+      },
+      imagesByTripId {
+        nodes {
+          id,
+          url
+        }
+      }
+    }
+  }
+}

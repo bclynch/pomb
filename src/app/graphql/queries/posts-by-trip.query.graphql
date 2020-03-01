@@ -1,0 +1,24 @@
+query postsByTrip($id: Int!) {
+  tripById(id: $id) {
+    postsByTripId(
+      first: 10,
+      orderBy: ID_DESC
+    ) {
+      totalCount,
+      nodes {
+        id,
+        title,
+        accountByAuthor {
+          ...AccountByAuthor
+        }
+        subtitle,
+        createdAt,
+        imagesByPostId {
+          nodes {
+            ...ImagesByPostId
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,88 @@
+query postById($id: Int!, $userId: Int) {
+  postById(id: $id) {
+    id,
+    title,
+    subtitle,
+    content,
+    createdAt,
+    updatedAt,
+    scheduledDate,
+    publishedDate,
+    isDraft,
+    isScheduled,
+    tripId,
+    junctureId,
+    city,
+    country,
+    accountByAuthor {
+      ...AccountByAuthor
+    },
+    postToTagsByPostId {
+      nodes {
+        postTagByPostTagId {
+          name,
+          postToTagsByPostTagId(first: 5, orderBy: ID_DESC) {
+            nodes {
+              postByPostId {
+                id,
+                title,
+                createdAt,
+                accountByAuthor {
+                  ...AccountByAuthor
+                },
+                imagesByPostId {
+                  nodes {
+                    ...ImagesByPostId
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    imagesByPostId(
+      filter: {
+        type: {
+          notEqualTo: LEAD_SMALL
+        }
+      }
+    ) {
+      nodes {
+        id,
+        type,
+        url,
+        description,
+        title,
+        accountByUserId {
+          id,
+          username
+        },
+        likesByUser: likesByImageId(
+          condition: {
+            userId: $userId
+          }
+        ) {
+          nodes {
+            id
+          }
+        },
+        totalLikes: likesByImageId {
+          totalCount
+        }
+      }
+    },
+    likesByUser: likesByPostId(
+      condition: {
+        userId: $userId
+      }
+    ) {
+      nodes {
+        id
+      }
+    },
+    totalLikes: likesByPostId {
+      totalCount
+    }
+  }
+}

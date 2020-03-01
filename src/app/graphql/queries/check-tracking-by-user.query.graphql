@@ -1,0 +1,15 @@
+query checkTrackingByUser($trackedUser: Int!, $trackingUser: Int!) {
+  accountById (
+    id: $trackedUser
+  ) {
+    tracksByTrackUserId(
+      condition: {
+        userId: $trackingUser
+      }
+    ) {
+      nodes {
+        id
+      }
+    }
+  }
+}

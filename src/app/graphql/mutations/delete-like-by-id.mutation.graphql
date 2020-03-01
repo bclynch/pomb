@@ -1,0 +1,9 @@
+mutation deleteLikeById($likeId: Int!) {
+  deleteLikeById(
+    input: {
+      id: $likeId
+    }
+  ) {
+    clientMutationId
+  }
+}

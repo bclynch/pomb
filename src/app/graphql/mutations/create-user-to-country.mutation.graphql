@@ -1,0 +1,10 @@
+mutation createUserToCountry($code: String!, $userId: Int!) {
+  createUserToCountry(input: {
+    userToCountry: {
+      country: $code,
+      userId: $userId
+    }
+  }) {
+    clientMutationId
+  }
+}

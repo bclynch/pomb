@@ -1,0 +1,70 @@
+<div class="paneContainer" [attr.style]="sanitizer.bypassSecurityTrustStyle('--secondary:' + settingsService.secondaryColor)">
+  <div *ngIf="!userService.signedIn" class="signedOutContainer">
+    <div class="paneSection">
+      <div class="paneSectionHeader">Sign Up</div>
+      <div class="paneSectionContent" (click)="signinUser()">
+        <div><ion-icon name="md-person"></ion-icon></div>
+        <div class="loginDescription">Looks like you aren't signed into an account yet. Login or signup to become a POMB member and start chronicling your journey.</div>
+        <div class="paneSectionBtn">Get Started</div>
+      </div>
+    </div>
+    <div class="paneSection">
+      <div class="paneSectionHeader">Newsletter</div>
+      <div class="paneSectionContent">
+        <Newsletter callout="Stay up to date with the latest happenings without registering"></Newsletter>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="userService.signedIn" class="signedInContainer">
+      <div class="paneSection profile">
+        <div class="paneSectionHeader">Profile</div>
+        <div class="profileWrapper" (click)="routerService.navigateToPage('/user/' + userService.user.username)">
+          <div class="signedInUser">Welcome back {{userService.user.firstName || userService.user.username}}</div>
+          <ProfilePicture [photo]="userService.user?.profilePhoto"></ProfilePicture>
+        </div>
+        <!-- <div (click)="routerService.navigateToPage('/admin')">Admin</div> -->
+        <div (click)="logout()" class="paneSectionBtn">Logout</div>
+      </div>
+      <div class="paneSection quickLinks">
+        <div class="paneSectionHeader">Quick Links</div>
+        <div class="paneOptionWrapper">
+          <div 
+            *ngFor="let option of quickLinks;" 
+            class="paneOption boldFont" 
+            (click)="navigate(option.value)"
+          >
+            <ion-icon [name]="option.icon" *ngIf="!option.custom"></ion-icon>
+            <TrackIcon *ngIf="option.custom && option.icon === 'track'"></TrackIcon>
+            <div class="linkLabel">{{option.label}}</div>
+          </div>
+        </div>
+      </div>
+      <div class="paneSection recent">
+        <div class="paneSectionHeader">Recent Activity</div>
+        <div class="paneSectionContent">
+          <div class="leftContainer" *ngIf="userService.recentTrip">
+            <div class="tripContainer">
+              <div class="miniSectionLabel">Recent Trip</div>
+              <TripCard [trip]="userService.recentTrip"></TripCard>
+            </div>
+            <div class="juncturesContainer" *ngIf="userService.recentJunctures.length">
+              <div class="miniSectionLabel">Recent Junctures</div>
+              <div class="bubblesWrapper">
+                <JunctureBubble [juncture]="juncture" *ngFor="let juncture of userService.recentJunctures;"></JunctureBubble>
+              </div>
+            </div>
+          </div>
+          <div class="rightContainer" *ngIf="userService.recentPosts.length">
+            <div class="postsContainer">
+              <div class="miniSectionLabel">Recent Posts</div>
+              <PostCard *ngFor="let post of userService.recentPosts;" [data]="post" [displayAuthor]="false"></PostCard>
+            </div>
+          </div>
+          <div class="emptyContainer" *ngIf="!userService.recentPosts.length && !userService.recentTrip">
+            <ion-icon name="md-images"></ion-icon>
+            <div>Looks like you don't have any recent activity yet. Spin up a trip or post a story to start seeing content here!</div>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>

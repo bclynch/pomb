@@ -1,0 +1,7 @@
+mutation deleteAccount($userId: Int!) {
+  deleteAccountById(input: {
+    id: $userId
+  }) {
+    clientMutationId
+  }
+}

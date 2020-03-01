@@ -1,0 +1,105 @@
+query accountByUsername($username: String!, $userId: Int) {
+  accountByUsername(username: $username) {
+    id,
+    username,
+    firstName,
+    lastName,
+    profilePhoto,
+    heroPhoto,
+    city,
+    country,
+    userStatus,
+    postsByAuthor (
+      condition: {
+        isPublished: true
+      },
+      last: 11
+    ) {
+      nodes {
+        id,
+        title,
+        accountByAuthor {
+          ...AccountByAuthor
+        }
+        imagesByPostId(condition:{
+          type: LEAD_LARGE
+        }) {
+          nodes {
+            url,
+            type
+          }
+        }
+      }
+    },
+    imagesByUserId(
+      first: 12,
+      filter: {
+        type: {
+          notEqualTo: LEAD_SMALL
+        }
+      },
+      orderBy: PRIMARY_KEY_DESC
+    ) {
+      nodes {
+          id,
+          url,
+          title,
+          type,
+          description,
+          accountByUserId {
+            id,
+            username
+          },
+          likesByUser: likesByImageId(
+            condition: {
+              userId: $userId
+            }
+          ) {
+            nodes {
+              id
+            }
+          },
+          totalLikes: likesByImageId {
+            totalCount
+          }
+        }
+    }
+    tripsByUserId (
+      last: 5,
+      orderBy: PRIMARY_KEY_DESC
+    ) {
+      nodes {
+        id,
+        ...TripsByUserId
+      }
+    },
+    totalJunctureCount: juncturesByUserId {
+      totalCount
+    },
+    totalImageCount: imagesByUserId {
+      totalCount
+    },
+    totalPostCount: postsByAuthor {
+      totalCount
+    }
+    totalTripCount: tripsByUserId {
+      totalCount
+    },
+    tracksByUserId {
+      totalCount
+    },
+    tracksByTrackUserId {
+      totalCount
+    },
+    userToCountriesByUserId(
+      orderBy: COUNTRY_ASC
+    ) {
+      nodes {
+        countryByCountry {
+          code,
+          name
+        }
+      }
+    }
+  }
+}

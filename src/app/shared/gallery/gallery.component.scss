@@ -1,0 +1,29 @@
+gallery {
+
+  .galleryContainer {
+    @include flexbox();
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-content: flex-start;
+
+    .cardWrapper {
+      width: 100%;
+    }
+  }
+  @include respond-to(tiny) {
+    .galleryContainer {
+
+      .cardWrapper {
+        width: 50%;
+      }
+    }
+  }
+  @include respond-to(small) {
+    .galleryContainer {
+
+      .cardWrapper {
+        width: 33.33%;
+      }
+    }
+  }
+}

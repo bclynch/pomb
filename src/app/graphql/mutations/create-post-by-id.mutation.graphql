@@ -1,0 +1,23 @@
+mutation createPost($author: Int!, $title: String!, $subtitle: String!, $content: String!, $isDraft: Boolean!, $isScheduled: Boolean!, $isPublished: Boolean!, $tripId: Int, $city: String, $country: String, $junctureId: Int, $scheduledDate: BigInt, $publishedDate: BigInt) {
+  createPost(input: {
+    post: {
+      author: $author,
+      title: $title,
+      subtitle: $subtitle,
+      content: $content,
+      isDraft: $isDraft,
+      isScheduled: $isScheduled,
+      isPublished: $isPublished,
+      tripId: $tripId,
+      junctureId: $junctureId,
+      city: $city,
+      country: $country,
+      scheduledDate: $scheduledDate,
+      publishedDate: $publishedDate
+    }
+  }) {
+    post {
+      id
+    }
+  }
+}

@@ -1,0 +1,61 @@
+// http://ionicframework.com/docs/theming/
+
+
+// App Global Sass
+// --------------------------------------------------
+// Put style rules here that you want to apply globally. These
+// styles are for the entire app and not just one component.
+// Additionally, this file can be also used as an entry point
+// to import other Sass files to be included in the output CSS.
+//
+// Shared Sass variables, which can be used to adjust Ionic's
+// default Sass variables, belong in "theme/variables.scss".
+//
+// To declare rules for a specific mode, create a child rule
+// for the .md, .ios, or .wp mode classes. The mode class is
+// automatically applied to the <body> element in the app.
+
+ion-app {
+  overflow: scroll;
+  -ms-overflow-style: none;
+  background: var(--black);
+  position: static!important;
+  min-height: 100%;
+}
+.boldFont {
+  font-weight: 500;
+  letter-spacing: .5px;
+  text-transform: uppercase;
+}
+
+.gradientText {
+  color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+.topoWrapper {
+  background: url('../assets/images/topo.png') top center repeat-y;
+  max-width: 1280px;
+  background-size: 1280px;
+  background-color: var(--background);
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+// hide froala shit
+.fr-wrapper {
+  div {
+    a[href="https://www.froala.com/wysiwyg-editor?k=u"] {
+      display: none!important;
+    }
+  }
+  .fr-element {
+    .fr-placeholder {
+      margin-top: 0!important;
+    }
+  }
+}
+.toast-container {
+  background: #78d3b2 !important;
+}
