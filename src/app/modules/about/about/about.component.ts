@@ -5,7 +5,8 @@ import { BroadcastService } from '../../../services/broadcast.service';
 
 @Component({
   selector: 'app-about',
-  templateUrl: 'about.component.html'
+  templateUrl: './about.component.html',
+  styleUrls: ['./about.component.scss']
 })
 export class AboutComponent {
 
@@ -26,6 +27,9 @@ export class AboutComponent {
   }
 
   init() {
-    this.settingsService.modPageMeta('About', 'Pack On My Back is software platform intended to take the pain out of archiving your memories.');
+    this.settingsService.modPageMeta(
+      'About',
+      'Pack On My Back is software platform intended to take the pain out of archiving your memories.'
+    );
   }
 }

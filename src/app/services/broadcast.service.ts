@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, Observer } from 'rxjs';
-import { filter } from 'rxjs/operators';
+import { filter, share } from 'rxjs/operators';
 
 export interface BroadcastEvent {
   name: string;
@@ -16,7 +16,7 @@ export class BroadcastService {
   constructor() {
     this.observable = Observable
       .create(observer => this.observer = observer)
-      .share();
+      .pipe(share());
   }
 
   broadcast(event: BroadcastEvent) {

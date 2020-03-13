@@ -68,8 +68,22 @@
         [disabled]="!registrationForm.valid"
       >Create Your Account</button>
     </form>
-    <div class="alreadyMember">Already a POMB member? <span class="boldFont" (click)="toggleView()" [style.color]="settingsService.secondaryColor">Sign in</span></div>
-    <div class="terms">By creating your POMB account, you agree to the <span [style.color]="settingsService.secondaryColor" (click)="navigate('terms')">Terms of Use</span> and <span [style.color]="settingsService.secondaryColor" (click)="navigate('privacy')">Privacy Policy</span>.</div>
+    <div class="alreadyMember">
+      Already a POMB member? 
+      <span class="boldFont" (click)="toggleView()" [style.color]="settingsService.secondaryColor">
+        Sign in
+      </span>
+    </div>
+    <div class="terms">By creating your POMB account, you agree to the 
+      <span [style.color]="settingsService.secondaryColor" (click)="navigate('terms')">
+        Terms of Use
+      </span> 
+      and 
+      <span [style.color]="settingsService.secondaryColor" (click)="navigate('privacy')">
+        Privacy Policy
+      </span>
+      .
+    </div>
   </div>
   <div class="loginCard" *ngIf="!isRegister">
     <h3>Sign in with your POMB account</h3>
@@ -106,6 +120,10 @@
         [disabled]="!loginForm.valid"
       >Sign In</button>
     </form>
-    <div class="notMember">Don't have an account? <span class="boldFont" (click)="toggleView()" [style.color]="settingsService.secondaryColor">Sign Up</span></div>
+    <div class="notMember">Don't have an account? 
+      <span class="boldFont" (click)="toggleView()" [style.color]="settingsService.secondaryColor">
+        Sign Up
+      </span>
+    </div>
   </div>
 </div>

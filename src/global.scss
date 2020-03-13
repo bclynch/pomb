@@ -29,17 +29,17 @@
 // Beakpoints
 // --------------------------------------------------
 
-@import "theme/common/breakpoints";
+@import "./theme/common/breakpoints.scss";
 
 
 // Mixins / Functions
 // --------------------------------------------------
 
-@import "theme/common/functions";
-@import "theme/common/mixins";
+@import "./theme/common/functions.scss";
+@import "./theme/common/mixins.scss";
 
 
 // Keyframes
 // --------------------------------------------------
 
-@import "theme/common/keyframes";
+@import "./theme/common/keyframes.scss";

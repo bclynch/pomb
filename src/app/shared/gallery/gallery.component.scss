@@ -1,4 +1,4 @@
-gallery {
+app-gallery {
 
   .galleryContainer {
     @include flexbox();
@@ -18,7 +18,7 @@ gallery {
       }
     }
   }
-  @include respond-to(small) {
+  @media (min-width: 768px) {
     .galleryContainer {
 
       .cardWrapper {

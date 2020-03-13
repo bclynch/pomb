@@ -1,32 +1,58 @@
 import { Component, ViewChild } from '@angular/core';
-import { Router } from '@angular/router';
 import { NavParams, PopoverController, ModalController, ToastController } from '@ionic/angular';
 import { TripByIdGQL, DeleteImageByIdGQL, DeleteTripByIdGQL } from '../../generated/graphql';
 import { UserService } from '../../services/user.service';
-import { SettingsService } from '../../services/settings.service';
 import { UtilService } from '../../services/util.service';
 import { AlertService } from '../../services/alert.service';
 import { JunctureService } from '../../services/juncture.service';
 
-import { DatePickerModal } from '../datepickerModal/datepickerModal';
-import { ImageUploaderPopover } from '../imageUploader/imageUploaderPopover.component';
-import { GalleryImgActionPopover } from '../galleryImgAction/galleryImgActionPopover.component';
+import { DatePickerModalComponent } from '../datepickerModal/datepickerModal';
+import { ImageUploaderPopoverComponent } from '../imageUploader/imageUploaderPopover.component';
+import { GalleryImgActionPopoverComponent } from '../galleryImgAction/galleryImgActionPopover.component';
 
 import { Trip } from '../../models/Trip.model';
 
 @Component({
   selector: 'TripModal',
-  templateUrl: 'tripModal.html'
+  templateUrl: 'tripModal.html',
+  styleUrls: ['./tripModal.scss']
 })
-export class TripModal {
+export class TripModalComponent {
 
   editorOptions = {
     placeholderText: 'Write something insightful...',
     heightMin: '300px',
     heightMax: '525px',
-    toolbarButtons: ['fullscreen', 'bold', 'italic', 'underline', '|', 'fontFamily', 'fontSize', 'paragraphFormat', 'align', 'formatOL', 'formatUL', 'indent', '|', 'specialCharacters', 'selectAll', 'clearFormatting', 'html', '|', 'undo', 'redo']
+    toolbarButtons: [
+      'fullscreen',
+      'bold',
+      'italic',
+      'underline',
+      '|',
+      'fontFamily',
+      'fontSize',
+      'paragraphFormat',
+      'align',
+      'formatOL',
+      'formatUL',
+      'indent', '|',
+      'specialCharacters',
+      'selectAll',
+      'clearFormatting',
+      'html',
+      '|',
+      'undo',
+      'redo'
+    ]
   };
-  tripModel = { name: '', timeStart: Date.now(), timeEnd: null, description: '', bannerImages: [], photoHasChanged: [] };
+  tripModel = {
+    name: '',
+    timeStart: Date.now(),
+    timeEnd: null,
+    description: '',
+    bannerImages: [],
+    photoHasChanged: []
+  };
 
   inited = false;
   coords = { lat: null, lon: null };
@@ -36,14 +62,12 @@ export class TripModal {
   constructor(
     private userService: UserService,
     private params: NavParams,
-    private router: Router,
-    private settingsService: SettingsService,
     private utilService: UtilService,
     private popoverCtrl: PopoverController,
     private alertService: AlertService,
-    private modalCtrl: ModalController,
+    public modalCtrl: ModalController,
     private toastCtrl: ToastController,
-    private junctureService: JunctureService,
+    public junctureService: JunctureService,
     private tripByIdGQL: TripByIdGQL,
     private deleteImageByIdGQL: DeleteImageByIdGQL,
     private deleteTripByIdGQL: DeleteTripByIdGQL
@@ -92,9 +116,9 @@ export class TripModal {
     e.stopPropagation();
 
     const modal = await this.modalCtrl.create({
-      component: DatePickerModal,
-      componentProps: { date: isStart ? this.tripModel.timeStart : this.tripModel.timeEnd || Date.now() }, 
-      cssClass: 'datepickerModal' 
+      component: DatePickerModalComponent,
+      componentProps: { date: isStart ? this.tripModel.timeStart : this.tripModel.timeEnd || Date.now() },
+      cssClass: 'datepickerModal'
     });
     await modal.present();
 
@@ -112,7 +136,10 @@ export class TripModal {
     if (!this.tripModel.name) {
       this.alertService.alert('Missing Information', 'Please enter a name for your trip and try to save again.');
     } else if (this.tripModel.timeEnd && this.tripModel.timeEnd < this.tripModel.timeStart) {
-      this.alertService.alert('Save Issue', 'Please check your start and end dates. End date cannot be after your start date.');
+      this.alertService.alert(
+        'Save Issue',
+        'Please check your start and end dates. End date cannot be after your start date.'
+      );
     } else {
       this.modalCtrl.dismiss({
         isExisting: this.params.data.tripId ? true : false,
@@ -130,10 +157,10 @@ export class TripModal {
 
   async presentBannerUploaderPopover() {
     const popover = await this.popoverCtrl.create({
-      component: ImageUploaderPopover,
-      componentProps: { type: 'banner', max: 5, size: { width: 3200, height: 2132 } }, 
+      component: ImageUploaderPopoverComponent,
+      componentProps: { type: 'banner', max: 5, size: { width: 3200, height: 2132 } },
       cssClass: 'imageUploaderPopover',
-      backdropDismiss: false 
+      backdropDismiss: false
     });
     await popover.present();
 
@@ -154,9 +181,9 @@ export class TripModal {
     e.stopPropagation();
 
     const popover = await this.popoverCtrl.create({
-      component: GalleryImgActionPopover,
-      componentProps: { model: this.tripModel.bannerImages[index] }, 
-      cssClass: 'galleryImgActionPopover' 
+      component: GalleryImgActionPopoverComponent,
+      componentProps: { model: this.tripModel.bannerImages[index] },
+      cssClass: 'galleryImgActionPopover'
     });
     await popover.present();
 
@@ -217,7 +244,7 @@ export class TripModal {
       duration: 3000,
       position: 'top'
     });
-  
+
     toast.present();
   }
 }

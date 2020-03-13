@@ -4,14 +4,15 @@ import { SettingsService } from '../../services/settings.service';
 
 @Component({
   selector: 'app-hero-banner',
-  templateUrl: 'heroBanner.component.html'
+  templateUrl: './heroBanner.component.html',
+  styleUrls: ['./heroBanner.component.scss']
 })
-export class HeroBanner {
+export class HeroBannerComponent {
 
   today: number = Date.now();
 
   constructor(
-    private settingsService: SettingsService
+    public settingsService: SettingsService
   ) { }
 
 }

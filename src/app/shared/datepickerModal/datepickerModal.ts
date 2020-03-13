@@ -1,5 +1,5 @@
 
-import { Component, Output, EventEmitter } from '@angular/core';
+import { Component } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ModalController, NavParams } from '@ionic/angular';
 import { SettingsService } from '../../services/settings.service';
@@ -12,10 +12,11 @@ interface DateItem {
 }
 
 @Component({
-  selector: 'DatePickerModal',
-  templateUrl: 'datepickerModal.html'
+  selector: 'app-datepicker-modal',
+  templateUrl: './datepickerModal.html',
+  styleUrls: ['./datepickerModal.scss']
 })
-export class DatePickerModal {
+export class DatePickerModalComponent {
 
   private currentMoment: moment.Moment;
   private daysGroupedByWeek = [];
@@ -28,15 +29,19 @@ export class DatePickerModal {
   constructor(
     public modalCtrl: ModalController,
     private params: NavParams,
-    private sanitizer: DomSanitizer,
-    private settingsService: SettingsService
+    public sanitizer: DomSanitizer,
+    public settingsService: SettingsService
   ) {
     this.currentMoment = moment(this.params.data.date);
     this.renderCalender();
   }
 
   private renderCalender() {
-    this.daysOfMonth = this.generateDaysOfMonth(this.currentMoment.year(), this.currentMoment.month() + 1, this.currentMoment.date());
+    this.daysOfMonth = this.generateDaysOfMonth(
+      this.currentMoment.year(),
+      this.currentMoment.month() + 1,
+      this.currentMoment.date()
+    );
     this.daysGroupedByWeek = this.groupByWeek(this.daysOfMonth);
     this.generateTime();
 
@@ -90,7 +95,9 @@ export class DatePickerModal {
 
   private selectDate(day: DateItem) {
 
-    if (!day.isEnabled) return;
+    if (!day.isEnabled) {
+      return;
+    }
 
     if (this.selectedDateItem && this.selectedDateItem.isSelected) {
       this.selectedDateItem.isSelected = false;
@@ -140,7 +147,9 @@ export class DatePickerModal {
   }
 
   private confirmDateSelection() {
-    const combinedDate = this.selectedDateItem.momentDate.add(this.timeModel.hour, 'hours').add(this.timeModel.minutes, 'minutes');
+    const combinedDate = this.selectedDateItem.momentDate
+      .add(this.timeModel.hour, 'hours')
+      .add(this.timeModel.minutes, 'minutes');
     this.modalCtrl.dismiss(combinedDate.toDate());
   }
 

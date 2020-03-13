@@ -7,10 +7,10 @@ import { Post } from '../../models/Post.model';
 
 @Component({
   selector: 'app-compact-hero',
-  templateUrl: 'compactHero.component.html',
+  templateUrl: './compactHero.component.html',
   styleUrls: ['./compactHero.component.scss']
 })
-export class CompactHero {
+export class CompactHeroComponent {
   @Input() post: Post;
 
   constructor(

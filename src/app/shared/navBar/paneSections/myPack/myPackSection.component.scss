@@ -1,4 +1,4 @@
-mypacknavsection {
+app-my-pack-nav-section {
 
   .paneContainer {
     width: 100%;
@@ -211,7 +211,7 @@ mypacknavsection {
       }
     }
   }
-  @include respond-to(small) {
+  @media (min-width: 768px) {
 
   }
 }

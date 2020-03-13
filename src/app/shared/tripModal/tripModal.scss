@@ -214,7 +214,7 @@ tripmodal {
       }
     }
   }
-  @include respond-to(small) {
+  @media (min-width: 768px) {
     .modalSection {
       width: 80% !important;
     }

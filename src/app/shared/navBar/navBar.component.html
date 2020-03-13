@@ -25,18 +25,22 @@
         >{{option.label}}</div>
       </div>
       <div class="searchWrapper" [ngClass]="searchActive ? 'active' : ''">
-        <div (click)="openSearch()"><ion-icon class="searchBtn" name="ios-search"></ion-icon></div>
-        <Search [isActive]="searchActive" (close)="searchActive = false" [canToggle]="true"></Search>
+        <div (click)="openSearch()">
+          <ion-icon class="searchBtn" name="search-outline"></ion-icon>
+        </div>
+        <app-search [isActive]="searchActive" (close)="searchActive = false" [canToggle]="true"></app-search>
       </div>
       <div class="mobilePrompt" (click)="openMobileNav()">
-        <div><ion-icon name="md-menu"></ion-icon></div>
+        <div>
+          <ion-icon name="menu-outline"></ion-icon>
+        </div>
       </div>
     </div>
   </div>
   <div class="sectionInfoPane">
-    <CommunityNavSection *ngIf="activeSection?.label === 'Community'" [socialOptions]="socialOptions"></CommunityNavSection>
-    <!-- <ExploreNavSection *ngIf="activeSection?.label === 'Explore'"></ExploreNavSection> -->
-    <StoriesNavSection *ngIf="activeSection?.label === 'Stories'"></StoriesNavSection>  
-    <MyPackNavSection *ngIf="activeSection?.label === 'My Pack'"></MyPackNavSection>    
+    <app-community-nav-section *ngIf="activeSection?.label === 'Community'" [socialOptions]="socialOptions"></app-community-nav-section>
+    <!-- <app-explore-nav-section *ngIf="activeSection?.label === 'Explore'"></ExploreNavSection> -->
+    <app-stories-nav-section *ngIf="activeSection?.label === 'Stories'"></app-stories-nav-section>  
+    <app-my-pack-nav-section *ngIf="activeSection?.label === 'My Pack'"></app-my-pack-nav-section>    
   </div>
 </div>

@@ -1,14 +1,15 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 
 import { GalleryPhoto } from '../../models/GalleryPhoto.model';
-import { ExpandedModal } from './expandedModal/expandedModal.component';
+import { ExpandedModalComponent } from './expandedModal/expandedModal.component';
 
 @Component({
   selector: 'app-gallery',
-  templateUrl: 'gallery.component.html'
+  templateUrl: './gallery.component.html',
+  styleUrls: ['./gallery.component.scss']
 })
-export class Gallery {
+export class GalleryComponent {
   @Input() data: GalleryPhoto[];
   @Input() gutterWidth = '5px';
   @Input() perRow: number;
@@ -20,11 +21,11 @@ export class Gallery {
 
   async expandCarousel(i: number) {
     const modal = await this.modalController.create({
-      component: ExpandedModal,
-      componentProps: { data: this.data, index: i }, 
+      component: ExpandedModalComponent,
+      componentProps: { data: this.data, index: i },
       cssClass: 'expandedModal'
     });
-  
+
     await modal.present();
   }
 }

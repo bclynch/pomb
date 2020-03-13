@@ -12,15 +12,16 @@ interface Social {
 }
 
 @Component({
-  selector: 'ExploreNavSection',
-  templateUrl: 'exploreSection.component.html'
+  selector: 'app-explore-nav-section',
+  templateUrl: './exploreSection.component.html',
+  styleUrls: ['./exploreSection.component.scss']
 })
-export class ExploreNavSection {
+export class ExploreNavSectionComponent {
 
   constructor(
-    private settingsService: SettingsService,
+    public settingsService: SettingsService,
     private routerService: RouterService,
-    private exploreService: ExploreService,
+    public exploreService: ExploreService,
     private utilService: UtilService
   ) {}
 

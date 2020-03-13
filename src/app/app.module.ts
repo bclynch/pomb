@@ -12,13 +12,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { ENV } from '../environments/environment';
 
-// Directives
-import { WindowScrollDirective } from './directives/scroll.directive';
-import { EqualValidator } from './directives/validatePassword.directive';
-
-// Pipes
-import { TruncatePipe } from './pipes/truncate.pipe';
-
 // Apollo
 import { GraphQLModule } from './graphql.module';
 
@@ -43,10 +36,7 @@ import { TripService } from './services/trip.service';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    WindowScrollDirective,
-    EqualValidator,
-    TruncatePipe
+    AppComponent
   ],
   entryComponents: [],
   imports: [

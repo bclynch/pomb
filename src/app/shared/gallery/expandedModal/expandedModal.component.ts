@@ -7,10 +7,11 @@ import { RouterService } from '../../../services/router.service';
 import { GalleryPhoto } from '../../../models/GalleryPhoto.model';
 
 @Component({
-  selector: 'ExpandedModal',
-  templateUrl: 'expandedModal.component.html'
+  selector: 'app-expanded-modal',
+  templateUrl: './expandedModal.component.html',
+  styleUrls: ['./expandedModal.component.scss']
 })
-export class ExpandedModal {
+export class ExpandedModalComponent {
 
   photos: GalleryPhoto[];
   currentIndex: number;
@@ -19,7 +20,7 @@ export class ExpandedModal {
   constructor(
     public modalCtrl: ModalController,
     private params: NavParams,
-    private settingsService: SettingsService,
+    public settingsService: SettingsService,
     private routerService: RouterService
   ) {
     this.photos = this.params.data.data;
@@ -32,9 +33,13 @@ export class ExpandedModal {
 
   pan(direction: string) {
     if (direction === 'forward') {
-      if (this.currentIndex !== this.photos.length - 1) this.currentIndex++;
+      if (this.currentIndex !== this.photos.length - 1) {
+        this.currentIndex++;
+      }
     } else {
-      if (this.currentIndex !== 0) this.currentIndex--;
+      if (this.currentIndex !== 0) {
+        this.currentIndex--;
+      }
     }
   }
 
@@ -62,10 +67,14 @@ export class ExpandedModal {
   onKey(e: KeyboardEvent) {
     switch (e.keyCode) {
       case 39:
-        if (this.currentIndex !== this.photos.length - 1) this.currentIndex++;
+        if (this.currentIndex !== this.photos.length - 1) {
+          this.currentIndex++;
+        }
         break;
       case 37:
-        if (this.currentIndex !== 0) this.currentIndex--;
+        if (this.currentIndex !== 0) {
+          this.currentIndex--;
+        }
         break;
     }
   }

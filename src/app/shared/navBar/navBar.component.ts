@@ -2,8 +2,8 @@ import { Component, Input } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { DomSanitizer } from '@angular/platform-browser';
 
-import { RegistrationModal } from '../registrationModal/registrationModal';
-import { MobileNavModal } from '../mobileNavModal/mobileNavModal';
+import { RegistrationModalComponent } from '../registrationModal/registrationModal';
+import { MobileNavModalComponent } from '../mobileNavModal/mobileNavModal';
 
 import { SettingsService } from '../../services/settings.service';
 import { RouterService } from '../../services/router.service';
@@ -28,9 +28,10 @@ interface Section {
 
 @Component({
   selector: 'app-navbar',
-  templateUrl: 'navBar.component.html'
+  templateUrl: './navBar.component.html',
+  styleUrls: ['./navBar.component.scss']
 })
-export class NavBar {
+export class NavBarComponent {
   @Input() collapsibleNav: boolean;
 
   socialOptions: Social[] = [
@@ -60,7 +61,12 @@ export class NavBar {
     private tripService: TripService,
     private junctureService: JunctureService
   ) {
-    this.settingsService.appInited ? this.snagCategories() : this.broadcastService.on('appIsReady', () => this.snagCategories());
+    this.settingsService.appInited
+      ? this.snagCategories()
+      : this.broadcastService.on(
+        'appIsReady',
+        () => this.snagCategories()
+      );
   }
 
   snagCategories() {
@@ -85,7 +91,7 @@ export class NavBar {
 
   async signinUser() {
     const modal = await this.modalCtrl.create({
-      component: RegistrationModal,
+      component: RegistrationModalComponent,
       cssClass: 'registrationModal'
     });
     return await modal.present();
@@ -107,7 +113,7 @@ export class NavBar {
 
   async openMobileNav() {
     const modal = await this.modalCtrl.create({
-      component: MobileNavModal,
+      component: MobileNavModalComponent,
       cssClass: 'mobileNavModal',
       backdropDismiss: false
     });

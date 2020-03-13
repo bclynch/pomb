@@ -53,7 +53,7 @@ app-home {
     margin-bottom: 15px;
   }
 
-  @include respond-to(small) {
+  @media (min-width: 768px) {
     .mobileTopPost {
       display: none;
     }

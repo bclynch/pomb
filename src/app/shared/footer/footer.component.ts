@@ -7,9 +7,10 @@ import { RouterService } from '../../services/router.service';
 
 @Component({
   selector: 'app-footer',
-  templateUrl: 'footer.component.html'
+  templateUrl: './footer.component.html',
+  styleUrls: ['./footer.component.scss']
 })
-export class Footer {
+export class FooterComponent {
   year = Date.now();
 
   links: string[] = ['About', 'Contact', 'Terms', 'Privacy Policy'];

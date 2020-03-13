@@ -83,7 +83,7 @@
     }
   }
 
-  @include respond-to(small) {
+  @media (min-width: 768px) {
     .modal-wrapper {
       left: calc(50% - (370px \ 2));
       top: calc(50% - (250px \ 2));

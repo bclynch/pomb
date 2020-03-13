@@ -10,26 +10,28 @@ import { SettingsService } from '../../services/settings.service';
 import { RouterService } from '../../services/router.service';
 
 @Component({
-  selector: 'RegistrationModal',
-  templateUrl: 'registrationModal.html'
+  selector: 'app-registration-modal',
+  templateUrl: './registrationModal.html',
+  styleUrls: ['./registrationModal.scss']
 })
-export class RegistrationModal {
+export class RegistrationModalComponent {
   isRegister = false;
   registrationModel = { username: '', firstName: '', lastName: '', email: '', password: '', confirm: '' };
-  loginModel = { email: '', password: '' };
 
   constructor(
     public modalCtrl: ModalController,
     private apiService: APIService,
     private apollo: Apollo,
     private localStorageService: LocalStorageService,
-    private userService: UserService,
+    public userService: UserService,
     private params: NavParams,
     private router: Router,
-    private settingsService: SettingsService,
+    public settingsService: SettingsService,
     private routerService: RouterService
   ) {
-    if (this.params.data.isRegister) this.isRegister = true;
+    if (this.params.data.isRegister) {
+      this.isRegister = true;
+    }
   }
 
   onCloseModal() {

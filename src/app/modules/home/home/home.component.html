@@ -1,5 +1,4 @@
-
-<PageWrapper 
+<app-page-wrapper 
   backgroundColor="black" 
   [displayHeroBanner]="true"
 >
@@ -11,23 +10,27 @@
     <div class="cardContent">
       <div class="title">{{gridPosts[0].title}}</div>
       <div class="authorContainer" (click)="navigateToAuthor($event, gridPosts[0].accountByAuthor.username)">
-        <span [style.color]="settingsService.secondaryColor" *ngIf="gridPosts[0].accountByAuthor.firstName">{{gridPosts[0].accountByAuthor.firstName}} {{gridPosts[0].accountByAuthor.lastName}}</span>
-        <span [style.color]="settingsService.secondaryColor" *ngIf="!gridPosts[0].accountByAuthor.firstName">{{gridPosts[0].accountByAuthor.username}}</span>
+        <span [style.color]="settingsService.secondaryColor" *ngIf="gridPosts[0].accountByAuthor.firstName">
+          {{gridPosts[0].accountByAuthor.firstName}} {{gridPosts[0].accountByAuthor.lastName}}
+        </span>
+        <span [style.color]="settingsService.secondaryColor" *ngIf="!gridPosts[0].accountByAuthor.firstName">
+          {{gridPosts[0].accountByAuthor.username}}
+        </span>
       </div>
       <div>{{gridPosts[0].publishedDate | date: 'mediumDate'}}</div>
-      <div class="content">{{utilService.stripHTMLTags(gridPosts[0].content) | truncate:[200, '...']}}</div>
+      <!-- <div class="content">{{utilService.stripHTMLTags(gridPosts[0].content) | truncate:[200, '...']}}</div> -->
     </div>
   </div>
-  <Grid [elements]="gridPosts" [gridConfig]="gridConfiguration" *ngIf="gridPosts.length"></Grid>
-  <CompactHero [post]="compactHeroPost" *ngIf="compactHeroPost"></CompactHero>
+  <app-grid [elements]="gridPosts" [gridConfig]="gridConfiguration" *ngIf="gridPosts.length"></app-grid>
+  <app-compact-hero [post]="compactHeroPost" *ngIf="compactHeroPost"></app-compact-hero>
   <div class="featuredTitle boldFont">Featured Trip</div>
-  <TripCard [trip]="settingsService.featuredTrip"></TripCard>
-  <PostList [data]="otherPosts" [displayDescription]="true"></PostList>
+  <app-trip-card [trip]="settingsService.featuredTrip"></app-trip-card>
+  <app-post-list [data]="otherPosts" [displayDescription]="true"></app-post-list>
   <div 
     class="more boldFont" 
     *ngIf="posts.length === 20" 
     [style.background]="settingsService.secondaryColor"
     (click)="routerService.navigateToPage('/archive')"
   >View More Posts</div>
-</PageWrapper>
+</app-page-wrapper>
 

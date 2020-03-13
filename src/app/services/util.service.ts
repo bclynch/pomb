@@ -45,8 +45,8 @@ export class UtilService {
     return Math.ceil(timeDiff / (1000 * 3600 * 24));
   }
 
-  stripHTMLTags(string: string): string {
-    return string.replace(/<(?!\/>)[^>]*>/g, '').replace(/&#39;/g, '\'');
+  stripHTMLTags(val: string): string {
+    return val.replace(/<(?!\/>)[^>]*>/g, '').replace(/&#39;/g, '\'');
   }
 
   getJSON(path: string) {
@@ -66,7 +66,9 @@ export class UtilService {
 
     seconds = Math.floor(seconds % 60);
     seconds = (seconds >= 10) ? seconds : '0' + seconds;
-    if (hours !== '') return hours + ':' + minutes + ':' + seconds;
+    if (hours !== '') {
+      return hours + ':' + minutes + ':' + seconds;
+    }
     return minutes + ':' + seconds;
   }
 
@@ -88,7 +90,9 @@ export class UtilService {
   }
 
   truncateString(str, num) {
-    if (str.length > num) return str.slice(0, num > 3 ? num - 3 : num) + '...';
+    if (str.length > num) {
+      return str.slice(0, num > 3 ? num - 3 : num) + '...';
+    }
     return str;
   }
 
@@ -97,7 +101,11 @@ export class UtilService {
       for ( let j = 0; j < addressComponents[i].types.length; j++) {
         const type = addressComponents[i].types[j];
         // as its going down the list of places it will git the most specific one first and return the value
-        if (type === 'locality' || type === 'administrative_area_level_2' || type === 'administrative_area_level_1' || type === 'country') {
+        if (type === 'locality'
+          || type === 'administrative_area_level_2'
+          || type === 'administrative_area_level_1'
+          || type === 'country'
+        ) {
           return addressComponents[i].long_name;
         }
       }

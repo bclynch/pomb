@@ -1,0 +1,56 @@
+app-search {
+  width: 100%;
+    
+  .searchContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    overflow: hidden;
+
+    .searchWrapper {
+      display: inline-flex;
+      justify-content: flex-start;
+      width: 100%;
+      background: mapGet($basecolor, white);
+      color: black;
+      padding: 0 10px;
+
+      input {
+        width: 100%;
+        outline: none;
+        border: none;
+        font-size: 16px;
+      }
+      .searchIcon {
+        font-size: 24px;
+        margin-right: 15px;
+        color: #ddd;
+        cursor: auto;
+      }
+      .closeIcon {
+        font-size: 18px;
+        cursor: pointer;
+        color: #ddd;
+        transition: .3s;
+      }
+      .closeIcon:hover {
+        color: var(--secondary);
+      }
+    }
+    &.searchBorder {
+      padding: 10px 0;
+
+      .searchWrapper {
+        background: transparent;
+
+        input {
+          background: transparent;
+        }
+      }
+      .closeIcon {
+        font-size: 24px;
+      }
+    }
+  }
+}

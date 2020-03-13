@@ -11,7 +11,7 @@
     <div class="paneSection">
       <div class="paneSectionHeader">Newsletter</div>
       <div class="paneSectionContent">
-        <Newsletter callout="Stay up to date with the latest happenings without registering"></Newsletter>
+        <app-newsletter callout="Stay up to date with the latest happenings without registering"></app-newsletter>
       </div>
     </div>
   </div>
@@ -20,7 +20,7 @@
         <div class="paneSectionHeader">Profile</div>
         <div class="profileWrapper" (click)="routerService.navigateToPage('/user/' + userService.user.username)">
           <div class="signedInUser">Welcome back {{userService.user.firstName || userService.user.username}}</div>
-          <ProfilePicture [photo]="userService.user?.profilePhoto"></ProfilePicture>
+          <app-profile-picture [photo]="userService.user?.profilePhoto"></app-profile-picture>
         </div>
         <!-- <div (click)="routerService.navigateToPage('/admin')">Admin</div> -->
         <div (click)="logout()" class="paneSectionBtn">Logout</div>
@@ -45,19 +45,19 @@
           <div class="leftContainer" *ngIf="userService.recentTrip">
             <div class="tripContainer">
               <div class="miniSectionLabel">Recent Trip</div>
-              <TripCard [trip]="userService.recentTrip"></TripCard>
+              <app-trip-card [trip]="userService.recentTrip"></app-trip-card>
             </div>
             <div class="juncturesContainer" *ngIf="userService.recentJunctures.length">
               <div class="miniSectionLabel">Recent Junctures</div>
               <div class="bubblesWrapper">
-                <JunctureBubble [juncture]="juncture" *ngFor="let juncture of userService.recentJunctures;"></JunctureBubble>
+                <app-juncture-bubble [juncture]="juncture" *ngFor="let juncture of userService.recentJunctures;"></app-juncture-bubble>
               </div>
             </div>
           </div>
           <div class="rightContainer" *ngIf="userService.recentPosts.length">
             <div class="postsContainer">
               <div class="miniSectionLabel">Recent Posts</div>
-              <PostCard *ngFor="let post of userService.recentPosts;" [data]="post" [displayAuthor]="false"></PostCard>
+              <app-post-card *ngFor="let post of userService.recentPosts;" [data]="post" [displayAuthor]="false"></app-post-card>
             </div>
           </div>
           <div class="emptyContainer" *ngIf="!userService.recentPosts.length && !userService.recentTrip">

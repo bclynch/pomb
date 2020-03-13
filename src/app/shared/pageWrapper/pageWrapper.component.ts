@@ -4,9 +4,10 @@ import { UtilService } from '../../services/util.service';
 
 @Component({
   selector: 'app-page-wrapper',
-  templateUrl: 'pageWrapper.component.html'
+  templateUrl: './pageWrapper.component.html',
+  styleUrls: ['./pageWrapper.component.scss']
 })
-export class PageWrapper {
+export class PageWrapperComponent {
   @Input() backgroundColor = 'white';
   @Input() displayNavLogo = true;
   @Input() displayHeroBanner = false;

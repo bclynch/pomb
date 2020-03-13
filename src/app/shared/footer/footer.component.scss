@@ -1,4 +1,4 @@
-footer {
+app-footer {
   position: absolute;
   bottom: 0;
   left: 0;
@@ -71,7 +71,7 @@ footer {
     }
   }
 
-  @include respond-to(small) {
+  @media (min-width: 768px) {
     .linksWrapper {
       
       > div:after {

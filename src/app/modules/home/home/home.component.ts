@@ -8,7 +8,8 @@ import { AllPublishedPostsGQL } from '../../../generated/graphql';
 
 @Component({
   selector: 'app-home',
-  templateUrl: 'home.component.html'
+  templateUrl: './home.component.html',
+  styleUrls: ['./home.component.scss']
 })
 export class HomeComponent {
 
@@ -25,11 +26,19 @@ export class HomeComponent {
     public routerService: RouterService,
     private allPublishedPostsGQL: AllPublishedPostsGQL
   ) {
-    this.settingsService.appInited ? this.init() : this.broadcastService.on('appIsReady', () => this.init());
+    this.settingsService.appInited
+      ? this.init()
+      : this.broadcastService.on(
+        'appIsReady',
+        () => this.init()
+      );
   }
 
   init() {
-    this.settingsService.modPageMeta('Stories', 'See what new posts are available from around Pack On My Back. Learn and be inspired by our users stories.');
+    this.settingsService.modPageMeta(
+      'Stories',
+      'See what new posts are available from around Pack On My Back. Learn and be inspired by our users stories.'
+    );
     this.allPublishedPostsGQL.fetch({
       quantity: 20,
       offset: 0

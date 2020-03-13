@@ -7,10 +7,11 @@ import { Post } from '../../../models/Post.model';
 import { ImageType } from '../../../models/Image.model';
 
 @Component({
-  selector: 'GridCard',
-  templateUrl: 'gridCard.component.html'
+  selector: 'grid-card',
+  templateUrl: './gridCard.component.html',
+  styleUrls: ['./gridCard.component.scss']
 })
-export class GridCard implements OnInit {
+export class GridCardComponent implements OnInit {
   @Input() data: Post;
   @Input() size: number;
 
@@ -23,7 +24,9 @@ export class GridCard implements OnInit {
 
   ngOnInit() {
     this.data.imagesByPostId.nodes.forEach((img) => {
-      if (img.type === ImageType['LEAD_LARGE']) this.thumbnailImage = img.url;
+      if (img.type === ImageType.LEAD_LARGE) {
+        this.thumbnailImage = img.url;
+      }
     });
   }
 

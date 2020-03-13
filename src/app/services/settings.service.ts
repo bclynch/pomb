@@ -31,9 +31,16 @@ export class SettingsService {
   public unitOfMeasure: 'imperial' | 'metric';
 
   siteSections = {
-    'Community': { subSections: ['Community Hub', 'Featured Trip'] },
-    'Stories': { subSections: ['trekking', 'biking', 'travel', 'culture', 'gear', 'food'] },
-    'My Pack': { subSections: ['Profile', 'Create Trip', 'Create Juncture', 'Blog Dashboard', 'Tracking', 'User Dashboard'] }
+    Community: { subSections: ['Community Hub', 'Featured Trip'] },
+    Stories: { subSections: ['trekking', 'biking', 'travel', 'culture', 'gear', 'food'] },
+    'My Pack': { subSections: [
+      'Profile',
+      'Create Trip',
+      'Create Juncture',
+      'Blog Dashboard',
+      'Tracking',
+      'User Dashboard'
+    ] }
   };
 
   constructor(
@@ -110,7 +117,10 @@ export class SettingsService {
 
   addFeaturedStory(stories: any[]) {
     this.featuredStories = stories.map((story) => {
-      return story ? { id: story.id, title: story.title, subtitle: story.subtitle, imgURL: story.imagesByPostId.nodes[0].url } : null;
+      const { id, title, subtitle } = story;
+      return story
+        ? { id, title, subtitle, imgURL: story.imagesByPostId.nodes[0].url }
+        : null;
     });
   }
 

@@ -12,9 +12,10 @@ interface Section {
 
 @Component({
   selector: 'MobileNavModal',
-  templateUrl: 'mobileNavModal.html'
+  templateUrl: './mobileNavModal.html',
+  styleUrls: ['./mobileNavModal.scss']
 })
-export class MobileNavModal {
+export class MobileNavModalComponent {
 
   modalData;
   sectionOptions: Section[] = [];
@@ -25,8 +26,8 @@ export class MobileNavModal {
     public modalCtrl: ModalController,
     private params: NavParams,
     private settingsService: SettingsService,
-    private sanitizer: DomSanitizer,
-    private userService: UserService
+    public sanitizer: DomSanitizer,
+    public userService: UserService
   ) {
     this.snagCategories();
   }
@@ -41,7 +42,9 @@ export class MobileNavModal {
 
       // populate subSections
       if (category === 'Stories') {
-        this.subSections[category] = this.settingsService.siteSections[category].subSections.map((section) => section.charAt(0).toUpperCase() + section.slice(1));
+        this.subSections[category] = this.settingsService.siteSections[category].subSections.map((section) => {
+          return section.charAt(0).toUpperCase() + section.slice(1);
+        });
         this.subSections[category].unshift('Stories Hub');
       } else {
         this.subSections[category] = this.settingsService.siteSections[category].subSections;

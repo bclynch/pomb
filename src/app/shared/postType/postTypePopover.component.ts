@@ -3,9 +3,10 @@ import { PopoverController, NavParams } from '@ionic/angular';
 
 @Component({
   selector: 'PostTypePopover',
-  templateUrl: 'postTypePopover.component.html'
+  templateUrl: './postTypePopover.component.html',
+  styleUrls: ['./postTypePopover.component.scss']
 })
-export class PostTypePopover {
+export class PostTypePopoverComponent {
 
   options;
 

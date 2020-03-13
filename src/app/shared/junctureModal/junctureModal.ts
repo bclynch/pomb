@@ -10,7 +10,6 @@ import {
   DeleteImageByIdGQL,
   DeleteJunctureByIdGQL
 } from '../../generated/graphql';
-import { APIService } from '../../services/api.service';
 import { UserService } from '../../services/user.service';
 import { SettingsService } from '../../services/settings.service';
 import { UtilService } from '../../services/util.service';
@@ -20,24 +19,53 @@ import { GeoService } from '../../services/geo.service';
 import { Juncture } from '../../models/Juncture.model';
 
 import { JunctureSaveTypePopover } from '../junctureSaveType/junctureSaveTypePopover.component';
-import { DatePickerModal } from '../datepickerModal/datepickerModal';
-import { ImageUploaderPopover } from '../imageUploader/imageUploaderPopover.component';
-import { GalleryImgActionPopover } from '../galleryImgAction/galleryImgActionPopover.component';
+import { DatePickerModalComponent } from '../datepickerModal/datepickerModal';
+import { ImageUploaderPopoverComponent } from '../imageUploader/imageUploaderPopover.component';
+import { GalleryImgActionPopoverComponent } from '../galleryImgAction/galleryImgActionPopover.component';
 
 @Component({
   selector: 'JunctureModal',
-  templateUrl: 'junctureModal.html'
+  templateUrl: './junctureModal.html',
+  styleUrls: ['./junctureModal.scss']
 })
-export class JunctureModal {
+export class JunctureModalComponent {
 
   editorOptions = {
     placeholderText: 'Write something insightful...',
     heightMin: '300px',
     heightMax: '525px',
-    toolbarButtons: ['fullscreen', 'bold', 'italic', 'underline', '|', 'fontFamily', 'fontSize', 'paragraphFormat', 'align', 'formatOL', 'formatUL', 'indent', '|', 'specialCharacters', 'selectAll', 'clearFormatting', 'html', '|', 'undo', 'redo']
+    toolbarButtons: [
+      'fullscreen',
+      'bold',
+      'italic',
+      'underline',
+      '|',
+      'fontFamily',
+      'fontSize',
+      'paragraphFormat',
+      'align',
+      'formatOL',
+      'formatUL',
+      'indent',
+      '|',
+      'specialCharacters',
+      'selectAll',
+      'clearFormatting',
+      'html',
+      '|',
+      'undo',
+      'redo'
+    ]
   };
 
-  junctureModel = { name: 'Juncture ' + moment().format('l'), time: Date.now(), description: '', selectedTrip: null, photoHasChanged: [], type: 'HIKE' };
+  junctureModel = {
+    name: 'Juncture ' + moment().format('l'),
+    time: Date.now(),
+    description: '',
+    selectedTrip: null,
+    photoHasChanged: [],
+    type: 'HIKE'
+  };
   inited = false;
   junctureSaveType = 'Publish';
   tripOptions = null;
@@ -48,7 +76,7 @@ export class JunctureModal {
     { label: 'Transportation', value: 'TRANSPORTATION' },
     { label: 'Flight', value: 'FLIGHT' },
   ];
-  geoJsonObject: Object = null;
+  geoJsonObject: object = null;
 
   galleryPhotos = [];
   markerURL: string = null;
@@ -66,18 +94,17 @@ export class JunctureModal {
   selectedIndex = 0;
 
   constructor(
-    private apiService: APIService,
     private userService: UserService,
     private params: NavParams,
     private router: Router,
-    private settingsService: SettingsService,
+    public settingsService: SettingsService,
     private mapsAPILoader: MapsAPILoader,
     private utilService: UtilService,
     private popoverCtrl: PopoverController,
     private alertService: AlertService,
     private modalCtrl: ModalController,
     private toastCtrl: ToastController,
-    private sanitizer: DomSanitizer,
+    public sanitizer: DomSanitizer,
     private geoService: GeoService,
     private fullJunctureByIdGQL: FullJunctureByIdGQL,
     private tripsByUserIdGQL: TripsByUserIdGQL,
@@ -162,7 +189,9 @@ export class JunctureModal {
       }).subscribe(
         (data: any) => {
           this.tripOptions = data.data.allTrips.nodes;
-          if (this.tripOptions[0]) this.junctureModel.selectedTrip = this.tripOptions[0].id;
+          if (this.tripOptions[0]) {
+            this.junctureModel.selectedTrip = this.tripOptions[0].id;
+          }
         }
       );
       // grab location for map
@@ -214,10 +243,10 @@ export class JunctureModal {
   async presentPopover(e) {
     const popover = await this.popoverCtrl.create({
       component: JunctureSaveTypePopover,
-      componentProps: { options: ['Draft', 'Publish'] }, 
-      cssClass: 'junctureSaveTypePopover' 
+      componentProps: { options: ['Draft', 'Publish'] },
+      cssClass: 'junctureSaveTypePopover'
     });
-  
+
     await popover.present();
 
     const { data } = await popover.onWillDismiss();
@@ -230,9 +259,9 @@ export class JunctureModal {
     e.stopPropagation();
 
     const modal = await this.modalCtrl.create({
-      component: DatePickerModal,
-      componentProps: { date: this.junctureModel.time }, 
-      cssClass: 'datepickerModal' 
+      component: DatePickerModalComponent,
+      componentProps: { date: this.junctureModel.time },
+      cssClass: 'datepickerModal'
     });
 
     await modal.present();
@@ -245,11 +274,14 @@ export class JunctureModal {
 
   async presentGalleryUploaderPopover() {
     if (this.galleryPhotos.length === 6) {
-      this.alertService.alert('Gallery Full', 'Only 6 images per juncture gallery maximum. Please delete a few to add more.');
+      this.alertService.alert(
+        'Gallery Full',
+        'Only 6 images per juncture gallery maximum. Please delete a few to add more.'
+      );
     } else {
       // type is gallery as of original
       const popover = await this.popoverCtrl.create({
-        component: ImageUploaderPopover,
+        component: ImageUploaderPopoverComponent,
         componentProps: { type: 'juncture', existingPhotos: this.galleryPhotos.length, max: 6 },
         cssClass: 'imageUploaderPopover',
         backdropDismiss: false
@@ -259,7 +291,10 @@ export class JunctureModal {
       const { data } = await popover.onWillDismiss();
       if (data) {
         if (data === 'maxErr') {
-          this.alertService.alert('Gallery Max Exceeded', 'Please reduce the number of images in the gallery to 6 or less');
+          this.alertService.alert(
+            'Gallery Max Exceeded',
+            'Please reduce the number of images in the gallery to 6 or less'
+          );
         } else {
           data.forEach(({ size, url }) => {
             if (size === 'marker') {
@@ -280,9 +315,9 @@ export class JunctureModal {
 
   async presentGalleryPopover(e, index: number) {
     const popover = await this.popoverCtrl.create({
-      component: GalleryImgActionPopover,
+      component: GalleryImgActionPopoverComponent,
       componentProps: { model: this.galleryPhotos[index] },
-      cssClass: 'galleryImgActionPopover' 
+      cssClass: 'galleryImgActionPopover'
     });
 
     await popover.present();

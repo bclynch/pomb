@@ -5,6 +5,6 @@
     [style.padding]="gutterWidth"
     [style.width]="perRow ? 1 / perRow * 100 + '%' : null"
   >
-    <GalleryCard [isSquare]="isSquare" [cardData]="galleryPhoto" (click)="expandCarousel(i)"></GalleryCard>
+    <app-gallery-card [isSquare]="isSquare" [cardData]="galleryPhoto" (click)="expandCarousel(i)"></app-gallery-card>
   </div>
 </div>

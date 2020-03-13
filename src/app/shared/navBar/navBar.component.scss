@@ -1,6 +1,6 @@
 $navbarHeight: 40px;
 
-navBar {
+app-navbar {
   width: 100%;
 
   .navBarContainer {
@@ -157,7 +157,7 @@ navBar {
       }
     }
   }
-  @include respond-to(small) {
+  @media (min-width: 768px) {
     .navBarContainer {
       display: flex;
       justify-content: center;

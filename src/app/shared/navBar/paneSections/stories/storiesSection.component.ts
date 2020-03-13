@@ -5,15 +5,16 @@ import { SettingsService } from '../../../../services/settings.service';
 import { RouterService } from '../../../../services/router.service';
 
 @Component({
-  selector: 'StoriesNavSection',
-  templateUrl: 'storiesSection.component.html'
+  selector: 'app-stories-nav-section',
+  templateUrl: 'storiesSection.component.html',
+  styleUrls: ['./storiesSection.component.scss']
 })
-export class StoriesNavSection {
+export class StoriesNavSectionComponent {
 
   constructor(
-    private settingsService: SettingsService,
-    private routerService: RouterService,
-    private sanitizer: DomSanitizer
+    public settingsService: SettingsService,
+    public routerService: RouterService,
+    public sanitizer: DomSanitizer
   ) {}
 
   navigateToPost(story) {

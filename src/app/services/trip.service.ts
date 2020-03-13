@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ModalController, ToastController } from '@ionic/angular';
 
-import { TripModal } from '../shared/tripModal/tripModal';
+import { TripModalComponent } from '../shared/tripModal/tripModal';
 import { APIService } from './api.service';
 import { UserService } from './user.service';
 import { UpdateTripByIdGQL, CreateTripGQL } from '../generated/graphql';
@@ -25,8 +25,8 @@ export class TripService {
   openTripModal(tripId): Promise<void> {
     return new Promise(async (resolve, reject) => {
       const modal = await this.modalCtrl.create({
-        component: TripModal, 
-        componentProps: { tripId }, 
+        component: TripModalComponent,
+        componentProps: { tripId },
         cssClass: 'tripModal',
         backdropDismiss: false
       });
@@ -35,21 +35,31 @@ export class TripService {
 
       const { data } = await modal.onWillDismiss();
       if (data) {
-        const { isExisting, name, description, timeStart, timeEnd, startLat, startLon, bannerImages, photoHasChanged } = data;
+        const {
+          isExisting,
+          name,
+          description,
+          timeStart,
+          timeEnd,
+          startLat,
+          startLon,
+          bannerImages,
+          photoHasChanged
+        } = data;
         if (isExisting) {
           this.updateTripByIdGQL.mutate({
             tripId,
             name,
             description,
-            startDate: +timeStart, 
+            startDate: +timeStart,
             endDate: +timeEnd,
-            startLat, 
+            startLat,
             startLon
           }).subscribe(
             result => {
               // update banner images as required
               this.comparePhotos(bannerImages, photoHasChanged, tripId).then(
-                result => resolve()
+                () => resolve()
               );
             },
             err => {
@@ -95,8 +105,10 @@ export class TripService {
   }
 
   saveBannerPhotos(bannerPhotos: { url: string; title: string; }[], tripId: number) {
-    return new Promise((resolve, reject) => {
-      if (!bannerPhotos.length) resolve();
+    return new Promise((resolve) => {
+      if (!bannerPhotos.length) {
+        resolve();
+      }
 
       // then bulk add links to post
       let query = `mutation {`;
@@ -106,7 +118,7 @@ export class TripService {
             image: {
               tripId: ${tripId},
               userId: ${this.userService.user.id},
-              type: ${ImageType['BANNER']},
+              type: ${ImageType.BANNER},
               url: "${photo.url}",
               ${photo.title ? 'title: "' + photo.title + '"' : ''}
             }
@@ -126,10 +138,14 @@ export class TripService {
   // function returns what the nature of the trip is currently
   tripStatus(startDate: number, endDate: number): 'complete' | 'active' | 'upcoming' {
     // to be upcoming it must have a start date beyond current
-    if (startDate > Date.now()) return 'upcoming';
+    if (startDate > Date.now()) {
+      return 'upcoming';
+    }
 
     // to be complete it must have an end date and be in the past
-    if (endDate && endDate < Date.now()) return 'complete';
+    if (endDate && endDate < Date.now()) {
+      return 'complete';
+    }
 
     // otherwise it's active
     return 'active';

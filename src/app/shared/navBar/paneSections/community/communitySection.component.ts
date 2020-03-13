@@ -8,16 +8,17 @@ interface Social {
 }
 
 @Component({
-  selector: 'CommunityNavSection',
-  templateUrl: 'communitySection.component.html'
+  selector: 'app-community-nav-section',
+  templateUrl: './communitySection.component.html',
+  styleUrls: ['./communitySection.component.scss']
 })
-export class CommunityNavSection {
+export class CommunityNavSectionComponent {
   @Input() socialOptions: Social;
 
   gridConfiguration: number[] = [ 6.5, 3.5, 3, 3, 3 ];
 
   constructor(
-    private settingsService: SettingsService
+    public settingsService: SettingsService
   ) {}
 
 }

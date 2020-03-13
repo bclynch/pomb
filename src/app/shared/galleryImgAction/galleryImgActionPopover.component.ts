@@ -4,10 +4,11 @@ import { PopoverController, NavParams } from '@ionic/angular';
 import { GalleryPhoto } from '../../models/GalleryPhoto.model';
 
 @Component({
-  selector: 'GalleryImgActionPopover',
-  templateUrl: 'galleryImgActionPopover.component.html'
+  selector: 'app-gallery-img-action-popover',
+  templateUrl: './galleryImgActionPopover.component.html',
+  styleUrls: ['./galleryImgActionPopover.component.scss']
 })
-export class GalleryImgActionPopover {
+export class GalleryImgActionPopoverComponent {
 
   popoverModel: GalleryPhoto;
 

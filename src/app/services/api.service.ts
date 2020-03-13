@@ -31,7 +31,7 @@ export class APIService {
     return this.http.get(`https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=${flickrKey}&tags=${place},${tag}${additionalTag ? ', ' + additionalTag : ''}&tag_mode=all&per_page=${results}&content_type=1&sort=interestingness-desc&format=json&nojsoncallback=1`)
     .pipe(map(
       (response: Response) => {
-        const responseData = <any>response;
+        const responseData = response as any;
         return JSON.parse(responseData._body);
       }
     )
@@ -136,7 +136,7 @@ export class APIService {
     console.log('Getting coord information...');
     const geocoder = new google.maps.Geocoder();
     return Observable.create(observer => {
-      geocoder.geocode( {'location': {lat, lng: lon}}, (results, status) => {
+      geocoder.geocode({location: {lat, lng: lon}}, (results, status) => {
         console.log(results);
         if (status === google.maps.GeocoderStatus.OK) {
           observer.next({ formattedAddress: results[0], country: results.slice(-1)[0] });
@@ -198,10 +198,7 @@ export class APIService {
   sendContactEmail(data: { why: string; name: string; email: string; content: string; }) {
     return this.http.post(`${ENV.apiBaseURL}/mailing/contact`, { data })
       .pipe(map(
-        (response: Response) => {
-          const data = response.json();
-          return data;
-        }
+        (response: Response) => response.json()
       )
       ).pipe(catchError(
         (error: HttpErrorResponse) => throwError(error.message || 'server error.')

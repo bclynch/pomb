@@ -6,9 +6,10 @@ import { AlertService } from '../../services/alert.service';
 
 @Component({
   selector: 'ImageUploaderPopover',
-  templateUrl: 'imageUploaderPopover.component.html'
+  templateUrl: './imageUploaderPopover.component.html',
+  styleUrls: ['./imageUploaderPopover.component.scss']
 })
-export class ImageUploaderPopover {
+export class ImageUploaderPopoverComponent {
 
   allowMultiple: boolean;
   type: string;

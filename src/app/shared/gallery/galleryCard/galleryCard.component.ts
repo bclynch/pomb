@@ -1,20 +1,15 @@
 import { Component, Input } from '@angular/core';
-
-import { SettingsService } from '../../../services/settings.service';
 import { GalleryPhoto } from '../../../models/GalleryPhoto.model';
 
 @Component({
-  selector: 'GalleryCard',
-  templateUrl: 'galleryCard.component.html'
+  selector: 'app-gallery-card',
+  templateUrl: './galleryCard.component.html',
+  styleUrls: ['./galleryCard.component.scss']
 })
-export class GalleryCard {
+export class GalleryCardComponent {
   @Input() cardData: GalleryPhoto;
   @Input() isSquare: boolean;
 
-  constructor(
-    private settingsService: SettingsService,
-  ) {
-
-  }
+  constructor() {}
 
 }

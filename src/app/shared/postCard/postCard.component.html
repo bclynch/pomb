@@ -1,0 +1,24 @@
+<div class="postCardContainer" [attr.style]="sanitizer.bypassSecurityTrustStyle('--secondary:' + settingsService.secondaryColor)">
+  <div class="imgWrapper" (click)="navigateToPost()" *ngIf="displayImage">
+    <!-- First url in the arr should be the small version so no need for further filtering on the below card img -->
+    <div  
+      class="cardImg"
+      [ngStyle]="{ 'background-image': 'url(' + data.imagesByPostId.nodes[0].url + ')'}"
+      *ngIf="data.imagesByPostId.nodes.length"
+    ></div>
+  </div>
+  <div class="cardWrapper">
+    <div class="cardTitle" (click)="navigateToPost()">{{data.title}}</div>
+    <div class="bottomWrapper">
+      <div class="authorWrapper" (click)="routerService.navigateToPage('/user/' + data.accountByAuthor.username)" *ngIf="displayAuthor">by
+        <span [style.color]="settingsService.secondaryColor" *ngIf="data.accountByAuthor.firstName">{{data.accountByAuthor.firstName}} {{data.accountByAuthor.lastName}}</span>
+        <span [style.color]="settingsService.secondaryColor" *ngIf="!data.accountByAuthor.firstName">{{data.accountByAuthor.username}}</span>
+      </div>
+      <span class="pipeDivider" *ngIf="displayAuthor"> | </span>
+      <div>{{data.publishedDate | date:'mediumDate'}}</div>
+    </div>
+    <div class="descriptionWrapper" *ngIf="displayDescription">
+      {{utilService.stripHTMLTags(data.content) | truncate:[225, '...']}}
+    </div>
+  </div>
+</div>

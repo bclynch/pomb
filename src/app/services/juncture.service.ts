@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ModalController, ToastController } from '@ionic/angular';
-import { JunctureModal } from '../shared/junctureModal/junctureModal';
+import { JunctureModalComponent } from '../shared/junctureModal/junctureModal';
 import { APIService } from './api.service';
 import { UserService } from './user.service';
 import { UtilService } from './util.service';
@@ -36,10 +36,10 @@ export class JunctureService {
     return new Promise(async (resolve, reject) => {
       let country = null;
       const modal = await this.modalCtrl.create({
-        component: JunctureModal,
-        componentProps: { markerImg: this.defaultMarkerImg, junctureId }, 
+        component: JunctureModalComponent,
+        componentProps: { markerImg: this.defaultMarkerImg, junctureId },
         cssClass: 'junctureModal',
-        backdropDismiss: false 
+        backdropDismiss: false
       });
 
       await modal.present();
@@ -92,15 +92,14 @@ export class JunctureService {
                 isDraft: saveType === 'Draft',
                 markerImg
               }).subscribe(
-                result => {
-
+                () => {
                   // upload new gpx if requred
                   if (gpxChanged) {
                     this.apiService.uploadGPX(geoJSON, junctureId).subscribe(
                       jsonData => {
                         // update gallery images as required
                         this.comparePhotos(photos, changedPhotos, junctureId, selectedTrip).then(
-                          result => resolve()
+                          () => resolve()
                         );
                       },
                       err => {
@@ -111,7 +110,7 @@ export class JunctureService {
                   } else {
                     // update banner images as required
                     this.comparePhotos(photos, changedPhotos, junctureId, selectedTrip).then(
-                      result => resolve()
+                      () => resolve()
                     );
                     resolve();
                   }
@@ -136,8 +135,8 @@ export class JunctureService {
                 isDraft: saveType === 'Draft',
                 markerImg
               }).subscribe(
-                (result: any) => {
-                  console.log(result);
+                ({ data }: any) => {
+                  console.log(data);
 
                   // check setting to update user location -- if so update
                   if (this.userService.user.autoUpdateLocation) {
@@ -161,19 +160,27 @@ export class JunctureService {
                       country,
                       autoUpdate: autoUpdateLocation
                     }).subscribe(
-                      (result: any) => {
+                      ({ data }: any) => {
                         // set user service to new returned user
-                        this.userService.user = result.data.updateAccountById.account;
+                        this.userService.user = data.updateAccountById.account;
                       }
                     );
                   }
 
                   // upload gpx data
                   if (geoJSON) {
-                    this.apiService.uploadGPX(geoJSON, result.data.createJuncture.juncture.id).subscribe(
+                    this.apiService.uploadGPX(geoJSON, data.createJuncture.juncture.id).subscribe(
                       jsonData => {
-                        this.saveGalleryPhotos(result.data.createJuncture.juncture.id, photos, selectedTrip).then(() => {
-                          this.toast(saveType === 'Draft' ? 'Juncture draft successfully saved' : 'Juncture successfully published');
+                        this.saveGalleryPhotos(
+                          data.createJuncture.juncture.id,
+                          photos,
+                          selectedTrip
+                        ).then(() => {
+                          this.toast(
+                            saveType === 'Draft'
+                              ? 'Juncture draft successfully saved'
+                              : 'Juncture successfully published'
+                          );
                           resolve();
                         });
                       },
@@ -183,8 +190,12 @@ export class JunctureService {
                       }
                     );
                   } else {
-                    this.saveGalleryPhotos(result.data.createJuncture.juncture.id, photos, selectedTrip).then(() => {
-                      this.toast(saveType === 'Draft' ? 'Juncture draft successfully saved' : 'Juncture successfully published');
+                    this.saveGalleryPhotos(data.createJuncture.juncture.id, photos, selectedTrip).then(() => {
+                      this.toast(
+                        saveType === 'Draft'
+                          ? 'Juncture draft successfully saved'
+                          : 'Juncture successfully published'
+                      );
                       resolve();
                     });
                   }
@@ -199,7 +210,9 @@ export class JunctureService {
 
   saveGalleryPhotos(junctureId: number, photoArr, tripId: number) {
     return new Promise((resolve, reject) => {
-      if (!photoArr.length) resolve();
+      if (!photoArr.length) {
+        resolve();
+      }
 
       // then bulk add links to post
       let query = `mutation {`;
@@ -210,7 +223,7 @@ export class JunctureService {
               tripId: ${tripId},
               junctureId: ${junctureId}
               userId: ${this.userService.user.id},
-              type: ${ImageType['GALLERY']},
+              type: ${ImageType.GALLERY},
               url: "${photo.url}",
               ${photo.description ? 'description: "' + photo.description + '"' : ''}
             }
@@ -284,7 +297,7 @@ export class JunctureService {
     // if option is toggled on
     if (this.userService.user.autoUpdateVisited) {
       // create nicer arr to work with
-      const countriesVisited = this.userService.user.userToCountriesByUserId.nodes.map((country) => (country.countryByCountry.code));
+      const countriesVisited = this.userService.user.userToCountriesByUserId.nodes.map(({ countryByCountry }) => countryByCountry.code);
       console.log(country);
       // if country code doesn't exist then add it
       if (countriesVisited.indexOf(country) === -1) {

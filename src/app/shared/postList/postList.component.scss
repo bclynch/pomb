@@ -1,0 +1,30 @@
+app-post-list {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+
+  .postListContainer {
+    background: url('../../assets/images/topo.png') top center repeat-y;
+    max-width: 1280px;
+    background-size: 1280px;
+    background-color: mapGet($basecolor, background);
+    width: 100%;
+    display: flex;
+    justify-content: center;
+
+    .contentWrapper {
+      max-width: 1100px;
+      width: 100%;
+      display: flex;
+      
+      .leftColumn {
+        flex: 1;
+      }
+      .rightColumn {
+        width: 300px;
+        display: none;
+        align-items: center;
+      }
+    }
+  }
+}
