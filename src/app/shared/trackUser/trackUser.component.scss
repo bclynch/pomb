@@ -1,16 +1,13 @@
-app-track-user {
+.trackUserContainer {
+  cursor: pointer;
+  background: var(--secondary);
+  color: white;
+  padding: 5px 0;
+  font-weight: bold;
+  width: 100px;
+  text-align: center;
+}
 
-  .trackUserContainer {
-    cursor: pointer;
-    background: var(--secondary);
-    color: white;
-    padding: 5px 0;
-    font-weight: bold;
-    width: 100px;
-    text-align: center;
-  }
+@media (min-width: 768px) {
 
-  @media (min-width: 768px) {
-
-  }
 }

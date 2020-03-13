@@ -1,5 +1,5 @@
-app-search {
-  width: 100%;
+// app-search {
+//   width: 100%;
     
   .searchContainer {
     display: flex;
@@ -12,8 +12,8 @@ app-search {
       display: inline-flex;
       justify-content: flex-start;
       width: 100%;
-      background: mapGet($basecolor, white);
-      color: black;
+      background: var(--white);
+      color: var(--black);
       padding: 0 10px;
 
       input {
@@ -53,4 +53,4 @@ app-search {
       }
     }
   }
-}
+// }

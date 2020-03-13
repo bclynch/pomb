@@ -1,4 +1,4 @@
-app-page-wrapper {
+.pageWrapperBruh {
   position: fixed;
   top:        0;
   bottom:     0;
@@ -18,8 +18,8 @@ app-page-wrapper {
     position: relative;
 
     &.topo {
-      background: url('../../assets/images/topo.png') top center repeat-y !important;
-      background-color: mapGet($basecolor, background) !important;
+      background: url('../../../assets/images/topo.png') top center repeat-y !important;
+      background-color: var(--background) !important;
     }
   }
 }

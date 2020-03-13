@@ -1,29 +1,26 @@
-app-gallery {
+.galleryContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-content: flex-start;
 
+  .cardWrapper {
+    width: 100%;
+  }
+}
+@media (min-width: 600px) {
   .galleryContainer {
-    @include flexbox();
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    align-content: flex-start;
 
     .cardWrapper {
-      width: 100%;
+      width: 50%;
     }
   }
-  @include respond-to(tiny) {
-    .galleryContainer {
+}
+@media (min-width: 768px) {
+  .galleryContainer {
 
-      .cardWrapper {
-        width: 50%;
-      }
-    }
-  }
-  @media (min-width: 768px) {
-    .galleryContainer {
-
-      .cardWrapper {
-        width: 33.33%;
-      }
+    .cardWrapper {
+      width: 33.33%;
     }
   }
 }

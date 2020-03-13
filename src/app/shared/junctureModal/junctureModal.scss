@@ -197,7 +197,7 @@ juncturemodal {
           }
         }
         .gridWrapper {
-          @include flexbox();
+          display: flex;
           flex-wrap: wrap;
           justify-content: flex-start;
           align-content: flex-start;
@@ -208,7 +208,22 @@ juncturemodal {
             padding: 3px;
     
             > .imgWrapper {
-              @extend %fixedRatioWrapper;
+              width: 100%;
+              position: relative;
+              > div {
+                background-position: center;
+                background-repeat: no-repeat;
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+              }
+              &:before {
+                content: "";
+                display: block;
+                padding-top: 100%;
+              }
       
               > div {
                 background-size: cover;

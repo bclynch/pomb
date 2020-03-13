@@ -1,23 +1,20 @@
-app-like-counter {
+.counterContainer {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
 
-  .counterContainer {
-    cursor: pointer;
-    display: flex;
-    align-items: center;
+  &.vertical {
+    flex-direction: column;
 
-    &.vertical {
-      flex-direction: column;
-
-      ion-icon {
-        margin-right: 0;
-      }
-    }
-    .likeValue {
-      font-weight: bold;
-    }
     ion-icon {
-      font-size: 24px;
-      margin-right: 5px;
+      margin-right: 0;
     }
+  }
+  .likeValue {
+    font-weight: bold;
+  }
+  ion-icon {
+    font-size: 24px;
+    margin-right: 5px;
   }
 }

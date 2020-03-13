@@ -1,13 +1,13 @@
-app-post-list {
+.postListBruh {
   width: 100%;
   display: flex;
   justify-content: center;
 
   .postListContainer {
-    background: url('../../assets/images/topo.png') top center repeat-y;
+    background: url('../../../assets/images/topo.png') top center repeat-y;
     max-width: 1280px;
     background-size: 1280px;
-    background-color: mapGet($basecolor, background);
+    background-color: var(--background);
     width: 100%;
     display: flex;
     justify-content: center;

@@ -1,88 +1,83 @@
-app-grid-card {
-  //margin: 1px;
+.gridCardContainer {
+  background: var(--black);
+  height: 110px;
+  color: var(--white);
+  display: flex;
+  flex-direction: row;
+  padding: 8px;
+  margin: 1px;
 
-  .gridCardContainer {
-    background: var(--black);
-    height: 110px;
-    color: var(--white);
-    display: flex;
-    flex-direction: row;
-    padding: 8px;
-    margin: 1px;
+  .cardThumb {
+    flex: 4;
+    background-position: center;
+    background-size: cover;
+    height: 100%;
+    width: 100%;
+    cursor: pointer;
+  }
+  .cardThumb:hover + .contentContainer {
+    .contentTitle {
+      color: var(--secondary);
+    }
+  }
+  .contentContainer {
+    flex: 6;
+    padding: 0 8px;
 
-    .cardThumb {
-      flex: 4;
-      background-position: center;
-      background-size: cover;
-      height: 100%;
-      width: 100%;
+    .contentTitle {
+      font-weight: 600;
+      font-size: 14px;
+      cursor: pointer;
+      transition: .3s;
+    }
+    .contentTitle:hover {
+      color: var(--secondary);
+    }
+    .authorContainer {
+      font-size: 12px;
       cursor: pointer;
     }
-    .cardThumb:hover + .contentContainer {
-      .contentTitle {
-        color: var(--secondary);
-      }
-    }
-    .contentContainer {
-      flex: 6;
-      padding: 0 8px;
-
-      .contentTitle {
-        font-weight: 600;
-        font-size: 14px;
-        cursor: pointer;
-        transition: .3s;
-      }
-      .contentTitle:hover {
-        color: var(--secondary);
-      }
-      .authorContainer {
-        font-size: 12px;
-        cursor: pointer;
-      }
-    }
-  }
-  .gridCardContainer:first-of-type {
-    margin-top: 0;
   }
 }
+.gridCardContainer:first-of-type {
+  margin-top: 0;
+}
 
-@include respond-to(tiny) {
-  gridcard {
-    margin: 1px;
+@media (min-width: 600px) {
+// gridcard {
+//   margin: 1px;
 
-    .gridCardContainer {
-      height: 375px;
-      padding: 0; 
+  .gridCardContainer {
+    height: 375px;
+    padding: 0; 
 
-      &.smallCard {
-        flex-direction: column;
+    &.smallCard {
+      flex-direction: column;
 
-        .cardThumb {
-          flex: 7;
-        }
-        .contentContainer {
-          flex: 3;
-          padding: 16px;
+      .cardThumb {
+        flex: 7;
+      }
+      .contentContainer {
+        flex: 3;
+        padding: 16px;
 
-          .contentTitle {
-            font-size: 22px;
-          }
+        .contentTitle {
+          font-size: 22px;
         }
       }
-      &.largeCard {
-        
-        .cardThumb {
-          flex: 1;
-        }
-        .contentContainer {
-          flex: 1;
-          padding: 32px;
-          text-transform: uppercase;
+    }
+    &.largeCard {
+      
+      .cardThumb {
+        flex: 1;
+      }
+      .contentContainer {
+        flex: 1;
+        padding: 32px;
+        text-transform: uppercase;
 
-          .contentTitle {
-            font-size: 56px;
-          }
+        .contentTitle {
+          font-size: 56px;
         }
       }
     }

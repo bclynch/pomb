@@ -1,81 +1,78 @@
-app-stories-nav-section {
+.paneHeader {
+  text-align: center;
+  margin: 30px 0;
+  font-size: 16px;
 
-  .paneHeader {
-    text-align: center;
-    margin: 30px 0;
-    font-size: 16px;
+  span {
+    cursor: pointer;
+    font-weight: bold;
+  }
+}
+.paneContainer {
+  padding-top: 0 !important;
+  height: calc(520px - 40px - 79px); // info pane height - 50px which is the height of the header
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
 
-    span {
+  .paneSection {
+    width: 25%;
+    height: 375px;
+
+    &.story {
       cursor: pointer;
+      flex: 1;
+    }
+    .paneSectionHeader {
+      transition: .3s;
+      text-align: center;
+      margin-bottom: 25px;
+      height: 60px; // to account for wrapping
+    }
+    .storyImage {
+      width: 90%;
+      height: 125px;
+      background-size: cover;
+      background-position: center;
+    }
+    .storyDescription {
+      background: #212121;
+      width: 90%;
+      padding: 15px;
+      font-size: 14px;
+      text-align: center;
+      height: 150px;
+      line-height: 20px;
+    }
+  }
+  .story:hover {
+
+    .paneSectionHeader {
+      color: var(--secondary) !important;
+    }
+  }
+  .story2 {
+    display: none !important;
+  }
+  .paneSection:last-child {
+
+    .category {
+      transition: .3s;
+      cursor: pointer;
+      margin-bottom: 10px;
       font-weight: bold;
+      font-size: 18px;
+    }
+    .category:hover {
+      color: var(--secondary) !important;
     }
   }
+}
+@media (min-width: 1024px) {
   .paneContainer {
-    padding-top: 0 !important;
-    height: calc(520px - 40px - 79px); // info pane height - 50px which is the height of the header
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-
-    .paneSection {
-      width: 25%;
-      height: 375px;
-
-      &.story {
-        cursor: pointer;
-        flex: 1;
-      }
-      .paneSectionHeader {
-        transition: .3s;
-        text-align: center;
-        margin-bottom: 25px;
-        height: 60px; // to account for wrapping
-      }
-      .storyImage {
-        width: 90%;
-        height: 125px;
-        background-size: cover;
-        background-position: center;
-      }
-      .storyDescription {
-        background: #212121;
-        width: 90%;
-        padding: 15px;
-        font-size: 14px;
-        text-align: center;
-        height: 150px;
-        line-height: 20px;
-      }
-    }
-    .story:hover {
-
-      .paneSectionHeader {
-        color: var(--secondary) !important;
-      }
-    }
     .story2 {
-      display: none !important;
-    }
-    .paneSection:last-child {
-
-      .category {
-        transition: .3s;
-        cursor: pointer;
-        margin-bottom: 10px;
-        font-weight: bold;
-        font-size: 18px;
-      }
-      .category:hover {
-        color: var(--secondary) !important;
-      }
-    }
-  }
-  @include respond-to(medium) {
-    .paneContainer {
-      .story2 {
-        display: flex !important;
-      }
+      display: flex !important;
     }
   }
 }

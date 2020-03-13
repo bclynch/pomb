@@ -1,10 +1,10 @@
-app-trip-card {
+.tripCardBruh {
   width: 100%;
 
   .tripCardContainer {
-    background: mapGet($basecolor, black);
+    background: var(--black);
     height: 250px;
-    color: mapGet($basecolor, white);
+    color: var(--white);
     display: flex;
     flex-direction: row;
     margin: 0 auto;
@@ -53,11 +53,5 @@ app-trip-card {
         }
       }
     }
-  }
-}
-
-@include respond-to(tiny) {
-  tripcard {
-
   }
 }

@@ -1,4 +1,4 @@
-app-hero-banner {
+.heroBannerBruh {
   width: 100%;
   display: none;
 
@@ -30,8 +30,8 @@ app-hero-banner {
     }
   }
 }
-@include respond-to(tiny) {
-  heroBanner {
+@media (min-width: 600px) {
+  .heroBannerBruh {
     display: block;
   } 
 }

@@ -1,10 +1,12 @@
-<div class="postListContainer">
-  <div class="contentWrapper">
-    <div class="leftColumn">
-      <app-post-card *ngFor="let post of data;" [data]="post" [displayDescription]="displayDescription"></app-post-card>
-    </div>
-    <div class="rightColumn">
-      <app-newsletter *ngIf="userService.SignedIn"></app-newsletter>
+<div class="postListBruh">
+  <div class="postListContainer">
+    <div class="contentWrapper">
+      <div class="leftColumn">
+        <app-post-card *ngFor="let post of data;" [data]="post" [displayDescription]="displayDescription"></app-post-card>
+      </div>
+      <div class="rightColumn">
+        <app-newsletter *ngIf="userService.SignedIn"></app-newsletter>
+      </div>
     </div>
   </div>
 </div>

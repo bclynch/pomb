@@ -1,29 +1,31 @@
-<div class="footerContainer" [attr.style]="sanitizer.bypassSecurityTrustStyle('--secondary:' + settingsService.secondaryColor)">
-  <div class="footerWrapper">
-    <div class="logoWrapper">
-      <span 
-        class="boldFont gradientText" 
-        [style.background-image]="'linear-gradient(to right, ' + settingsService.primaryColor + ', ' + settingsService.secondaryColor + ')'"
-      >POMB</span>
-    </div>
-    <div class="socialWrapper">
-      <div *ngFor="let option of socialOptions;">
-        <a 
-           
-          [href]="option.url" 
-          target="_blank"
-          class="hover boldFont"
-          rel="noopener" 
-        >
-          <ion-icon [name]="option.icon"></ion-icon>
-        </a>
+<div class="footerBruh">
+  <div class="footerContainer" [attr.style]="sanitizer.bypassSecurityTrustStyle('--secondary:' + settingsService.secondaryColor)">
+    <div class="footerWrapper">
+      <div class="logoWrapper">
+        <span 
+          class="boldFont gradientText" 
+          [style.background-image]="'linear-gradient(to right, ' + settingsService.primaryColor + ', ' + settingsService.secondaryColor + ')'"
+        >POMB</span>
       </div>
-    </div>
-    <div class="linksWrapper">
-      <div *ngFor="let link of links;" class="hover link" (click)="navigateTo(link)">{{link}}</div>
-    </div>
-    <div class="infoWrapper">
-      <div>©{{year | date:'y'}} POMB All rights reserved.</div>
+      <div class="socialWrapper">
+        <div *ngFor="let option of socialOptions;">
+          <a 
+             
+            [href]="option.url" 
+            target="_blank"
+            class="hover boldFont"
+            rel="noopener" 
+          >
+            <ion-icon [name]="option.icon"></ion-icon>
+          </a>
+        </div>
+      </div>
+      <div class="linksWrapper">
+        <div *ngFor="let link of links;" class="hover link" (click)="navigateTo(link)">{{link}}</div>
+      </div>
+      <div class="infoWrapper">
+        <div>©{{year | date:'y'}} POMB All rights reserved.</div>
+      </div>
     </div>
   </div>
 </div>

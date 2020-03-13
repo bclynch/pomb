@@ -1,16 +1,13 @@
-app-explore-nav-section {
+.paneContainer {
 
-  .paneContainer {
+  .paneSection {
 
-    .paneSection {
+    .paneSectionHeader {
 
-      .paneSectionHeader {
+      cursor: pointer;
 
-        cursor: pointer;
-
-        &.hover:hover {
-          opacity: .7;
-        }
+      &.hover:hover {
+        opacity: .7;
       }
     }
   }

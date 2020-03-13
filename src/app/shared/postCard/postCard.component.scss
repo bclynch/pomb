@@ -1,77 +1,89 @@
-app-post-card {
+.postCardContainer {
+  display: flex;
+  align-items: center;
+  border-top: solid 1px var(--border-light);
+  margin-bottom: 8px;
+  min-height: 175px;
 
-  .postCardContainer {
-    display: flex;
-    align-items: center;
-    border-top: solid 1px mapGet($basecolor, border-light);
-    margin-bottom: 8px;
-    min-height: 175px;
+  .imgWrapper {
+    width: 25%;
+    width: 100%;
+    position: relative;
+    > div {
+      background-position: center;
+      background-repeat: no-repeat;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+    }
+    &:before {
+      content: "";
+      display: block;
+      padding-top: 100%;
+    }
+    cursor: pointer;
+    max-height: 240px;
+    min-height: 125px;
+    overflow: hidden;
 
-    .imgWrapper {
-      width: 25%;
-      @extend %fixedRatioWrapper;
+    .cardImg {
+      background-size: cover;
+    }
+  }
+  .imgWrapper:hover + .cardWrapper {
+    .cardTitle {
+      color: var(--secondary);
+    }
+  }
+  .cardWrapper {
+    flex: 1;
+    padding: 8px;
+
+    .cardTitle {
+      font-size: 18px;
       cursor: pointer;
-      max-height: 240px;
-      min-height: 125px;
-      overflow: hidden;
-
-      .cardImg {
-        background-size: cover;
-      }
+      font-weight: bold;
+      transition: .3s;
     }
-    .imgWrapper:hover + .cardWrapper {
-      .cardTitle {
-        color: var(--secondary);
-      }
+    .cardTitle:hover {
+      color: var(--secondary);
     }
-    .cardWrapper {
-      flex: 1;
-      padding: 8px;
+    .bottomWrapper {
+      margin-bottom: 10px;
 
-      .cardTitle {
-        font-size: 18px;
+      .authorWrapper {
         cursor: pointer;
-        font-weight: bold;
-        transition: .3s;
       }
-      .cardTitle:hover {
-        color: var(--secondary);
-      }
-      .bottomWrapper {
-        margin-bottom: 10px;
-
-        .authorWrapper {
-          cursor: pointer;
-        }
-        .pipeDivider {
-          display: none;
-        }
+      .pipeDivider {
+        display: none;
       }
     }
   }
+}
 
-  @include respond-to(tiny) {
+@media (min-width: 600px) {
+  .cardTitle {
+    font-size: 32px!important;
+    margin-bottom: 15px;
+  }
+  .imgWrapper {
+    width: 30%!important; 
+  }
+  .cardWrapper {
+    padding: 16px;
+
     .cardTitle {
-      font-size: 32px!important;
-      margin-bottom: 15px;
+      font-size: 24px;
     }
-    .imgWrapper {
-      width: 30%!important; 
-    }
-    .cardWrapper {
-      padding: 16px;
+    .bottomWrapper {
+      display: flex;
+      align-items: center;
 
-      .cardTitle {
-        font-size: 24px;
-      }
-      .bottomWrapper {
-        display: flex;
-        align-items: center;
-  
-        .pipeDivider {
-          display: block!important;
-          margin: 0 5px;
-        }
+      .pipeDivider {
+        display: block!important;
+        margin: 0 5px;
       }
     }
   }

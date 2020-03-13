@@ -1,4 +1,4 @@
-app-grid {
+.gridBruh {
   width: 100%;
   max-width: 1280px;
   
@@ -18,7 +18,7 @@ app-grid {
       }
     }
     
-    @include respond-to(tiny) {
+    @media (min-width: 600px) {
       .card {
         margin: 1px;
         height: 375px;
@@ -59,7 +59,7 @@ app-grid {
   }
 
   //Made custom classes for our cards to size them appropriately. 
-  @include respond-to(tiny) {
+  @media (min-width: 600px) {
     .gridContainer {
       display: flex;
       flex-wrap: wrap;
@@ -134,7 +134,7 @@ app-grid {
       }
     }
   }
-  @include respond-to(medium) {
+  @media (min-width: 1024px) {
     .gridContainer {
       
       > .card {
