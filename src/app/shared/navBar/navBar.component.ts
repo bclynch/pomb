@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnDestroy } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { DomSanitizer } from '@angular/platform-browser';
 
@@ -8,12 +8,13 @@ import { MobileNavModalComponent } from '../mobileNavModal/mobileNavModal';
 import { SettingsService } from '../../services/settings.service';
 import { RouterService } from '../../services/router.service';
 import { UserService } from '../../services/user.service';
-import { BroadcastService } from '../../services/broadcast.service';
 import { ExploreService } from '../../services/explore.service';
 import { UtilService } from '../../services/util.service';
 import { AlertService } from '../../services/alert.service';
 import { TripService } from '../../services/trip.service';
 import { JunctureService } from '../../services/juncture.service';
+import { SubscriptionLike } from 'rxjs';
+import { AppService } from 'src/app/services/app.service';
 
 interface Social {
   icon: string;
@@ -31,7 +32,7 @@ interface Section {
   templateUrl: './navBar.component.html',
   styleUrls: ['./navBar.component.scss']
 })
-export class NavBarComponent {
+export class NavBarComponent implements OnDestroy {
   @Input() collapsibleNav: boolean;
 
   socialOptions: Social[] = [
@@ -48,25 +49,32 @@ export class NavBarComponent {
 
   regions;
 
+  initSubscription: SubscriptionLike;
+
   constructor(
     private settingsService: SettingsService,
     private routerService: RouterService,
     private userService: UserService,
     private modalCtrl: ModalController,
-    private broadcastService: BroadcastService,
     private exploreService: ExploreService,
     private utilService: UtilService,
     private sanitizer: DomSanitizer,
     private alertService: AlertService,
     private tripService: TripService,
-    private junctureService: JunctureService
+    private junctureService: JunctureService,
+    private appService: AppService
   ) {
-    this.settingsService.appInited
-      ? this.snagCategories()
-      : this.broadcastService.on(
-        'appIsReady',
-        () => this.snagCategories()
-      );
+    this.initSubscription = this.appService.appInited.subscribe(
+      (inited) =>  {
+        if (inited) {
+          this.snagCategories();
+        }
+      }
+    );
+  }
+
+  ngOnDestroy() {
+    this.initSubscription.unsubscribe();
   }
 
   snagCategories() {

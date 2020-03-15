@@ -1,14 +1,15 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { SettingsService } from '../../../services/settings.service';
-import { BroadcastService } from '../../../services/broadcast.service';
+import { AppService } from 'src/app/services/app.service';
+import { SubscriptionLike } from 'rxjs';
 
 @Component({
   selector: 'app-about',
   templateUrl: './about.component.html',
   styleUrls: ['./about.component.scss']
 })
-export class AboutComponent {
+export class AboutComponent implements OnDestroy {
 
   contactModel = { why: null, name: '', email: '', content: '' };
 
@@ -18,12 +19,24 @@ export class AboutComponent {
     { label: 'Other', value: 'other' }
   ];
 
+  initSubscription: SubscriptionLike;
+
   constructor(
     public settingsService: SettingsService,
-    private broadcastService: BroadcastService,
-    public sanitizer: DomSanitizer
+    public sanitizer: DomSanitizer,
+    private appService: AppService
   ) {
-    this.settingsService.appInited ? this.init() : this.broadcastService.on('appIsReady', () => this.init());
+    this.initSubscription = this.appService.appInited.subscribe(
+      (inited) =>  {
+        if (inited) {
+          this.init();
+        }
+      }
+    );
+  }
+
+  ngOnDestroy() {
+    this.initSubscription.unsubscribe();
   }
 
   init() {

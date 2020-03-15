@@ -5,7 +5,8 @@ import {
   RecentUserActivityGQL,
   AuthAdminAccountGQL,
   AuthUserAccountGQL,
-  RegisterUserAccountGQL
+  RegisterUserAccountGQL,
+  Account
 } from '../generated/graphql';
 import { APIService } from './api.service';
 import { LocalStorageService } from './localStorage.service';
@@ -18,7 +19,7 @@ import { User } from '../models/User.model';
 @Injectable()
 export class UserService {
   signedIn = false;
-  user: User = null;
+  user: Account = null;
 
   // for use in our nav panel
   recentTrip;
@@ -42,12 +43,13 @@ export class UserService {
       this.recentUserActivityGQL.fetch({
         username: this.user.username
       }).subscribe(
-        result => {
-          this.recentTrip = result.data.accountByUsername.tripsByUserId.nodes[0];
-          this.recentJunctures = result.data.accountByUsername.juncturesByUserId.nodes;
-          this.recentPosts = result.data.accountByUsername.postsByAuthor.nodes;
+        ({ data }) => {
+          this.recentTrip = data.accountByUsername.tripsByUserId.nodes[0];
+          this.recentJunctures = data.accountByUsername.juncturesByUserId.nodes;
+          this.recentPosts = data.accountByUsername.postsByAuthor.nodes;
           resolve();
-        }, err => reject()
+        },
+        () => reject()
       );
     });
   }
@@ -63,8 +65,11 @@ export class UserService {
 
       // reload window to update db role
       window.location.reload();
-    }, (err) => {
-      this.alertService.alert('Invalid Login', 'The email or password is incorrect. Please check your account information and login again');
+    }, () => {
+      this.alertService.alert(
+        'Invalid Login',
+        'The email or password is incorrect. Please check your account information and login again'
+      );
     });
   }
 
@@ -90,8 +95,11 @@ export class UserService {
       this.router.navigateByUrl('/admin');
       // reload window to update db role
       window.location.reload();
-    }, (err) => {
-      this.alertService.alert('Invalid Login', 'The email or password is incorrect. Please check your account information and login again');
+    }, () => {
+      this.alertService.alert(
+        'Invalid Login',
+        'The email or password is incorrect. Please check your account information and login again'
+      );
     });
   }
 
@@ -102,7 +110,7 @@ export class UserService {
         password
       }).subscribe(({ data }) => {
         // console.log('got data', data);
-        const authData = <any>data;
+        const authData = data;
         if (authData.authenticateUserAccount.jwtToken) {
           this.signedIn = true;
           // reset apollo cache and refetch queries
@@ -121,9 +129,9 @@ export class UserService {
 
   registerUserAccount({ username, firstName, lastName, password, email }: Registration) {
     this.registerUserAccountGQL.mutate({
-      username, 
+      username,
       firstName,
-      lastName, 
+      lastName,
       password,
       email
     }).subscribe(({ data }) => {
@@ -148,16 +156,28 @@ export class UserService {
     }, err => {
       switch (err.message) {
         case 'GraphQL error: duplicate key value violates unique constraint "account_username_key"':
-          this.alertService.alert('Invalid Registration', 'That username already exists, please select a new one!');
+          this.alertService.alert(
+            'Invalid Registration',
+            'That username already exists, please select a new one!'
+          );
           break;
         case 'GraphQL error: duplicate key value violates unique constraint "user_account_email_key"':
-          this.alertService.alert('Invalid Registration', 'The selected email already exists. Try resetting your password or use a new email address.');
+          this.alertService.alert(
+            'Invalid Registration',
+            'The selected email already exists. Try resetting your password or use a new email address.'
+          );
           break;
         case 'GraphQL error: permission denied for function register_account':
-          this.alertService.alert('Submission Error', 'Looks like you\'re still logged into another account. Make sure you\'re logged out or reload the page and try again');
+          this.alertService.alert(
+            'Submission Error',
+            'Looks like you\'re still logged into another account. Make sure you\'re logged out or reload the page and try again'
+          );
           break;
         default:
-          this.alertService.alert('Invalid Registration', 'There is an issue submitting your registration. Please reload and try again');
+          this.alertService.alert(
+            'Invalid Registration',
+            'There is an issue submitting your registration. Please reload and try again'
+          );
       }
     });
   }
@@ -165,10 +185,10 @@ export class UserService {
   private authAdminAccount({ email, password }: Login): Promise<string> {
     return new Promise<string>((resolve, reject) => {
       this.authAdminAccountGQL.mutate({
-        email, 
+        email,
         password
       }).subscribe(({ data }) => {
-        const authData = <any>data;
+        const authData = data;
         if (authData.authenticateAdminAccount.jwtToken) {
           this.signedIn = true;
           // reset apollo cache and refetch queries

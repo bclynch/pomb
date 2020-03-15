@@ -2,7 +2,7 @@ import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HttpHeaders } from '@angular/common/http';
 import { ServiceWorkerModule } from '@angular/service-worker';
 
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
@@ -15,6 +15,9 @@ import { ENV } from '../environments/environment';
 // Apollo
 import { GraphQLModule } from './graphql.module';
 
+import 'froala-editor/js/froala_editor.pkgd.min.js';
+import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
+
 // Services
 import { RoleGuardService } from './services/roleGuard.service';
 import { UtilService } from './services/util.service';
@@ -24,7 +27,6 @@ import { AnalyticsService } from './services/analytics.service';
 import { UserService } from './services/user.service';
 import { AlertService } from './services/alert.service';
 import { APIService } from './services/api.service';
-import { BroadcastService } from './services/broadcast.service';
 import { ErrorService } from './services/error.service';
 import { ExploreService } from './services/explore.service';
 import { GeoService } from './services/geo.service';
@@ -33,6 +35,7 @@ import { LocalStorageService } from './services/localStorage.service';
 import { SettingsService } from './services/settings.service';
 import { SplashGuardService } from './services/splashGuard.service';
 import { TripService } from './services/trip.service';
+import { AppService } from './services/app.service';
 
 @NgModule({
   declarations: [
@@ -47,6 +50,8 @@ import { TripService } from './services/trip.service';
     BrowserAnimationsModule,
     SharedModule,
     HttpClientModule,
+    FroalaEditorModule.forRoot(),
+    FroalaViewModule.forRoot(),
     // enhancing the ngsw http://jakubcodes.pl/2018/06/13/enhancing-angular-ngsw/
     ServiceWorkerModule.register('/sw-master.js', { enabled: ENV.production }),
   ],
@@ -60,7 +65,6 @@ import { TripService } from './services/trip.service';
     UserService,
     AlertService,
     APIService,
-    BroadcastService,
     ErrorService,
     ExploreService,
     GeoService,
@@ -68,7 +72,8 @@ import { TripService } from './services/trip.service';
     LocalStorageService,
     SettingsService,
     SplashGuardService,
-    TripService
+    TripService,
+    AppService
   ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]

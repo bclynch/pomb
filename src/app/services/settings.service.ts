@@ -117,10 +117,12 @@ export class SettingsService {
 
   addFeaturedStory(stories: any[]) {
     this.featuredStories = stories.map((story) => {
-      const { id, title, subtitle } = story;
-      return story
-        ? { id, title, subtitle, imgURL: story.imagesByPostId.nodes[0].url }
-        : null;
+      if (story) {
+        const { id, title, subtitle, imagesByPostId } = story;
+        return { id, title, subtitle, imgURL: imagesByPostId.nodes[0].url };
+      } else {
+        return null;
+      }
     });
   }
 

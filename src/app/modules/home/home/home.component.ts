@@ -1,17 +1,18 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { SettingsService } from '../../../services/settings.service';
-import { BroadcastService } from '../../../services/broadcast.service';
 import { UtilService } from '../../../services/util.service';
 import { RouterService } from '../../../services/router.service';
 import { Post } from '../../../models/Post.model';
 import { AllPublishedPostsGQL } from '../../../generated/graphql';
+import { AppService } from 'src/app/services/app.service';
+import { SubscriptionLike } from 'rxjs';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent {
+export class HomeComponent implements OnDestroy {
 
   posts = [];
   gridPosts: Post[] = [];
@@ -19,19 +20,26 @@ export class HomeComponent {
   otherPosts: Post[] = [];
   gridConfiguration: number[] = [ 6.5, 3.5, 3.5, 6.5, 3, 3, 3 ];
 
+  initSubscription: SubscriptionLike;
+
   constructor(
     public settingsService: SettingsService,
-    private broadcastService: BroadcastService,
     public utilService: UtilService,
     public routerService: RouterService,
-    private allPublishedPostsGQL: AllPublishedPostsGQL
+    private allPublishedPostsGQL: AllPublishedPostsGQL,
+    private appService: AppService
   ) {
-    this.settingsService.appInited
-      ? this.init()
-      : this.broadcastService.on(
-        'appIsReady',
-        () => this.init()
-      );
+    this.initSubscription = this.appService.appInited.subscribe(
+      (inited) =>  {
+        if (inited) {
+          this.init();
+        }
+      }
+    );
+  }
+
+  ngOnDestroy() {
+    this.initSubscription.unsubscribe();
   }
 
   init() {
