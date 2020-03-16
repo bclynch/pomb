@@ -1,3 +1,148 @@
-<p>
-  trip-map works!
-</p>
+<app-page-wrapper [collapsibleNav]="false">
+  <div *ngIf="inited" class="initedLayer" [attr.style]="sanitizer.bypassSecurityTrustStyle('--secondary:' + settingsService.secondaryColor)">
+    <div class="mapContainer" [ngClass]="fullscreen ? 'fullscreen' : ''">
+      <agm-map 
+        [zoomControl]="false"
+        [latitude]="coords.lat" 
+        [longitude]="coords.lon"
+        [disableDefaultUI]="true"
+        [streetViewControl]="false"
+        [fitBounds]="latlngBounds"
+        [styles]=mapStyle
+        [zoom]="zoomLevel"
+        (zoomChange)="onZoomChange($event)"
+        (mapReady)="mapReady($event)"
+        mapTypeId="terrain"
+        #AgmMap
+      >
+        <agm-marker-cluster 
+          [minimumClusterSize]="clusterOptions.minimumClusterSize" 
+          [gridSize]="clusterOptions.gridSize"
+          [averageCenter]="clusterOptions.averageCenter"
+          imagePath="https://googlemaps.github.io/js-marker-clusterer/images/m"
+        >
+          <agm-marker 
+            *ngFor= "let marker of junctureMarkers; let i = index;"
+            [latitude]= "marker.lat" 
+            [longitude]= "marker.lon" 
+            [iconUrl]= "{
+              url: marker.markerImg || junctureService.defaultMarkerImg,
+              anchor: {x: 18, y: 18},
+              size: {width: 40, height: 40},
+              scaledSize: {width: 40, height: 40}
+            }"
+            (markerClick)="markerClick(i)"
+          >
+            <agm-snazzy-info-window [maxWidth]="200" placement="left" [closeWhenOthersOpen]="true" *ngIf="i > 0">
+              <ng-template>
+                <div *ngIf="!markerLoading">
+                  <div 
+                    class="juncturePhoto" 
+                    [ngStyle]="junctureContentArr[i - 1].imagesByJunctureId.nodes.length ? { 'background-image': 'url(' + junctureContentArr[i - 1].imagesByJunctureId.nodes[0].url + ')'} : { 'background-image': 'url(../../assets/images/trip-default.jpg)'}"
+                  >
+                    <div class="overlay">
+                      <div class="overlayName">{{junctureContentArr[i - 1].name}}</div>
+                      <div class="overlayDate">{{junctureContentArr[i - 1].arrivalDate | date: 'MMM d, y'}}</div>
+                    </div>
+                  </div>
+                  <div class="contentWrapper">
+                    <div class="topWrapper">
+                      <div class="windowCity">{{junctureContentArr[i - 1].city}}</div>
+                      <img class="typeIcon" [src]="'../../assets/images/junctureTypes/' + junctureContentArr[i - 1].type + '.svg'" />
+                    </div>
+                    <div class="windowCountry">{{junctureContentArr[i - 1].country}}</div>
+                    <div>{{utilService.stripHTMLTags(junctureContentArr[i - 1].description) | truncate:[200, '...']}}</div>
+                    <div class="windowBtn" (click)="goToJuncture(i)" *ngIf="i !== 0">See More</div>
+                  </div>
+                </div>
+              </ng-template>
+            </agm-snazzy-info-window>
+          </agm-marker>
+        </agm-marker-cluster>
+        <agm-data-layer [geoJson]="geoJsonObject" [style]="dataLayerStyle"></agm-data-layer>
+      </agm-map>
+      <app-share-btns
+        [title]="tripData.name" 
+        description="Check out {{tripData.name}}" 
+        [justIcons]="true"
+        size="-3"
+      ></app-share-btns>
+      <ion-icon name="md-expand" (click)="toggleFullScreen()" class="fullScreenToggle"></ion-icon>
+    </div>
+    <div class="juncturePane">
+      <div class="paneHeader">
+        <div class="userWrapper">
+          <app-profile-picture [photo]="userService.user?.profilePhoto" (click)="routerService.navigateToPage('/user/' + tripData.accountByUserId.username)"></app-profile-picture>
+          <div *ngIf="tripData.accountByUserId.firstName" (click)="routerService.navigateToPage('/user/' + tripData.accountByUserId.username)">
+            {{tripData.accountByUserId.firstName}} {{tripData.accountByUserId.lastName}}
+          </div>
+          <div *ngIf="!tripData.accountByUserId.firstName" (click)="routerService.navigateToPage('/user/' + tripData.accountByUserId.username)">
+            {{tripData.accountByUserId.username}}
+          </div>
+          <app-track-user [trackUserId]="tripData.accountByUserId.id"></app-track-user>
+        </div>
+      </div>
+      <div 
+        class="paneBanner"
+        [ngStyle]="tripBanner ? { 'background-image': 'url(' + tripBanner + ')'} : { 'background-image': 'url(' + defaultPhoto + ')'}"
+        (click)="routerService.navigateToPage('/trip/' + tripId)"
+      >
+        <div class="overlay">
+          <div class="bannerTitle">{{tripData.name}}</div>
+          <div class="timeframe">{{tripData.startDate | date: 'MMM y'}} - {{tripData.endDate | date: 'MMM y' || Now}}</div>
+        </div>
+      </div>
+      <div (panstart)="panStart($event)" (panleft)="pan($event, 'left')" (panright)="pan($event, 'right')">
+        <div class="paneJunctureTracker">
+            <!-- width is 100 (% of parent to be) * number of junctures + 2 (to account for static first and last) / 3 (number junctures in view) -->
+            <div 
+              class="trackerWrapper" 
+              [style.width]="100 * (tripData.juncturesByTripId.nodes.length + 2) / 3 + '%'"
+              [style.left]="junctureIndex * (100 / 3) * -1 + '%'"
+            >
+              <div><ion-icon name="md-home"></ion-icon></div>
+              <div class="junctureContainer" *ngFor="let juncture of tripData.juncturesByTripId.nodes; let i = index;" (click)="changeIndex(i)">
+                <div>{{juncture.name}}</div>
+              </div>
+              <div class="endBlock"><ion-icon name="md-flag"></ion-icon></div>
+            </div>
+          </div>
+          <div class="paneContent" #paneContent>
+            <div 
+              class="contentWrapper" 
+              [style.left]="junctureIndex * -100 + '%'"
+              [style.width]="100 * (tripData.juncturesByTripId.nodes.length) + '%'"
+            >
+              <div class="junctureContentContainer" *ngFor="let juncture of junctureContentArr; let i = index;">
+                <div class="headerWrapper">
+                  <div class="junctureCity">{{juncture?.city}}</div>
+                  <div class="junctureLink" (click)="routerService.navigateToPage('/juncture/' + juncture.id)">View Full Details</div>
+                </div> 
+                <div class="junctureCountry">{{juncture?.country}}</div>
+                <div class="bottomRow">
+                  <div class="junctureTimeRow">
+                    <div class="junctureNumber">Juncture #{{i + 1}}</div>
+                    <div>{{juncture?.arrivalDate | date: 'MMM d, y'}}</div>
+                    <img class="typeIcon" [src]="'../../assets/images/junctureTypes/' + juncture?.type + '.svg'" />
+                  </div>
+                  <app-like-counter  
+                    [totalLikes]="juncture.totalLikes.totalCount" 
+                    [userLikes]="juncture.likesByUser.nodes" 
+                    [assetId]="juncture.id" 
+                    assetType="juncture"
+                    [isVertical]="false"
+                    *ngIf="juncture"
+                  ></app-like-counter >
+                </div>
+                <div class="junctureDescription" *ngIf="juncture?.description">{{utilService.stripHTMLTags(juncture.description)}}</div>
+                <app-gallery [isSquare]="true" perRow="2" [data]="juncture?.imagesByJunctureId.nodes" gutterWidth="2px"></app-gallery>
+                <div class="juncturePosts">
+                  <app-post-card [data]="post" *ngFor="let post of juncture?.postsByJunctureId.nodes"></app-post-card>
+                </div>
+              </div>
+            </div>
+          </div>
+      </div>
+    </div>
+  </div>
+</app-page-wrapper>

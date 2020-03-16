@@ -18,7 +18,7 @@
       *ngIf="userService.signedIn"
     >
       <div class="signedInUser">Welcome back {{userService.user.firstName || userService.user.username}}</div>
-      <ProfilePicture [photo]="userService.user?.profilePhoto"></ProfilePicture>
+      <app-profile-picture [photo]="userService.user?.profilePhoto"></app-profile-picture>
       <div class="logoutBtn" (click)="logout($event)">Logout</div>
     </div>
     <div class="paneSectionContent" (click)="modalCtrl.dismiss('register')" *ngIf="!userService.signedIn">

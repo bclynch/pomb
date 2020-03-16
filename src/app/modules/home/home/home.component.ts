@@ -51,6 +51,7 @@ export class HomeComponent implements OnDestroy {
       quantity: 20,
       offset: 0
     }).subscribe(({ data }) => {
+      console.log('DATA: ', data);
       this.posts = data.allPosts.nodes;
       // console.log(this.posts);
       this.gridPosts = this.posts.slice(0, this.gridConfiguration.length);

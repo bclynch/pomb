@@ -1,0 +1,14 @@
+page-admin-posts {
+  height: 100%;
+  width: 100%;
+
+  .viewHeader {
+    background: var(--black);
+    height: 80px;
+    color: var(--white);
+    display: flex;
+    align-items: center;
+    padding: 0 60px;
+    font-size: 24px;
+  }
+}

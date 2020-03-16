@@ -1,0 +1,35 @@
+.archiveHeader {
+  max-width: 1280px;
+  background: var(--white);
+  width: 100%;
+  border-bottom: 5px solid var(--border-light);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 240px;
+
+  > div {
+    font-size: 48px;
+  }
+}
+.archiveNav {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #ddd;
+  margin-top: 20px;
+
+  .pages {
+    flex: 1;
+    padding: 16px 0;
+    text-align: center;
+  }
+  .btn {
+    color: white;
+    padding: 16px;
+    cursor: pointer;
+  }
+}

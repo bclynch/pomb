@@ -1,0 +1,244 @@
+// modding the nav bar for this page
+.pageWrapperContainer {
+  margin: 0;
+
+  .navBarContainer {
+    position: absolute;
+  }
+}
+.contentWrapper {
+  margin-top: 40px;
+  width: 100%;
+
+  .header {
+    height: 300px;
+    background: url('../../assets/images/timeline.jpg');
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    > div {
+      font-size: 48px;
+      color: white;
+    }
+  }
+  .rangeContainer {
+    width: 100%;
+    top: 0;
+    background: white;
+    z-index: 99;
+
+    .rangeWrapper {
+      width: 100%;
+      position: relative;
+
+      ion-range {
+        width: 80%;
+        padding-top: 40px !important;
+        margin: 0 auto;
+    
+        .range-bar-active {
+          background: var(--secondary);
+        }
+        .range-knob-handle {
+          border: solid 1px #ddd !important;
+          padding: 5px !important;
+          border-radius: 50% !important;
+          background: white !important;
+          z-index: 10;
+        }
+        .range-knob {
+          background: transparent !important;
+          background-image: url('https://www.svgrepo.com/show/9394/backpack.svg') !important;
+          border-radius: 0 !important;
+          height: 40px !important;
+          width: 40px !important;
+          left: 0 !important;
+          top: 0 !important;
+        }
+        .range-pin {
+          left: -10px;
+          top: -40px !important;
+          width: 50px !important;
+          border-radius: 10% !important;
+          background: var(--secondary) !important;
+        }
+        .range-pin:before {
+            content: "Stop " !important;
+            position: static !important;
+            transform: none !important;
+            margin-left: 0 !important;
+            background: var(--secondary) !important;
+        }
+      }
+      .startCircle,
+      .endCircle {
+        border-radius: 50%;
+        height: 15px;
+        width: 15px;
+        border: solid 2px #bdbdbd;
+        position: absolute;
+        bottom: 23%;
+        background: white;
+      }
+      .startCircle {
+        left: 10%;
+      }
+      .endCircle {
+        right: 10%;
+      }
+    }
+  }
+  .timelineContainer {
+    width: 90%;
+    margin: 50px auto 0;
+    position: relative;
+
+    .junctureContainer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-direction: column;
+      width: 100%;
+      margin-bottom: 30px;
+
+      &:nth-child(even) {
+
+        .imgGroup {
+
+          .connector {
+            margin-left: 10px;
+          }
+        }
+      }
+      &:nth-child(odd) {
+
+        .imgGroup {
+
+          .connector {
+            margin-right: 10px;
+          }
+          .junctureDate {
+            text-align: right;
+          }
+        }
+        .dataGroup {
+          text-align: right;
+        }
+      }
+      .imgGroup {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-direction: column;
+        width: 100%;
+        cursor: pointer;
+
+        .junctureImg {
+          height: 150px;
+          width: 150px;
+          background-size: contain;
+          background-repeat: no-repeat;
+          background-position: left center;
+          margin: 20px 0;
+
+          position: relative;
+
+          .typeIcon {
+            height: 20px;
+            width: 20px;
+            position: absolute;
+            bottom: 0;
+            right: 0;
+          }
+        }
+        .junctureDate {
+          font-size: 18px;
+          transition: .3s;
+        }
+        .connector {
+          height: 5px;
+          background: var(--secondary);
+          display: none;
+        }
+        > * {
+          flex: 1;
+        }
+      }
+      .dataGroup {
+        width: 100%;
+        cursor: pointer;
+
+        .junctureTitle {
+          font-size: 18px;
+          font-weight: bold;
+          transition: .3s;
+        }
+        .junctureLocation {
+          font-size: 16px;
+        }
+      }
+      .mobileConnector {
+        height: 80px;
+        width: 20px;
+        background: var(--secondary);
+        margin-top: 30px; 
+      }
+      .dataGroup:hover {
+        .junctureTitle {
+          color: var(--secondary);
+        }
+      }
+      .imgGroup:hover {
+        .junctureDate {
+          color: var(--secondary);
+        }
+      }
+    }
+    .timelinePipe {
+      width: 20px;
+      height: 100%;
+      position: absolute;
+      display: none;
+      left: calc(50% - 10px);
+      top: 0;
+      background: var(--secondary);
+    }
+  }
+}
+@media (min-width: 768px) {
+  .timelineContainer {
+    width: 60% !important;
+
+    .junctureContainer {
+      flex-direction: row !important;
+
+      &:nth-child(odd) {
+        flex-direction: row-reverse !important;
+
+        .imgGroup {
+          flex-direction: row-reverse !important;
+        }
+      }
+      > div {
+        width: calc(50% - 20px) !important;
+      }
+      .imgGroup {
+        flex-direction: row !important;
+
+        .connector {
+          display: block !important;
+        }
+        .junctureImg {
+          margin: 0 !important;
+        }
+      }
+      .mobileConnector {
+        display: none !important;
+      }
+    }
+    .timelinePipe {
+      display: block !important;
+    }
+  }
+}

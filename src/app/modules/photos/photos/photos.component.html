@@ -1,3 +1,7 @@
-<p>
-  photos works!
-</p>
+<app-page-wrapper [attr.style]="sanitizer.bypassSecurityTrustStyle('--secondary:' + settingsService.secondaryColor)" [topo]="true" >
+  <app-gallery [data]="gallery" gutterWidth="2px"></app-gallery>
+  <div class="infiniteScrollContainer" *ngIf="utilService.infiniteActive">
+    <ion-spinner name="dots" [style.fill]="settingsService.secondaryColor"></ion-spinner>
+    <div>Loading more photos...</div>
+  </div>
+</app-page-wrapper>

@@ -1,0 +1,105 @@
+.contentWrapper {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 25px;
+
+  .searchComponentContainer {
+    padding: 40px 0;
+    width: 50%;
+    min-width: 400px;
+    margin: 0 auto;
+  }
+  .resultsContainer {
+    width: 100%;
+
+    .resultsContainerHeader {
+      border-bottom: solid 1px #ddd;
+      padding: 5px 0;
+      margin-bottom: 15px;
+      font-size: 18px;
+      font-weight: bold;
+    }
+    .leftContainer {
+      flex: 3;
+
+      > div {
+        margin-bottom: 40px;
+      }
+      .accountsContainer {
+
+        .accountsWrapper {
+          text-align: center;
+          display: flex;
+          flex-wrap: wrap;
+
+          .accountWrapper {
+            width: 50%;
+            cursor: pointer;
+            .accountUser {
+              transition: .3s;
+            }
+          }
+          .accountWrapper:hover {
+
+            .accountUser {
+              color: var(--secondary);
+            }
+          }
+        }
+      }
+      .tripsContainer {
+
+        .tripsWrapper {
+
+          .tripCardWrapper {
+            height: 100px;
+            width: 100%;
+            background-image: url('../../../../assets/images/trip-default.jpg');
+            background-position: center;
+            background-size: cover;
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            cursor: pointer;
+
+            .tripName {
+              color: white;
+              font-weight: bold;
+            }
+          }
+        }
+      }
+    }
+    .rightContainer {
+      flex: 2;
+      
+    }
+    .noResultsContainer {
+      font-size: 28px;
+      margin-top: 25px;
+      color: var(--dark);
+      align-items: center;
+      display: flex;
+      flex-direction: column;
+      text-align: center;
+      padding: 0 10px;
+      width: 100%;
+  
+      ion-icon {
+        font-size: 60px;
+        margin-bottom: 10px;
+      }
+    }
+  }
+}
+
+@media (min-width: 1024px) {
+  .resultsContainer {
+    display: flex;
+
+    .rightContainer {
+      margin-left: 50px;
+    }
+  }
+}

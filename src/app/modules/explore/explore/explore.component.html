@@ -1,0 +1,19 @@
+<app-page-wrapper>
+  <!-- <app-fade-carousel 
+    [data]="carouselImages" 
+    [style.width]="'100vw'" 
+    title="Explore"
+    btnLabel="Regions & Countries"
+    (btnClick)="presentModal()"
+  ></app-fade-carousel> -->
+  <div class="exploreWrapper">
+    <GeoChart 
+      [countries]="countryCodes" 
+      *ngIf="inited"
+      backgroundColor="black"
+      [defaultColor]="settingsService.secondaryColor"
+      datalessColor="black" 
+    ></GeoChart>
+  </div>
+</app-page-wrapper>
+

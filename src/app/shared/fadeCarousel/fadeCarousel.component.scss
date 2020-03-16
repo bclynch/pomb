@@ -1,0 +1,124 @@
+.carouselContainer {
+  width: 100%;
+  height: 630px;
+  position: relative;
+
+  > .slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    transition: opacity 3s;
+    background-position: center;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: mapGet($basecolor, white);
+
+    .slideTitle {
+      font-size: 80px;
+      line-height: 72px;
+      font-weight: 600;
+      margin-bottom: 15px;
+      text-shadow: 2px 2px mapGet($basecolor, black);
+      text-align: center;
+    }
+    .slideTagline {
+      font-size: 30px;
+      font-style: italic;
+      text-shadow: 2px 2px mapGet($basecolor, black);
+    }
+    .flagsContainer {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 20px;
+      width: 50%;
+
+      > div {
+        width: 40px;
+        padding-right: 5px;
+
+        img {
+    
+        }
+      }
+    } 
+    .modalLauncherBtn {
+      margin-top: 30px;
+      padding: 15px 20px;
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+
+      ion-icon {
+        margin-left: 10px;
+      }
+    }
+    .updateWrapper {
+      display: flex;
+      align-items: center;
+      margin-top: 10px;
+      cursor: pointer;
+      transition: .3s;
+      font-weight: bold;
+
+      ion-icon {
+        margin-right: 5px;
+      }
+    }
+    .updateWrapper:hover {
+      color: var(--secondary);
+    }
+  }
+  .statsContainer {
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    background: rgba(0,0,0,.85);
+    padding: 10px 5px;
+
+    .innerWrapper {
+      max-width: 650px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 0 auto;
+
+      .statWrapper, .counterContainer {
+        text-align: center;
+        color: white;
+        height: 100%;
+
+        ion-icon {
+          font-size: 36px;
+        }
+        .statLabel {
+          display: none;
+        }
+        .statValue, .likeValue {
+          margin: 5px 0;
+          font-size: 18px;
+          font-weight: bold;
+          color: var(--secondary);
+        }
+      }
+      .likeLabel {
+        display: none;
+      }
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  .flagsContainer {
+    width: 30% !important;
+  }
+  .statLabel, .likeLabel {
+    display: block !important;
+  }
+}

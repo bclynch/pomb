@@ -1,3 +1,115 @@
-<p>
-  trip works!
-</p>
+<app-page-wrapper [collapsibleNav]="false" [topo]="true">
+  <app-fade-carousel 
+    [data]="carouselImages" 
+    [style.width]="'100vw'" 
+    [title]="tripData?.name"
+    [flags]="countryFlags"
+    [stats]="stats"
+    [tripData]="carouselTripData"
+    [userId]="tripData?.accountByUserId.id"
+  ></app-fade-carousel>
+  <div class="contentWrapper" [attr.style]="sanitizer.bypassSecurityTrustStyle('--secondary:' + settingsService.secondaryColor)">
+    <div class="subnavContainer" [ngClass]="tripService.displayTripNav ? 'fixed' : ''">
+      <div class="borderWrapper">
+        <div class="subnavWrapper">
+          <div *ngFor="let option of subnavOptions;" (click)="scrollTo(option)">{{option}}</div>
+        </div>
+      </div>
+    </div>
+    <div class="sectionsWrapper">
+      <div class="widthWrapper">
+        <div class="section glance" id="Highlights">
+          <div class="headerWrapper">
+            <div class="glanceHeader">Explore {{tripData?.name}}</div>
+            <div class="infoContainer" *ngIf="tripData">
+              <div class="tripStatus"><div>Trip Status:</div> {{tripService.tripStatus(+this.tripData.startDate, this.tripData.endDate ? +this.tripData.endDate : null)}}</div>
+              <div class="userWrapper">
+                <div (click)="routerService.navigateToPage('/user/' + tripData.accountByUserId.username)">
+                  <div class="name" *ngIf="tripData.accountByUserId.firstName">{{tripData.accountByUserId.firstName}} {{tripData.accountByUserId.lastName}}</div>
+                  <div class="name" *ngIf="!tripData.accountByUserId.firstName">{{tripData.accountByUserId.username}}</div>
+                  <app-profile-picture [photo]="tripData.accountByUserId.profilePhoto"></app-profile-picture>
+                </div>
+                <app-track-user [trackUserId]="tripData.accountByUserId.id"></app-track-user>
+              </div>
+            </div>
+          </div>
+          <div class="glanceContent" [froalaView]="tripData?.description"></div>
+          <!-- <div 
+            class="toggleBtn" 
+            (click)="glanceExpanded = !glanceExpanded" 
+            *ngIf="!glanceExpanded"
+          >More <ion-icon name="ios-arrow-down"></ion-icon></div> -->
+          <!-- <div *ngIf="glanceExpanded">
+            <div class="glanceContent" *ngFor="let section of glanceContent">
+              <h2>{{section.title}}</h2>
+              <div class="content">{{section.content}}</div>
+            </div>
+          </div> -->
+          <!-- <div 
+            class="toggleBtn" 
+            (click)="glanceExpanded = !glanceExpanded" 
+            *ngIf="glanceExpanded"
+          >Less <ion-icon name="ios-arrow-up"></ion-icon></div> -->
+        </div>
+        <div class="section map" id="Map">
+          <div class="sectionHeader">Map</div>
+          <div class="mapContainer">
+              <agm-map 
+              [zoomControl]="false"
+              [latitude]="coords.lat" 
+              [longitude]="coords.lon"
+              [disableDefaultUI]="true"
+              [streetViewControl]="false"
+              [mapDraggable]="false"
+              [scrollwheel]="false"
+              [fitBounds]="latlngBounds"
+              [styles]=mapStyle
+              [zoom]="zoomLevel"
+              mapTypeId="terrain"
+              #AgmMap
+            >
+              <agm-data-layer [geoJson]="geoJsonObject" [style]="dataLayerStyle"></agm-data-layer>
+            </agm-map>
+            <div class="mapBtn" (click)="routerService.navigateToPage('/trip/' + tripId + '/map')"><ion-icon name="md-trending-up"></ion-icon>Launch Map Explorer</div>
+          </div>
+        </div>
+        <div class="section junctures" id="Junctures">
+          <div class="sectionHeader">Junctures</div>
+          <div class="sectionContent" *ngIf="tripData?.juncturesByTripId.nodes.length">
+            <JunctureBubbles [junctures]="tripData?.juncturesByTripId.nodes"></JunctureBubbles>
+            <div class="navLink" (click)="routerService.navigateToPage('/trip/' + tripId + '/junctures')">Check out all of this trip's junctures</div>
+          </div>
+          <div class="noResultsContainer" *ngIf="!tripData?.juncturesByTripId.nodes.length">
+            <ion-icon name="md-git-merge"></ion-icon>
+            <div>Looks like there aren't any junctures for this trip quite yet</div>
+          </div>
+        </div>
+        <div class="section posts" id="Posts">
+          <div class="sectionHeader">Posts</div>
+          <div class="sectionContent" *ngIf="tripPosts.length">
+            <div class="postsContainer">
+              <app-post-card [data]="post" *ngFor="let post of tripPosts"></app-post-card>
+            </div>
+            <div class="navLink" (click)="routerService.navigateToPage('/trip/' + tripId + '/posts')">Check out all of this trip's posts</div>
+          </div>
+          <div class="noResultsContainer" *ngIf="!tripPosts.length">
+            <ion-icon name="md-albums"></ion-icon>
+            <div>Looks like there aren't any posts for this trip quite yet</div>
+          </div>
+        </div>
+        <div class="section photos" id="Photos">
+          <div class="sectionHeader">Photos</div>
+          <div class="sectionContent" *ngIf="gallery.length">
+            <app-gallery [data]="gallery" gutterWidth="2px"></app-gallery>
+            <div class="navLink" (click)="routerService.navigateToPage('/trip/' + tripId + '/photos')">Check out all of this trip's photos</div>
+          </div>
+          <div class="noResultsContainer" *ngIf="!gallery.length">
+            <ion-icon name="md-images"></ion-icon>
+            <div>Looks like there aren't any images for this trip quite yet</div>
+          </div>
+        </div>
+        <disqus [identifier]="disqusId" *ngIf="disqusId"></disqus>
+      </div>
+    </div>
+  </div>
+</app-page-wrapper>

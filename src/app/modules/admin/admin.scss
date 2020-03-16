@@ -1,0 +1,131 @@
+page-admin {
+    > div {
+        height: 100%;
+    }
+    ion-menu {
+			ion-content {
+				background: var(--black)!important;
+				color: var(--white)!important;
+	
+				.closeMenuBtn {
+					position: absolute;
+					top: 20px;
+					left: 20px;
+					color: var(--white);
+					font-size: 24px;
+					cursor: pointer;
+				}
+				.logo {
+						padding: 20px 50px 0;
+		
+						> span {
+							cursor: pointer;
+							font-size: 32px;
+							font-weight: bold;
+						}
+					}
+				.listContainer {
+					margin-top: 50px;
+					
+					> .option {
+						padding: 15px 20px;
+						cursor: pointer;
+						display: flex;
+						align-items: center;
+						transition: .3s;
+	
+						ion-icon {
+							flex: 1;
+							text-align: center;
+						}
+						> div {
+								flex: 7;
+						}
+					}
+					> .option:hover {
+						color: var(--secondary);
+					}
+				}
+			}
+		}
+    .dashboardContent {
+			position: relative;
+			height: 100%;
+
+			.menuToggleBtn {
+					position: absolute;
+					top: 28px;
+					left: 25px;
+					font-size: 24px;
+					cursor: pointer;
+					color: var(--white);
+					z-index: 99;
+			}
+			.pageContainer {
+				height: 100vh;
+			}
+			.viewHeader {
+				background: var(--black);
+				height: 80px;
+				color: var(--white);
+				display: flex;
+				align-items: center;
+				padding: 0 60px;
+				font-size: 24px;
+			}
+			.viewContent {
+				background: var(--border);
+				height: calc(100% - 80px);
+				padding: 15px 10px 0;
+				overflow: scroll;
+				-ms-overflow-style: none;
+		
+				.contentGroup {     
+					background: white;
+					max-width: 700px;
+					margin: 0 auto 15px;
+		
+					.contentGroupHeader {
+						padding: 20px;
+						border-bottom: solid 1px #ddd;
+		
+						.contentGroupTitle {
+							font-size: 22px;
+							font-weight: 500;
+							margin-bottom: 15px;
+						}
+						.contentGroupSubtitle {
+							font-size: 16px;
+						}
+					}
+					.contentGroupContent {
+						padding: 20px;
+					}
+				}
+			}
+    }
+    // @media screen and (max-width: $break-medium) {
+    //     .menu-inner{
+    //         width: 35% !important;
+    //     }
+    //     .ion-content{
+    //         transform: translate3d(35%, 0px, 0px) !important;
+    //     }
+    // }
+    // @media screen and (max-width: $break-small) {
+    //     .menu-inner{
+    //         width: 40% !important;
+    //     }
+    //     .ion-content{
+    //         transform: translate3d(40%, 0px, 0px) !important;
+    //     }
+    // }
+    // @media screen and (max-width: $break-xsmall) {
+    //     .menu-inner{
+    //         width: 80% !important;
+    //     }
+    //     .ion-content{
+    //         transform: translate3d(80%, 0px, 0px) !important;
+    //     }
+    // }
+}

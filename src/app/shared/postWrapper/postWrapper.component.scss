@@ -1,0 +1,88 @@
+.postContentWrapper {
+  max-width: 900px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 15px;
+
+  h3 {
+    margin-bottom: 0;
+  }
+  .authorWrapper {
+    margin: 5px 0 0;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+
+    span {
+      cursor: pointer;
+      margin: 0 10px 0 5px;
+      font-weight: bold;
+    }
+    .trackUserContainer {
+      font-size: 12px;
+      width: 80px;
+    }
+  }
+  .bottomRow {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .dataContainer {
+      display: flex;
+      align-items: center;
+
+      .statContainer {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-right: 10px;
+
+        ion-icon {
+          font-size: 24px;
+          color: #bbb;
+        }
+        > div {
+          font-weight: bold;
+        }
+      }
+    }
+  }
+  .leadImg {
+    width: 100%;
+  }
+  .moreContainer {
+    display: block;
+    margin-top: 60px;
+
+    .moreWrapper {
+      flex: 3;
+
+      .header {
+        font-size: 24px;
+        margin-bottom: 25px;
+      }
+    }
+    .signupWrapper {
+      flex: 2;
+      display: flex;
+      justify-items: center;
+      align-items: center;
+      margin: 30px auto;
+
+      newsletter {
+        margin: 0 auto
+      }
+    }
+  }
+
+  @media (min-width: 768px) {
+    .moreContainer {
+      display: flex;
+
+      .signupWrapper {
+        margin: 0 0 0 15px;
+      }
+    }
+  }
+}

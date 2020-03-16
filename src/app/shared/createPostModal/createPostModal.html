@@ -1,0 +1,133 @@
+<div class="modalContainer">
+  <div class="headerInfo">
+    <div class="headerTitle">Edit Post</div>
+    <div class="optionsWrapper">
+      <div 
+        *ngFor="let option of containerOptions; let i = index;" 
+        [style.font-weight]="i === activeContainerOption ? 'bold' : null"
+        (click)="activeContainerOption = i"
+      >{{option}}</div>
+    </div>
+  </div>
+  <div class="contentContainer" *ngIf="activeContainerOption === 0">
+    <div class="titleInputWrapper">
+      <input
+        placeholder="Enter a post title...*"
+        type="text"
+        [(ngModel)]="postModel.postTitle"
+      />
+    </div>
+    <div class="textEditorWrapper">
+      <div [froalaEditor]="editorOptions" [(froalaModel)]="postModel.content"></div>
+    </div>
+  </div>
+  <div class="optionsContainer" *ngIf="activeContainerOption === 1">
+    <div class="topContainer">
+      <div class="left">
+        <div class="segmentLabel">Primary Photo*</div>
+        <div class="uploadWrapper" (click)="presentLeadUploaderPopover()">
+          <div 
+            class="thumbnailImage" 
+            [ngStyle]="{ 'background-image': 'url(' + displayedLeadPhoto.url + ')'}" 
+            *ngIf="displayedLeadPhoto"
+          >
+            <div class="hoverOverlay">
+              <ion-icon name="md-cloud-upload"></ion-icon>
+              <div>Add an image</div>
+            </div>
+          </div>
+          <div *ngIf="!displayedLeadPhoto" class="emptyImgContainer">
+            <ion-icon name="md-cloud-upload"></ion-icon>
+            <div>Add an image</div>
+          </div>
+        </div>
+        <input 
+          type="text"
+          placeholder="Image title*"
+          [(ngModel)]="postModel.leadPhotoTitle"
+          class="imgTitleInput"
+        />
+      </div>
+      <div class="right">
+        <div class="tagsContainer">
+          <div class="segmentLabel">Tags</div>
+          <app-tag-search (selectTag)="addTag($event)"></app-tag-search>
+          <div class="postOptionsWrapper">
+            <div class="optionWrapper" *ngFor="let tag of tagOptions; let i = index;">
+              <div class="option">
+                {{tag.name}} 
+                <ion-icon name="close" (click)="removeTag(i)"></ion-icon>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="tripContainer">
+          <div class="segmentLabel">Trip</div>
+          <select [(ngModel)]="postModel.tripId" (change)="populateJunctures()">
+            <option [value]="null" [selected]="true">Select a Trip</option>
+            <option [value]="option.id" *ngFor="let option of tripOptions;">{{option.name}}</option>
+          </select>
+          <div class="segmentLabel">Juncture</div>
+          <select [(ngModel)]="postModel.junctureId" [disabled]="!postModel.tripId" placeholder="Select a Juncture" (change)="populateLocation($event)">
+            <option [value]="option.id" *ngFor="let option of junctureOptions;">{{option.name}}</option>
+          </select>
+          <div class="locationWrapper">
+            <div class="segmentLabel">Location</div>
+            <span (click)="useCurrentLocation()">Use Current Location <ion-icon name="md-locate"></ion-icon></span>
+          </div>
+          <input 
+            type="text"
+            placeholder="City"
+            [(ngModel)]="postModel.city"
+            class="locationInput"
+          />
+          <select [(ngModel)]="postModel.country" placeholder="Select a Country">
+            <option [value]="null" [selected]="true">Select a Country</option>
+            <option [value]="country.code" *ngFor="let country of countries;">{{country.name}}</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="subtitleContainer">
+      <div class="segmentLabel">Subtitle*</div>
+      <textarea 
+        placeholder="Add something..." 
+        rows="4" 
+        [(ngModel)]="postModel.postSubtitle"
+      ></textarea>
+    </div>
+    <div class="postTypeContainer" (click)="presentPopover($event)">
+      <div class="typeTitle">{{postOptions[activePostOption].name}}</div>
+      <div class="secondaryRow">
+        <span>{{postOptions[activePostOption].secondaryDescription}}</span>
+        <span class="pickerCue" *ngIf="postOptions[activePostOption].name === 'Scheduled'" (click)="presentDatepickerModal($event)">{{scheduledModel.label}}</span>
+        <span class="pickerCue" *ngIf="postOptions[activePostOption].name === 'Published'" (click)="presentDatepickerModal($event)">{{publishModel.label}}</span>
+      </div>
+    </div>
+  </div>
+  <div class="galleryContainer" *ngIf="activeContainerOption === 2">
+    <div class="addGalleryContainer">
+      <div class="galleryLoadWrapper">
+        <div (click)="presentGalleryUploaderPopover()">
+          <ion-icon name="md-cloud-upload"></ion-icon>
+          <div>Add images</div>
+        </div>
+      </div>
+    </div>
+    <div class="gridWrapper">
+      <div class="gridUnitWrapper" *ngFor="let galleryPhoto of galleryPhotos; let i = index;">
+        <div class="imgWrapper">
+          <div [ngStyle]="{ 'background-image': 'url(' + galleryPhoto.photoUrl + ')'}"></div>
+          <ion-icon name="md-create" title="Edit gallery photo" (click)="presentGalleryPopover($event, i)"></ion-icon> 
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footerBtns">
+    <div 
+      *ngFor="let option of btnOptions; let i = index;" 
+      (click)="clickBtn(i)"
+      class="boldFont"
+    >{{option}}</div>
+  </div>
+</div>

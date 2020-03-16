@@ -1,3 +1,42 @@
-<p>
-  trip-timeline works!
-</p>
+<app-page-wrapper [attr.style]="sanitizer.bypassSecurityTrustStyle('--secondary:' + settingsService.secondaryColor)" [collapsibleNav]="false" [topo]="true">
+  <div class="contentWrapper">
+    <div class="header">
+      <div>{{tripData?.name}} Timeline</div>
+    </div>
+    <div class="rangeContainer" [style.position]="junctureService.displayTripNav ? 'fixed' : 'static'">
+      <div class="rangeWrapper">
+        <ion-range 
+          min="0" 
+          [max]="tripData?.juncturesByTripId.nodes.length" 
+          [(ngModel)]="saturation" 
+          [pin]="true"
+          (ionChange)="rangeChange($event)"
+        ></ion-range>
+        <div class="startCircle"></div>
+        <div class="endCircle"></div>
+      </div>
+    </div>
+    <div class="timelineContainer">
+      <div 
+        class="junctureContainer" 
+        *ngFor="let juncture of tripData?.juncturesByTripId.nodes; let i = index; let last=last" 
+        [id]="'juncture' + i"
+      >
+        <div class="imgGroup" (click)="routerService.navigateToPage('/juncture/' + juncture.id)">
+          <div class="junctureDate">{{juncture.arrivalDate | date:'mediumDate'}}</div>
+          <div class="junctureImg" [ngStyle]="{ 'background-image': 'url(' + junctureImage(juncture) + ')'}">
+            <img class="typeIcon" [src]="'../../assets/images/junctureTypes/' + juncture.type + '.svg'" />
+          </div>
+          <div class="connector"></div>
+        </div>
+        <div class="dataGroup" (click)="routerService.navigateToPage('/juncture/' + juncture.id)">
+          <div class="junctureTitle">{{juncture.name}}</div>
+          <div class="junctureLocation">{{juncture.city}}, {{juncture.country}}</div>
+          <div class="junctureDescription">{{utilService.stripHTMLTags(juncture.description) | truncate:[200, '...']}}</div>
+        </div>
+        <div class="mobileConnector" *ngIf="!last"></div>
+      </div>
+      <div class="timelinePipe"></div>
+    </div>
+  </div>
+</app-page-wrapper>

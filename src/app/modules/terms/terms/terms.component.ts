@@ -1,14 +1,22 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { RouterService } from '../../../services/router.service';
 
 @Component({
   selector: 'app-terms',
   templateUrl: './terms.component.html',
   styleUrls: ['./terms.component.scss'],
 })
-export class TermsComponent implements OnInit {
+export class TermsComponent {
+  activeTab: 'terms' | 'privacy';
 
-  constructor() { }
+  constructor(
+    private routerService: RouterService
+  ) {
+    this.activeTab = this.routerService.fragment || 'terms';
+  }
 
-  ngOnInit() {}
-
+  changeTab(tab: 'terms' | 'privacy') {
+    this.routerService.modifyFragment(tab);
+    this.activeTab = tab;
+  }
 }

@@ -1,0 +1,162 @@
+.container {
+  max-width: 1280px;
+  padding: 10px;
+}
+.containerHeader {
+  font-size: 32px;
+  text-align: center;
+  position: relative;
+  padding-bottom: 15px;
+  color: white;
+  margin: 50px 30px;
+}
+.containerHeader:after {
+  border-bottom: .2rem solid var(--secondary);
+  bottom: 0;
+  content: "";
+  display: block;
+  left: 50%;
+  margin-left: -1.5rem;
+  position: absolute;
+  width: 3rem;
+}
+.statsContainer {
+  width: 100%;
+  background: rgba(0,0,0,.85);
+  padding: 10px 5px;
+
+  .innerWrapper {
+    max-width: 650px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 auto;
+
+    .statWrapper, .counterContainer {
+      text-align: center;
+      color: white;
+      height: 100%;
+
+      img {
+        height: 32px;
+        width: 32px;
+      }
+      ion-icon {
+        font-size: 36px;
+      }
+      .statLabel {
+
+      }
+      .statValue, .likeValue {
+        margin: 5px 0;
+        font-size: 18px;
+        font-weight: bold;
+        color: var(--secondary);
+      }
+    }
+  }
+}
+.countriesContainer {
+
+  .countryStats {
+    display: flex;
+    justify-content: space-between;
+    color: white;
+    width: 350px;
+    margin: 20px auto;
+
+    .statsWrapper {
+      text-align: center;
+
+      > div:first-child {
+        font-size: 48px;
+        font-weight: bold;
+      }
+      > div:last-child {
+        font-size: 18px;
+      }
+    }
+  }
+  .subHeader {
+    color: white;
+    text-align: center;
+    font-size: 24px;
+    margin: 20px auto;
+    padding: 0 20px;
+  }
+  .flagsContainer {
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    align-items: center;
+    color: white;
+    text-align: center;
+    font-size: 18px;
+    margin: 0 auto;
+    padding: 0 10px;
+    max-width: 900px;
+
+    .flagWrapper {
+      width: calc(50% - 20px);
+      margin: 10px;
+      // cursor: pointer;
+    }
+  }
+}
+.tripCardContainer {
+  width: 100%;
+
+  tripcard {
+
+    .tripCardContainer {
+      margin: 10px auto;
+    }
+  }
+}
+.photosWrapper {
+  width: 100%;
+
+  .navLink {
+    transition: .3s;
+    cursor: pointer;
+    text-decoration: underline;
+    font-size: 20px;
+    margin: 15px 0 30px;
+    text-align: center;
+    color: white;
+  }
+  .navLink:hover {
+    color: var(--secondary);
+  }
+}
+
+@media (min-width: 600px) {
+  .countryStats {
+    width: 400px !important;
+  }
+}
+@media (min-width: 768px) {
+  .flagWrapper {
+    width: calc(33.33% - 20px) !important;
+  }
+}
+@media (min-width: 1024px) {
+  .flagWrapper {
+    width: calc(25% - 20px) !important;
+  }
+  .tripCardsWrapper {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+
+    tripcard {
+      width: 50%;
+    }
+    tripcard:nth-child(odd) {
+      padding-right: 10px;
+    }
+    tripcard:nth-child(even) {
+      padding-left: 10px;
+    }
+  }
+}

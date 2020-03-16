@@ -12,6 +12,7 @@ $navbarHeight: 40px;
     width: 100vw;
     transition: all .3s ease-in-out; 
     overflow: hidden;
+    left: 0;
 
     &.hidden {
       transform: translateY(-$navbarHeight);

@@ -1,3 +1,12 @@
-<p>
-  hub works!
-</p>
+<app-page-wrapper backgroundColor="black">
+  <app-grid [elements]="gridPosts" [gridConfig]="gridConfiguration" *ngIf="gridPosts.length"></app-grid>
+  <div class="hubHeader">
+    <div>{{currentHub | uppercase}}</div>
+    <div class="hubDescription">{{hubDescription}}</div>
+  </div>
+  <app-post-list [data]="otherPosts"></app-post-list>
+  <div class="noPosts" *ngIf="!gridPosts.length">
+    <ion-icon name="md-albums"></ion-icon>
+    <div>Doesn't look like there are any posts related to this {{isTripPosts ? 'trip' : 'tag'}}. Try another one!</div>
+  </div>
+</app-page-wrapper>

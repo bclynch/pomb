@@ -1,3 +1,23 @@
-<p>
-  reset works!
-</p>
+<app-page-wrapper>
+  <h1>Forgot Password</h1>
+  <form 
+    class="resetForm"
+    novalidate
+    #resetForm="ngForm"
+    (ngSubmit)="sendReset(resetForm.value)"  
+  >
+    <input
+      type="email"
+      placeholder="Email"
+      required
+      name="email"
+      [(ngModel)]="resetModel.email"
+      pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$"
+    />
+    <button
+      type="submit" 
+      class="submitBtn boldFont" 
+      [disabled]="!resetForm.valid"
+    >Reset Password</button>
+  </form>
+</app-page-wrapper>

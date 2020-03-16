@@ -1,0 +1,46 @@
+<div class="postContentWrapper" *ngIf="post">
+  <h1>{{post.title}}</h1>
+  <h3>{{post.subtitle}}</h3>
+  <div class="authorWrapper">by
+    <span 
+      [style.color]="settingsService.secondaryColor" 
+      *ngIf="post.accountByAuthor.firstName" 
+      (click)="routerService.navigateToPage('/user/' + post.accountByAuthor.username)"
+    >{{post.accountByAuthor.firstName}} {{post.accountByAuthor.lastName}}</span>
+    <span 
+      [style.color]="settingsService.secondaryColor" 
+      *ngIf="!post.accountByAuthor.firstName" 
+      (click)="routerService.navigateToPage('/user/' + post.accountByAuthor.username)"
+    >{{post.accountByAuthor.username}}</span>
+    <app-track-user [trackUserId]="post.accountByAuthor.id"></app-track-user>
+  </div>
+  <app-tags [tags]="tags" *ngIf="tags.length"></app-tags>
+  <div class="bottomRow">
+    <app-share-btns [title]="post.title" [description]="post.subtitle"></app-share-btns>
+    <div class="dataContainer" *ngIf="!isPreview">
+      <div class="statContainer" title="Views">
+        <ion-icon name="md-eye"></ion-icon>
+        <div [style.color]="settingsService.secondaryColor">{{views | number}}</div>
+      </div>
+      <app-like-counter 
+        [totalLikes]="post.totalLikes.totalCount" 
+        [userLikes]="post.likesByUser.nodes" 
+        [assetId]="post.id" 
+        assetType="post"
+      ></app-like-counter >
+    </div>
+  </div>
+  <img [src]="post.imagesByPostId.nodes[0].url" class="leadImg" />
+  <div class="postSandbox" [froalaView]="post.content"></div>
+  <app-gallery [data]="galleryImages" gutterWidth="2px"></app-gallery>
+  <disqus [identifier]="disqusId" *ngIf="disqusId"></disqus>
+  <div class="moreContainer" *ngIf="!isPreview">
+    <div class="moreWrapper" *ngIf="tags.length">
+      <div class="header">You may also like</div>
+      <app-post-card *ngFor="let post of relatedPosts;" [data]="post"></app-post-card>
+    </div>
+    <div class="signupWrapper" *ngIf="userService.SignedIn">
+      <app-newsletter></app-newsletter>
+    </div>
+  </div>
+</div>

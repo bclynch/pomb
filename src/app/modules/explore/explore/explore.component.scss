@@ -1,0 +1,11 @@
+.exploreWrapper {
+  GeoChart {
+    display: none; 
+  }
+  
+  @media (min-width: 600px) {
+    GeoChart {
+      display: block; 
+    }
+  }
+}

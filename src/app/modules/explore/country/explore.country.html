@@ -1,0 +1,79 @@
+<app-page-wrapper>
+  <app-fade-carousel 
+    [data]="carouselImages" 
+    [style.width]="'100vw'" 
+    [title]="country"
+    btnLabel="Cities"
+    (btnClick)="presentModal()"
+  ></app-fade-carousel>
+  <div class="contentWrapper" [attr.style]="sanitizer.bypassSecurityTrustStyle('--secondary:' + settingsService.secondaryColor)">
+    <div class="subnavWrapper">
+      <ExploreSubnav 
+        [options]="subnavOptions" 
+        [country]="country" 
+        (optionSelect)="scrollTo($event)" 
+      ></ExploreSubnav>
+    </div>
+    <div class="sectionsWrapper">
+      <div class="widthWrapper">
+        <div class="section glance" id="at-a-glance">
+          <div class="glanceHeader">Explore {{country}}</div>
+          <div class="glanceSubsection">{{glanceSubsection}}</div>
+          <div 
+            class="toggleBtn" 
+            (click)="glanceExpanded = !glanceExpanded" 
+            *ngIf="!glanceExpanded"
+          >More <ion-icon name="ios-arrow-down"></ion-icon></div>
+          <div *ngIf="glanceExpanded">
+            <div class="glanceContent" *ngFor="let section of glanceContent">
+              <h2>{{section.title}}</h2>
+              <div class="content">{{section.content}}</div>
+            </div>
+          </div>
+          <div 
+            class="toggleBtn" 
+            (click)="glanceExpanded = !glanceExpanded" 
+            *ngIf="glanceExpanded"
+          >Less <ion-icon name="ios-arrow-up"></ion-icon></div>
+          <div class="glanceHeader facts">You Should Know</div>
+        </div>
+        <div class="section guide" id="country-guide">
+          <div class="sectionHeader">Country Guide</div>
+          <PlaceGuide type="Country" [selectedOptions]="['visa', 'money', 'climate']"></PlaceGuide>
+        </div>
+        <div class="section map" id="map">
+            <div class="sectionHeader">Map</div>
+          <agm-map 
+            *ngIf="mapInited"
+            [disableDefaultUI]="true"
+            [streetViewControl]="false"
+            [fitBounds]="latlngBounds"
+            [styles]=mapStyle
+            mapTypeId="terrain"
+            [scrollwheel]="false"
+            #AgmMap
+          >
+            <agm-marker 
+              *ngFor= "let marker of cityMarkers"
+              [latitude]= "marker.lat" 
+              [longitude]= "marker.lon" 
+            >
+              <agm-snazzy-info-window [maxWidth]="200" placement="left" [closeWhenOthersOpen]="true">
+                <ng-template> 
+                  <div class="windowWrapper">
+                    <div class="windowPlace">{{marker.name}}, {{country}}</div>
+                    <div class="windowPopulation">Population: {{marker.population | number: '1.0-0'}}</div>
+                    <div class="windowBtn" (click)="goToCity(marker.name)">Explore</div>
+                  </div>
+                </ng-template>
+              </agm-snazzy-info-window>
+            </agm-marker>
+          </agm-map>
+        </div>
+        <div class="section" id="posts">Posts</div>
+        <div class="section" id="activities">Activities</div>
+      </div>
+    </div>
+  </div>
+</app-page-wrapper>
+

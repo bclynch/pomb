@@ -1,0 +1,144 @@
+.pageWrapperContainer {
+  margin-top: 0;
+}
+.dashboardContainer {
+  display: flex;
+  background: var(--light);
+  width: 100%;
+  height: 100vh;
+
+  &.previewExpanded {
+    
+    .leftMenu {
+      opacity: 0;
+    }
+    .expandArrow {
+      transform: rotate(135deg) !important;
+    }
+    .previewContainer {
+      margin: 0;
+    }
+  }
+  .leftMenu {
+    background: #ddd;
+    transition: .5s linear;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    position: absolute;
+    left: 0;
+    max-height: 100vh;
+
+    .logo {
+      padding: 20px 33px 40px;
+
+      > span {
+        cursor: pointer;
+        font-size: 32px;
+        font-weight: bold;
+      }
+    }
+    .menuRowWrapper {
+      display: flex;
+      justify-content: space-between;
+      font-size: 20px;
+      padding: 0 33px;
+      margin-bottom: 25px;
+
+      .addPost {
+        cursor: pointer;
+      }
+    }
+    .tabsRow {
+      display: flex;
+      text-align: center;
+      border-top: solid 1px #BABBBD;
+
+      > div {
+        flex: 2;
+        line-height: 44px;
+        cursor: pointer;
+      }
+      > div:nth-child(3), > div:nth-child(4) {
+        flex: 3;
+      }
+    }
+    .postsList {
+      overflow: scroll;
+      -ms-overflow-style: none;
+      flex: 1; 
+    }
+    .searchContainer {
+      background: var(--white);
+      display: flex;
+
+      ion-icon {
+        padding: 15px;
+        font-size: 24px;
+      }
+      form {
+        flex: 1;
+
+        > input {
+          border: none;
+          line-height: 24px;
+          width: 100%;
+          height: 100%;
+        }
+      }
+    }
+  }
+  .previewContainer {
+    background: var(--white);
+    box-shadow: 0 0 25px rgba(0,0,0,.11);
+    width: 100%;
+    position: relative;
+    transition: margin .5s linear;
+    overflow: scroll;
+    -ms-overflow-style: none;
+    padding: 15px 10px 0;
+    display: none;
+    margin: 22px 22px 22px 422px;
+
+    > div {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+
+      .expandArrow {
+        position: absolute;
+        top: 5px;
+        left: 5px;
+        cursor: pointer;
+        font-size: 24px;
+        transform: rotate(-45deg);
+      }
+    }
+  }
+  .emptyPreview {
+    font-size: 28px;
+    color: var(--dark);
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+
+    ion-icon {
+      font-size: 60px;
+      margin-bottom: 10px;
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  .dashboardContainer {
+
+    .leftMenu {
+      width: 400px;
+    }
+    .previewContainer {
+      display: flex !important;
+      justify-content: center;
+    }
+  }
+}

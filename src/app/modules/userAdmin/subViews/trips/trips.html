@@ -1,0 +1,56 @@
+<div class="pageContainer" [attr.style]="sanitizer.bypassSecurityTrustStyle('--secondary:' + settingsService.secondaryColor)">
+  <div class="viewHeader">
+    <div>Trips</div>
+  </div>
+  <div class="viewContent">
+    <div class="contentGroup trips">
+      <div class="contentGroupHeader">
+        <div class="contentGroupTitle">Trips</div>
+        <div class="contentGroupSubtitle">View and manage your trips.</div>
+      </div>
+      <div class="contentGroupContent">
+        <div class="tripsWrapperContainer" *ngIf="tripsData?.length">
+          <div class="trip" *ngFor="let trip of tripsData; let i = index;" [ngClass]="activeTrip === i ? 'active' : ''">
+            <div class="tripHeader">
+              <div class="tripInfo">
+                <div class="leftWrapper">
+                  <div class="tripName" (click)="routerService.navigateToPage('/trip/' + trip.id)">{{trip.name}}</div>
+                  <div class="timeWrapper">
+                    <div>{{daysTraveling(i)}}</div>
+                    <div class="status">{{tripService.tripStatus(+trip.startDate, trip.endDate ? +trip.endDate : null)}}</div>
+                  </div>
+                </div>
+                <div class="editBtn" (click)="editTrip(i)">Edit Trip</div>
+              </div>
+              <div class="arrowWrapper" (click)="activeTrip === i ? activeTrip = null : activeTrip = i">
+                <div>See Junctures</div>
+                <ion-icon name="ios-arrow-forward"></ion-icon>
+              </div>
+            </div>
+            <div class="juncturesWrapper" *ngIf="trip.juncturesByTripId.nodes.length">
+              <div *ngFor="let juncture of trip.juncturesByTripId.nodes; let i = index;" class="juncture">
+                <div class="junctureInfoWrapper">
+                  <div class="junctureName" (click)="routerService.navigateToPage('/juncture/' + juncture.id)">{{juncture.name}} - {{juncture.arrivalDate | date : 'mediumDate'}}</div>
+                  <div class="junctureLocale">{{juncture.city}}<span *ngIf="juncture.country">, </span>{{juncture.country}}</div>
+                </div>
+                <div class="editBtn" (click)="editJuncture(i)">Edit Juncture</div>
+              </div>
+            </div>
+            <div class="juncturesWrapper" *ngIf="!trip.juncturesByTripId.nodes.length">
+              <div class="noJuncturesContainer">
+                <ion-icon name="md-git-merge"></ion-icon>
+                <div>Looks like there aren't any junctures for this trip quite yet. Create some to view them here.</div>
+              </div>      
+            </div>
+          </div>
+        </div>
+        <div class="tripsWrapperContainer" *ngIf="tripsData && !tripsData?.length">
+          <div class="noTripsContainer">
+            <ion-icon name="md-plane"></ion-icon>
+            <div>Looks like you haven't created any trips quite yet. Create some to view them here.</div>
+          </div>  
+        </div>
+      </div>     
+    </div>
+  </div>
+</div>

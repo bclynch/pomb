@@ -1,3 +1,70 @@
-<p>
-  dashboard works!
-</p>
+<app-page-wrapper [displayFooter]="false" [displayNav]="false">
+  <div class="dashboardContainer" [ngClass]="isExpanded ? 'previewExpanded': ''">
+    <div class="leftMenu">
+      <div class="logo">
+        <span 
+          (click)="routerService.navigateToPage('')"
+          title="Home"
+        >POMB</span>
+      </div>
+      <div class="menuRowWrapper">
+        <div>Posts</div>
+        <ion-icon 
+          name="md-add" 
+          title="Add Post" 
+          class="addPost"
+          (click)="launchPostEditor()"
+        ></ion-icon>
+      </div>
+      <!-- <div class="searchContainer">
+        <div>
+          <ion-icon name="md-search"></ion-icon>
+        </div>
+        <form (submit)="searchPosts()">
+          <input 
+            placeholder="Search posts..."
+            type="text"
+            name="searchInput"
+            [(ngModel)]="searchQuery"
+          />
+        </form>
+      </div> -->
+      <div class="tabsRow">
+        <div 
+          class="tab boldFont" 
+          *ngFor="let option of tabOptions; let i = index;"
+          [style.background]="activeTab === i ? '#BABBBD' : null"
+          (click)="changeTab(i)"
+        >
+          {{option}}
+        </div>
+      </div>
+      <div class="postsList">
+        <app-dash-card 
+          [data]="post" 
+          [isActive]="i === activePost" 
+          *ngFor="let post of displayedPosts; let i = index"
+          (changeActive)="activePost = i"
+          (editPost)="launchPostEditor(post)"
+          (deletePost)="deleteConfirm(post)"
+          (previewPost)="previewPost(post)"
+        ></app-dash-card>
+      </div>
+    </div>
+    <div class="previewContainer">
+      <div *ngIf="isPreview">
+          <ion-icon 
+          name="md-arrow-up" 
+          title="Expand Preview" 
+          class="expandArrow"
+          (click)="isExpanded = !isExpanded"
+        ></ion-icon>
+        <app-post-wrapper [post]="previewedPost" [isPreview]="true"></app-post-wrapper>
+      </div>
+      <div class="emptyPreview" *ngIf="!isPreview">
+        <ion-icon name="md-document"></ion-icon>
+        <div>Select a post to preview</div>
+      </div> 
+    </div>
+  </div>
+</app-page-wrapper>

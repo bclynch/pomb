@@ -1,3 +1,22 @@
-<p>
-  archive works!
-</p>
+<app-page-wrapper [topo]="true">
+  <app-grid [elements]="gridPosts" [gridConfig]="gridConfiguration"></app-grid>
+  <div class="archiveHeader">
+    <div>Archives</div>
+  </div>
+  <app-post-list [data]="otherPosts"></app-post-list>
+  <div class="archiveNav">
+    <div 
+      class="boldFont btn" 
+      [style.background]="settingsService.secondaryColor" 
+      [style.visibility]="archivePage > 1 ? 'visible' : 'hidden'"
+      (click)="routerService.navigateToPage('/archive/' + (archivePage - 1))"
+    >Prev</div>
+    <div class="pages">Page {{archivePage}} of {{totalPages}}</div>
+    <div 
+      class="boldFont btn" 
+      [style.background]="settingsService.secondaryColor" 
+      [style.visibility]="archivePage < totalPages ? 'visible' : 'hidden'"
+      (click)="routerService.navigateToPage('/archive/' + (archivePage + 1))"
+    >Next</div>
+  </div>
+</app-page-wrapper>

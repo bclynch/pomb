@@ -1,0 +1,301 @@
+.junctureBannerContainer {
+  width: 100%;
+  height: 600px;
+  position: relative;
+
+  > .banner {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-position: center;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: var(--white);
+
+    .bannerTitle {
+      font-size: 64px;
+      line-height: 72px;
+      font-weight: 600;
+      margin-bottom: 15px;
+      text-shadow: 2px 2px var(--black);
+      text-align: center;
+    }
+    .bannerSubtitle {
+      font-size: 30px;
+      font-style: italic;
+      text-shadow: 2px 2px var(--black);
+    }
+    .bannerDataWrapper {
+      display: flex;
+      align-items: center;
+      margin-top: 15px;
+
+      img {
+        width: 40px;
+      }
+      .viewsContainer, .counterContainer {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        color: white;
+        margin-left: 20px;
+
+        ion-icon {
+          font-size: 32px;
+        }
+        > div {
+          font-weight: bold;
+          font-size: 18px;
+        }
+      }
+    }
+  }
+  .updateWrapper {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+    cursor: pointer;
+    transition: .3s;
+    font-weight: bold;
+    color: white;
+
+    ion-icon {
+      margin-right: 5px;
+    }
+  }
+  .updateWrapper:hover {
+    color: var(--secondary);
+  }
+  .bannerNavContainer {
+    position: absolute;
+    bottom: 0;
+    max-width: 1200px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: white;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: solid 1px white;
+    font-weight: bold;
+    font-size: 16px;
+    padding: 20px 5px;
+
+    > div {
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      
+      span {
+        margin: 0 10px;
+      }
+      ion-icon {
+        transition: .3s;
+      }
+    }
+    .priorJuncture {
+      flex: 2;
+    }
+    .priorJuncture:hover {
+      ion-icon {
+        transform: translate(5px, 0);
+      }
+    }
+    .junctureTrip {
+      justify-content: center;
+      flex: 1;
+      text-align: center;
+    }
+    .nextJuncture {
+      justify-content: flex-end;
+      flex: 2;
+    }
+    .nextJuncture:hover {
+
+      ion-icon {
+        transform: translate(-5px, 0);
+      }
+    }
+  }
+}
+.widthWrapper {
+  margin: 0 auto;
+  width: 100%;
+  max-width: 1200px;
+  padding: 0 10px;
+
+  .sectionHeader {
+    font-size: 32px;
+    text-align: center;
+    position: relative;
+    padding-bottom: 15px;
+    margin: 70px 0 50px;
+  }
+  .sectionHeader:after {
+    border-bottom: .2rem solid var(--secondary);
+    bottom: 0;
+    content: "";
+    display: block;
+    left: 50%;
+    margin-left: -1.5rem;
+    position: absolute;
+    width: 3rem;
+  }
+  .junctureDescription {
+    max-width: 800px;
+    margin: 60px auto;
+  }
+  .infoContainer {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+
+    .mapContainer {
+      width: 100%;
+
+      agm-map {
+        width: 100%;
+        height: 70vh;
+      }
+    }
+    .statsContainer {
+      width: 100%;
+
+      h2 {
+        text-align: center;
+        margin-bottom: 15px;
+      }
+      unittoggle {
+        .toggle {
+          margin: 0 auto 20px;
+        }
+      }
+      .statsGrid {
+        display: flex;
+        flex-wrap: wrap;
+
+        .statWrapper {
+          width: 100%;
+          margin-bottom: 30px;
+  
+          .innerWrapper {
+            width: 90%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto;
+  
+            ion-icon {
+              font-size: 36px;
+              flex: 2;
+              text-align: center;
+            }
+            .statData {
+              flex: 3;
+
+              .statLabel {
+                font-size: 20px;
+              }
+              .statValue {
+                font-size: 32px;
+
+                span {
+                  font-size: 18px;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  .chartsContainer {
+    margin-top: 20px;
+    width: 100%;
+    overflow: hidden;
+    display: none;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+
+    .chartWrapper {
+      width: 95vw;
+    }
+  }
+  gallery {
+    width: 100%;
+  }
+  .posts {
+
+  }
+  #disqus_thread {
+    margin-top: 50px;
+  }
+}
+@media (min-width: 600px) {
+  .widthWrapper {
+    .infoContainer {
+      .statsContainer {
+  
+        .statWrapper {
+          width: 50% !important;
+          display: flex;
+          align-items: center;
+  
+          .innerWrapper {
+            width: 80%;
+
+            ion-icon {
+              text-align: center;
+            }
+            .statData {
+              flex: 2 !important;
+            }
+          }
+        }
+      }
+    }
+    .chartsContainer {
+      display: flex !important;
+    }
+  }
+}
+@media (min-width: 1024px) {
+  .widthWrapper {
+    .infoContainer {
+      .mapContainer {
+
+        &.isGPX {
+          width: 50%;
+        }
+        agm-map {
+          width: 100%;
+          height: 50vh;
+        }
+      }
+      .statsContainer {
+        width: 50%;
+      }
+    }
+    .chartsContainer {
+      display: flex !important;
+    }
+  }
+}
+@media (min-width: 1280px) {
+  .widthWrapper {
+    .chartsContainer {
+
+      .chartWrapper {
+        width: 35vw !important;
+      }
+    }
+  }
+}

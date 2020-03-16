@@ -1,0 +1,530 @@
+$color1: #78d3b2;
+$alt1: #78d3b2;
+$color2: #2E9D96;
+$alt2: #53af92;
+$color3: #185a9d;
+$alt3: #2B9296;
+
+// modding the nav bar for this page
+.pageWrapperContainer {
+  margin: 0;
+  padding-bottom: 250px !important;
+  // min-height: 100%;
+
+  .navBarContainer {
+    position: absolute;
+    background: transparent;
+
+    .logoWrapper span {
+      color: white;
+    }
+  }
+}
+.titleText {
+  font-size: 36px;
+  letter-spacing: -.9px;
+  line-height: 1.44;
+  font-family: Sailec-Bold,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Helvetica,Arial,sans-serif;
+  font-weight: 400;
+}
+.contentText {
+  line-height: 1.6;
+  font-size: 18px;
+}
+.header {
+  position: relative;
+  width: 100%;
+  height: 534px;
+
+  .stripes {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    transform: skewY(-12deg);
+    transform-origin: 0;
+    background: linear-gradient(150deg,$color1 15%,$color2 70%,$color3 94%);
+    position: absolute;
+
+    span {
+      position: absolute;
+      height: 40px;
+
+      &:nth-child(1) {
+        width: 50%;
+        left: 50%;
+        top: 40px;
+        background: $alt1;
+      }
+      &:nth-child(2) {
+        width: 14%;
+        right: 0;
+        bottom: 40px;
+        background: $alt2;
+      }
+      &:nth-child(3) {
+        width: 25%;
+        bottom: 0;
+        right: 0;
+        background: $alt3;
+      }
+    }
+  }
+  .headerContentContainer {
+    display: block;
+    max-width: 1200px;
+    margin: 50px auto;
+    position: relative;
+    top: 10px;
+
+    > div {
+      max-width: 100%;
+      margin: 0 16px 30px;
+
+      &:first-child {
+        margin-top: 50px;
+      }
+    }
+    .headerCallout {
+      color: white;
+
+      .headerTitle {
+        font-family: Sailec-Bold,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Helvetica,Arial,sans-serif;
+        font-size: 48px;
+        letter-spacing: -2px;
+        line-height: 1.12;
+      }
+      .contentText {
+        line-height: 1.6;
+        font-size: 18px;
+        color: #d9fcff;
+      }
+    }
+    .registrationBox {
+      background: white;
+      padding: 32px;
+      display: none;
+      max-width: 500px;
+
+      .registrationTitle {
+        font-size: 30px;
+        font-weight: bold;
+        line-height: 1.46;
+        text-align: center;
+      }
+      form {
+
+        input {
+          display: block;
+          height: 48px;
+          max-width: 100%;
+          padding: 0 16px;
+          border: 1px solid #f1f1f1;
+          background: #fff;
+          color: rgba(3,27,78,.7);
+          transition: all .25s cubic-bezier(.645,.045,.355,1);
+          border-radius: 5px;
+          width: 100%;
+          position: relative;
+          margin-bottom: 10px;
+        }
+        button {
+          width: 100%;
+          height: 48px;
+          margin: 15px 0;
+          background: $color1;
+          font-weight: 400;
+          font-size: 16px;
+          color: white;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+
+          ion-icon {
+            transition: .3s;
+            margin-left: 5px;
+          }
+        }
+        button:hover {
+          ion-icon {
+            transform: translate(5px, 0);
+          }
+        }
+      }
+      .terms {
+        text-align: center;
+
+        span {
+          color: $color1;
+          cursor: pointer;
+        }
+      }
+    }
+    .mobileCreate {
+      background: $color3;
+      color: white;
+      box-shadow: 0 4px 6px rgba(50,50,93,.11), 0 1px 3px rgba(0,0,0,.08);
+      height: 40px;
+      line-height: 40px;
+      padding: 0 14px;
+      display: inline-block;
+      margin-left: 16px;
+    }
+  }
+}
+.featuresContainer {
+  text-align: center;
+  background: url('../../assets/images/bg_1.svg');
+  background-size: cover;
+  background-position: center;
+  padding: 80px 15px;
+  width: 100vw;
+  color: white;
+  margin-top: 70px;
+
+  .titleText {
+    max-width: 943px;
+    margin: 0 auto 64px;
+    display: none;
+  }
+  .featuresWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+
+    .feature {
+      border: solid 1px white;
+      width: 80%;
+      padding: 16px;
+      background: rgba(0, 15, 83, .2);
+      margin: 10px 0;
+      // height: 350px;
+      position: relative;
+
+      ion-icon {
+        font-size: 64px;
+      }
+      .featureTitle {
+        margin: 16px 0;
+        font-size: 24px;
+        font-weight: 400px;
+      }
+      .featureDescription {
+
+        &.contentText {
+          line-height: 1.2;
+        }
+      }
+      .featureCallout {
+        color: white;
+        margin-top: 40px;
+        font-weight: 400;
+        font-size: 18px;
+        width: 100%;
+        // position: absolute;
+        bottom: 15px;
+        left: 0;
+        transition: .5s;
+      }
+    }
+    .feature:hover {
+      .featureCallout {
+        color: $color1;
+      }
+    }
+  }
+}
+.deviceFamilyContainer {
+  text-align: center;
+  margin-top: 50px;
+  max-width: 1000px;
+  width: 100%;
+  padding: 15px;
+
+  .deviceFamilyHeader {
+    &.titleText {
+      margin-bottom: 16px;
+    }
+  }
+  .contentText {
+    margin-bottom: 64px;
+  }
+  .deviceFamilyWrapper {
+    display: block;
+    color: white;
+
+    .deviceFamilyImage {
+      background: url('../../assets/images/marketing/pomb_family-min.png');
+      background-size: contain;
+      width: 100%;
+      height: 0;
+      padding-top: 50%;
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+  }
+}
+.communityContainer {
+  text-align: center;
+  margin-top: 50px;
+  max-width: 1000px;
+  width: 100%;
+  padding: 15px;
+
+  .communityHeader {
+    &.titleText {
+      margin-bottom: 16px;
+    }
+  }
+  .contentText {
+    margin-bottom: 64px;
+  }
+  .communityWrapper {
+    display: block;
+    color: white;
+
+    .left {
+      
+    }
+    .right {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+
+      > div {
+        height: 48%;          
+      }
+    }
+    .box {
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      align-items: center;
+      background: linear-gradient(150deg,$color1 15%,$color2 70%,$color3 94%);
+      transition: .5s;
+      // cursor: pointer;
+      padding: 30px 0;
+      margin-bottom: 20px;
+      border-radius: 5px;
+
+      ion-icon {
+        font-size: 48px;
+      }
+    }
+    .box:hover {
+      // transform: scale(1.02);
+    }
+  }
+}
+.altRegisterContainer {
+  width: 100%;
+  background: $color3;
+
+  .altWrapper {
+    width: 100%;
+    background: #0C1C2E;
+    border-radius: 5px;
+    max-width: 1000px;
+    margin: 60px auto;
+    display: block;
+    justify-content: space-between;
+    align-items: center;
+    padding: 64px;
+    color: white;
+    font-family: Sailec-Bold,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Helvetica,Arial,sans-serif;
+    font-weight: 400;
+
+    .altLabel {
+      font-size: 30px;
+    }
+    .altBtn {
+      cursor: pointer;
+      background: $color1;
+      padding: 20px 30px;
+      font-size: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 250px;
+      margin-top: 30px;
+
+      ion-icon {
+        transition: .3s;
+        margin-left: 10px;
+      }
+    }
+    .altBtn:hover {
+
+      ion-icon {
+        transform: translate(5px, 0);
+      }
+    }
+  }
+}
+.footerContainer {
+  background: $color3;
+  border: none;
+
+  .logoWrapper span {
+    color: white;
+  }
+}
+@media (min-width: 670px) {
+  .header {
+    height: 1000px;
+    .stripes {
+
+      span {
+        height: 150px;
+
+        &:nth-child(1) {
+          top: 0;
+          background: $alt1;
+        }
+        &:nth-child(2) {
+          width: 16.66667%;
+          top: 300px;
+          bottom: auto;
+          background: $alt2;
+        }
+        &:nth-child(3) {
+          width: 33.33333%;
+          right: auto;
+          background: $alt3;
+        }
+      }
+    }
+    .headerContentContainer {
+      padding: 64px 0;
+      top: 0;
+
+      .headerCallout {
+
+        .headerTitle {
+          font-size: 60px;
+        }
+      }
+      .registrationBox {
+        display: block;
+      }
+      .mobileCreate {
+        display: none;
+      }
+    }
+  }
+}
+@media (min-width: 880px) {
+  .header {
+    height: 800px;
+    .stripes {
+
+      span {
+        height: 190px;
+
+        &:nth-child(1) {
+          width: 33.33333%;
+          left: -16.66666%;
+          background: $color1;
+        }
+        &:nth-child(2) {
+          width: 33.33333%;
+          top: 0;
+          left: 16.66666%;
+          right: auto;
+          background: $alt1;
+        }
+        &:nth-child(3) {
+          width: 33.33333%;
+          left: 49.99999%;
+          bottom: auto;
+          background: $alt1;
+        }
+        &:nth-child(4) {
+          width: 33.33333%;
+          top: 380px;
+          right: -16.66666%;
+          background: $alt2;
+        }
+        &:nth-child(5) {
+          width: 33.33333%;
+          bottom: 0;
+          background: $alt3;
+        }
+      }
+    }
+    .headerContentContainer {
+      display: flex;
+      align-items: center;
+
+      > div {
+        max-width: 50%;
+        margin: 0 16px;
+
+        &:first-child {
+          margin-top: 0;
+        }
+      }
+    }
+  }
+  .featuresContainer {
+    margin-top: 120px;
+
+    .titleText {
+      display: block;
+    }
+    .featuresWrapper {
+      flex-direction: row;
+      justify-content: space-around;
+
+      .feature {
+        border: solid 1px white;
+        width: 350px;
+        max-width: 32%;
+        padding: 32px;
+        height: 450px;
+
+        .featureDescription {
+
+          &.contentText {
+            line-height: 1.6;
+          }
+        }
+        .featureCallout {
+          position: absolute;
+        }
+      }
+    }
+  }
+  .communityContainer {
+    .communityWrapper {
+      height: 600px;
+      display: grid;
+      grid-gap: 32px;
+      grid-template-columns: 3fr 2fr;
+    }
+    .box {
+      margin-bottom: 0;
+
+      ion-icon {
+        font-size: 64px;
+      }
+    }
+  }
+  .deviceFamilyContainer {
+    margin-top: 100px;
+  }
+  .altRegisterContainer {
+    margin-top: 150px;
+
+    .altWrapper {
+      display: flex;
+      margin: 120px auto;
+
+      .altBtn {
+        width: auto;
+        margin-top: 0;
+      }
+    }
+  }
+}

@@ -1,0 +1,135 @@
+<div class="pageContainer">
+  <div class="viewHeader">
+    <div>Profile</div>
+  </div>
+  <div class="viewContent">
+    <div class="contentGroup profile">
+      <div class="contentGroupHeader">
+        <div class="contentGroupTitle">Public Profile</div>
+        <div class="contentGroupSubtitle">Basic user information</div>
+      </div>
+      <div class="contentGroupContent">
+        <form 
+          class="profileForm"
+          novalidate
+          #profileForm="ngForm"
+          (ngSubmit)="updateProfile()"  
+        >
+          <div>Profile Photo (click to update)</div>
+          <app-profile-picture [photo]="profileModel.userPhoto" (click)="presentImageUploaderPopover('profile')" ></ProfilePicture>
+          <label class="inputLabel" for="firstName">First Name</label>
+          <input
+            type="text"
+            placeholder="Name"
+            id="firstName"
+            name="firstName"
+            [(ngModel)]="profileModel.firstName"
+          />
+          <label class="inputLabel" for="lastName">Last Name</label>
+          <input
+            type="text"
+            placeholder="Name"
+            id="lastName"
+            name="lastName"
+            [(ngModel)]="profileModel.lastName"
+          />
+          <label class="inputLabel" for="status">Status</label>
+          <input
+            type="text"
+            placeholder="Status"
+            id="status"
+            name="status"
+            [(ngModel)]="profileModel.userStatus"
+          />
+          <div>Profile Hero Banner (click to update)</div>
+          <div 
+            class="banner" 
+            [ngStyle]="profileModel.heroBanner ? { 'background-image': 'url(' + profileModel.heroBanner + ')'} : { 'background-image': 'url(' + defaultBannerImg + ')'}"
+            (click)="presentImageUploaderPopover('banner')" 
+          >
+            <div class="hoverOverlay">
+              <ion-icon name="md-cloud-upload"></ion-icon>
+              <div>Add an image</div>
+            </div>
+          </div>
+          <button
+            type="submit" 
+            class="submitBtn boldFont" 
+          >Update Profile</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="contentGroup location">
+      <div class="contentGroupHeader">
+        <div class="contentGroupTitle">Location</div>
+        <div class="contentGroupSubtitle">Current location information</div>
+      </div>
+      <div class="contentGroupContent">
+        <form 
+          class="locationForm"
+          novalidate
+          #locationForm="ngForm"
+          (ngSubmit)="updateLocation()"  
+        >
+          <div class="checkboxContainer">
+            <input type="checkbox" [(ngModel)]="locationModel.autoUpdate" name="autoUpdate" id="autoUpdate" />
+            <label for="autoUpdate">Auto update location when creating a juncture?</label>
+          </div>
+          <label class="inputLabel" for="city">City</label>
+          <input
+            type="text"
+            placeholder="City"
+            id="city"
+            name="city"
+            [(ngModel)]="locationModel.city"
+          />
+          <label class="inputLabel" for="country">Country</label>
+          <input
+            type="text"
+            placeholder="Country"
+            id="country"
+            name="country"
+            [(ngModel)]="locationModel.country"
+          />
+          <button
+            type="submit" 
+            class="submitBtn boldFont" 
+          >Update Location</button>
+        </form>
+      </div>     
+    </div>
+
+    <div class="contentGroup visited">
+      <div class="contentGroupHeader">
+        <div class="contentGroupTitle">Countries Visited ({{visitedCountries.length}})</div>
+        <div class="contentGroupSubtitle">Add and manage countries visited information</div>
+      </div>
+      <div class="contentGroupContent">
+        <div class="checkboxContainer">
+          <input type="checkbox" [(ngModel)]="autoUpdateVisited" id="visitedAutoUpdate" />
+          <label for="visitedAutoUpdate">Auto update countries visited when traveling?</label>
+        </div>
+        <CountrySearch (selectCountry)="addCountry($event)"></CountrySearch>
+        <div class="countriesContainer">
+          <div class="countryWrapper" *ngFor="let country of visitedCountries; let i = index;">
+            <div class="flagWrapper">
+              <img [src]="'https://lipis.github.io/flag-icon-css/flags/1x1/' + country.code + '.svg'" [title]="country.name" />
+              <ion-icon 
+                class="removeBtn" 
+                name="close" 
+                title="Remove Country" 
+                (click)="removeCountry(i)"
+              ></ion-icon>
+            </div>
+            <div>{{country.name}}</div>
+          </div>
+        </div>
+        <button
+          (click)="updateCountries()" 
+          class="submitBtn boldFont" 
+        >Update Visited Countries</button>
+      </div>     
+    </div>
+  </div>
+</div>

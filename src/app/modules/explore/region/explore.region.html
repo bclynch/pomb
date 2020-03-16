@@ -1,0 +1,18 @@
+<app-page-wrapper>
+  <app-fade-carousel 
+    [data]="carouselImages" 
+    [style.width]="'100vw'" 
+    [title]="currentRegion.name"
+    btnLabel="Countries"
+    (btnClick)="presentModal()"
+  ></app-fade-carousel>
+  <GeoChart 
+    [countries]="countryCodes" 
+    *ngIf="inited" 
+    [region]="currentRegion.code"
+    backgroundColor="black"
+    [defaultColor]="settingsService.secondaryColor"
+    datalessColor="black" 
+  ></GeoChart>
+</app-page-wrapper>
+
