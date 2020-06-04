@@ -49,6 +49,14 @@ const routes: Routes = [
   {
     path: 'terms',
     loadChildren: () => import('./modules/terms/terms.module').then( m => m.TermsModule)
+  },
+  {
+    path: 'trip',
+    loadChildren: () => import('./modules/trip/trip.module').then( m => m.TripModule)
+  },
+  {
+    path: 'juncture',
+    loadChildren: () => import('./modules/juncture/juncture.module').then( m => m.JunctureModule)
   }
 ];
 

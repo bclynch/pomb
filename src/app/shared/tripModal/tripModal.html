@@ -14,11 +14,11 @@
         (click)="presentBannerUploaderPopover()"
       >
         <div class="overlay">
-          <ion-icon name="md-cloud-upload"></ion-icon>
+          <ion-icon name="cloud-upload"></ion-icon>
           <div>Upload image</div>
           <ion-icon 
             class="editBtn" 
-            name="md-create" 
+            name="create" 
             title="Edit banner photo" 
             (click)="presentEditPopover($event, 0)" 
             *ngIf="tripModel.bannerImages?.length"
@@ -29,7 +29,7 @@
         <div class="gridUnitWrapper" *ngFor="let image of tripModel.bannerImages | slice:1; let i = index">
           <div class="imgWrapper">
             <div [ngStyle]="{ 'background-image': 'url(' + image.url + ')'}"></div>
-            <ion-icon name="md-create" title="Edit banner photo" (click)="presentEditPopover($event, i + 1)"></ion-icon> 
+            <ion-icon name="create" title="Edit banner photo" (click)="presentEditPopover($event, i + 1)"></ion-icon> 
           </div>
         </div>
       </div>
@@ -65,14 +65,14 @@
           <div class="tripLabel">Trip Start Date</div>
           <div class="dateWrapper" (click)="presentDatepickerModal($event, true)">
             <div class="input">{{tripModel.timeStart | date: 'MMM d, y, h:mm a'}}</div>
-            <ion-icon name="md-calendar"></ion-icon>
+            <ion-icon name="calendar"></ion-icon>
           </div>
         </div>
         <div class="timeDisplay">
           <div class="tripLabel">Trip End Date</div>
           <div class="dateWrapper" (click)="presentDatepickerModal($event, false)">
             <div class="input">{{tripModel.timeEnd | date: 'MMM d, y, h:mm a'}}</div>
-            <ion-icon name="md-calendar"></ion-icon>
+            <ion-icon name="calendar"></ion-icon>
           </div>
         </div>
       </div>

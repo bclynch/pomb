@@ -66,7 +66,7 @@ export class TripMapComponent implements OnDestroy {
     private partialJunctureByIdGQL: PartialJunctureByIdGQL
   ) {
     this.route.params.subscribe((params) => {
-      this.tripId = params.tripId;
+      this.tripId = +params.tripId;
       this.initSubscription = this.appService.appInited.subscribe(
         (inited) =>  {
           if (inited) {

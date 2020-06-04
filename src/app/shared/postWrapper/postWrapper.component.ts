@@ -10,7 +10,8 @@ import { ImageType } from '../../models/Image.model';
 
 @Component({
   selector: 'app-post-wrapper',
-  templateUrl: 'postWrapper.component.html'
+  templateUrl: 'postWrapper.component.html',
+  styleUrls: ['./postWrapper.component.scss']
 })
 export class PostWrapperComponent implements OnChanges {
   @Input() post: Post;

@@ -46,7 +46,7 @@ export class PostComponent implements OnDestroy {
   init() {
     console.log(this.userService.user);
     this.postByIdGQL.fetch({
-      id: this.postId,
+      id: +this.postId,
       userId: this.userService.user ? this.userService.user.id : null
     }).subscribe(
       ({ data }) => {

@@ -23,7 +23,7 @@
             class="toggleBtn" 
             (click)="glanceExpanded = !glanceExpanded" 
             *ngIf="!glanceExpanded"
-          >More <ion-icon name="ios-arrow-down"></ion-icon></div>
+          >More <ion-icon name="arrow-down"></ion-icon></div>
           <div *ngIf="glanceExpanded">
             <div class="glanceContent" *ngFor="let section of glanceContent">
               <h2>{{section.title}}</h2>
@@ -34,7 +34,7 @@
             class="toggleBtn" 
             (click)="glanceExpanded = !glanceExpanded" 
             *ngIf="glanceExpanded"
-          >Less <ion-icon name="ios-arrow-up"></ion-icon></div>
+          >Less <ion-icon name="arrow-up"></ion-icon></div>
           <div class="glanceHeader facts">You Should Know</div>
         </div>
         <div class="section guide" id="country-guide">

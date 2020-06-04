@@ -38,7 +38,7 @@
             class="toggleBtn" 
             (click)="glanceExpanded = !glanceExpanded" 
             *ngIf="!glanceExpanded"
-          >More <ion-icon name="ios-arrow-down"></ion-icon></div> -->
+          >More <ion-icon name="arrow-down"></ion-icon></div> -->
           <!-- <div *ngIf="glanceExpanded">
             <div class="glanceContent" *ngFor="let section of glanceContent">
               <h2>{{section.title}}</h2>
@@ -49,12 +49,12 @@
             class="toggleBtn" 
             (click)="glanceExpanded = !glanceExpanded" 
             *ngIf="glanceExpanded"
-          >Less <ion-icon name="ios-arrow-up"></ion-icon></div> -->
+          >Less <ion-icon name="arrow-up"></ion-icon></div> -->
         </div>
         <div class="section map" id="Map">
           <div class="sectionHeader">Map</div>
           <div class="mapContainer">
-              <agm-map 
+            <agm-map 
               [zoomControl]="false"
               [latitude]="coords.lat" 
               [longitude]="coords.lon"
@@ -70,17 +70,17 @@
             >
               <agm-data-layer [geoJson]="geoJsonObject" [style]="dataLayerStyle"></agm-data-layer>
             </agm-map>
-            <div class="mapBtn" (click)="routerService.navigateToPage('/trip/' + tripId + '/map')"><ion-icon name="md-trending-up"></ion-icon>Launch Map Explorer</div>
+            <div class="mapBtn" (click)="routerService.navigateToPage('/trip/' + tripId + '/map')"><ion-icon name="trending-up-outline"></ion-icon>Launch Map Explorer</div>
           </div>
         </div>
         <div class="section junctures" id="Junctures">
           <div class="sectionHeader">Junctures</div>
           <div class="sectionContent" *ngIf="tripData?.juncturesByTripId.nodes.length">
-            <JunctureBubbles [junctures]="tripData?.juncturesByTripId.nodes"></JunctureBubbles>
+            <app-juncture-bubbles [junctures]="tripData?.juncturesByTripId.nodes"></app-juncture-bubbles>
             <div class="navLink" (click)="routerService.navigateToPage('/trip/' + tripId + '/junctures')">Check out all of this trip's junctures</div>
           </div>
           <div class="noResultsContainer" *ngIf="!tripData?.juncturesByTripId.nodes.length">
-            <ion-icon name="md-git-merge"></ion-icon>
+            <ion-icon name="git-merge"></ion-icon>
             <div>Looks like there aren't any junctures for this trip quite yet</div>
           </div>
         </div>
@@ -93,7 +93,7 @@
             <div class="navLink" (click)="routerService.navigateToPage('/trip/' + tripId + '/posts')">Check out all of this trip's posts</div>
           </div>
           <div class="noResultsContainer" *ngIf="!tripPosts.length">
-            <ion-icon name="md-albums"></ion-icon>
+            <ion-icon name="albums"></ion-icon>
             <div>Looks like there aren't any posts for this trip quite yet</div>
           </div>
         </div>
@@ -104,7 +104,7 @@
             <div class="navLink" (click)="routerService.navigateToPage('/trip/' + tripId + '/photos')">Check out all of this trip's photos</div>
           </div>
           <div class="noResultsContainer" *ngIf="!gallery.length">
-            <ion-icon name="md-images"></ion-icon>
+            <ion-icon name="images"></ion-icon>
             <div>Looks like there aren't any images for this trip quite yet</div>
           </div>
         </div>

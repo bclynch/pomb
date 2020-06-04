@@ -10,7 +10,7 @@
       <div class="menuRowWrapper">
         <div>Posts</div>
         <ion-icon 
-          name="md-add" 
+          name="add" 
           title="Add Post" 
           class="addPost"
           (click)="launchPostEditor()"
@@ -18,7 +18,7 @@
       </div>
       <!-- <div class="searchContainer">
         <div>
-          <ion-icon name="md-search"></ion-icon>
+          <ion-icon name="search"></ion-icon>
         </div>
         <form (submit)="searchPosts()">
           <input 
@@ -54,7 +54,7 @@
     <div class="previewContainer">
       <div *ngIf="isPreview">
           <ion-icon 
-          name="md-arrow-up" 
+          name="arrow-up" 
           title="Expand Preview" 
           class="expandArrow"
           (click)="isExpanded = !isExpanded"
@@ -62,7 +62,7 @@
         <app-post-wrapper [post]="previewedPost" [isPreview]="true"></app-post-wrapper>
       </div>
       <div class="emptyPreview" *ngIf="!isPreview">
-        <ion-icon name="md-document"></ion-icon>
+        <ion-icon name="document"></ion-icon>
         <div>Select a post to preview</div>
       </div> 
     </div>

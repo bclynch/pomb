@@ -17,21 +17,21 @@ import { SubscriptionLike } from 'rxjs';
 export class SplashComponent implements OnDestroy {
   features = [
     {
-      icon: 'md-map',
+      icon: 'map',
       title: 'Chart Your Journey Faster',
       description: `Monitor your travels with our gps plotting and visualization tools.
         Make your trip come alive with in depth statistics and beautiful visuals to show off to
         your friends and look back on in the future.`
     },
     {
-      icon: 'md-albums',
+      icon: 'albums',
       title: 'Get Creative',
       description: `Carve your own path and manage your memories with our blog management system
       software. Customize the look and feel of your entries and how you share your own story
       with the rest of the world.`
     },
     {
-      icon: 'md-compass',
+      icon: 'compass',
       title: 'Stay Connected',
       description: `Take the stress out of keeping friends and family in the loop. Pack On My Back
       makes it easy to stay connected with its family of tools to track and share life\'s best moments.`

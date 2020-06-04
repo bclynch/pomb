@@ -80,7 +80,7 @@ export class TripComponent implements OnDestroy, AfterViewInit {
     private postsByTripGQL: PostsByTripGQL
   ) {
     this.route.params.subscribe((params) => {
-      this.tripId = params.tripId;
+      this.tripId = +params.tripId;
       this.initSubscription = this.appService.appInited.subscribe(
         (inited) =>  {
           if (inited) {
@@ -221,12 +221,12 @@ export class TripComponent implements OnDestroy, AfterViewInit {
     // populate stats
     const stats = [];
 
-    stats.push({ icon: 'md-git-merge', label: 'Junctures', value: this.tripData.juncturesByTripId.totalCount });
-    stats.push({ icon: 'md-globe', label: 'Countries', value: this.countryFlags.length || 1 });
-    stats.push({ icon: 'md-images', label: 'Photos', value: this.tripData.imagesByTripId.totalCount });
-    stats.push({ icon: 'md-albums', label: 'Posts', value: this.postCount });
+    stats.push({ icon: 'git-merge', label: 'Junctures', value: this.tripData.juncturesByTripId.totalCount });
+    stats.push({ icon: 'globe', label: 'Countries', value: this.countryFlags.length || 1 });
+    stats.push({ icon: 'images', label: 'Photos', value: this.tripData.imagesByTripId.totalCount });
+    stats.push({ icon: 'albums', label: 'Posts', value: this.postCount });
     stats.push({
-      icon: 'md-calendar',
+      icon: 'calendar',
       label: 'Days',
       value: this.utilService.differenceDays(+this.tripData.startDate, +this.tripData.endDate)
     });
@@ -235,7 +235,7 @@ export class TripComponent implements OnDestroy, AfterViewInit {
     this.analyticsService.getPageViews().then(
       result => {
         const { views } = result as any;
-        this.stats.push({ icon: 'md-eye', label: 'Views', value: views });
+        this.stats.push({ icon: 'eye', label: 'Views', value: views });
       }
     );
   }

@@ -224,10 +224,6 @@
     flex-wrap: wrap;
     justify-content: space-around;
     align-items: center;
-
-    .chartWrapper {
-      width: 95vw;
-    }
   }
   gallery {
     width: 100%;
@@ -286,16 +282,6 @@
     }
     .chartsContainer {
       display: flex !important;
-    }
-  }
-}
-@media (min-width: 1280px) {
-  .widthWrapper {
-    .chartsContainer {
-
-      .chartWrapper {
-        width: 35vw !important;
-      }
     }
   }
 }

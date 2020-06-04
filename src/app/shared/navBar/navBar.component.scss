@@ -80,7 +80,7 @@ $navbarHeight: 40px;
           .searchBtn:hover {
             color: var(--secondary);
           }
-          search {
+          app-search {
             width: 0;
             transition: .5s;
 
@@ -98,7 +98,7 @@ $navbarHeight: 40px;
             }
           }
           &.active {
-            search {
+            app-search {
               width: 100%;
             }
             > div {

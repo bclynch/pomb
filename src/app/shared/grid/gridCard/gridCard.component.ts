@@ -7,7 +7,7 @@ import { Post } from '../../../models/Post.model';
 import { ImageType } from '../../../models/Image.model';
 
 @Component({
-  selector: 'grid-card',
+  selector: 'app-grid-card',
   templateUrl: './gridCard.component.html',
   styleUrls: ['./gridCard.component.scss']
 })

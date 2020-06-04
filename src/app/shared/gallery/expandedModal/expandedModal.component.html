@@ -16,10 +16,10 @@
   <div class="imgWrapper">
     <img [src]="photos[currentIndex].url" />
     <div class="forwardBtn" (click)="pan('forward')">
-      <ion-icon name="ios-arrow-forward"></ion-icon>
+      <ion-icon name="arrow-forward"></ion-icon>
     </div>
     <div class="backBtn" (click)="pan('back')">
-      <ion-icon name="ios-arrow-back"></ion-icon>
+      <ion-icon name="arrow-back"></ion-icon>
     </div>
     <div class="imgOverlay" *ngIf="photos[currentIndex].description">{{photos[currentIndex].description}}</div>
     <div class="photoCredit">Photo by: 

@@ -67,7 +67,7 @@
         [justIcons]="true"
         size="-3"
       ></app-share-btns>
-      <ion-icon name="md-expand" (click)="toggleFullScreen()" class="fullScreenToggle"></ion-icon>
+      <ion-icon name="expand" (click)="toggleFullScreen()" class="fullScreenToggle"></ion-icon>
     </div>
     <div class="juncturePane">
       <div class="paneHeader">
@@ -100,11 +100,11 @@
               [style.width]="100 * (tripData.juncturesByTripId.nodes.length + 2) / 3 + '%'"
               [style.left]="junctureIndex * (100 / 3) * -1 + '%'"
             >
-              <div><ion-icon name="md-home"></ion-icon></div>
+              <div><ion-icon name="home"></ion-icon></div>
               <div class="junctureContainer" *ngFor="let juncture of tripData.juncturesByTripId.nodes; let i = index;" (click)="changeIndex(i)">
                 <div>{{juncture.name}}</div>
               </div>
-              <div class="endBlock"><ion-icon name="md-flag"></ion-icon></div>
+              <div class="endBlock"><ion-icon name="flag"></ion-icon></div>
             </div>
           </div>
           <div class="paneContent" #paneContent>

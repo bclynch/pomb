@@ -125,11 +125,11 @@ export class ProfileComponent implements OnDestroy {
     // populate stats
     const stats = [];
 
-    // stats.push({ icon: 'md-globe', label: 'Countries', value: 1 });
-    stats.push({ icon: 'md-plane', label: 'Trips', value: this.user.totalTripCount.totalCount });
-    stats.push({ icon: 'md-git-merge', label: 'Junctures', value: this.user.totalJunctureCount.totalCount });
-    stats.push({ icon: 'md-albums', label: 'Posts', value: this.user.totalPostCount.totalCount });
-    stats.push({ icon: 'md-images', label: 'Photos', value: this.user.totalImageCount.totalCount });
+    // stats.push({ icon: 'globe', label: 'Countries', value: 1 });
+    stats.push({ icon: 'plane', label: 'Trips', value: this.user.totalTripCount.totalCount });
+    stats.push({ icon: 'git-merge', label: 'Junctures', value: this.user.totalJunctureCount.totalCount });
+    stats.push({ icon: 'albums', label: 'Posts', value: this.user.totalPostCount.totalCount });
+    stats.push({ icon: 'images', label: 'Photos', value: this.user.totalImageCount.totalCount });
     stats.push({
       icon: '../../assets/images/track.svg',
       label: 'Trackers',

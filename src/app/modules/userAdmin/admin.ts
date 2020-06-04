@@ -22,10 +22,10 @@ interface ListOption {
 export class UserAdminPage {
 
   navListOptions: ListOption[] = [
-    {label: 'Dashboard', icon: 'md-pulse', path: 'dashboard'},
-    {label: 'Trips', icon: 'md-plane', path: 'trips'},
-    {label: 'Profile', icon: 'md-hammer', path: 'config'},
-    {label: 'Account', icon: 'md-settings', path: 'settings'},
+    {label: 'Dashboard', icon: 'pulse', path: 'dashboard'},
+    {label: 'Trips', icon: 'plane', path: 'trips'},
+    {label: 'Profile', icon: 'hammer', path: 'config'},
+    {label: 'Account', icon: 'settings', path: 'settings'},
     {label: 'Log Out', icon: 'log-out', path: null}
   ];
   activeDashView: string;

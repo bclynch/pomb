@@ -16,6 +16,7 @@ import { JunctureService } from '../../../services/juncture.service';
 import { Juncture } from '../../../models/Juncture.model';
 import { SubscriptionLike } from 'rxjs';
 import { AppService } from 'src/app/services/app.service';
+import { FullJunctureByIdGQL } from 'src/app/generated/graphql';
 
 @Component({
   selector: 'app-juncture',
@@ -31,7 +32,7 @@ export class JunctureComponent implements OnDestroy {
   disqusId: string;
 
   junctureId: number;
-  junctureData: Juncture;
+  junctureData;
   bannerImg: string;
   flag: { code: string; name: string };
   views: number;
@@ -109,10 +110,11 @@ export class JunctureComponent implements OnDestroy {
     private analyticsService: AnalyticsService,
     public userService: UserService,
     private junctureService: JunctureService,
-    private appService: AppService
+    private appService: AppService,
+    private fullJunctureByIdGQL: FullJunctureByIdGQL
   ) {
     this.route.params.subscribe((params) => {
-      this.junctureId = params.id;
+      this.junctureId = +params.junctureId;
       this.initSubscription = this.appService.appInited.subscribe(
         (inited) =>  {
           if (inited) {
@@ -135,7 +137,10 @@ export class JunctureComponent implements OnDestroy {
   }
 
   init() {
-    this.apiService.getFullJunctureById(this.junctureId, this.userService.user ? this.userService.user.id : null).valueChanges.subscribe(({ data }) => {
+    this.fullJunctureByIdGQL.fetch({
+      id: this.junctureId,
+      userId: this.userService.user ? this.userService.user.id : null
+    }).subscribe(({ data }) => {
       console.log(data.junctureById);
       this.settingsService.modPageMeta(
         `Juncture ${data.junctureById.name}`,
@@ -264,7 +269,7 @@ export class JunctureComponent implements OnDestroy {
     // set up statistics
     this.stats = [
       {
-        icon: 'ios-walk-outline',
+        icon: 'walk-outline',
         iconColor: 'purple',
         label: 'Distance',
         value: this.settingsService.unitOfMeasure === 'metric'
@@ -273,14 +278,14 @@ export class JunctureComponent implements OnDestroy {
         unitOfMeasure: this.settingsService.unitOfMeasure === 'metric' ? 'kms' : 'miles'
       },
       {
-        icon: 'md-time',
+        icon: 'time',
         iconColor: 'gold',
         label: 'Duration',
         value: this.utilService.msToTime(gpxData.stats.duration),
         unitOfMeasure: ''
       },
       {
-        icon: 'ios-speedometer',
+        icon: 'speedometer',
         iconColor: 'silver',
         label: 'Average Speed',
         value: this.settingsService.unitOfMeasure === 'metric'
@@ -289,7 +294,7 @@ export class JunctureComponent implements OnDestroy {
         unitOfMeasure: this.settingsService.unitOfMeasure === 'metric' ? 'km/h' : 'mph'
       },
       {
-        icon: 'md-flame',
+        icon: 'flame',
         iconColor: 'red',
         label: 'Max Speed',
         value: this.settingsService.unitOfMeasure === 'metric'
@@ -298,7 +303,7 @@ export class JunctureComponent implements OnDestroy {
         unitOfMeasure: this.settingsService.unitOfMeasure === 'metric' ? 'km/h' : 'mph'
       },
       {
-        icon: 'md-trending-up',
+        icon: 'trending-up',
         iconColor: 'teal',
         label: 'Climbing Distance',
         value: this.settingsService.unitOfMeasure === 'metric'
@@ -307,7 +312,7 @@ export class JunctureComponent implements OnDestroy {
         unitOfMeasure: this.settingsService.unitOfMeasure === 'metric' ? 'm' : 'ft'
       },
       {
-        icon: 'md-trending-down',
+        icon: 'trending-down',
         iconColor: 'blue',
         label: 'Descent Distance',
         value: this.settingsService.unitOfMeasure === 'metric'

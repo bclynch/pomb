@@ -32,12 +32,12 @@
             *ngIf="displayedLeadPhoto"
           >
             <div class="hoverOverlay">
-              <ion-icon name="md-cloud-upload"></ion-icon>
+              <ion-icon name="cloud-upload"></ion-icon>
               <div>Add an image</div>
             </div>
           </div>
           <div *ngIf="!displayedLeadPhoto" class="emptyImgContainer">
-            <ion-icon name="md-cloud-upload"></ion-icon>
+            <ion-icon name="cloud-upload"></ion-icon>
             <div>Add an image</div>
           </div>
         </div>
@@ -73,7 +73,7 @@
           </select>
           <div class="locationWrapper">
             <div class="segmentLabel">Location</div>
-            <span (click)="useCurrentLocation()">Use Current Location <ion-icon name="md-locate"></ion-icon></span>
+            <span (click)="useCurrentLocation()">Use Current Location <ion-icon name="locate"></ion-icon></span>
           </div>
           <input 
             type="text"
@@ -109,7 +109,7 @@
     <div class="addGalleryContainer">
       <div class="galleryLoadWrapper">
         <div (click)="presentGalleryUploaderPopover()">
-          <ion-icon name="md-cloud-upload"></ion-icon>
+          <ion-icon name="cloud-upload"></ion-icon>
           <div>Add images</div>
         </div>
       </div>
@@ -118,7 +118,7 @@
       <div class="gridUnitWrapper" *ngFor="let galleryPhoto of galleryPhotos; let i = index;">
         <div class="imgWrapper">
           <div [ngStyle]="{ 'background-image': 'url(' + galleryPhoto.photoUrl + ')'}"></div>
-          <ion-icon name="md-create" title="Edit gallery photo" (click)="presentGalleryPopover($event, i)"></ion-icon> 
+          <ion-icon name="create" title="Edit gallery photo" (click)="presentGalleryPopover($event, i)"></ion-icon> 
         </div>
       </div>
     </div>

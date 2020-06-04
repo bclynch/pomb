@@ -7,7 +7,8 @@ import { TripService } from '../../services/trip.service';
 
 @Component({
   selector: 'app-fade-carousel',
-  templateUrl: 'fadeCarousel.component.html'
+  templateUrl: 'fadeCarousel.component.html',
+  styleUrls: ['./fadeCarousel.component.scss']
 })
 export class FadeCarouselComponent implements OnChanges {
   @Input() data = [];

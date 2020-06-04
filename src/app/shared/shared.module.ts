@@ -3,12 +3,11 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { DirectivesModule } from '../directives/directives.module';
 import { PipesModule } from '../pipes/pipes.module';
-import { AgmCoreModule } from '@agm/core';
-import { ENV } from '../../environments/environment';
 import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
 import { DisqusModule } from 'ngx-disqus';
 
 // components
+import { ChartComponent } from './chart/chart.component';
 import { CompactHeroComponent } from './compactHero/compactHero.component';
 import { FooterComponent } from './footer/footer.component';
 import { GalleryComponent } from './gallery/gallery.component';
@@ -46,6 +45,7 @@ import { ShareBtnsComponent } from './shareBtns/shareBtns.component';
 
 @NgModule({
   declarations: [
+    ChartComponent,
     CompactHeroComponent,
     FooterComponent,
     GalleryComponent,
@@ -87,14 +87,12 @@ import { ShareBtnsComponent } from './shareBtns/shareBtns.component';
     FormsModule,
     DirectivesModule,
     PipesModule,
-    AgmCoreModule.forRoot({
-      apiKey: ENV.googleAPIKey,
-    }),
     FroalaEditorModule.forRoot(),
     FroalaViewModule.forRoot(),
     DisqusModule
   ],
   exports: [
+    ChartComponent,
     CompactHeroComponent,
     FooterComponent,
     GalleryComponent,

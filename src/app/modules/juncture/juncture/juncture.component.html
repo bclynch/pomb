@@ -10,7 +10,7 @@
           [title]="flag.name" 
         />
         <div class="viewsContainer" title="Views">
-          <ion-icon name="md-eye"></ion-icon>
+          <ion-icon name="eye"></ion-icon>
           <div>{{views | number}}</div>
         </div>
         <app-like-counter  
@@ -27,14 +27,14 @@
         class="updateWrapper"
         (click)="editJuncture()"
       >
-        <ion-icon name="md-git-merge"></ion-icon> Update Juncture</div>
+        <ion-icon name="git-merge"></ion-icon> Update Juncture</div>
     </div>
     <div class="bannerNavContainer">
       <div 
         class="priorJuncture" 
         (click)="routerService.navigateToPage('/juncture/' + priorJuncture.id)"
       >
-        <ion-icon *ngIf="priorJuncture" name="ios-arrow-back"></ion-icon>
+        <ion-icon *ngIf="priorJuncture" name="arrow-back"></ion-icon>
         <span *ngIf="priorJuncture">{{priorJuncture?.name}}</span>
       </div>
       <div class="junctureTrip" (click)="routerService.navigateToPage('/trip/' + junctureData.tripByTripId.id)">{{junctureData?.tripByTripId.name}}</div>
@@ -43,7 +43,7 @@
         (click)="routerService.navigateToPage('/juncture/' + nextJuncture.id)"
       >
         <span *ngIf="nextJuncture">{{nextJuncture?.name}}</span>
-        <ion-icon *ngIf="nextJuncture" name="ios-arrow-forward"></ion-icon>
+        <ion-icon *ngIf="nextJuncture" name="arrow-forward"></ion-icon>
       </div>
     </div>
   </div>
@@ -106,18 +106,20 @@
     
       <div class="chartsContainer" *ngIf="isGPX && inited">
         <div>
-          <chart
+          <app-chart
             type="line"
             [chartOptions]="distanceChartOptions"
             [chartData]="distanceChartData"
-          ></chart>
+            id="chart1"
+          ></app-chart>
         </div>
         <div>
-          <chart
+          <app-chart
             type="line"
             [chartOptions]="timeChartOptions"
             [chartData]="timeChartData"
-          ></chart>
+            id="chart2"
+          ></app-chart>
         </div>
       </div>
     </div>

@@ -22,7 +22,7 @@
       accept="image/*" 
     />
     <div *ngIf="!isProcessing && !urlArr.length">
-      <ion-icon name="md-cloud-upload"></ion-icon>
+      <ion-icon name="cloud-upload"></ion-icon>
       <div>Add an image</div>
     </div>
     <div *ngIf="isProcessing">
@@ -35,10 +35,10 @@
       *ngIf="urlArr.length"
     >
       <div class="hoverOverlay">
-        <ion-icon name="md-cloud-upload"></ion-icon>
+        <ion-icon name="cloud-upload"></ion-icon>
         <div>Add an image</div>
       </div>
     </div>
   </label>
-  <ion-icon name="md-close" class="popoverClose" (click)="closePopover()"></ion-icon>
+  <ion-icon name="close" class="popoverClose" (click)="closePopover()"></ion-icon>
 </div>

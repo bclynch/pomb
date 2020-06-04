@@ -3,7 +3,7 @@
     <div class="paneSection">
       <div class="paneSectionHeader">Sign Up</div>
       <div class="paneSectionContent" (click)="signinUser()">
-        <div><ion-icon name="md-person"></ion-icon></div>
+        <div><ion-icon name="person"></ion-icon></div>
         <div class="loginDescription">Looks like you aren't signed into an account yet. Login or signup to become a POMB member and start chronicling your journey.</div>
         <div class="paneSectionBtn">Get Started</div>
       </div>
@@ -61,7 +61,7 @@
             </div>
           </div>
           <div class="emptyContainer" *ngIf="!userService.recentPosts.length && !userService.recentTrip">
-            <ion-icon name="md-images"></ion-icon>
+            <ion-icon name="images"></ion-icon>
             <div>Looks like you don't have any recent activity yet. Spin up a trip or post a story to start seeing content here!</div>
           </div>
         </div>

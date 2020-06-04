@@ -4,7 +4,7 @@
   (click)="toggleLike()" 
   [ngClass]="isVertical ? 'vertical' : ''"
 >
-  <ion-icon name="md-heart" [style.color]="userLikes.length > 0 ? 'red' : color"></ion-icon>
+  <ion-icon name="heart" [style.color]="userLikes.length > 0 ? 'red' : color"></ion-icon>
   <div class="likeValue" [style.color]="settingsService.secondaryColor">{{totalLikes | number}}</div>
   <div class="likeLabel" *ngIf="hasLabel">Likes</div>
 </div>

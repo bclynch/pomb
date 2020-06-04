@@ -19,7 +19,7 @@
     <app-share-btns [title]="post.title" [description]="post.subtitle"></app-share-btns>
     <div class="dataContainer" *ngIf="!isPreview">
       <div class="statContainer" title="Views">
-        <ion-icon name="md-eye"></ion-icon>
+        <ion-icon name="eye"></ion-icon>
         <div [style.color]="settingsService.secondaryColor">{{views | number}}</div>
       </div>
       <app-like-counter 

@@ -9,7 +9,7 @@
             <div class="boldFont text" (click)="saveJuncture()">Save</div>
             <div class="statusTag" [style.color]="settingsService.secondaryColor">{{junctureSaveType}}</div>
           </div>
-          <ion-icon name="md-arrow-dropdown" (click)="presentPopover($event)"></ion-icon>
+          <ion-icon name="arrow-dropdown" (click)="presentPopover($event)"></ion-icon>
         </div>
       </div>
     </div>
@@ -97,7 +97,7 @@
           <div class="junctureLabel">Juncture Date</div>
           <div class="dateWrapper" (click)="presentDatepickerModal($event)">
             <div class="input">{{junctureModel.time | date: 'MMM d, y, h:mm a'}}</div>
-            <ion-icon name="md-calendar"></ion-icon>
+            <ion-icon name="calendar"></ion-icon>
           </div>
         </div>
       </div>
@@ -109,7 +109,7 @@
       </div>
       <div class="galleryLoadWrapper">
         <div (click)="presentGalleryUploaderPopover()">
-          <ion-icon name="md-cloud-upload"></ion-icon>
+          <ion-icon name="cloud-upload"></ion-icon>
           <div>Add images</div>
         </div>
       </div>
@@ -117,7 +117,7 @@
         <div class="gridUnitWrapper" *ngFor="let galleryPhoto of galleryPhotos; let i = index;">
           <div class="imgWrapper">
             <div [ngStyle]="{ 'background-image': 'url(' + galleryPhoto.url + ')'}"></div>
-            <ion-icon name="md-create" title="Edit gallery photo" (click)="presentGalleryPopover($event, i)"></ion-icon> 
+            <ion-icon name="create" title="Edit gallery photo" (click)="presentGalleryPopover($event, i)"></ion-icon> 
           </div>
         </div>
       </div>

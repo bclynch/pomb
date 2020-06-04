@@ -24,7 +24,7 @@
               </div>
               <div class="arrowWrapper" (click)="activeTrip === i ? activeTrip = null : activeTrip = i">
                 <div>See Junctures</div>
-                <ion-icon name="ios-arrow-forward"></ion-icon>
+                <ion-icon name="arrow-forward"></ion-icon>
               </div>
             </div>
             <div class="juncturesWrapper" *ngIf="trip.juncturesByTripId.nodes.length">
@@ -38,7 +38,7 @@
             </div>
             <div class="juncturesWrapper" *ngIf="!trip.juncturesByTripId.nodes.length">
               <div class="noJuncturesContainer">
-                <ion-icon name="md-git-merge"></ion-icon>
+                <ion-icon name="git-merge"></ion-icon>
                 <div>Looks like there aren't any junctures for this trip quite yet. Create some to view them here.</div>
               </div>      
             </div>
@@ -46,7 +46,7 @@
         </div>
         <div class="tripsWrapperContainer" *ngIf="tripsData && !tripsData?.length">
           <div class="noTripsContainer">
-            <ion-icon name="md-plane"></ion-icon>
+            <ion-icon name="plane"></ion-icon>
             <div>Looks like you haven't created any trips quite yet. Create some to view them here.</div>
           </div>  
         </div>

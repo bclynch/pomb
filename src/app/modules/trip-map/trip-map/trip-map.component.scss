@@ -132,15 +132,12 @@
         display: flex;
         align-items: center;
 
-        .profileContainer {
+        app-profile-picture {
           margin-right: 10px;
-          
-          .defaultPhoto,
-          .profilePhoto {
-            height: 24px;
-            width: 24px;
-          }
+          height: 24px;
+          width: 24px;
         }
+
         .trackUserContainer {
           margin-left: 10px;
         }
