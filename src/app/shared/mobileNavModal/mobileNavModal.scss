@@ -12,143 +12,140 @@ $navbarHeight: 40px;
     right: 0;
     bottom: 0;
   }
-  mobilenavmodal {
-    .modalContainer {
-      background: rgba(51, 51, 51, .95);
-      height: 100%;
-      width: 100%;
-      position: relative;
+}
+.modalContainer {
+  background: rgba(51, 51, 51, .95);
+  height: 100%;
+  width: 100%;
+  position: relative;
 
-      .mockNav {
-        background: var(--black);
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        height: $navbarHeight;
-        padding: 0 10px;
+  .mockNav {
+    background: var(--black);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: $navbarHeight;
+    padding: 0 10px;
 
-        ion-icon:hover {
-          opacity: .7;
+    ion-icon:hover {
+      opacity: .7;
+    }
+    .logoWrapper {
+      font-size: 24px;
+    }
+    .mobilePromptClose {
+      width: 24px;
+
+      ion-icon {
+        font-size: 28px;
+        color: var(--white);
+      }
+    }
+  }
+  .contentWrapper {
+    padding: 0 20px;
+    overflow: scroll;
+    -ms-overflow-style: none;
+    height: calc(100% - 40px);
+
+    .profileWrapper {
+      text-align: center;
+      color: white;
+      margin-top: 30px;
+      font-size: 16px;
+
+      profilepicture {
+
+        .profileContainer {
+          margin: 15px 0;
         }
-        .logoWrapper {
-          font-size: 24px;
+      }
+      .logoutBtn {
+        margin-top: 10px;
+      }
+    }
+    .paneSectionContent {
+      color: white;
+      text-align: center;
+      margin-top: 30px;
+
+      .loginDescription {
+        padding: 0 20px 20px;
+        max-width: 400px;
+        margin: 0 auto;
+      }
+      ion-icon {
+        font-size: 36px;
+      }
+    }
+    search {
+      
+      .searchContainer {
+        margin: 50px 0 20px;
+
+        input {
+          color: white;
         }
-        .mobilePromptClose {
-          width: 24px;
+      }
+    }
+    .section {
+      padding: 15px 10px;
+      border-bottom: solid 1px #ddd;
+      color: white;
+
+      &.active {
+
+        .sectionHeader {
+          color: var(--secondary);
 
           ion-icon {
-            font-size: 28px;
-            color: var(--white);
+            transform: rotate(90deg);
+          }
+        }
+        .subSectionsWrapper {
+          padding: 0 20px;
+
+          .subSection {
+            height: 20px;
+            opacity: 1;
+            margin-bottom: 10px;
+          }
+          .subSection:last-child {
+            margin-bottom: 0;
           }
         }
       }
-      .contentWrapper {
-        padding: 0 20px;
-        overflow: scroll;
-        -ms-overflow-style: none;
-        height: calc(100% - 40px);
+      &.signedIn {
+        border-bottom: none;
+      }
+      .sectionHeader {
+        display: flex;
+        font-size: 24px;
+        padding: 10px 0;
 
-        .profileWrapper {
-          text-align: center;
-          color: white;
-          margin-top: 30px;
-          font-size: 16px;
+        .arrowWrapper {
+          width: 25%;
+          text-align: right;
 
-          profilepicture {
-
-            .profileContainer {
-              margin: 15px 0;
-            }
-          }
-          .logoutBtn {
-            margin-top: 10px;
-          }
-        }
-        .paneSectionContent {
-          color: white;
-          text-align: center;
-          margin-top: 30px;
-
-          .loginDescription {
-            padding: 0 20px 20px;
-            max-width: 400px;
-            margin: 0 auto;
-          }
           ion-icon {
-            font-size: 36px;
-          }
-        }
-        search {
-          
-          .searchContainer {
-            margin: 50px 0 20px;
-
-            input {
-              color: white;
-            }
-          }
-        }
-        .section {
-          padding: 15px 10px;
-          border-bottom: solid 1px #ddd;
-          color: white;
-
-          &.active {
-
-            .sectionHeader {
-              color: var(--secondary);
-
-              ion-icon {
-                transform: rotate(90deg);
-              }
-            }
-            .subSectionsWrapper {
-              padding: 0 20px;
-
-              .subSection {
-                height: 20px;
-                opacity: 1;
-                margin-bottom: 10px;
-              }
-              .subSection:last-child {
-                margin-bottom: 0;
-              }
-            }
-          }
-          &.signedIn {
-            border-bottom: none;
-          }
-          .sectionHeader {
-            display: flex;
-            font-size: 24px;
-            padding: 10px 0;
-
-            .arrowWrapper {
-              width: 25%;
-              text-align: right;
-
-              ion-icon {
-                transition: .5s;
-              }
-            }
-            .sectionName {
-              flex: 1;
-            }
-          }
-          .subSectionsWrapper {
-            overflow: hidden;
             transition: .5s;
-
-            .subSection {
-              transition: .5s;
-              font-size: 16px;
-              height: 0;
-              opacity: 0;
-            }
           }
+        }
+        .sectionName {
+          flex: 1;
+        }
+      }
+      .subSectionsWrapper {
+        overflow: hidden;
+        transition: .5s;
+
+        .subSection {
+          transition: .5s;
+          font-size: 16px;
+          height: 0;
+          opacity: 0;
         }
       }
     }
   }
 }
-

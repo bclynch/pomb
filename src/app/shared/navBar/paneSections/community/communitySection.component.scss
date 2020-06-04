@@ -7,6 +7,15 @@
       flex: 5;
       display: none !important;
     }
+    .paneSectionHeader {
+      text-align: center;
+      margin-top: 25px;
+      font-weight: 500;
+      letter-spacing: .5px;
+      text-transform: uppercase;
+      color: var(--white);
+      font-size: 22px;
+    }
     .paneContent {
       height: calc(520px - 40px - 50px); // info pane height - 50px which is the height of the header
       display: flex;

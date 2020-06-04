@@ -15,6 +15,8 @@ export class PageWrapperComponent {
   @Input() displayNav = true;
   @Input() collapsibleNav = true;
   @Input() topo = false;
+  // for area displaced by navbar
+  @Input() marginTop = '40px';
 
   constructor(
     private utilService: UtilService

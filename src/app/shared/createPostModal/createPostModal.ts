@@ -8,6 +8,7 @@ import {
 } from '@ionic/angular';
 import * as moment from 'moment';
 import { MapsAPILoader } from '@agm/core'; // using to spin up google ready for geocoding with current location
+import FroalaEditor from 'froala-editor';
 
 import { APIService } from '../../services/api.service';
 import { SettingsService } from '../../services/settings.service';
@@ -32,8 +33,6 @@ import {
   DeletePostToTagByIdGQL,
   DeleteImageByIdGQL
 } from '../../generated/graphql';
-
-declare let $: any;
 
 interface PostOption {
   name: string;
@@ -154,8 +153,8 @@ export class CreatePostModalComponent {
 
         // populate country options
         this.getAllCountriesGQL.fetch().subscribe(
-          ({ data }) => {
-            this.countries = data.allCountries.nodes;
+          ({ data: { allCountries } }) => {
+            this.countries = allCountries.nodes;
           }
         );
 
@@ -205,9 +204,9 @@ export class CreatePostModalComponent {
     );
 
     // creating custom image uploader
-    $.FroalaEditor.DefineIcon('myImageUploader', { NAME: 'image' });
+    FroalaEditor.DefineIcon('myImageUploader', { NAME: 'image' });
     const self = this;
-    $.FroalaEditor.RegisterCommand('myImageUploader', {
+    FroalaEditor.RegisterCommand('myImageUploader', {
       title: 'Upload Image',
       focus: false,
       undo: false,
@@ -442,11 +441,11 @@ export class CreatePostModalComponent {
         }
       );
 
-      function createPostErrorHandler(err: Error) {
-        console.log(err);
-        alert('something is fucked');
-        self.modalController.dismiss();
-      }
+    function createPostErrorHandler(err: Error) {
+      console.log(err);
+      alert('something is fucked');
+      self.modalController.dismiss();
+    }
   }
 
   createLeadPhotos(postId: number, title: string) {
@@ -678,7 +677,7 @@ export class CreatePostModalComponent {
         });
         query += `}`;
 
-        const promise = new Promise((resolve, reject) => {
+        const promise = new Promise((resolve) => {
           this.apiService.genericCall(query).subscribe(
             result => resolve(result),
             err => console.log(err)
@@ -689,7 +688,7 @@ export class CreatePostModalComponent {
 
       // next check out if gallery photos are different
       const newPhotoArr: GalleryPhoto[] = this.galleryPhotos.filter((img) => !img.id );
-      const promise = new Promise((resolve, reject) => {
+      const promise = new Promise((resolve) => {
         this.createGalleryPhotoLinks(this.data.id, newPhotoArr).then(
           () => {
             // update edited gallery photos

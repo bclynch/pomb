@@ -21,7 +21,9 @@ export class RoleGuardService implements CanActivate {
       // decode the token to get its payload
       const tokenPayload = decode(token);
       // console.log(tokenPayload);
-      if (!tokenPayload) return false;
+      if (!tokenPayload) {
+        return false;
+      }
 
       if (expectedRole.indexOf(tokenPayload.role) === -1) {
         expectedRole === ['pomb_admin'] ? this.router.navigate(['/admin-login']) : this.router.navigate(['']);

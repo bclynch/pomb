@@ -23,8 +23,18 @@
   .paneSectionBtn:hover {
     color: var(--secondary);
   }
+  .paneSection {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
   .paneSectionHeader {
     margin-bottom: 30px;
+    font-weight: 500;
+    letter-spacing: .5px;
+    text-transform: uppercase;
+    color: var(--white);
+    font-size: 22px;
   }
   .signedOutContainer {
     line-height: 20px;
@@ -74,6 +84,10 @@
         .signedInUser {
           transition: .3s;
         }
+        app-profile-picture {
+          height: 125px;
+          width: 125px;
+        }
       }
       .profileWrapper:hover {
         .signedInUser {
@@ -94,6 +108,9 @@
 
         > div {
           padding: 0 !important;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
 
           .linkLabel {
             transition: .3s;

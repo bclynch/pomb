@@ -2,106 +2,103 @@
   ion-backdrop {
     opacity: 0!important;
   }
-  .popover-content {
+}
+.popoverContainer {
+  padding: 0 10px;
+  text-align: center;
 
-    .popoverContainer {
-      padding: 0 10px;
-      text-align: center;
+  ol {
+    padding-left: 15px;
+  }
+  .sizeRow {
+    display: flex;
+    justify-content: space-around;
 
-      ol {
-        padding-left: 15px;
-      }
-      .sizeRow {
-        display: flex;
-        justify-content: space-around;
+    > div {
+      cursor: pointer;
+      transition: .3s;
+      padding: 5px 10px;
 
-        > div {
-          cursor: pointer;
-          transition: .3s;
-          padding: 5px 10px;
-
-          &.selected {
-            border-bottom: solid 2px var(--black);
-            font-weight: bold;
-          }
-        }
-        > div:hover {
-          opacity: .7;
-        }
-      }
-      label {
-        width: 100%;
-        margin: 30px 0 10px;
-        display: inline-block;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-direction: column;
-        background: var(--white);
-        color: var(--dark);
-        cursor: pointer;
-        transition: color .8s;
-  
-        input {
-          width: 0.1px;
-          height: 0.1px;
-          opacity: 0;
-          overflow: hidden;
-          position: absolute;
-          z-index: -1;
-        }
-        > div {
-          text-align: center;
-  
-          ion-icon {
-            font-size: 36px;
-          }
-        }
-        ion-spinner {
-          width: 36px;
-          height: 36px;
-  
-          svg {
-            circle {
-              stroke: var(--dark);
-            }
-          }
-        }
-        .thumbnailImage {
-          width: 225px;
-          height: 150px;
-          background-size: contain;
-          background-repeat: no-repeat;
-  
-          .hoverOverlay {
-            opacity: 0;
-            height: 100%;
-            width: 100%;
-            background: rgba(0,0,0, 0.7);
-            color: var(--white);
-            transition: opacity .5s;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-          }
-        }
-        .thumbnailImage:hover {
-  
-          .hoverOverlay {
-            opacity: 1;
-          }
-        } 
-      }
-      label:hover {
-        color: var(--black);
+      &.selected {
+        border-bottom: solid 2px var(--black);
+        font-weight: bold;
       }
     }
+    > div:hover {
+      opacity: .7;
+    }
   }
-  .popoverClose {
-    position: absolute;
-    top: 5px;
-    right: 5px;
+  label {
+    width: 100%;
+    margin: 30px 0 10px;
+    display: inline-block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background: var(--white);
+    color: var(--dark);
     cursor: pointer;
+    transition: color .8s;
+
+    input {
+      width: 0.1px;
+      height: 0.1px;
+      opacity: 0;
+      overflow: hidden;
+      position: absolute;
+      z-index: -1;
+    }
+    > div {
+      text-align: center;
+
+      ion-icon {
+        font-size: 36px;
+      }
+    }
+    ion-spinner {
+      width: 36px;
+      height: 36px;
+
+      svg {
+        circle {
+          stroke: var(--dark);
+        }
+      }
+    }
+    .thumbnailImage {
+      width: 225px;
+      height: 150px;
+      background-size: contain;
+      background-repeat: no-repeat;
+
+      .hoverOverlay {
+        opacity: 0;
+        height: 100%;
+        width: 100%;
+        background: rgba(0,0,0, 0.7);
+        color: var(--white);
+        transition: opacity .5s;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+    }
+    .thumbnailImage:hover {
+
+      .hoverOverlay {
+        opacity: 1;
+      }
+    } 
   }
+  label:hover {
+    color: var(--black);
+  }
+}
+.popoverClose {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  cursor: pointer;
 }

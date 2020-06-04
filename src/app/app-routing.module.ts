@@ -57,6 +57,10 @@ const routes: Routes = [
   {
     path: 'juncture',
     loadChildren: () => import('./modules/juncture/juncture.module').then( m => m.JunctureModule)
+  },
+  {
+    path: 'user',
+    loadChildren: () => import('./modules/profile/profile.module').then( m => m.ProfileModule)
   }
 ];
 

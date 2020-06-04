@@ -1,7 +1,7 @@
 import { Component, OnDestroy } from '@angular/core';
 import { AlertController, ModalController, ToastController } from '@ionic/angular';
 
-import { CreatePostModal } from '../../../shared/createPostModal/createPostModal';
+import { CreatePostModalComponent } from '../../../shared/createPostModal/createPostModal';
 
 import { RouterService } from '../../../services/router.service';
 import { SettingsService } from '../../../services/settings.service';
@@ -58,7 +58,8 @@ export class DashboardComponent implements OnDestroy {
   init() {
     this.settingsService.modPageMeta(
       'Blog Dashboard',
-      'Create, edit, and share your own stories with Pack On My Back\'s blog generation tool. Make beautiful representations of your experiences to share and look back on.'
+      `Create, edit, and share your own stories with Pack On My Back\'s blog generation tool. \
+      Make beautiful representations of your experiences to share and look back on.`
     );
     this.postsData = this.allPostsByUserGQL.fetch({
       author: this.userService.user.id
@@ -111,8 +112,8 @@ export class DashboardComponent implements OnDestroy {
     }
 
     async function launchModal(post: any) {
-      const modal = await this.modalCtrl.create({
-        component: CreatePostModal,
+      const modal = await self.modalCtrl.create({
+        component: CreatePostModalComponent,
         componentProps: { post },
         cssClass: 'createPostModal',
         backdropDismiss: false

@@ -16,9 +16,9 @@ import { TripService } from '../../../../services/trip.service';
 export class MyPackNavSectionComponent {
 
   quickLinks = [
-    { label: 'Create Trip', value: 'trip', icon: 'plane' },
+    { label: 'Create Trip', value: 'trip', icon: 'airplane' },
     { label: 'Juncture Check-In', value: 'checkIn', icon: 'git-merge' },
-    { label: 'Blog Dashboard', value: 'blog', icon: 'filing' },
+    { label: 'Blog Dashboard', value: 'blog', icon: 'file-tray-full' },
     { label: 'Tracking', value: 'tracking', icon: 'track', custom: true },
     { label: 'User Dashboard', value: 'settings', icon: 'settings' }
   ];
@@ -26,19 +26,29 @@ export class MyPackNavSectionComponent {
   benefits = [
     {
       icon: 'locate',
-      description: 'Chart and monitor your journey with our gps plotting and visualization tools. Make your trip come alive with in depth statistics and beautiful visuals to show off to your friends and look back on in the future.'
+      description: `Chart and monitor your journey with our gps plotting and visualization tools. \
+        Make your trip come alive with in depth statistics and beautiful visuals to show off to your \
+        friends and look back on in the future.\
+      `
     },
     {
       icon: 'create',
-      description: 'Carve your own path and manage your memories with our blog management system software. Customize the look and feel of your entries and how you share your own story with the rest of the world.' 
+      description: `Carve your own path and manage your memories with our blog management system software. \
+        Customize the look and feel of your entries and how you share your own story with the rest of the world.
+      `
     },
     {
       icon: 'globe',
-      description: 'Join our community of travel and outdoor enthusiasts to gain valuable insight and knowledge on potential outings and excursions around the globe. Learn what it takes to make your dreams come alive and inspire others along the way.'
+      description: `Join our community of travel and outdoor enthusiasts to gain valuable insight and \
+        knowledge on potential outings and excursions around the globe. Learn what it takes to make \
+        your dreams come alive and inspire others along the way.
+      `
     },
     {
       icon: 'compass',
-      description: 'Take the stress out of keeping friends and family in the loop. Pack On My Back makes it easy to stay connected with its family of tools to track and share life\'s best moments.'
+      description: `Take the stress out of keeping friends and family in the loop. Pack On My Back makes \
+        it easy to stay connected with its family of tools to track and share life\'s best moments.
+      `
     }
   ];
 

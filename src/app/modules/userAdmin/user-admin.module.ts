@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { UserAdminPage } from './admin';
 import { Routes, RouterModule } from '@angular/router';
@@ -23,18 +23,18 @@ const routes: Routes = [
         data: {
           expectedRole: ['pomb_account', 'pomb_admin']
         },
-        component: DashboardPage
+        loadChildren: () => import('../dashboard/dashboard.module').then(m => m.DashboardModule)
       },
       {
         path: ':username',
         children: [
           {
             path: '',
-            component: ProfilePage
+            loadChildren: () => import('../profile/profile.module').then(m => m.ProfileModule)
           },
           {
             path: 'photos',
-            component: PhotosPage
+            loadChildren: () => import('../photos/photos.module').then(m => m.PhotosModule)
           }
         ]
       },
@@ -48,6 +48,7 @@ const routes: Routes = [
     CommonModule,
     RouterModule.forChild(routes),
     SharedModule
-  ]
+  ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class UserAdminModule { }

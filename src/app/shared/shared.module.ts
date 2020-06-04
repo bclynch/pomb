@@ -5,6 +5,8 @@ import { DirectivesModule } from '../directives/directives.module';
 import { PipesModule } from '../pipes/pipes.module';
 import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
 import { DisqusModule } from 'ngx-disqus';
+import { AgmCoreModule } from '@agm/core';
+import { ENV } from '../../environments/environment';
 
 // components
 import { ChartComponent } from './chart/chart.component';
@@ -16,6 +18,8 @@ import { HeroBannerComponent } from './heroBanner/heroBanner.component';
 import { NavBarComponent } from './navBar/navBar.component';
 import { PageWrapperComponent } from './pageWrapper/pageWrapper.component';
 import { ProfilePictureComponent } from './profilePicture/profilePicture.component';
+import { ProfileHeroBannerComponent } from './profileHeroBanner/profileHeroBanner.component';
+import { UploadGPXComponent } from './uploadGPX/uploadGPX.component';
 import { TrackUserComponent } from './trackUser/trackUser.component';
 import { SearchComponent } from './search/search';
 import { GalleryCardComponent } from './gallery/galleryCard/galleryCard.component';
@@ -30,6 +34,10 @@ import { ExpandedModalComponent } from './gallery/expandedModal/expandedModal.co
 import { RegistrationModalComponent } from './registrationModal/registrationModal';
 import { CreatePostModalComponent } from './createPostModal/createPostModal';
 import { ExploreModalComponent } from './exploreModal/exploreModal';
+import { MobileNavModalComponent } from './mobileNavModal/mobileNavModal';
+import { ImageUploaderPopoverComponent } from './imageUploader/imageUploaderPopover.component';
+import { TripModalComponent } from './tripModal/tripModal';
+import { JunctureModalComponent } from './junctureModal/junctureModal';
 import { NewsletterComponent } from './newsletter/newsletter.component';
 import { JunctureBubblesComponent } from './junctureBubbles/junctureBubbles.component';
 import { JunctureBubbleComponent } from './junctureBubbles/junctureBubble/junctureBubble.component';
@@ -54,6 +62,8 @@ import { ShareBtnsComponent } from './shareBtns/shareBtns.component';
     NavBarComponent,
     PageWrapperComponent,
     ProfilePictureComponent,
+    ProfileHeroBannerComponent,
+    UploadGPXComponent,
     TrackUserComponent,
     SearchComponent,
     GalleryCardComponent,
@@ -67,6 +77,10 @@ import { ShareBtnsComponent } from './shareBtns/shareBtns.component';
     RegistrationModalComponent,
     CreatePostModalComponent,
     ExploreModalComponent,
+    MobileNavModalComponent,
+    ImageUploaderPopoverComponent,
+    TripModalComponent,
+    JunctureModalComponent,
     NewsletterComponent,
     TrackIconComponent,
     JunctureBubblesComponent,
@@ -89,7 +103,10 @@ import { ShareBtnsComponent } from './shareBtns/shareBtns.component';
     PipesModule,
     FroalaEditorModule.forRoot(),
     FroalaViewModule.forRoot(),
-    DisqusModule
+    DisqusModule,
+    AgmCoreModule.forRoot({
+      apiKey: ENV.googleAPIKey,
+    }),
   ],
   exports: [
     ChartComponent,
@@ -101,6 +118,8 @@ import { ShareBtnsComponent } from './shareBtns/shareBtns.component';
     NavBarComponent,
     PageWrapperComponent,
     ProfilePictureComponent,
+    ProfileHeroBannerComponent,
+    UploadGPXComponent,
     TrackUserComponent,
     SearchComponent,
     GalleryCardComponent,
@@ -114,6 +133,10 @@ import { ShareBtnsComponent } from './shareBtns/shareBtns.component';
     RegistrationModalComponent,
     CreatePostModalComponent,
     ExploreModalComponent,
+    MobileNavModalComponent,
+    ImageUploaderPopoverComponent,
+    TripModalComponent,
+    JunctureModalComponent,
     NewsletterComponent,
     TrackIconComponent,
     JunctureBubblesComponent,
@@ -127,6 +150,16 @@ import { ShareBtnsComponent } from './shareBtns/shareBtns.component';
     FadeCarouselComponent,
     UnitToggleComponent,
     ShareBtnsComponent
+  ],
+  entryComponents: [
+    RegistrationModalComponent,
+    CreatePostModalComponent,
+    ExpandedModalComponent,
+    ExploreModalComponent,
+    MobileNavModalComponent,
+    ImageUploaderPopoverComponent,
+    TripModalComponent,
+    JunctureModalComponent
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

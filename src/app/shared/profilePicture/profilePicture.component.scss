@@ -19,11 +19,8 @@
     display: flex;
     align-items: center;
 
-    backpackicon {
-      svg {
-        height: 70%;
-        width: 70%;
-      }
+    app-backpack-icon {
+      margin: 0 auto 10px;
     }
   }
 }

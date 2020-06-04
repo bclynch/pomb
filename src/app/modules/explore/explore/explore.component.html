@@ -7,13 +7,13 @@
     (btnClick)="presentModal()"
   ></app-fade-carousel> -->
   <div class="exploreWrapper">
-    <GeoChart 
+    <app-geo-chart 
       [countries]="countryCodes" 
       *ngIf="inited"
       backgroundColor="black"
       [defaultColor]="settingsService.secondaryColor"
       datalessColor="black" 
-    ></GeoChart>
+    ></app-geo-chart>
   </div>
 </app-page-wrapper>
 

@@ -5,7 +5,7 @@ import { APIService } from '../../services/api.service';
 import { AlertService } from '../../services/alert.service';
 
 @Component({
-  selector: 'ImageUploaderPopover',
+  selector: 'app-image-uploader-popover',
   templateUrl: './imageUploaderPopover.component.html',
   styleUrls: ['./imageUploaderPopover.component.scss']
 })
@@ -56,7 +56,12 @@ export class ImageUploaderPopoverComponent {
       this.popoverCtrl.dismiss('maxErr');
       return;
     }
-    this.apiService.uploadImages(formData, sizes, quality, isJuncture && this.params.get('existingPhotos') === 0 ? true : false).subscribe(
+    this.apiService.uploadImages(
+      formData,
+      sizes,
+      quality,
+      isJuncture && this.params.get('existingPhotos') === 0 ? true : false
+    ).subscribe(
       result => {
         this.isProcessing = false;
         this.popoverCtrl.dismiss(result);
@@ -100,7 +105,10 @@ export class ImageUploaderPopoverComponent {
         this.uploadImages([{ width: 250, height: 250 }], 80);
         break;
       case 'post':
-        this.uploadImages([{ width: this.postSize === 'small' ? 400 : 800, height: this.postSize === 'small' ? 267 : 533 }], 80);
+        this.uploadImages([{
+          width: this.postSize === 'small' ? 400 : 800,
+          height: this.postSize === 'small' ? 267 : 533
+        }], 80);
         break;
       case 'custom':
         this.uploadImages([this.imgSize], 80);
@@ -110,7 +118,11 @@ export class ImageUploaderPopoverComponent {
 
   closePopover() {
     if (this.isProcessing) {
-      this.alertService.confirm('Processing', 'Are you sure you want to disrupt the image upload processing?', { label: 'Close', handler: () => this.popoverCtrl.dismiss() });
+      this.alertService.confirm(
+        'Processing',
+        'Are you sure you want to disrupt the image upload processing?',
+        { label: 'Close', handler: () => this.popoverCtrl.dismiss()
+      });
     } else {
       this.popoverCtrl.dismiss();
     }

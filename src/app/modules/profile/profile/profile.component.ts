@@ -126,7 +126,7 @@ export class ProfileComponent implements OnDestroy {
     const stats = [];
 
     // stats.push({ icon: 'globe', label: 'Countries', value: 1 });
-    stats.push({ icon: 'plane', label: 'Trips', value: this.user.totalTripCount.totalCount });
+    stats.push({ icon: 'airplane', label: 'Trips', value: this.user.totalTripCount.totalCount });
     stats.push({ icon: 'git-merge', label: 'Junctures', value: this.user.totalJunctureCount.totalCount });
     stats.push({ icon: 'albums', label: 'Posts', value: this.user.totalPostCount.totalCount });
     stats.push({ icon: 'images', label: 'Photos', value: this.user.totalImageCount.totalCount });

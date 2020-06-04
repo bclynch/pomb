@@ -3,7 +3,7 @@
   backgroundColor="black" 
   [attr.style]="sanitizer.bypassSecurityTrustStyle('--secondary:' + settingsService.secondaryColor)"
 >
-  <ProfileHeroBanner [user]="user"></ProfileHeroBanner>
+  <app-profile-hero-banner [user]="user"></app-profile-hero-banner>
   <div class="statsContainer" *ngIf="stats.length">
     <div class="innerWrapper">
       <div class="statWrapper" *ngFor="let stat of stats;">
@@ -16,14 +16,14 @@
   </div>
   <div class="countriesContainer container">
     <div class="containerHeader">Countries Visited</div>
-    <GeoChart 
+    <app-geo-chart  
       [countries]="countriesVisited" 
       *ngIf="inited"
       backgroundColor="black"
       [defaultColor]="settingsService.secondaryColor"
       datalessColor="black"
       [mapWidth]="mapWidth"
-    ></GeoChart>
+    ></app-geo-chart>
     <div class="countryStats">
       <div class="statsWrapper">
         <div>{{user.userToCountriesByUserId.nodes.length}}</div>

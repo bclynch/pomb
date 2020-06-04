@@ -1,0 +1,19 @@
+<div 
+  class="heroBannerContainer" 
+  [ngStyle]="user.heroPhoto ? { 'background-image': 'url(' + user.heroPhoto + ')'} : { 'background-image': 'url(' + defaultBannerImg + ')'}"
+>
+  <div class="overlay">
+    <app-profile-picture [photo]="user.profilePhoto" [trackUserId]="user.id"></app-profile-picture>
+    <div class="name" *ngIf="user.firstName">{{user.firstName}} {{user.lastName}}</div>
+    <div class="name" *ngIf="!user.firstName">{{user.username}}</div>
+    <div>{{user.userStatus}}</div>
+    <div class="location">{{user.city}}<span *ngIf="user.country">, </span>{{user.country}}</div>
+  </div>
+  <div
+    [attr.style]="sanitizer.bypassSecurityTrustStyle('--secondary:' + settingsService.secondaryColor)" 
+    *ngIf="user.id === userService.user?.id" 
+    class="updateWrapper"
+    (click)="navigateToSettings()"
+  >
+    <ion-icon name="md-bulb"></ion-icon> Update Profile</div>
+</div>

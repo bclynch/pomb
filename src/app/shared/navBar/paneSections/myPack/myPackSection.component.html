@@ -34,7 +34,7 @@
             (click)="navigate(option.value)"
           >
             <ion-icon [name]="option.icon" *ngIf="!option.custom"></ion-icon>
-            <TrackIcon *ngIf="option.custom && option.icon === 'track'"></TrackIcon>
+            <app-track-icon *ngIf="option.custom && option.icon === 'track'"></app-track-icon>
             <div class="linkLabel">{{option.label}}</div>
           </div>
         </div>
@@ -47,20 +47,20 @@
               <div class="miniSectionLabel">Recent Trip</div>
               <app-trip-card [trip]="userService.recentTrip"></app-trip-card>
             </div>
-            <div class="juncturesContainer" *ngIf="userService.recentJunctures.length">
+            <div class="juncturesContainer" *ngIf="userService.recentJunctures?.length">
               <div class="miniSectionLabel">Recent Junctures</div>
               <div class="bubblesWrapper">
                 <app-juncture-bubble [juncture]="juncture" *ngFor="let juncture of userService.recentJunctures;"></app-juncture-bubble>
               </div>
             </div>
           </div>
-          <div class="rightContainer" *ngIf="userService.recentPosts.length">
+          <div class="rightContainer" *ngIf="userService.recentPosts?.length">
             <div class="postsContainer">
               <div class="miniSectionLabel">Recent Posts</div>
               <app-post-card *ngFor="let post of userService.recentPosts;" [data]="post" [displayAuthor]="false"></app-post-card>
             </div>
           </div>
-          <div class="emptyContainer" *ngIf="!userService.recentPosts.length && !userService.recentTrip">
+          <div class="emptyContainer" *ngIf="!userService.recentPosts?.length && !userService.recentTrip">
             <ion-icon name="images"></ion-icon>
             <div>Looks like you don't have any recent activity yet. Spin up a trip or post a story to start seeing content here!</div>
           </div>

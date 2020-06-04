@@ -170,7 +170,8 @@ export class UserService {
         case 'GraphQL error: permission denied for function register_account':
           this.alertService.alert(
             'Submission Error',
-            'Looks like you\'re still logged into another account. Make sure you\'re logged out or reload the page and try again'
+            `Looks like you\'re still logged into another account. Make sure you\'re logged out or \
+            reload the page and try again`
           );
           break;
         default:

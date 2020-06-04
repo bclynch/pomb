@@ -1,4 +1,9 @@
-<app-page-wrapper [attr.style]="sanitizer.bypassSecurityTrustStyle('--secondary:' + settingsService.secondaryColor)" [collapsibleNav]="false" [topo]="true">
+<app-page-wrapper
+  [attr.style]="sanitizer.bypassSecurityTrustStyle('--secondary:' + settingsService.secondaryColor)"
+  [collapsibleNav]="false"
+  [topo]="true"
+  marginTop="0"
+>
   <div class="contentWrapper">
     <div class="header">
       <div>{{tripData?.name}} Timeline</div>

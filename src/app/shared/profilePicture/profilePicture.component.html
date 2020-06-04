@@ -5,7 +5,7 @@
     [ngStyle]="{ 'background-image': 'url(' + photo + ')'}"
   ></div>
   <div class="defaultPhoto photo" *ngIf="!photo">
-    <BackpackIcon [color]="settingsService.secondaryColor"></BackpackIcon>
+    <app-backpack-icon [color]="settingsService.secondaryColor"></app-backpack-icon>
   </div>
 </div>
 <app-track-user [trackUserId]="trackUserId" *ngIf="trackUserId"></app-track-user>

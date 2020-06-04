@@ -27,9 +27,8 @@ export class ResetComponent {
     }).subscribe(
       ({ data }) => {
         this.apiService.sendResetEmail(email, data.resetPassword.string).subscribe(
-          (data) => {
-            const abc = data as any;
-            if (abc.result === 'Forgot email sent') {
+          ({ result }: any) => {
+            if (result === 'Forgot email sent') {
               this.alertService.alert(
                 'Email Sent',
                 `Your password reset email has been sent. Please check your inbox for the new password.

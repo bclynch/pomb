@@ -29,6 +29,11 @@
       text-align: center;
       margin-bottom: 25px;
       height: 60px; // to account for wrapping
+      font-weight: 500;
+      letter-spacing: .5px;
+      text-transform: uppercase;
+      color: var(--white);
+      font-size: 22px;
     }
     .storyImage {
       width: 90%;
@@ -44,6 +49,9 @@
       text-align: center;
       height: 150px;
       line-height: 20px;
+    }
+    .category {
+      text-align: center;
     }
   }
   .story:hover {

@@ -23,7 +23,7 @@ export class UserAdminPage {
 
   navListOptions: ListOption[] = [
     {label: 'Dashboard', icon: 'pulse', path: 'dashboard'},
-    {label: 'Trips', icon: 'plane', path: 'trips'},
+    {label: 'Trips', icon: 'airplane', path: 'trips'},
     {label: 'Profile', icon: 'hammer', path: 'config'},
     {label: 'Account', icon: 'settings', path: 'settings'},
     {label: 'Log Out', icon: 'log-out', path: null}
