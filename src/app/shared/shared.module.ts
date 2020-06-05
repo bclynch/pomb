@@ -38,6 +38,7 @@ import { MobileNavModalComponent } from './mobileNavModal/mobileNavModal';
 import { ImageUploaderPopoverComponent } from './imageUploader/imageUploaderPopover.component';
 import { TripModalComponent } from './tripModal/tripModal';
 import { JunctureModalComponent } from './junctureModal/junctureModal';
+import { DatePickerModalComponent } from './datepickerModal/datepickerModal';
 import { NewsletterComponent } from './newsletter/newsletter.component';
 import { JunctureBubblesComponent } from './junctureBubbles/junctureBubbles.component';
 import { JunctureBubbleComponent } from './junctureBubbles/junctureBubble/junctureBubble.component';
@@ -50,6 +51,7 @@ import { PostWrapperComponent } from './postWrapper/postWrapper.component';
 import { FadeCarouselComponent } from './fadeCarousel/fadeCarousel.component';
 import { UnitToggleComponent } from './unitToggle/unitToggle.component';
 import { ShareBtnsComponent } from './shareBtns/shareBtns.component';
+import { CommentsComponent } from './comments/comments.component';
 
 @NgModule({
   declarations: [
@@ -81,6 +83,7 @@ import { ShareBtnsComponent } from './shareBtns/shareBtns.component';
     ImageUploaderPopoverComponent,
     TripModalComponent,
     JunctureModalComponent,
+    DatePickerModalComponent,
     NewsletterComponent,
     TrackIconComponent,
     JunctureBubblesComponent,
@@ -93,7 +96,8 @@ import { ShareBtnsComponent } from './shareBtns/shareBtns.component';
     PostWrapperComponent,
     FadeCarouselComponent,
     UnitToggleComponent,
-    ShareBtnsComponent
+    ShareBtnsComponent,
+    CommentsComponent
   ],
   imports: [
     CommonModule,
@@ -137,6 +141,7 @@ import { ShareBtnsComponent } from './shareBtns/shareBtns.component';
     ImageUploaderPopoverComponent,
     TripModalComponent,
     JunctureModalComponent,
+    DatePickerModalComponent,
     NewsletterComponent,
     TrackIconComponent,
     JunctureBubblesComponent,
@@ -149,7 +154,8 @@ import { ShareBtnsComponent } from './shareBtns/shareBtns.component';
     PostWrapperComponent,
     FadeCarouselComponent,
     UnitToggleComponent,
-    ShareBtnsComponent
+    ShareBtnsComponent,
+    CommentsComponent
   ],
   entryComponents: [
     RegistrationModalComponent,
@@ -159,7 +165,8 @@ import { ShareBtnsComponent } from './shareBtns/shareBtns.component';
     MobileNavModalComponent,
     ImageUploaderPopoverComponent,
     TripModalComponent,
-    JunctureModalComponent
+    JunctureModalComponent,
+    DatePickerModalComponent
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

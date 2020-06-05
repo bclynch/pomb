@@ -6,8 +6,9 @@ import { APIService } from '../../services/api.service';
 import { AlertService } from '../../services/alert.service';
 
 @Component({
-  selector: 'uploadGPX',
-  templateUrl: 'uploadGPX.component.html'
+  selector: 'app-upload-gpx',
+  templateUrl: 'uploadGPX.component.html',
+  styleUrls: ['./uploadGPX.component.scss']
 })
 export class UploadGPXComponent {
   @Input() junctureId: number;

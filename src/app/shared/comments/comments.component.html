@@ -1,0 +1,12 @@
+<div
+  class="commentsContainer"
+  [ngClass]="!loadComments && 'notLoaded'"
+  [attr.style]="sanitizer.bypassSecurityTrustStyle('--secondary:' + settingsService.secondaryColor +';')"
+>
+  <button
+    class="load boldFont submitBtn" 
+    *ngIf="!loadComments" 
+    (click)="loadComments = true"
+  >Load Comments</button>
+  <disqus [identifier]="disqusId" *ngIf="disqusId && loadComments"></disqus>
+</div>

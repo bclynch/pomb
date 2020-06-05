@@ -2,14 +2,12 @@
   display: flex;
   justify-content: center;
   text-align: center;
-  height: 100%;
-  width: 100%;
 
   .photo {
+    height: 125px;
+    width: 125px;
     border-radius: 5px;
     background: black;
-    height: inherit;
-    width: inherit;
   }
   .profilePhoto {
     background-position: center;
@@ -20,7 +18,10 @@
     align-items: center;
 
     app-backpack-icon {
-      margin: 0 auto 10px;
+      ::ng-deep svg {
+        height: 70%;
+        width: 70%;
+      }
     }
   }
 }

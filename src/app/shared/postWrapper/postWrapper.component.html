@@ -33,7 +33,7 @@
   <img [src]="post.imagesByPostId.nodes[0].url" class="leadImg" />
   <div class="postSandbox" [froalaView]="post.content"></div>
   <app-gallery [data]="galleryImages" gutterWidth="2px"></app-gallery>
-  <disqus [identifier]="disqusId" *ngIf="disqusId"></disqus>
+  <app-comments [disqusId]="disqusId"></app-comments>
   <div class="moreContainer" *ngIf="!isPreview">
     <div class="moreWrapper" *ngIf="tags.length">
       <div class="header">You may also like</div>

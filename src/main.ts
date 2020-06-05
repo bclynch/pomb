@@ -5,6 +5,12 @@ import { AppModule } from './app/app.module';
 import { ENV } from './environments/environment';
 import 'hammerjs';
 
+declare global {
+  interface Window {
+      google: any;
+  }
+}
+
 if (ENV.production) {
   enableProdMode();
 }

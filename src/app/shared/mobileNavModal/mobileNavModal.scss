@@ -1,6 +1,6 @@
 $navbarHeight: 40px;
 
-.mobileNavModal {
+::ng-deep .mobileNavModal {
 
   ion-backdrop {
     opacity: 0!important;
@@ -39,6 +39,7 @@ $navbarHeight: 40px;
       ion-icon {
         font-size: 28px;
         color: var(--white);
+        width: 100%;
       }
     }
   }
@@ -54,9 +55,9 @@ $navbarHeight: 40px;
       margin-top: 30px;
       font-size: 16px;
 
-      profilepicture {
+      app-profile-picture {
 
-        .profileContainer {
+        ::ng-deep .profileContainer {
           margin: 15px 0;
         }
       }

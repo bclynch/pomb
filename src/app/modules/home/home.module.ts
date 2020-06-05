@@ -38,6 +38,10 @@ const routes: Routes = [
         component: HomeComponent
       }
     ]
+  },
+  {
+    path: '',
+    component: HomeComponent
   }
 ];
 

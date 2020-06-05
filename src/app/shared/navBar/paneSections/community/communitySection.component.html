@@ -1,8 +1,13 @@
 <div class="paneContainer">
   <div class="paneSection images">
     <div class="paneSectionHeader">Recent Images From Around POMB</div>
-    <div class="paneContent" *ngIf="settingsService.recentPhotos.length">
-      <app-grid [elements]="settingsService.recentPhotos" [gridConfig]="gridConfiguration" [isPost]="false"></app-grid>
+    <div class="paneContent" *ngIf="settingsService.recentPhotos?.length">
+      <app-grid
+        [elements]="settingsService.recentPhotos"
+        [gridConfig]="gridConfiguration"
+        [isPost]="false"
+        [customCardStyle]="customCardStyle"
+      ></app-grid>
     </div>
   </div>
   <div class="paneSection">

@@ -18,7 +18,6 @@ $navbarHeight: 40px;
       transform: translateY(-$navbarHeight);
     }
     ion-icon {
-      width: 16px;
       font-size: 22px;
       color: var(--white);
       cursor: pointer;
@@ -84,7 +83,7 @@ $navbarHeight: 40px;
             width: 0;
             transition: .5s;
 
-            .searchContainer {
+            ::ng-deep .searchContainer {
               height: 25px;
               border-radius: 5px;
 

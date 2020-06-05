@@ -1,7 +1,14 @@
 .paneContainer {
+  display: flex;
+  justify-content: space-around;
+  max-width: 1400px;
+  margin: 0 auto;
 
   .paneSection {
     flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
     &.images {
       flex: 5;
@@ -25,10 +32,10 @@
       width: 100%;
       min-width: 350px;
 
-      grid {
+      app-grid {
         width: 80%;
 
-        .card {
+        ::ng-deep .card {
           height: 175px;
         }
       }

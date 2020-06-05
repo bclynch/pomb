@@ -1,7 +1,9 @@
 <div class="modalContainer" [attr.style]="sanitizer.bypassSecurityTrustStyle('--secondary:' + settingsService.secondaryColor)">
   <div class="initWrapper">
     <div class="header">
-      <ion-icon name="close" (click)="viewCtrl.dismiss()" title="Close"></ion-icon>
+      <div>
+        <ion-icon name="close" (click)="modalCtrl.dismiss()" title="Close"></ion-icon>
+      </div>
       <div class="headerTitle">{{params.data.junctureId ? 'Edit Juncture' : 'Create Juncture'}}</div>
       <div class="saveContainer">
         <div class="wrapper">
@@ -23,7 +25,7 @@
         >{{btn}}</div>
       </div>
       <div class="uploadContainer" *ngIf="selectedIndex === 0">
-        <uploadGPX [junctureId]="junctureId" (gpxProcessed)="onGPXProcessed($event)"></uploadGPX>
+        <app-upload-gpx [junctureId]="junctureId" (gpxProcessed)="onGPXProcessed($event)"></app-upload-gpx>
         <div class="mapContainer" *ngIf="gpxLoaded">
           <div class="mapInited">
             <agm-map

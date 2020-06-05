@@ -133,6 +133,6 @@
       <div class="sectionHeader">Juncture Photos</div>
       <app-gallery [data]="junctureData?.imagesByJunctureId.nodes" gutterWidth="2px"></app-gallery>
     </div>
-    <disqus [identifier]="disqusId" *ngIf="disqusId"></disqus>
+    <app-comments [disqusId]="disqusId"></app-comments>
   </div>
 </app-page-wrapper>

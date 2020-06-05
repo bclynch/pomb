@@ -5,8 +5,7 @@
 ### Migration Todos
 
 - Fix forms (bleh)
-- Hide disqus like edmflare
-- Nav bar not using directive properly
+- ~~Hide disqus like edmflare~~
 
 ### Top Priorities
 

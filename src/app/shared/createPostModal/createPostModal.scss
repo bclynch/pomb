@@ -345,7 +345,7 @@
   }
 }
 
-.createPostModal {
+::ng-deep .createPostModal {
   
   @media (min-width: 768px) {
     .modal-wrapper {

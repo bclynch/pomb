@@ -168,7 +168,7 @@ export class JunctureComponent implements OnDestroy {
         this.markerLon = +this.junctureData.lon;
 
         if (this.isGPX) {
-          this.latlngBounds = new window['google'].maps.LatLngBounds();
+          this.latlngBounds = new window.google.maps.LatLngBounds();
           // take five coord pairs from the coords arr evenly spaced to hopefully encapsulate all the bounds
           const chosenCoords = [];
           const desiredNumberPairs = 5;
@@ -181,7 +181,7 @@ export class JunctureComponent implements OnDestroy {
           }
 
           chosenCoords.forEach((pair) => {
-            this.latlngBounds.extend(new window['google'].maps.LatLng(pair.lat, pair.lon));
+            this.latlngBounds.extend(new window.google.maps.LatLng(pair.lat, pair.lon));
           });
         }
 

@@ -161,15 +161,15 @@ export class TripMapComponent implements OnDestroy {
 
       // fitting the map to the markers
       this.mapsAPILoader.load().then(() => {
-        this.latlngBounds = new window['google'].maps.LatLngBounds();
+        this.latlngBounds = new window.google.maps.LatLngBounds();
         this.junctureMarkers.forEach((juncture) => {
           // coerce to number
           juncture.lat = +juncture.lat;
           juncture.lon = +juncture.lon;
-          this.latlngBounds.extend(new window['google'].maps.LatLng(juncture.lat, juncture.lon));
+          this.latlngBounds.extend(new window.google.maps.LatLng(juncture.lat, juncture.lon));
         });
         // making sure to check trip start point to compensate for it
-        this.latlngBounds.extend(new window['google'].maps.LatLng(+this.tripData.startLat, +this.tripData.startLon));
+        this.latlngBounds.extend(new window.google.maps.LatLng(+this.tripData.startLat, +this.tripData.startLon));
 
         // grab map style
         this.utilService.getJSON('../../assets/mapStyles/unsaturated.json').subscribe((data) => {

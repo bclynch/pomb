@@ -1,7 +1,9 @@
 <div class="modalContainer">
   <div class="initWrapper">
     <div class="header">
-      <ion-icon name="close" (click)="modalCtrl.dismiss()" title="Close"></ion-icon>
+      <div>
+        <ion-icon name="close" (click)="modalCtrl.dismiss()" title="Close"></ion-icon>
+      </div>
       <div class="headerTitle">{{params.data.tripId ? 'Edit Trip' : 'Create Trip'}}</div>
       <div class="saveContainer boldFont">
         <span (click)="saveTrip()">Save</span>

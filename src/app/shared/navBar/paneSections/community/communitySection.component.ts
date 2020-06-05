@@ -15,6 +15,8 @@ interface Social {
 export class CommunityNavSectionComponent {
   @Input() socialOptions: Social;
 
+  customCardStyle = { height: '175px' };
+
   gridConfiguration: number[] = [ 6.5, 3.5, 3, 3, 3 ];
 
   constructor(

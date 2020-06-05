@@ -134,8 +134,11 @@
 
         app-profile-picture {
           margin-right: 10px;
-          height: 24px;
-          width: 24px;
+
+          ::ng-deep .profileContainer {
+            height: 32px;
+            width: 32px;
+          }
         }
 
         .trackUserContainer {
@@ -315,16 +318,10 @@
       .paneHeader {
         height: 45px;
 
-        .userWrapper {
-
-          .profileContainer {
-            
-            .defaultPhoto,
-            .profilePhoto {
-              height: 32px;
-              width: 32px;
-            }
-          }
+        ::ng-deep .defaultPhoto,
+        ::ng-deep .profilePhoto {
+          height: 32px;
+          width: 32px;
         }
       }
       .paneContent {

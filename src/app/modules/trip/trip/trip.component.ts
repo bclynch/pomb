@@ -190,12 +190,12 @@ export class TripComponent implements OnDestroy, AfterViewInit {
 
       // fitting the map to the markers
       this.mapsAPILoader.load().then(() => {
-        this.latlngBounds = new window['google'].maps.LatLngBounds();
+        this.latlngBounds = new window.google.maps.LatLngBounds();
         junctureMarkers.forEach((juncture) => {
-          this.latlngBounds.extend(new window['google'].maps.LatLng(juncture.lat, juncture.lon));
+          this.latlngBounds.extend(new window.google.maps.LatLng(juncture.lat, juncture.lon));
         });
         // making sure to check trip start point to compensate for it
-        this.latlngBounds.extend(new window['google'].maps.LatLng(this.tripData.startLat, this.tripData.startLon));
+        this.latlngBounds.extend(new window.google.maps.LatLng(this.tripData.startLat, this.tripData.startLon));
 
         // grab map style
         this.utilService.getJSON('../../assets/mapStyles/darkTheme.json').subscribe((data) => {

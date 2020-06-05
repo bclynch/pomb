@@ -8,7 +8,7 @@
 
   ion-icon {
     font-size: 42px;
-    color: mapGet($basecolor, dark);
+    color: var(--dark);
   }
   ion-icon, .uploadMsg {
     transition: .3s;

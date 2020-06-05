@@ -6,8 +6,6 @@ import { Component, Input } from '@angular/core';
 })
 export class BackpackIconComponent {
   @Input() color = 'black';
-  @Input() height = '80px';
-  @Input() width = '80px';
 
   constructor() { }
 

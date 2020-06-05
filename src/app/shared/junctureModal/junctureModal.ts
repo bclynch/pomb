@@ -158,16 +158,20 @@ export class JunctureModalComponent {
             // fitting the map to the data layer OR the marker
             this.geoJsonObject = this.geoService.generateGeoJSON([coordsByJunctureId.nodes]);
             this.mapsAPILoader.load().then(() => {
-              this.latlngBounds = new window['google'].maps.LatLngBounds();
+              this.latlngBounds = new window.google.maps.LatLngBounds();
               // take five coord pairs from the coords arr evenly spaced to hopefully encapsulate all the bounds
               const chosenCoords = [];
               const desiredNumberPairs = 5;
-              for (let i = 0; i < coordsByJunctureId.nodes.length && chosenCoords.length < desiredNumberPairs; i += Math.ceil(coordsByJunctureId.nodes.length / desiredNumberPairs)) {
+              for (
+                let i = 0;
+                i < coordsByJunctureId.nodes.length && chosenCoords.length < desiredNumberPairs;
+                i += Math.ceil(coordsByJunctureId.nodes.length / desiredNumberPairs
+              )) {
                 chosenCoords.push(coordsByJunctureId.nodes[i]);
               }
 
               chosenCoords.forEach((pair) => {
-                this.latlngBounds.extend(new window['google'].maps.LatLng(pair.lat, pair.lon));
+                this.latlngBounds.extend(new window.google.maps.LatLng(pair.lat, pair.lon));
               });
 
               this.gpxLoaded = true;
@@ -220,16 +224,20 @@ export class JunctureModalComponent {
     this.gpxLoaded = false;
 
     this.mapsAPILoader.load().then(() => {
-      this.latlngBounds = new window['google'].maps.LatLngBounds();
+      this.latlngBounds = new window.google.maps.LatLngBounds();
       // take five coord pairs from the coords arr evenly spaced to hopefully encapsulate all the bounds
       const chosenCoords = [];
       const desiredNumberPairs = 5;
-      for (let i = 0; i < gpxData.geometry.coordinates.length && chosenCoords.length < desiredNumberPairs; i += Math.ceil(gpxData.geometry.coordinates.length / desiredNumberPairs)) {
+      for (
+        let i = 0;
+        i < gpxData.geometry.coordinates.length && chosenCoords.length < desiredNumberPairs;
+        i += Math.ceil(gpxData.geometry.coordinates.length / desiredNumberPairs
+      )) {
         chosenCoords.push(gpxData.geometry.coordinates[i]);
       }
 
       chosenCoords.forEach((dataSet) => {
-        this.latlngBounds.extend(new window['google'].maps.LatLng(dataSet[1], dataSet[0]));
+        this.latlngBounds.extend(new window.google.maps.LatLng(dataSet[1], dataSet[0]));
       });
 
       this.coords.lat = gpxData.geometry.coordinates.slice(-1)[0][1];
@@ -388,7 +396,8 @@ export class JunctureModalComponent {
   deleteJuncture() {
     this.alertService.confirm(
       'Delete Juncture',
-      'Are you sure you want to delete this juncture? All the associated information will be deleted and this action cannot be reversed',
+      `Are you sure you want to delete this juncture? All the associated information will be deleted and \
+      this action cannot be reversed`,
       { label: 'Delete Juncture', handler: () =>  {
         this.deleteJunctureByIdGQL.mutate({
           junctureId: this.params.data.junctureId
