@@ -1,5 +1,6 @@
 query postsByTrip($id: Int!) {
   tripById(id: $id) {
+    id,
     postsByTripId(
       first: 10,
       orderBy: ID_DESC

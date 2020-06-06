@@ -6,315 +6,473 @@ export type Maybe<T> = T | null;
 
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
-  ID: string,
-  String: string,
-  Boolean: boolean,
-  Int: number,
-  Float: number,
-  Cursor: any,
-  BigInt: any,
-  Datetime: any,
-  BigFloat: any,
-  InternetAddress: any,
-  KeyValueHash: any,
-  JwtToken: any,
+  ID: string;
+  String: string;
+  Boolean: boolean;
+  Int: number;
+  Float: number;
+  /** A location in a connection that can be used for resuming pagination. */
+  Cursor: any;
+  /** A signed eight-byte integer. The upper big integer values are greater than the max value for a JavaScript number. Therefore all big integers will be output as strings and not numbers. */
+  BigInt: any;
+  /** A point in time as described by the [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) standard. May or may not include a timezone. */
+  Datetime: any;
+  /** A floating point number that requires more precision than IEEE 754 binary 64 */
+  BigFloat: any;
+  /** An IPv4 or IPv6 host address, and optionally its subnet. */
+  InternetAddress: any;
+  /** A set of key/value pairs, keys are strings, values may be a string or null. Exposed as a JSON object. */
+  KeyValueHash: any;
+  /** A JSON Web Token defined by [RFC 7519](https://tools.ietf.org/html/rfc7519) which securely represents claims between two parties. */
+  JwtToken: any;
 };
 
 
 
+/** Table with POMB users */
 export type Account = Node & {
-   __typename?: 'Account',
-  nodeId: Scalars['ID'],
-  id: Scalars['Int'],
-  username: Scalars['String'],
-  firstName?: Maybe<Scalars['String']>,
-  lastName?: Maybe<Scalars['String']>,
-  profilePhoto?: Maybe<Scalars['String']>,
-  heroPhoto?: Maybe<Scalars['String']>,
-  city?: Maybe<Scalars['String']>,
-  country?: Maybe<Scalars['String']>,
-  autoUpdateLocation: Scalars['Boolean'],
-  autoUpdateVisited: Scalars['Boolean'],
-  userStatus?: Maybe<Scalars['String']>,
-  createdAt?: Maybe<Scalars['BigInt']>,
-  updatedAt?: Maybe<Scalars['Datetime']>,
-  tripsByUserId: TripsConnection,
-  juncturesByUserId: JuncturesConnection,
-  postsByAuthor: PostsConnection,
-  imagesByUserId: ImagesConnection,
-  likesByUserId: LikesConnection,
-  tracksByUserId: TracksConnection,
-  tracksByTrackUserId: TracksConnection,
-  userToCountriesByUserId: UserToCountriesConnection,
-  userAccountByAccountId?: Maybe<UserAccount>,
-  userAccountsByAccountId: UserAccountsConnection,
-  adminAccountByAccountId?: Maybe<AdminAccount>,
-  adminAccountsByAccountId: AdminAccountsConnection,
+  __typename?: 'Account';
+  /** A globally unique identifier. Can be used in various places throughout the system to identify this single value. */
+  nodeId: Scalars['ID'];
+  /** Primary id for account */
+  id: Scalars['Int'];
+  /** username of account */
+  username: Scalars['String'];
+  /** First name of account */
+  firstName?: Maybe<Scalars['String']>;
+  /** Last name of account */
+  lastName?: Maybe<Scalars['String']>;
+  /** Profile photo of account */
+  profilePhoto?: Maybe<Scalars['String']>;
+  /** Hero photo of account */
+  heroPhoto?: Maybe<Scalars['String']>;
+  /** Current city */
+  city?: Maybe<Scalars['String']>;
+  /** Current country */
+  country?: Maybe<Scalars['String']>;
+  /** Toggle to update location on juncture creation */
+  autoUpdateLocation: Scalars['Boolean'];
+  /** Toggle to update countries visited on juncture creation */
+  autoUpdateVisited: Scalars['Boolean'];
+  /** Current status */
+  userStatus?: Maybe<Scalars['String']>;
+  /** When account created */
+  createdAt?: Maybe<Scalars['BigInt']>;
+  /** When account last updated */
+  updatedAt?: Maybe<Scalars['Datetime']>;
+  /** Reads and enables pagination through a set of `Trip`. */
+  tripsByUserId: TripsConnection;
+  /** Reads and enables pagination through a set of `Juncture`. */
+  juncturesByUserId: JuncturesConnection;
+  /** Reads and enables pagination through a set of `Post`. */
+  postsByAuthor: PostsConnection;
+  /** Reads and enables pagination through a set of `Image`. */
+  imagesByUserId: ImagesConnection;
+  /** Reads and enables pagination through a set of `Like`. */
+  likesByUserId: LikesConnection;
+  /** Reads and enables pagination through a set of `Track`. */
+  tracksByUserId: TracksConnection;
+  /** Reads and enables pagination through a set of `Track`. */
+  tracksByTrackUserId: TracksConnection;
+  /** Reads and enables pagination through a set of `UserToCountry`. */
+  userToCountriesByUserId: UserToCountriesConnection;
+  /** Reads a single `UserAccount` that is related to this `Account`. */
+  userAccountByAccountId?: Maybe<UserAccount>;
+  /**
+   * Reads and enables pagination through a set of `UserAccount`.
+   * @deprecated Please use userAccountByAccountId instead
+   */
+  userAccountsByAccountId: UserAccountsConnection;
+  /** Reads a single `AdminAccount` that is related to this `Account`. */
+  adminAccountByAccountId?: Maybe<AdminAccount>;
+  /**
+   * Reads and enables pagination through a set of `AdminAccount`.
+   * @deprecated Please use adminAccountByAccountId instead
+   */
+  adminAccountsByAccountId: AdminAccountsConnection;
 };
 
 
+/** Table with POMB users */
 export type AccountTripsByUserIdArgs = {
-  first?: Maybe<Scalars['Int']>,
-  last?: Maybe<Scalars['Int']>,
-  offset?: Maybe<Scalars['Int']>,
-  before?: Maybe<Scalars['Cursor']>,
-  after?: Maybe<Scalars['Cursor']>,
-  orderBy?: Maybe<Array<TripsOrderBy>>,
-  condition?: Maybe<TripCondition>,
-  filter?: Maybe<TripFilter>
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  before?: Maybe<Scalars['Cursor']>;
+  after?: Maybe<Scalars['Cursor']>;
+  orderBy?: Maybe<Array<TripsOrderBy>>;
+  condition?: Maybe<TripCondition>;
+  filter?: Maybe<TripFilter>;
 };
 
 
+/** Table with POMB users */
 export type AccountJuncturesByUserIdArgs = {
-  first?: Maybe<Scalars['Int']>,
-  last?: Maybe<Scalars['Int']>,
-  offset?: Maybe<Scalars['Int']>,
-  before?: Maybe<Scalars['Cursor']>,
-  after?: Maybe<Scalars['Cursor']>,
-  orderBy?: Maybe<Array<JuncturesOrderBy>>,
-  condition?: Maybe<JunctureCondition>,
-  filter?: Maybe<JunctureFilter>
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  before?: Maybe<Scalars['Cursor']>;
+  after?: Maybe<Scalars['Cursor']>;
+  orderBy?: Maybe<Array<JuncturesOrderBy>>;
+  condition?: Maybe<JunctureCondition>;
+  filter?: Maybe<JunctureFilter>;
 };
 
 
+/** Table with POMB users */
 export type AccountPostsByAuthorArgs = {
-  first?: Maybe<Scalars['Int']>,
-  last?: Maybe<Scalars['Int']>,
-  offset?: Maybe<Scalars['Int']>,
-  before?: Maybe<Scalars['Cursor']>,
-  after?: Maybe<Scalars['Cursor']>,
-  orderBy?: Maybe<Array<PostsOrderBy>>,
-  condition?: Maybe<PostCondition>,
-  filter?: Maybe<PostFilter>
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  before?: Maybe<Scalars['Cursor']>;
+  after?: Maybe<Scalars['Cursor']>;
+  orderBy?: Maybe<Array<PostsOrderBy>>;
+  condition?: Maybe<PostCondition>;
+  filter?: Maybe<PostFilter>;
 };
 
 
+/** Table with POMB users */
 export type AccountImagesByUserIdArgs = {
-  first?: Maybe<Scalars['Int']>,
-  last?: Maybe<Scalars['Int']>,
-  offset?: Maybe<Scalars['Int']>,
-  before?: Maybe<Scalars['Cursor']>,
-  after?: Maybe<Scalars['Cursor']>,
-  orderBy?: Maybe<Array<ImagesOrderBy>>,
-  condition?: Maybe<ImageCondition>,
-  filter?: Maybe<ImageFilter>
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  before?: Maybe<Scalars['Cursor']>;
+  after?: Maybe<Scalars['Cursor']>;
+  orderBy?: Maybe<Array<ImagesOrderBy>>;
+  condition?: Maybe<ImageCondition>;
+  filter?: Maybe<ImageFilter>;
 };
 
 
+/** Table with POMB users */
 export type AccountLikesByUserIdArgs = {
-  first?: Maybe<Scalars['Int']>,
-  last?: Maybe<Scalars['Int']>,
-  offset?: Maybe<Scalars['Int']>,
-  before?: Maybe<Scalars['Cursor']>,
-  after?: Maybe<Scalars['Cursor']>,
-  orderBy?: Maybe<Array<LikesOrderBy>>,
-  condition?: Maybe<LikeCondition>,
-  filter?: Maybe<LikeFilter>
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  before?: Maybe<Scalars['Cursor']>;
+  after?: Maybe<Scalars['Cursor']>;
+  orderBy?: Maybe<Array<LikesOrderBy>>;
+  condition?: Maybe<LikeCondition>;
+  filter?: Maybe<LikeFilter>;
 };
 
 
+/** Table with POMB users */
 export type AccountTracksByUserIdArgs = {
-  first?: Maybe<Scalars['Int']>,
-  last?: Maybe<Scalars['Int']>,
-  offset?: Maybe<Scalars['Int']>,
-  before?: Maybe<Scalars['Cursor']>,
-  after?: Maybe<Scalars['Cursor']>,
-  orderBy?: Maybe<Array<TracksOrderBy>>,
-  condition?: Maybe<TrackCondition>,
-  filter?: Maybe<TrackFilter>
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  before?: Maybe<Scalars['Cursor']>;
+  after?: Maybe<Scalars['Cursor']>;
+  orderBy?: Maybe<Array<TracksOrderBy>>;
+  condition?: Maybe<TrackCondition>;
+  filter?: Maybe<TrackFilter>;
 };
 
 
+/** Table with POMB users */
 export type AccountTracksByTrackUserIdArgs = {
-  first?: Maybe<Scalars['Int']>,
-  last?: Maybe<Scalars['Int']>,
-  offset?: Maybe<Scalars['Int']>,
-  before?: Maybe<Scalars['Cursor']>,
-  after?: Maybe<Scalars['Cursor']>,
-  orderBy?: Maybe<Array<TracksOrderBy>>,
-  condition?: Maybe<TrackCondition>,
-  filter?: Maybe<TrackFilter>
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  before?: Maybe<Scalars['Cursor']>;
+  after?: Maybe<Scalars['Cursor']>;
+  orderBy?: Maybe<Array<TracksOrderBy>>;
+  condition?: Maybe<TrackCondition>;
+  filter?: Maybe<TrackFilter>;
 };
 
 
+/** Table with POMB users */
 export type AccountUserToCountriesByUserIdArgs = {
-  first?: Maybe<Scalars['Int']>,
-  last?: Maybe<Scalars['Int']>,
-  offset?: Maybe<Scalars['Int']>,
-  before?: Maybe<Scalars['Cursor']>,
-  after?: Maybe<Scalars['Cursor']>,
-  orderBy?: Maybe<Array<UserToCountriesOrderBy>>,
-  condition?: Maybe<UserToCountryCondition>,
-  filter?: Maybe<UserToCountryFilter>
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  before?: Maybe<Scalars['Cursor']>;
+  after?: Maybe<Scalars['Cursor']>;
+  orderBy?: Maybe<Array<UserToCountriesOrderBy>>;
+  condition?: Maybe<UserToCountryCondition>;
+  filter?: Maybe<UserToCountryFilter>;
 };
 
 
+/** Table with POMB users */
 export type AccountUserAccountsByAccountIdArgs = {
-  first?: Maybe<Scalars['Int']>,
-  last?: Maybe<Scalars['Int']>,
-  offset?: Maybe<Scalars['Int']>,
-  before?: Maybe<Scalars['Cursor']>,
-  after?: Maybe<Scalars['Cursor']>,
-  orderBy?: Maybe<Array<UserAccountsOrderBy>>,
-  condition?: Maybe<UserAccountCondition>,
-  filter?: Maybe<UserAccountFilter>
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  before?: Maybe<Scalars['Cursor']>;
+  after?: Maybe<Scalars['Cursor']>;
+  orderBy?: Maybe<Array<UserAccountsOrderBy>>;
+  condition?: Maybe<UserAccountCondition>;
+  filter?: Maybe<UserAccountFilter>;
 };
 
 
+/** Table with POMB users */
 export type AccountAdminAccountsByAccountIdArgs = {
-  first?: Maybe<Scalars['Int']>,
-  last?: Maybe<Scalars['Int']>,
-  offset?: Maybe<Scalars['Int']>,
-  before?: Maybe<Scalars['Cursor']>,
-  after?: Maybe<Scalars['Cursor']>,
-  orderBy?: Maybe<Array<AdminAccountsOrderBy>>,
-  condition?: Maybe<AdminAccountCondition>,
-  filter?: Maybe<AdminAccountFilter>
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  before?: Maybe<Scalars['Cursor']>;
+  after?: Maybe<Scalars['Cursor']>;
+  orderBy?: Maybe<Array<AdminAccountsOrderBy>>;
+  condition?: Maybe<AdminAccountCondition>;
+  filter?: Maybe<AdminAccountFilter>;
 };
 
+/** A condition to be used against `Account` object types. All fields are tested for equality and combined with a logical ‘and.’ */
 export type AccountCondition = {
-  id?: Maybe<Scalars['Int']>,
-  username?: Maybe<Scalars['String']>,
-  firstName?: Maybe<Scalars['String']>,
-  lastName?: Maybe<Scalars['String']>,
-  profilePhoto?: Maybe<Scalars['String']>,
-  heroPhoto?: Maybe<Scalars['String']>,
-  city?: Maybe<Scalars['String']>,
-  country?: Maybe<Scalars['String']>,
-  autoUpdateLocation?: Maybe<Scalars['Boolean']>,
-  autoUpdateVisited?: Maybe<Scalars['Boolean']>,
-  userStatus?: Maybe<Scalars['String']>,
-  createdAt?: Maybe<Scalars['BigInt']>,
-  updatedAt?: Maybe<Scalars['Datetime']>,
+  /** Checks for equality with the object’s `id` field. */
+  id?: Maybe<Scalars['Int']>;
+  /** Checks for equality with the object’s `username` field. */
+  username?: Maybe<Scalars['String']>;
+  /** Checks for equality with the object’s `firstName` field. */
+  firstName?: Maybe<Scalars['String']>;
+  /** Checks for equality with the object’s `lastName` field. */
+  lastName?: Maybe<Scalars['String']>;
+  /** Checks for equality with the object’s `profilePhoto` field. */
+  profilePhoto?: Maybe<Scalars['String']>;
+  /** Checks for equality with the object’s `heroPhoto` field. */
+  heroPhoto?: Maybe<Scalars['String']>;
+  /** Checks for equality with the object’s `city` field. */
+  city?: Maybe<Scalars['String']>;
+  /** Checks for equality with the object’s `country` field. */
+  country?: Maybe<Scalars['String']>;
+  /** Checks for equality with the object’s `autoUpdateLocation` field. */
+  autoUpdateLocation?: Maybe<Scalars['Boolean']>;
+  /** Checks for equality with the object’s `autoUpdateVisited` field. */
+  autoUpdateVisited?: Maybe<Scalars['Boolean']>;
+  /** Checks for equality with the object’s `userStatus` field. */
+  userStatus?: Maybe<Scalars['String']>;
+  /** Checks for equality with the object’s `createdAt` field. */
+  createdAt?: Maybe<Scalars['BigInt']>;
+  /** Checks for equality with the object’s `updatedAt` field. */
+  updatedAt?: Maybe<Scalars['Datetime']>;
 };
 
+/** A filter to be used against `Account` object types. All fields are combined with a logical ‘and.’ */
 export type AccountFilter = {
-  id?: Maybe<IntFilter>,
-  username?: Maybe<StringFilter>,
-  firstName?: Maybe<StringFilter>,
-  lastName?: Maybe<StringFilter>,
-  profilePhoto?: Maybe<StringFilter>,
-  heroPhoto?: Maybe<StringFilter>,
-  city?: Maybe<StringFilter>,
-  country?: Maybe<StringFilter>,
-  autoUpdateLocation?: Maybe<BooleanFilter>,
-  autoUpdateVisited?: Maybe<BooleanFilter>,
-  userStatus?: Maybe<StringFilter>,
-  createdAt?: Maybe<BigIntFilter>,
-  updatedAt?: Maybe<DatetimeFilter>,
-  and?: Maybe<Array<AccountFilter>>,
-  or?: Maybe<Array<AccountFilter>>,
-  not?: Maybe<AccountFilter>,
+  /** Filter by the object’s `id` field. */
+  id?: Maybe<IntFilter>;
+  /** Filter by the object’s `username` field. */
+  username?: Maybe<StringFilter>;
+  /** Filter by the object’s `firstName` field. */
+  firstName?: Maybe<StringFilter>;
+  /** Filter by the object’s `lastName` field. */
+  lastName?: Maybe<StringFilter>;
+  /** Filter by the object’s `profilePhoto` field. */
+  profilePhoto?: Maybe<StringFilter>;
+  /** Filter by the object’s `heroPhoto` field. */
+  heroPhoto?: Maybe<StringFilter>;
+  /** Filter by the object’s `city` field. */
+  city?: Maybe<StringFilter>;
+  /** Filter by the object’s `country` field. */
+  country?: Maybe<StringFilter>;
+  /** Filter by the object’s `autoUpdateLocation` field. */
+  autoUpdateLocation?: Maybe<BooleanFilter>;
+  /** Filter by the object’s `autoUpdateVisited` field. */
+  autoUpdateVisited?: Maybe<BooleanFilter>;
+  /** Filter by the object’s `userStatus` field. */
+  userStatus?: Maybe<StringFilter>;
+  /** Filter by the object’s `createdAt` field. */
+  createdAt?: Maybe<BigIntFilter>;
+  /** Filter by the object’s `updatedAt` field. */
+  updatedAt?: Maybe<DatetimeFilter>;
+  /** Checks for all expressions in this list. */
+  and?: Maybe<Array<AccountFilter>>;
+  /** Checks for any expressions in this list. */
+  or?: Maybe<Array<AccountFilter>>;
+  /** Negates the expression. */
+  not?: Maybe<AccountFilter>;
 };
 
+/** An input for mutations affecting `Account` */
 export type AccountInput = {
-  id?: Maybe<Scalars['Int']>,
-  username: Scalars['String'],
-  firstName?: Maybe<Scalars['String']>,
-  lastName?: Maybe<Scalars['String']>,
-  profilePhoto?: Maybe<Scalars['String']>,
-  heroPhoto?: Maybe<Scalars['String']>,
-  city?: Maybe<Scalars['String']>,
-  country?: Maybe<Scalars['String']>,
-  autoUpdateLocation?: Maybe<Scalars['Boolean']>,
-  autoUpdateVisited?: Maybe<Scalars['Boolean']>,
-  userStatus?: Maybe<Scalars['String']>,
-  createdAt?: Maybe<Scalars['BigInt']>,
-  updatedAt?: Maybe<Scalars['Datetime']>,
+  /** Primary id for account */
+  id?: Maybe<Scalars['Int']>;
+  /** username of account */
+  username: Scalars['String'];
+  /** First name of account */
+  firstName?: Maybe<Scalars['String']>;
+  /** Last name of account */
+  lastName?: Maybe<Scalars['String']>;
+  /** Profile photo of account */
+  profilePhoto?: Maybe<Scalars['String']>;
+  /** Hero photo of account */
+  heroPhoto?: Maybe<Scalars['String']>;
+  /** Current city */
+  city?: Maybe<Scalars['String']>;
+  /** Current country */
+  country?: Maybe<Scalars['String']>;
+  /** Toggle to update location on juncture creation */
+  autoUpdateLocation?: Maybe<Scalars['Boolean']>;
+  /** Toggle to update countries visited on juncture creation */
+  autoUpdateVisited?: Maybe<Scalars['Boolean']>;
+  /** Current status */
+  userStatus?: Maybe<Scalars['String']>;
+  /** When account created */
+  createdAt?: Maybe<Scalars['BigInt']>;
+  /** When account last updated */
+  updatedAt?: Maybe<Scalars['Datetime']>;
 };
 
+/** Represents an update to a `Account`. Fields that are set will be updated. */
 export type AccountPatch = {
-  id?: Maybe<Scalars['Int']>,
-  username?: Maybe<Scalars['String']>,
-  firstName?: Maybe<Scalars['String']>,
-  lastName?: Maybe<Scalars['String']>,
-  profilePhoto?: Maybe<Scalars['String']>,
-  heroPhoto?: Maybe<Scalars['String']>,
-  city?: Maybe<Scalars['String']>,
-  country?: Maybe<Scalars['String']>,
-  autoUpdateLocation?: Maybe<Scalars['Boolean']>,
-  autoUpdateVisited?: Maybe<Scalars['Boolean']>,
-  userStatus?: Maybe<Scalars['String']>,
-  createdAt?: Maybe<Scalars['BigInt']>,
-  updatedAt?: Maybe<Scalars['Datetime']>,
+  /** Primary id for account */
+  id?: Maybe<Scalars['Int']>;
+  /** username of account */
+  username?: Maybe<Scalars['String']>;
+  /** First name of account */
+  firstName?: Maybe<Scalars['String']>;
+  /** Last name of account */
+  lastName?: Maybe<Scalars['String']>;
+  /** Profile photo of account */
+  profilePhoto?: Maybe<Scalars['String']>;
+  /** Hero photo of account */
+  heroPhoto?: Maybe<Scalars['String']>;
+  /** Current city */
+  city?: Maybe<Scalars['String']>;
+  /** Current country */
+  country?: Maybe<Scalars['String']>;
+  /** Toggle to update location on juncture creation */
+  autoUpdateLocation?: Maybe<Scalars['Boolean']>;
+  /** Toggle to update countries visited on juncture creation */
+  autoUpdateVisited?: Maybe<Scalars['Boolean']>;
+  /** Current status */
+  userStatus?: Maybe<Scalars['String']>;
+  /** When account created */
+  createdAt?: Maybe<Scalars['BigInt']>;
+  /** When account last updated */
+  updatedAt?: Maybe<Scalars['Datetime']>;
 };
 
+/** A connection to a list of `Account` values. */
 export type AccountsConnection = {
-   __typename?: 'AccountsConnection',
-  nodes: Array<Maybe<Account>>,
-  edges: Array<AccountsEdge>,
-  pageInfo: PageInfo,
-  totalCount: Scalars['Int'],
+  __typename?: 'AccountsConnection';
+  /** A list of `Account` objects. */
+  nodes: Array<Maybe<Account>>;
+  /** A list of edges which contains the `Account` and cursor to aid in pagination. */
+  edges: Array<AccountsEdge>;
+  /** Information to aid in pagination. */
+  pageInfo: PageInfo;
+  /** The count of *all* `Account` you could get from the connection. */
+  totalCount: Scalars['Int'];
 };
 
 export type AccountSearchIndex = {
-   __typename?: 'AccountSearchIndex',
-  id?: Maybe<Scalars['Int']>,
-  username?: Maybe<Scalars['String']>,
-  firstName?: Maybe<Scalars['String']>,
-  lastName?: Maybe<Scalars['String']>,
-  profilePhoto?: Maybe<Scalars['String']>,
-  heroPhoto?: Maybe<Scalars['String']>,
-  city?: Maybe<Scalars['String']>,
-  country?: Maybe<Scalars['String']>,
-  autoUpdateLocation?: Maybe<Scalars['Boolean']>,
-  autoUpdateVisited?: Maybe<Scalars['Boolean']>,
-  userStatus?: Maybe<Scalars['String']>,
-  createdAt?: Maybe<Scalars['BigInt']>,
-  updatedAt?: Maybe<Scalars['Datetime']>,
-  document?: Maybe<Scalars['String']>,
+  __typename?: 'AccountSearchIndex';
+  id?: Maybe<Scalars['Int']>;
+  username?: Maybe<Scalars['String']>;
+  firstName?: Maybe<Scalars['String']>;
+  lastName?: Maybe<Scalars['String']>;
+  profilePhoto?: Maybe<Scalars['String']>;
+  heroPhoto?: Maybe<Scalars['String']>;
+  city?: Maybe<Scalars['String']>;
+  country?: Maybe<Scalars['String']>;
+  autoUpdateLocation?: Maybe<Scalars['Boolean']>;
+  autoUpdateVisited?: Maybe<Scalars['Boolean']>;
+  userStatus?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['BigInt']>;
+  updatedAt?: Maybe<Scalars['Datetime']>;
+  document?: Maybe<Scalars['String']>;
 };
 
+/**
+ * A condition to be used against `AccountSearchIndex` object types. All fields are
+ * tested for equality and combined with a logical ‘and.’
+ */
 export type AccountSearchIndexCondition = {
-  id?: Maybe<Scalars['Int']>,
-  username?: Maybe<Scalars['String']>,
-  firstName?: Maybe<Scalars['String']>,
-  lastName?: Maybe<Scalars['String']>,
-  profilePhoto?: Maybe<Scalars['String']>,
-  heroPhoto?: Maybe<Scalars['String']>,
-  city?: Maybe<Scalars['String']>,
-  country?: Maybe<Scalars['String']>,
-  autoUpdateLocation?: Maybe<Scalars['Boolean']>,
-  autoUpdateVisited?: Maybe<Scalars['Boolean']>,
-  userStatus?: Maybe<Scalars['String']>,
-  createdAt?: Maybe<Scalars['BigInt']>,
-  updatedAt?: Maybe<Scalars['Datetime']>,
-  document?: Maybe<Scalars['String']>,
+  /** Checks for equality with the object’s `id` field. */
+  id?: Maybe<Scalars['Int']>;
+  /** Checks for equality with the object’s `username` field. */
+  username?: Maybe<Scalars['String']>;
+  /** Checks for equality with the object’s `firstName` field. */
+  firstName?: Maybe<Scalars['String']>;
+  /** Checks for equality with the object’s `lastName` field. */
+  lastName?: Maybe<Scalars['String']>;
+  /** Checks for equality with the object’s `profilePhoto` field. */
+  profilePhoto?: Maybe<Scalars['String']>;
+  /** Checks for equality with the object’s `heroPhoto` field. */
+  heroPhoto?: Maybe<Scalars['String']>;
+  /** Checks for equality with the object’s `city` field. */
+  city?: Maybe<Scalars['String']>;
+  /** Checks for equality with the object’s `country` field. */
+  country?: Maybe<Scalars['String']>;
+  /** Checks for equality with the object’s `autoUpdateLocation` field. */
+  autoUpdateLocation?: Maybe<Scalars['Boolean']>;
+  /** Checks for equality with the object’s `autoUpdateVisited` field. */
+  autoUpdateVisited?: Maybe<Scalars['Boolean']>;
+  /** Checks for equality with the object’s `userStatus` field. */
+  userStatus?: Maybe<Scalars['String']>;
+  /** Checks for equality with the object’s `createdAt` field. */
+  createdAt?: Maybe<Scalars['BigInt']>;
+  /** Checks for equality with the object’s `updatedAt` field. */
+  updatedAt?: Maybe<Scalars['Datetime']>;
+  /** Checks for equality with the object’s `document` field. */
+  document?: Maybe<Scalars['String']>;
 };
 
+/** A filter to be used against `AccountSearchIndex` object types. All fields are combined with a logical ‘and.’ */
 export type AccountSearchIndexFilter = {
-  id?: Maybe<IntFilter>,
-  username?: Maybe<StringFilter>,
-  firstName?: Maybe<StringFilter>,
-  lastName?: Maybe<StringFilter>,
-  profilePhoto?: Maybe<StringFilter>,
-  heroPhoto?: Maybe<StringFilter>,
-  city?: Maybe<StringFilter>,
-  country?: Maybe<StringFilter>,
-  autoUpdateLocation?: Maybe<BooleanFilter>,
-  autoUpdateVisited?: Maybe<BooleanFilter>,
-  userStatus?: Maybe<StringFilter>,
-  createdAt?: Maybe<BigIntFilter>,
-  updatedAt?: Maybe<DatetimeFilter>,
-  and?: Maybe<Array<AccountSearchIndexFilter>>,
-  or?: Maybe<Array<AccountSearchIndexFilter>>,
-  not?: Maybe<AccountSearchIndexFilter>,
+  /** Filter by the object’s `id` field. */
+  id?: Maybe<IntFilter>;
+  /** Filter by the object’s `username` field. */
+  username?: Maybe<StringFilter>;
+  /** Filter by the object’s `firstName` field. */
+  firstName?: Maybe<StringFilter>;
+  /** Filter by the object’s `lastName` field. */
+  lastName?: Maybe<StringFilter>;
+  /** Filter by the object’s `profilePhoto` field. */
+  profilePhoto?: Maybe<StringFilter>;
+  /** Filter by the object’s `heroPhoto` field. */
+  heroPhoto?: Maybe<StringFilter>;
+  /** Filter by the object’s `city` field. */
+  city?: Maybe<StringFilter>;
+  /** Filter by the object’s `country` field. */
+  country?: Maybe<StringFilter>;
+  /** Filter by the object’s `autoUpdateLocation` field. */
+  autoUpdateLocation?: Maybe<BooleanFilter>;
+  /** Filter by the object’s `autoUpdateVisited` field. */
+  autoUpdateVisited?: Maybe<BooleanFilter>;
+  /** Filter by the object’s `userStatus` field. */
+  userStatus?: Maybe<StringFilter>;
+  /** Filter by the object’s `createdAt` field. */
+  createdAt?: Maybe<BigIntFilter>;
+  /** Filter by the object’s `updatedAt` field. */
+  updatedAt?: Maybe<DatetimeFilter>;
+  /** Checks for all expressions in this list. */
+  and?: Maybe<Array<AccountSearchIndexFilter>>;
+  /** Checks for any expressions in this list. */
+  or?: Maybe<Array<AccountSearchIndexFilter>>;
+  /** Negates the expression. */
+  not?: Maybe<AccountSearchIndexFilter>;
 };
 
+/** A connection to a list of `AccountSearchIndex` values. */
 export type AccountSearchIndicesConnection = {
-   __typename?: 'AccountSearchIndicesConnection',
-  nodes: Array<Maybe<AccountSearchIndex>>,
-  edges: Array<AccountSearchIndicesEdge>,
-  pageInfo: PageInfo,
-  totalCount: Scalars['Int'],
+  __typename?: 'AccountSearchIndicesConnection';
+  /** A list of `AccountSearchIndex` objects. */
+  nodes: Array<Maybe<AccountSearchIndex>>;
+  /** A list of edges which contains the `AccountSearchIndex` and cursor to aid in pagination. */
+  edges: Array<AccountSearchIndicesEdge>;
+  /** Information to aid in pagination. */
+  pageInfo: PageInfo;
+  /** The count of *all* `AccountSearchIndex` you could get from the connection. */
+  totalCount: Scalars['Int'];
 };
 
+/** A `AccountSearchIndex` edge in the connection. */
 export type AccountSearchIndicesEdge = {
-   __typename?: 'AccountSearchIndicesEdge',
-  cursor?: Maybe<Scalars['Cursor']>,
-  node?: Maybe<AccountSearchIndex>,
+  __typename?: 'AccountSearchIndicesEdge';
+  /** A cursor for use in pagination. */
+  cursor?: Maybe<Scalars['Cursor']>;
+  /** The `AccountSearchIndex` at the end of the edge. */
+  node?: Maybe<AccountSearchIndex>;
 };
 
+/** Methods to use when ordering `AccountSearchIndex`. */
 export enum AccountSearchIndicesOrderBy {
   Natural = 'NATURAL',
   IdAsc = 'ID_ASC',
@@ -347,12 +505,16 @@ export enum AccountSearchIndicesOrderBy {
   DocumentDesc = 'DOCUMENT_DESC'
 }
 
+/** A `Account` edge in the connection. */
 export type AccountsEdge = {
-   __typename?: 'AccountsEdge',
-  cursor?: Maybe<Scalars['Cursor']>,
-  node?: Maybe<Account>,
+  __typename?: 'AccountsEdge';
+  /** A cursor for use in pagination. */
+  cursor?: Maybe<Scalars['Cursor']>;
+  /** The `Account` at the end of the edge. */
+  node?: Maybe<Account>;
 };
 
+/** Methods to use when ordering `Account`. */
 export enum AccountsOrderBy {
   Natural = 'NATURAL',
   IdAsc = 'ID_ASC',
@@ -385,56 +547,93 @@ export enum AccountsOrderBy {
   PrimaryKeyDesc = 'PRIMARY_KEY_DESC'
 }
 
+/** Private information about an admin user’s account. */
 export type AdminAccount = Node & {
-   __typename?: 'AdminAccount',
-  nodeId: Scalars['ID'],
-  accountId: Scalars['Int'],
-  email: Scalars['String'],
-  passwordHash: Scalars['String'],
-  accountByAccountId?: Maybe<Account>,
+  __typename?: 'AdminAccount';
+  /** A globally unique identifier. Can be used in various places throughout the system to identify this single value. */
+  nodeId: Scalars['ID'];
+  /** The id of the user associated with this admin account. */
+  accountId: Scalars['Int'];
+  /** The email address of the admin account. */
+  email: Scalars['String'];
+  /** An opaque hash of the admin account’s password. */
+  passwordHash: Scalars['String'];
+  /** Reads a single `Account` that is related to this `AdminAccount`. */
+  accountByAccountId?: Maybe<Account>;
 };
 
+/**
+ * A condition to be used against `AdminAccount` object types. All fields are
+ * tested for equality and combined with a logical ‘and.’
+ */
 export type AdminAccountCondition = {
-  accountId?: Maybe<Scalars['Int']>,
-  email?: Maybe<Scalars['String']>,
-  passwordHash?: Maybe<Scalars['String']>,
+  /** Checks for equality with the object’s `accountId` field. */
+  accountId?: Maybe<Scalars['Int']>;
+  /** Checks for equality with the object’s `email` field. */
+  email?: Maybe<Scalars['String']>;
+  /** Checks for equality with the object’s `passwordHash` field. */
+  passwordHash?: Maybe<Scalars['String']>;
 };
 
+/** A filter to be used against `AdminAccount` object types. All fields are combined with a logical ‘and.’ */
 export type AdminAccountFilter = {
-  accountId?: Maybe<IntFilter>,
-  email?: Maybe<StringFilter>,
-  passwordHash?: Maybe<StringFilter>,
-  and?: Maybe<Array<AdminAccountFilter>>,
-  or?: Maybe<Array<AdminAccountFilter>>,
-  not?: Maybe<AdminAccountFilter>,
+  /** Filter by the object’s `accountId` field. */
+  accountId?: Maybe<IntFilter>;
+  /** Filter by the object’s `email` field. */
+  email?: Maybe<StringFilter>;
+  /** Filter by the object’s `passwordHash` field. */
+  passwordHash?: Maybe<StringFilter>;
+  /** Checks for all expressions in this list. */
+  and?: Maybe<Array<AdminAccountFilter>>;
+  /** Checks for any expressions in this list. */
+  or?: Maybe<Array<AdminAccountFilter>>;
+  /** Negates the expression. */
+  not?: Maybe<AdminAccountFilter>;
 };
 
+/** An input for mutations affecting `AdminAccount` */
 export type AdminAccountInput = {
-  accountId: Scalars['Int'],
-  email: Scalars['String'],
-  passwordHash: Scalars['String'],
+  /** The id of the user associated with this admin account. */
+  accountId: Scalars['Int'];
+  /** The email address of the admin account. */
+  email: Scalars['String'];
+  /** An opaque hash of the admin account’s password. */
+  passwordHash: Scalars['String'];
 };
 
+/** Represents an update to a `AdminAccount`. Fields that are set will be updated. */
 export type AdminAccountPatch = {
-  accountId?: Maybe<Scalars['Int']>,
-  email?: Maybe<Scalars['String']>,
-  passwordHash?: Maybe<Scalars['String']>,
+  /** The id of the user associated with this admin account. */
+  accountId?: Maybe<Scalars['Int']>;
+  /** The email address of the admin account. */
+  email?: Maybe<Scalars['String']>;
+  /** An opaque hash of the admin account’s password. */
+  passwordHash?: Maybe<Scalars['String']>;
 };
 
+/** A connection to a list of `AdminAccount` values. */
 export type AdminAccountsConnection = {
-   __typename?: 'AdminAccountsConnection',
-  nodes: Array<Maybe<AdminAccount>>,
-  edges: Array<AdminAccountsEdge>,
-  pageInfo: PageInfo,
-  totalCount: Scalars['Int'],
+  __typename?: 'AdminAccountsConnection';
+  /** A list of `AdminAccount` objects. */
+  nodes: Array<Maybe<AdminAccount>>;
+  /** A list of edges which contains the `AdminAccount` and cursor to aid in pagination. */
+  edges: Array<AdminAccountsEdge>;
+  /** Information to aid in pagination. */
+  pageInfo: PageInfo;
+  /** The count of *all* `AdminAccount` you could get from the connection. */
+  totalCount: Scalars['Int'];
 };
 
+/** A `AdminAccount` edge in the connection. */
 export type AdminAccountsEdge = {
-   __typename?: 'AdminAccountsEdge',
-  cursor?: Maybe<Scalars['Cursor']>,
-  node?: Maybe<AdminAccount>,
+  __typename?: 'AdminAccountsEdge';
+  /** A cursor for use in pagination. */
+  cursor?: Maybe<Scalars['Cursor']>;
+  /** The `AdminAccount` at the end of the edge. */
+  node?: Maybe<AdminAccount>;
 };
 
+/** Methods to use when ordering `AdminAccount`. */
 export enum AdminAccountsOrderBy {
   Natural = 'NATURAL',
   AccountIdAsc = 'ACCOUNT_ID_ASC',
@@ -447,164 +646,263 @@ export enum AdminAccountsOrderBy {
   PrimaryKeyDesc = 'PRIMARY_KEY_DESC'
 }
 
+/** All input for the `authenticateAdminAccount` mutation. */
 export type AuthenticateAdminAccountInput = {
-  clientMutationId?: Maybe<Scalars['String']>,
-  email: Scalars['String'],
-  password: Scalars['String'],
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: Maybe<Scalars['String']>;
+  email: Scalars['String'];
+  password: Scalars['String'];
 };
 
+/** The output of our `authenticateAdminAccount` mutation. */
 export type AuthenticateAdminAccountPayload = {
-   __typename?: 'AuthenticateAdminAccountPayload',
-  clientMutationId?: Maybe<Scalars['String']>,
-  jwtToken?: Maybe<Scalars['JwtToken']>,
-  query?: Maybe<Query>,
+  __typename?: 'AuthenticateAdminAccountPayload';
+  /**
+   * The exact same `clientMutationId` that was provided in the mutation input,
+   * unchanged and unused. May be used by a client to track mutations.
+   */
+  clientMutationId?: Maybe<Scalars['String']>;
+  jwtToken?: Maybe<Scalars['JwtToken']>;
+  /** Our root query field type. Allows us to run any query from our mutation payload. */
+  query?: Maybe<Query>;
 };
 
+/** All input for the `authenticateUserAccount` mutation. */
 export type AuthenticateUserAccountInput = {
-  clientMutationId?: Maybe<Scalars['String']>,
-  email: Scalars['String'],
-  password: Scalars['String'],
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: Maybe<Scalars['String']>;
+  email: Scalars['String'];
+  password: Scalars['String'];
 };
 
+/** The output of our `authenticateUserAccount` mutation. */
 export type AuthenticateUserAccountPayload = {
-   __typename?: 'AuthenticateUserAccountPayload',
-  clientMutationId?: Maybe<Scalars['String']>,
-  jwtToken?: Maybe<Scalars['JwtToken']>,
-  query?: Maybe<Query>,
+  __typename?: 'AuthenticateUserAccountPayload';
+  /**
+   * The exact same `clientMutationId` that was provided in the mutation input,
+   * unchanged and unused. May be used by a client to track mutations.
+   */
+  clientMutationId?: Maybe<Scalars['String']>;
+  jwtToken?: Maybe<Scalars['JwtToken']>;
+  /** Our root query field type. Allows us to run any query from our mutation payload. */
+  query?: Maybe<Query>;
 };
 
 
+/** A filter to be used against BigFloat fields. All fields are combined with a logical ‘and.’ */
 export type BigFloatFilter = {
-  isNull?: Maybe<Scalars['Boolean']>,
-  equalTo?: Maybe<Scalars['BigFloat']>,
-  notEqualTo?: Maybe<Scalars['BigFloat']>,
-  distinctFrom?: Maybe<Scalars['BigFloat']>,
-  notDistinctFrom?: Maybe<Scalars['BigFloat']>,
-  in?: Maybe<Array<Scalars['BigFloat']>>,
-  notIn?: Maybe<Array<Scalars['BigFloat']>>,
-  lessThan?: Maybe<Scalars['BigFloat']>,
-  lessThanOrEqualTo?: Maybe<Scalars['BigFloat']>,
-  greaterThan?: Maybe<Scalars['BigFloat']>,
-  greaterThanOrEqualTo?: Maybe<Scalars['BigFloat']>,
+  /** Is null (if `true` is specified) or is not null (if `false` is specified). */
+  isNull?: Maybe<Scalars['Boolean']>;
+  /** Equal to the specified value. */
+  equalTo?: Maybe<Scalars['BigFloat']>;
+  /** Not equal to the specified value. */
+  notEqualTo?: Maybe<Scalars['BigFloat']>;
+  /** Not equal to the specified value, treating null like an ordinary value. */
+  distinctFrom?: Maybe<Scalars['BigFloat']>;
+  /** Equal to the specified value, treating null like an ordinary value. */
+  notDistinctFrom?: Maybe<Scalars['BigFloat']>;
+  /** Included in the specified list. */
+  in?: Maybe<Array<Scalars['BigFloat']>>;
+  /** Not included in the specified list. */
+  notIn?: Maybe<Array<Scalars['BigFloat']>>;
+  /** Less than the specified value. */
+  lessThan?: Maybe<Scalars['BigFloat']>;
+  /** Less than or equal to the specified value. */
+  lessThanOrEqualTo?: Maybe<Scalars['BigFloat']>;
+  /** Greater than the specified value. */
+  greaterThan?: Maybe<Scalars['BigFloat']>;
+  /** Greater than or equal to the specified value. */
+  greaterThanOrEqualTo?: Maybe<Scalars['BigFloat']>;
 };
 
 
+/** A filter to be used against BigInt fields. All fields are combined with a logical ‘and.’ */
 export type BigIntFilter = {
-  isNull?: Maybe<Scalars['Boolean']>,
-  equalTo?: Maybe<Scalars['BigInt']>,
-  notEqualTo?: Maybe<Scalars['BigInt']>,
-  distinctFrom?: Maybe<Scalars['BigInt']>,
-  notDistinctFrom?: Maybe<Scalars['BigInt']>,
-  in?: Maybe<Array<Scalars['BigInt']>>,
-  notIn?: Maybe<Array<Scalars['BigInt']>>,
-  lessThan?: Maybe<Scalars['BigInt']>,
-  lessThanOrEqualTo?: Maybe<Scalars['BigInt']>,
-  greaterThan?: Maybe<Scalars['BigInt']>,
-  greaterThanOrEqualTo?: Maybe<Scalars['BigInt']>,
+  /** Is null (if `true` is specified) or is not null (if `false` is specified). */
+  isNull?: Maybe<Scalars['Boolean']>;
+  /** Equal to the specified value. */
+  equalTo?: Maybe<Scalars['BigInt']>;
+  /** Not equal to the specified value. */
+  notEqualTo?: Maybe<Scalars['BigInt']>;
+  /** Not equal to the specified value, treating null like an ordinary value. */
+  distinctFrom?: Maybe<Scalars['BigInt']>;
+  /** Equal to the specified value, treating null like an ordinary value. */
+  notDistinctFrom?: Maybe<Scalars['BigInt']>;
+  /** Included in the specified list. */
+  in?: Maybe<Array<Scalars['BigInt']>>;
+  /** Not included in the specified list. */
+  notIn?: Maybe<Array<Scalars['BigInt']>>;
+  /** Less than the specified value. */
+  lessThan?: Maybe<Scalars['BigInt']>;
+  /** Less than or equal to the specified value. */
+  lessThanOrEqualTo?: Maybe<Scalars['BigInt']>;
+  /** Greater than the specified value. */
+  greaterThan?: Maybe<Scalars['BigInt']>;
+  /** Greater than or equal to the specified value. */
+  greaterThanOrEqualTo?: Maybe<Scalars['BigInt']>;
 };
 
+/** A filter to be used against Boolean fields. All fields are combined with a logical ‘and.’ */
 export type BooleanFilter = {
-  isNull?: Maybe<Scalars['Boolean']>,
-  equalTo?: Maybe<Scalars['Boolean']>,
-  notEqualTo?: Maybe<Scalars['Boolean']>,
-  distinctFrom?: Maybe<Scalars['Boolean']>,
-  notDistinctFrom?: Maybe<Scalars['Boolean']>,
-  in?: Maybe<Array<Scalars['Boolean']>>,
-  notIn?: Maybe<Array<Scalars['Boolean']>>,
-  lessThan?: Maybe<Scalars['Boolean']>,
-  lessThanOrEqualTo?: Maybe<Scalars['Boolean']>,
-  greaterThan?: Maybe<Scalars['Boolean']>,
-  greaterThanOrEqualTo?: Maybe<Scalars['Boolean']>,
+  /** Is null (if `true` is specified) or is not null (if `false` is specified). */
+  isNull?: Maybe<Scalars['Boolean']>;
+  /** Equal to the specified value. */
+  equalTo?: Maybe<Scalars['Boolean']>;
+  /** Not equal to the specified value. */
+  notEqualTo?: Maybe<Scalars['Boolean']>;
+  /** Not equal to the specified value, treating null like an ordinary value. */
+  distinctFrom?: Maybe<Scalars['Boolean']>;
+  /** Equal to the specified value, treating null like an ordinary value. */
+  notDistinctFrom?: Maybe<Scalars['Boolean']>;
+  /** Included in the specified list. */
+  in?: Maybe<Array<Scalars['Boolean']>>;
+  /** Not included in the specified list. */
+  notIn?: Maybe<Array<Scalars['Boolean']>>;
+  /** Less than the specified value. */
+  lessThan?: Maybe<Scalars['Boolean']>;
+  /** Less than or equal to the specified value. */
+  lessThanOrEqualTo?: Maybe<Scalars['Boolean']>;
+  /** Greater than the specified value. */
+  greaterThan?: Maybe<Scalars['Boolean']>;
+  /** Greater than or equal to the specified value. */
+  greaterThanOrEqualTo?: Maybe<Scalars['Boolean']>;
 };
 
 export type Config = Node & {
-   __typename?: 'Config',
-  nodeId: Scalars['ID'],
-  id: Scalars['Int'],
-  primaryColor: Scalars['String'],
-  secondaryColor: Scalars['String'],
-  tagline: Scalars['String'],
-  heroBanner: Scalars['String'],
-  featuredStory1?: Maybe<Scalars['Int']>,
-  featuredStory2?: Maybe<Scalars['Int']>,
-  featuredStory3?: Maybe<Scalars['Int']>,
-  featuredTrip1?: Maybe<Scalars['Int']>,
-  updatedAt?: Maybe<Scalars['Datetime']>,
-  postByFeaturedStory1?: Maybe<Post>,
-  postByFeaturedStory2?: Maybe<Post>,
-  postByFeaturedStory3?: Maybe<Post>,
-  tripByFeaturedTrip1?: Maybe<Trip>,
+  __typename?: 'Config';
+  /** A globally unique identifier. Can be used in various places throughout the system to identify this single value. */
+  nodeId: Scalars['ID'];
+  id: Scalars['Int'];
+  primaryColor: Scalars['String'];
+  secondaryColor: Scalars['String'];
+  tagline: Scalars['String'];
+  heroBanner: Scalars['String'];
+  featuredStory1?: Maybe<Scalars['Int']>;
+  featuredStory2?: Maybe<Scalars['Int']>;
+  featuredStory3?: Maybe<Scalars['Int']>;
+  featuredTrip1?: Maybe<Scalars['Int']>;
+  updatedAt?: Maybe<Scalars['Datetime']>;
+  /** Reads a single `Post` that is related to this `Config`. */
+  postByFeaturedStory1?: Maybe<Post>;
+  /** Reads a single `Post` that is related to this `Config`. */
+  postByFeaturedStory2?: Maybe<Post>;
+  /** Reads a single `Post` that is related to this `Config`. */
+  postByFeaturedStory3?: Maybe<Post>;
+  /** Reads a single `Trip` that is related to this `Config`. */
+  tripByFeaturedTrip1?: Maybe<Trip>;
 };
 
+/** A condition to be used against `Config` object types. All fields are tested for equality and combined with a logical ‘and.’ */
 export type ConfigCondition = {
-  id?: Maybe<Scalars['Int']>,
-  primaryColor?: Maybe<Scalars['String']>,
-  secondaryColor?: Maybe<Scalars['String']>,
-  tagline?: Maybe<Scalars['String']>,
-  heroBanner?: Maybe<Scalars['String']>,
-  featuredStory1?: Maybe<Scalars['Int']>,
-  featuredStory2?: Maybe<Scalars['Int']>,
-  featuredStory3?: Maybe<Scalars['Int']>,
-  featuredTrip1?: Maybe<Scalars['Int']>,
-  updatedAt?: Maybe<Scalars['Datetime']>,
+  /** Checks for equality with the object’s `id` field. */
+  id?: Maybe<Scalars['Int']>;
+  /** Checks for equality with the object’s `primaryColor` field. */
+  primaryColor?: Maybe<Scalars['String']>;
+  /** Checks for equality with the object’s `secondaryColor` field. */
+  secondaryColor?: Maybe<Scalars['String']>;
+  /** Checks for equality with the object’s `tagline` field. */
+  tagline?: Maybe<Scalars['String']>;
+  /** Checks for equality with the object’s `heroBanner` field. */
+  heroBanner?: Maybe<Scalars['String']>;
+  /** Checks for equality with the object’s `featuredStory1` field. */
+  featuredStory1?: Maybe<Scalars['Int']>;
+  /** Checks for equality with the object’s `featuredStory2` field. */
+  featuredStory2?: Maybe<Scalars['Int']>;
+  /** Checks for equality with the object’s `featuredStory3` field. */
+  featuredStory3?: Maybe<Scalars['Int']>;
+  /** Checks for equality with the object’s `featuredTrip1` field. */
+  featuredTrip1?: Maybe<Scalars['Int']>;
+  /** Checks for equality with the object’s `updatedAt` field. */
+  updatedAt?: Maybe<Scalars['Datetime']>;
 };
 
+/** A filter to be used against `Config` object types. All fields are combined with a logical ‘and.’ */
 export type ConfigFilter = {
-  id?: Maybe<IntFilter>,
-  primaryColor?: Maybe<StringFilter>,
-  secondaryColor?: Maybe<StringFilter>,
-  tagline?: Maybe<StringFilter>,
-  heroBanner?: Maybe<StringFilter>,
-  featuredStory1?: Maybe<IntFilter>,
-  featuredStory2?: Maybe<IntFilter>,
-  featuredStory3?: Maybe<IntFilter>,
-  featuredTrip1?: Maybe<IntFilter>,
-  updatedAt?: Maybe<DatetimeFilter>,
-  and?: Maybe<Array<ConfigFilter>>,
-  or?: Maybe<Array<ConfigFilter>>,
-  not?: Maybe<ConfigFilter>,
+  /** Filter by the object’s `id` field. */
+  id?: Maybe<IntFilter>;
+  /** Filter by the object’s `primaryColor` field. */
+  primaryColor?: Maybe<StringFilter>;
+  /** Filter by the object’s `secondaryColor` field. */
+  secondaryColor?: Maybe<StringFilter>;
+  /** Filter by the object’s `tagline` field. */
+  tagline?: Maybe<StringFilter>;
+  /** Filter by the object’s `heroBanner` field. */
+  heroBanner?: Maybe<StringFilter>;
+  /** Filter by the object’s `featuredStory1` field. */
+  featuredStory1?: Maybe<IntFilter>;
+  /** Filter by the object’s `featuredStory2` field. */
+  featuredStory2?: Maybe<IntFilter>;
+  /** Filter by the object’s `featuredStory3` field. */
+  featuredStory3?: Maybe<IntFilter>;
+  /** Filter by the object’s `featuredTrip1` field. */
+  featuredTrip1?: Maybe<IntFilter>;
+  /** Filter by the object’s `updatedAt` field. */
+  updatedAt?: Maybe<DatetimeFilter>;
+  /** Checks for all expressions in this list. */
+  and?: Maybe<Array<ConfigFilter>>;
+  /** Checks for any expressions in this list. */
+  or?: Maybe<Array<ConfigFilter>>;
+  /** Negates the expression. */
+  not?: Maybe<ConfigFilter>;
 };
 
+/** An input for mutations affecting `Config` */
 export type ConfigInput = {
-  id?: Maybe<Scalars['Int']>,
-  primaryColor: Scalars['String'],
-  secondaryColor: Scalars['String'],
-  tagline: Scalars['String'],
-  heroBanner: Scalars['String'],
-  featuredStory1?: Maybe<Scalars['Int']>,
-  featuredStory2?: Maybe<Scalars['Int']>,
-  featuredStory3?: Maybe<Scalars['Int']>,
-  featuredTrip1?: Maybe<Scalars['Int']>,
-  updatedAt?: Maybe<Scalars['Datetime']>,
+  id?: Maybe<Scalars['Int']>;
+  primaryColor: Scalars['String'];
+  secondaryColor: Scalars['String'];
+  tagline: Scalars['String'];
+  heroBanner: Scalars['String'];
+  featuredStory1?: Maybe<Scalars['Int']>;
+  featuredStory2?: Maybe<Scalars['Int']>;
+  featuredStory3?: Maybe<Scalars['Int']>;
+  featuredTrip1?: Maybe<Scalars['Int']>;
+  updatedAt?: Maybe<Scalars['Datetime']>;
 };
 
+/** Represents an update to a `Config`. Fields that are set will be updated. */
 export type ConfigPatch = {
-  id?: Maybe<Scalars['Int']>,
-  primaryColor?: Maybe<Scalars['String']>,
-  secondaryColor?: Maybe<Scalars['String']>,
-  tagline?: Maybe<Scalars['String']>,
-  heroBanner?: Maybe<Scalars['String']>,
-  featuredStory1?: Maybe<Scalars['Int']>,
-  featuredStory2?: Maybe<Scalars['Int']>,
-  featuredStory3?: Maybe<Scalars['Int']>,
-  featuredTrip1?: Maybe<Scalars['Int']>,
-  updatedAt?: Maybe<Scalars['Datetime']>,
+  id?: Maybe<Scalars['Int']>;
+  primaryColor?: Maybe<Scalars['String']>;
+  secondaryColor?: Maybe<Scalars['String']>;
+  tagline?: Maybe<Scalars['String']>;
+  heroBanner?: Maybe<Scalars['String']>;
+  featuredStory1?: Maybe<Scalars['Int']>;
+  featuredStory2?: Maybe<Scalars['Int']>;
+  featuredStory3?: Maybe<Scalars['Int']>;
+  featuredTrip1?: Maybe<Scalars['Int']>;
+  updatedAt?: Maybe<Scalars['Datetime']>;
 };
 
+/** A connection to a list of `Config` values. */
 export type ConfigsConnection = {
-   __typename?: 'ConfigsConnection',
-  nodes: Array<Maybe<Config>>,
-  edges: Array<ConfigsEdge>,
-  pageInfo: PageInfo,
-  totalCount: Scalars['Int'],
+  __typename?: 'ConfigsConnection';
+  /** A list of `Config` objects. */
+  nodes: Array<Maybe<Config>>;
+  /** A list of edges which contains the `Config` and cursor to aid in pagination. */
+  edges: Array<ConfigsEdge>;
+  /** Information to aid in pagination. */
+  pageInfo: PageInfo;
+  /** The count of *all* `Config` you could get from the connection. */
+  totalCount: Scalars['Int'];
 };
 
+/** A `Config` edge in the connection. */
 export type ConfigsEdge = {
-   __typename?: 'ConfigsEdge',
-  cursor?: Maybe<Scalars['Cursor']>,
-  node?: Maybe<Config>,
+  __typename?: 'ConfigsEdge';
+  /** A cursor for use in pagination. */
+  cursor?: Maybe<Scalars['Cursor']>;
+  /** The `Config` at the end of the edge. */
+  node?: Maybe<Config>;
 };
 
+/** Methods to use when ordering `Config`. */
 export enum ConfigsOrderBy {
   Natural = 'NATURAL',
   IdAsc = 'ID_ASC',
@@ -631,71 +929,120 @@ export enum ConfigsOrderBy {
   PrimaryKeyDesc = 'PRIMARY_KEY_DESC'
 }
 
+/** Table with POMB juncture coordinates */
 export type Coord = Node & {
-   __typename?: 'Coord',
-  nodeId: Scalars['ID'],
-  id: Scalars['Int'],
-  junctureId: Scalars['Int'],
-  lat: Scalars['BigFloat'],
-  lon: Scalars['BigFloat'],
-  elevation?: Maybe<Scalars['BigFloat']>,
-  coordTime?: Maybe<Scalars['Datetime']>,
-  junctureByJunctureId?: Maybe<Juncture>,
+  __typename?: 'Coord';
+  /** A globally unique identifier. Can be used in various places throughout the system to identify this single value. */
+  nodeId: Scalars['ID'];
+  /** Primary id for coordinates */
+  id: Scalars['Int'];
+  /** Foreign key to referred juncture */
+  junctureId: Scalars['Int'];
+  /** Latitude of coords */
+  lat: Scalars['BigFloat'];
+  /** Longitude of coords */
+  lon: Scalars['BigFloat'];
+  /** Elevation of coords */
+  elevation?: Maybe<Scalars['BigFloat']>;
+  /** Timestamp of coords */
+  coordTime?: Maybe<Scalars['Datetime']>;
+  /** Reads a single `Juncture` that is related to this `Coord`. */
+  junctureByJunctureId?: Maybe<Juncture>;
 };
 
+/** A condition to be used against `Coord` object types. All fields are tested for equality and combined with a logical ‘and.’ */
 export type CoordCondition = {
-  id?: Maybe<Scalars['Int']>,
-  junctureId?: Maybe<Scalars['Int']>,
-  lat?: Maybe<Scalars['BigFloat']>,
-  lon?: Maybe<Scalars['BigFloat']>,
-  elevation?: Maybe<Scalars['BigFloat']>,
-  coordTime?: Maybe<Scalars['Datetime']>,
+  /** Checks for equality with the object’s `id` field. */
+  id?: Maybe<Scalars['Int']>;
+  /** Checks for equality with the object’s `junctureId` field. */
+  junctureId?: Maybe<Scalars['Int']>;
+  /** Checks for equality with the object’s `lat` field. */
+  lat?: Maybe<Scalars['BigFloat']>;
+  /** Checks for equality with the object’s `lon` field. */
+  lon?: Maybe<Scalars['BigFloat']>;
+  /** Checks for equality with the object’s `elevation` field. */
+  elevation?: Maybe<Scalars['BigFloat']>;
+  /** Checks for equality with the object’s `coordTime` field. */
+  coordTime?: Maybe<Scalars['Datetime']>;
 };
 
+/** A filter to be used against `Coord` object types. All fields are combined with a logical ‘and.’ */
 export type CoordFilter = {
-  id?: Maybe<IntFilter>,
-  junctureId?: Maybe<IntFilter>,
-  lat?: Maybe<BigFloatFilter>,
-  lon?: Maybe<BigFloatFilter>,
-  elevation?: Maybe<BigFloatFilter>,
-  coordTime?: Maybe<DatetimeFilter>,
-  and?: Maybe<Array<CoordFilter>>,
-  or?: Maybe<Array<CoordFilter>>,
-  not?: Maybe<CoordFilter>,
+  /** Filter by the object’s `id` field. */
+  id?: Maybe<IntFilter>;
+  /** Filter by the object’s `junctureId` field. */
+  junctureId?: Maybe<IntFilter>;
+  /** Filter by the object’s `lat` field. */
+  lat?: Maybe<BigFloatFilter>;
+  /** Filter by the object’s `lon` field. */
+  lon?: Maybe<BigFloatFilter>;
+  /** Filter by the object’s `elevation` field. */
+  elevation?: Maybe<BigFloatFilter>;
+  /** Filter by the object’s `coordTime` field. */
+  coordTime?: Maybe<DatetimeFilter>;
+  /** Checks for all expressions in this list. */
+  and?: Maybe<Array<CoordFilter>>;
+  /** Checks for any expressions in this list. */
+  or?: Maybe<Array<CoordFilter>>;
+  /** Negates the expression. */
+  not?: Maybe<CoordFilter>;
 };
 
+/** An input for mutations affecting `Coord` */
 export type CoordInput = {
-  id?: Maybe<Scalars['Int']>,
-  junctureId: Scalars['Int'],
-  lat: Scalars['BigFloat'],
-  lon: Scalars['BigFloat'],
-  elevation?: Maybe<Scalars['BigFloat']>,
-  coordTime?: Maybe<Scalars['Datetime']>,
+  /** Primary id for coordinates */
+  id?: Maybe<Scalars['Int']>;
+  /** Foreign key to referred juncture */
+  junctureId: Scalars['Int'];
+  /** Latitude of coords */
+  lat: Scalars['BigFloat'];
+  /** Longitude of coords */
+  lon: Scalars['BigFloat'];
+  /** Elevation of coords */
+  elevation?: Maybe<Scalars['BigFloat']>;
+  /** Timestamp of coords */
+  coordTime?: Maybe<Scalars['Datetime']>;
 };
 
+/** Represents an update to a `Coord`. Fields that are set will be updated. */
 export type CoordPatch = {
-  id?: Maybe<Scalars['Int']>,
-  junctureId?: Maybe<Scalars['Int']>,
-  lat?: Maybe<Scalars['BigFloat']>,
-  lon?: Maybe<Scalars['BigFloat']>,
-  elevation?: Maybe<Scalars['BigFloat']>,
-  coordTime?: Maybe<Scalars['Datetime']>,
+  /** Primary id for coordinates */
+  id?: Maybe<Scalars['Int']>;
+  /** Foreign key to referred juncture */
+  junctureId?: Maybe<Scalars['Int']>;
+  /** Latitude of coords */
+  lat?: Maybe<Scalars['BigFloat']>;
+  /** Longitude of coords */
+  lon?: Maybe<Scalars['BigFloat']>;
+  /** Elevation of coords */
+  elevation?: Maybe<Scalars['BigFloat']>;
+  /** Timestamp of coords */
+  coordTime?: Maybe<Scalars['Datetime']>;
 };
 
+/** A connection to a list of `Coord` values. */
 export type CoordsConnection = {
-   __typename?: 'CoordsConnection',
-  nodes: Array<Maybe<Coord>>,
-  edges: Array<CoordsEdge>,
-  pageInfo: PageInfo,
-  totalCount: Scalars['Int'],
+  __typename?: 'CoordsConnection';
+  /** A list of `Coord` objects. */
+  nodes: Array<Maybe<Coord>>;
+  /** A list of edges which contains the `Coord` and cursor to aid in pagination. */
+  edges: Array<CoordsEdge>;
+  /** Information to aid in pagination. */
+  pageInfo: PageInfo;
+  /** The count of *all* `Coord` you could get from the connection. */
+  totalCount: Scalars['Int'];
 };
 
+/** A `Coord` edge in the connection. */
 export type CoordsEdge = {
-   __typename?: 'CoordsEdge',
-  cursor?: Maybe<Scalars['Cursor']>,
-  node?: Maybe<Coord>,
+  __typename?: 'CoordsEdge';
+  /** A cursor for use in pagination. */
+  cursor?: Maybe<Scalars['Cursor']>;
+  /** The `Coord` at the end of the edge. */
+  node?: Maybe<Coord>;
 };
 
+/** Methods to use when ordering `Coord`. */
 export enum CoordsOrderBy {
   Natural = 'NATURAL',
   IdAsc = 'ID_ASC',
@@ -714,20 +1061,29 @@ export enum CoordsOrderBy {
   PrimaryKeyDesc = 'PRIMARY_KEY_DESC'
 }
 
+/** A connection to a list of `Country` values. */
 export type CountriesConnection = {
-   __typename?: 'CountriesConnection',
-  nodes: Array<Maybe<Country>>,
-  edges: Array<CountriesEdge>,
-  pageInfo: PageInfo,
-  totalCount: Scalars['Int'],
+  __typename?: 'CountriesConnection';
+  /** A list of `Country` objects. */
+  nodes: Array<Maybe<Country>>;
+  /** A list of edges which contains the `Country` and cursor to aid in pagination. */
+  edges: Array<CountriesEdge>;
+  /** Information to aid in pagination. */
+  pageInfo: PageInfo;
+  /** The count of *all* `Country` you could get from the connection. */
+  totalCount: Scalars['Int'];
 };
 
+/** A `Country` edge in the connection. */
 export type CountriesEdge = {
-   __typename?: 'CountriesEdge',
-  cursor?: Maybe<Scalars['Cursor']>,
-  node?: Maybe<Country>,
+  __typename?: 'CountriesEdge';
+  /** A cursor for use in pagination. */
+  cursor?: Maybe<Scalars['Cursor']>;
+  /** The `Country` at the end of the edge. */
+  node?: Maybe<Country>;
 };
 
+/** Methods to use when ordering `Country`. */
 export enum CountriesOrderBy {
   Natural = 'NATURAL',
   CodeAsc = 'CODE_ASC',
@@ -738,934 +1094,1702 @@ export enum CountriesOrderBy {
   PrimaryKeyDesc = 'PRIMARY_KEY_DESC'
 }
 
+/** Table with static country data */
 export type Country = Node & {
-   __typename?: 'Country',
-  nodeId: Scalars['ID'],
-  code: Scalars['String'],
-  name: Scalars['String'],
-  juncturesByCountry: JuncturesConnection,
-  postsByCountry: PostsConnection,
-  userToCountriesByCountry: UserToCountriesConnection,
+  __typename?: 'Country';
+  /** A globally unique identifier. Can be used in various places throughout the system to identify this single value. */
+  nodeId: Scalars['ID'];
+  /** Primary id and code for country */
+  code: Scalars['String'];
+  /** Name of country */
+  name: Scalars['String'];
+  /** Reads and enables pagination through a set of `Juncture`. */
+  juncturesByCountry: JuncturesConnection;
+  /** Reads and enables pagination through a set of `Post`. */
+  postsByCountry: PostsConnection;
+  /** Reads and enables pagination through a set of `UserToCountry`. */
+  userToCountriesByCountry: UserToCountriesConnection;
 };
 
 
+/** Table with static country data */
 export type CountryJuncturesByCountryArgs = {
-  first?: Maybe<Scalars['Int']>,
-  last?: Maybe<Scalars['Int']>,
-  offset?: Maybe<Scalars['Int']>,
-  before?: Maybe<Scalars['Cursor']>,
-  after?: Maybe<Scalars['Cursor']>,
-  orderBy?: Maybe<Array<JuncturesOrderBy>>,
-  condition?: Maybe<JunctureCondition>,
-  filter?: Maybe<JunctureFilter>
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  before?: Maybe<Scalars['Cursor']>;
+  after?: Maybe<Scalars['Cursor']>;
+  orderBy?: Maybe<Array<JuncturesOrderBy>>;
+  condition?: Maybe<JunctureCondition>;
+  filter?: Maybe<JunctureFilter>;
 };
 
 
+/** Table with static country data */
 export type CountryPostsByCountryArgs = {
-  first?: Maybe<Scalars['Int']>,
-  last?: Maybe<Scalars['Int']>,
-  offset?: Maybe<Scalars['Int']>,
-  before?: Maybe<Scalars['Cursor']>,
-  after?: Maybe<Scalars['Cursor']>,
-  orderBy?: Maybe<Array<PostsOrderBy>>,
-  condition?: Maybe<PostCondition>,
-  filter?: Maybe<PostFilter>
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  before?: Maybe<Scalars['Cursor']>;
+  after?: Maybe<Scalars['Cursor']>;
+  orderBy?: Maybe<Array<PostsOrderBy>>;
+  condition?: Maybe<PostCondition>;
+  filter?: Maybe<PostFilter>;
 };
 
 
+/** Table with static country data */
 export type CountryUserToCountriesByCountryArgs = {
-  first?: Maybe<Scalars['Int']>,
-  last?: Maybe<Scalars['Int']>,
-  offset?: Maybe<Scalars['Int']>,
-  before?: Maybe<Scalars['Cursor']>,
-  after?: Maybe<Scalars['Cursor']>,
-  orderBy?: Maybe<Array<UserToCountriesOrderBy>>,
-  condition?: Maybe<UserToCountryCondition>,
-  filter?: Maybe<UserToCountryFilter>
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  before?: Maybe<Scalars['Cursor']>;
+  after?: Maybe<Scalars['Cursor']>;
+  orderBy?: Maybe<Array<UserToCountriesOrderBy>>;
+  condition?: Maybe<UserToCountryCondition>;
+  filter?: Maybe<UserToCountryFilter>;
 };
 
+/** A condition to be used against `Country` object types. All fields are tested for equality and combined with a logical ‘and.’ */
 export type CountryCondition = {
-  code?: Maybe<Scalars['String']>,
-  name?: Maybe<Scalars['String']>,
+  /** Checks for equality with the object’s `code` field. */
+  code?: Maybe<Scalars['String']>;
+  /** Checks for equality with the object’s `name` field. */
+  name?: Maybe<Scalars['String']>;
 };
 
+/** A filter to be used against `Country` object types. All fields are combined with a logical ‘and.’ */
 export type CountryFilter = {
-  code?: Maybe<StringFilter>,
-  name?: Maybe<StringFilter>,
-  and?: Maybe<Array<CountryFilter>>,
-  or?: Maybe<Array<CountryFilter>>,
-  not?: Maybe<CountryFilter>,
+  /** Filter by the object’s `code` field. */
+  code?: Maybe<StringFilter>;
+  /** Filter by the object’s `name` field. */
+  name?: Maybe<StringFilter>;
+  /** Checks for all expressions in this list. */
+  and?: Maybe<Array<CountryFilter>>;
+  /** Checks for any expressions in this list. */
+  or?: Maybe<Array<CountryFilter>>;
+  /** Negates the expression. */
+  not?: Maybe<CountryFilter>;
 };
 
+/** An input for mutations affecting `Country` */
 export type CountryInput = {
-  code: Scalars['String'],
-  name: Scalars['String'],
+  /** Primary id and code for country */
+  code: Scalars['String'];
+  /** Name of country */
+  name: Scalars['String'];
 };
 
+/** Represents an update to a `Country`. Fields that are set will be updated. */
 export type CountryPatch = {
-  code?: Maybe<Scalars['String']>,
-  name?: Maybe<Scalars['String']>,
+  /** Primary id and code for country */
+  code?: Maybe<Scalars['String']>;
+  /** Name of country */
+  name?: Maybe<Scalars['String']>;
 };
 
+/** All input for the create `Account` mutation. */
 export type CreateAccountInput = {
-  clientMutationId?: Maybe<Scalars['String']>,
-  account: AccountInput,
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: Maybe<Scalars['String']>;
+  /** The `Account` to be created by this mutation. */
+  account: AccountInput;
 };
 
+/** The output of our create `Account` mutation. */
 export type CreateAccountPayload = {
-   __typename?: 'CreateAccountPayload',
-  clientMutationId?: Maybe<Scalars['String']>,
-  account?: Maybe<Account>,
-  query?: Maybe<Query>,
-  accountEdge?: Maybe<AccountsEdge>,
+  __typename?: 'CreateAccountPayload';
+  /**
+   * The exact same `clientMutationId` that was provided in the mutation input,
+   * unchanged and unused. May be used by a client to track mutations.
+   */
+  clientMutationId?: Maybe<Scalars['String']>;
+  /** The `Account` that was created by this mutation. */
+  account?: Maybe<Account>;
+  /** Our root query field type. Allows us to run any query from our mutation payload. */
+  query?: Maybe<Query>;
+  /** An edge for our `Account`. May be used by Relay 1. */
+  accountEdge?: Maybe<AccountsEdge>;
 };
 
 
+/** The output of our create `Account` mutation. */
 export type CreateAccountPayloadAccountEdgeArgs = {
-  orderBy?: Maybe<Array<AccountsOrderBy>>
+  orderBy?: Maybe<Array<AccountsOrderBy>>;
 };
 
+/** All input for the create `AdminAccount` mutation. */
 export type CreateAdminAccountInput = {
-  clientMutationId?: Maybe<Scalars['String']>,
-  adminAccount: AdminAccountInput,
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: Maybe<Scalars['String']>;
+  /** The `AdminAccount` to be created by this mutation. */
+  adminAccount: AdminAccountInput;
 };
 
+/** The output of our create `AdminAccount` mutation. */
 export type CreateAdminAccountPayload = {
-   __typename?: 'CreateAdminAccountPayload',
-  clientMutationId?: Maybe<Scalars['String']>,
-  adminAccount?: Maybe<AdminAccount>,
-  query?: Maybe<Query>,
-  accountByAccountId?: Maybe<Account>,
-  adminAccountEdge?: Maybe<AdminAccountsEdge>,
+  __typename?: 'CreateAdminAccountPayload';
+  /**
+   * The exact same `clientMutationId` that was provided in the mutation input,
+   * unchanged and unused. May be used by a client to track mutations.
+   */
+  clientMutationId?: Maybe<Scalars['String']>;
+  /** The `AdminAccount` that was created by this mutation. */
+  adminAccount?: Maybe<AdminAccount>;
+  /** Our root query field type. Allows us to run any query from our mutation payload. */
+  query?: Maybe<Query>;
+  /** Reads a single `Account` that is related to this `AdminAccount`. */
+  accountByAccountId?: Maybe<Account>;
+  /** An edge for our `AdminAccount`. May be used by Relay 1. */
+  adminAccountEdge?: Maybe<AdminAccountsEdge>;
 };
 
 
+/** The output of our create `AdminAccount` mutation. */
 export type CreateAdminAccountPayloadAdminAccountEdgeArgs = {
-  orderBy?: Maybe<Array<AdminAccountsOrderBy>>
+  orderBy?: Maybe<Array<AdminAccountsOrderBy>>;
 };
 
+/** All input for the create `Config` mutation. */
 export type CreateConfigInput = {
-  clientMutationId?: Maybe<Scalars['String']>,
-  config: ConfigInput,
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: Maybe<Scalars['String']>;
+  /** The `Config` to be created by this mutation. */
+  config: ConfigInput;
 };
 
+/** The output of our create `Config` mutation. */
 export type CreateConfigPayload = {
-   __typename?: 'CreateConfigPayload',
-  clientMutationId?: Maybe<Scalars['String']>,
-  config?: Maybe<Config>,
-  query?: Maybe<Query>,
-  postByFeaturedStory1?: Maybe<Post>,
-  postByFeaturedStory2?: Maybe<Post>,
-  postByFeaturedStory3?: Maybe<Post>,
-  tripByFeaturedTrip1?: Maybe<Trip>,
-  configEdge?: Maybe<ConfigsEdge>,
+  __typename?: 'CreateConfigPayload';
+  /**
+   * The exact same `clientMutationId` that was provided in the mutation input,
+   * unchanged and unused. May be used by a client to track mutations.
+   */
+  clientMutationId?: Maybe<Scalars['String']>;
+  /** The `Config` that was created by this mutation. */
+  config?: Maybe<Config>;
+  /** Our root query field type. Allows us to run any query from our mutation payload. */
+  query?: Maybe<Query>;
+  /** Reads a single `Post` that is related to this `Config`. */
+  postByFeaturedStory1?: Maybe<Post>;
+  /** Reads a single `Post` that is related to this `Config`. */
+  postByFeaturedStory2?: Maybe<Post>;
+  /** Reads a single `Post` that is related to this `Config`. */
+  postByFeaturedStory3?: Maybe<Post>;
+  /** Reads a single `Trip` that is related to this `Config`. */
+  tripByFeaturedTrip1?: Maybe<Trip>;
+  /** An edge for our `Config`. May be used by Relay 1. */
+  configEdge?: Maybe<ConfigsEdge>;
 };
 
 
+/** The output of our create `Config` mutation. */
 export type CreateConfigPayloadConfigEdgeArgs = {
-  orderBy?: Maybe<Array<ConfigsOrderBy>>
+  orderBy?: Maybe<Array<ConfigsOrderBy>>;
 };
 
+/** All input for the create `Coord` mutation. */
 export type CreateCoordInput = {
-  clientMutationId?: Maybe<Scalars['String']>,
-  coord: CoordInput,
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: Maybe<Scalars['String']>;
+  /** The `Coord` to be created by this mutation. */
+  coord: CoordInput;
 };
 
+/** The output of our create `Coord` mutation. */
 export type CreateCoordPayload = {
-   __typename?: 'CreateCoordPayload',
-  clientMutationId?: Maybe<Scalars['String']>,
-  coord?: Maybe<Coord>,
-  query?: Maybe<Query>,
-  junctureByJunctureId?: Maybe<Juncture>,
-  coordEdge?: Maybe<CoordsEdge>,
+  __typename?: 'CreateCoordPayload';
+  /**
+   * The exact same `clientMutationId` that was provided in the mutation input,
+   * unchanged and unused. May be used by a client to track mutations.
+   */
+  clientMutationId?: Maybe<Scalars['String']>;
+  /** The `Coord` that was created by this mutation. */
+  coord?: Maybe<Coord>;
+  /** Our root query field type. Allows us to run any query from our mutation payload. */
+  query?: Maybe<Query>;
+  /** Reads a single `Juncture` that is related to this `Coord`. */
+  junctureByJunctureId?: Maybe<Juncture>;
+  /** An edge for our `Coord`. May be used by Relay 1. */
+  coordEdge?: Maybe<CoordsEdge>;
 };
 
 
+/** The output of our create `Coord` mutation. */
 export type CreateCoordPayloadCoordEdgeArgs = {
-  orderBy?: Maybe<Array<CoordsOrderBy>>
+  orderBy?: Maybe<Array<CoordsOrderBy>>;
 };
 
+/** All input for the create `Country` mutation. */
 export type CreateCountryInput = {
-  clientMutationId?: Maybe<Scalars['String']>,
-  country: CountryInput,
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: Maybe<Scalars['String']>;
+  /** The `Country` to be created by this mutation. */
+  country: CountryInput;
 };
 
+/** The output of our create `Country` mutation. */
 export type CreateCountryPayload = {
-   __typename?: 'CreateCountryPayload',
-  clientMutationId?: Maybe<Scalars['String']>,
-  country?: Maybe<Country>,
-  query?: Maybe<Query>,
-  countryEdge?: Maybe<CountriesEdge>,
+  __typename?: 'CreateCountryPayload';
+  /**
+   * The exact same `clientMutationId` that was provided in the mutation input,
+   * unchanged and unused. May be used by a client to track mutations.
+   */
+  clientMutationId?: Maybe<Scalars['String']>;
+  /** The `Country` that was created by this mutation. */
+  country?: Maybe<Country>;
+  /** Our root query field type. Allows us to run any query from our mutation payload. */
+  query?: Maybe<Query>;
+  /** An edge for our `Country`. May be used by Relay 1. */
+  countryEdge?: Maybe<CountriesEdge>;
 };
 
 
+/** The output of our create `Country` mutation. */
 export type CreateCountryPayloadCountryEdgeArgs = {
-  orderBy?: Maybe<Array<CountriesOrderBy>>
+  orderBy?: Maybe<Array<CountriesOrderBy>>;
 };
 
+/** All input for the create `EmailList` mutation. */
 export type CreateEmailListInput = {
-  clientMutationId?: Maybe<Scalars['String']>,
-  emailList: EmailListInput,
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: Maybe<Scalars['String']>;
+  /** The `EmailList` to be created by this mutation. */
+  emailList: EmailListInput;
 };
 
+/** The output of our create `EmailList` mutation. */
 export type CreateEmailListPayload = {
-   __typename?: 'CreateEmailListPayload',
-  clientMutationId?: Maybe<Scalars['String']>,
-  emailList?: Maybe<EmailList>,
-  query?: Maybe<Query>,
-  emailListEdge?: Maybe<EmailListsEdge>,
+  __typename?: 'CreateEmailListPayload';
+  /**
+   * The exact same `clientMutationId` that was provided in the mutation input,
+   * unchanged and unused. May be used by a client to track mutations.
+   */
+  clientMutationId?: Maybe<Scalars['String']>;
+  /** The `EmailList` that was created by this mutation. */
+  emailList?: Maybe<EmailList>;
+  /** Our root query field type. Allows us to run any query from our mutation payload. */
+  query?: Maybe<Query>;
+  /** An edge for our `EmailList`. May be used by Relay 1. */
+  emailListEdge?: Maybe<EmailListsEdge>;
 };
 
 
+/** The output of our create `EmailList` mutation. */
 export type CreateEmailListPayloadEmailListEdgeArgs = {
-  orderBy?: Maybe<Array<EmailListsOrderBy>>
+  orderBy?: Maybe<Array<EmailListsOrderBy>>;
 };
 
+/** All input for the create `Image` mutation. */
 export type CreateImageInput = {
-  clientMutationId?: Maybe<Scalars['String']>,
-  image: ImageInput,
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: Maybe<Scalars['String']>;
+  /** The `Image` to be created by this mutation. */
+  image: ImageInput;
 };
 
+/** The output of our create `Image` mutation. */
 export type CreateImagePayload = {
-   __typename?: 'CreateImagePayload',
-  clientMutationId?: Maybe<Scalars['String']>,
-  image?: Maybe<Image>,
-  query?: Maybe<Query>,
-  tripByTripId?: Maybe<Trip>,
-  junctureByJunctureId?: Maybe<Juncture>,
-  postByPostId?: Maybe<Post>,
-  accountByUserId?: Maybe<Account>,
-  imageEdge?: Maybe<ImagesEdge>,
+  __typename?: 'CreateImagePayload';
+  /**
+   * The exact same `clientMutationId` that was provided in the mutation input,
+   * unchanged and unused. May be used by a client to track mutations.
+   */
+  clientMutationId?: Maybe<Scalars['String']>;
+  /** The `Image` that was created by this mutation. */
+  image?: Maybe<Image>;
+  /** Our root query field type. Allows us to run any query from our mutation payload. */
+  query?: Maybe<Query>;
+  /** Reads a single `Trip` that is related to this `Image`. */
+  tripByTripId?: Maybe<Trip>;
+  /** Reads a single `Juncture` that is related to this `Image`. */
+  junctureByJunctureId?: Maybe<Juncture>;
+  /** Reads a single `Post` that is related to this `Image`. */
+  postByPostId?: Maybe<Post>;
+  /** Reads a single `Account` that is related to this `Image`. */
+  accountByUserId?: Maybe<Account>;
+  /** An edge for our `Image`. May be used by Relay 1. */
+  imageEdge?: Maybe<ImagesEdge>;
 };
 
 
+/** The output of our create `Image` mutation. */
 export type CreateImagePayloadImageEdgeArgs = {
-  orderBy?: Maybe<Array<ImagesOrderBy>>
+  orderBy?: Maybe<Array<ImagesOrderBy>>;
 };
 
+/** All input for the create `Juncture` mutation. */
 export type CreateJunctureInput = {
-  clientMutationId?: Maybe<Scalars['String']>,
-  juncture: JunctureInput,
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: Maybe<Scalars['String']>;
+  /** The `Juncture` to be created by this mutation. */
+  juncture: JunctureInput;
 };
 
+/** The output of our create `Juncture` mutation. */
 export type CreateJuncturePayload = {
-   __typename?: 'CreateJuncturePayload',
-  clientMutationId?: Maybe<Scalars['String']>,
-  juncture?: Maybe<Juncture>,
-  query?: Maybe<Query>,
-  accountByUserId?: Maybe<Account>,
-  tripByTripId?: Maybe<Trip>,
-  countryByCountry?: Maybe<Country>,
-  junctureEdge?: Maybe<JuncturesEdge>,
+  __typename?: 'CreateJuncturePayload';
+  /**
+   * The exact same `clientMutationId` that was provided in the mutation input,
+   * unchanged and unused. May be used by a client to track mutations.
+   */
+  clientMutationId?: Maybe<Scalars['String']>;
+  /** The `Juncture` that was created by this mutation. */
+  juncture?: Maybe<Juncture>;
+  /** Our root query field type. Allows us to run any query from our mutation payload. */
+  query?: Maybe<Query>;
+  /** Reads a single `Account` that is related to this `Juncture`. */
+  accountByUserId?: Maybe<Account>;
+  /** Reads a single `Trip` that is related to this `Juncture`. */
+  tripByTripId?: Maybe<Trip>;
+  /** Reads a single `Country` that is related to this `Juncture`. */
+  countryByCountry?: Maybe<Country>;
+  /** An edge for our `Juncture`. May be used by Relay 1. */
+  junctureEdge?: Maybe<JuncturesEdge>;
 };
 
 
+/** The output of our create `Juncture` mutation. */
 export type CreateJuncturePayloadJunctureEdgeArgs = {
-  orderBy?: Maybe<Array<JuncturesOrderBy>>
+  orderBy?: Maybe<Array<JuncturesOrderBy>>;
 };
 
+/** All input for the create `Like` mutation. */
 export type CreateLikeInput = {
-  clientMutationId?: Maybe<Scalars['String']>,
-  like: LikeInput,
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: Maybe<Scalars['String']>;
+  /** The `Like` to be created by this mutation. */
+  like: LikeInput;
 };
 
+/** The output of our create `Like` mutation. */
 export type CreateLikePayload = {
-   __typename?: 'CreateLikePayload',
-  clientMutationId?: Maybe<Scalars['String']>,
-  like?: Maybe<Like>,
-  query?: Maybe<Query>,
-  tripByTripId?: Maybe<Trip>,
-  junctureByJunctureId?: Maybe<Juncture>,
-  postByPostId?: Maybe<Post>,
-  imageByImageId?: Maybe<Image>,
-  accountByUserId?: Maybe<Account>,
-  likeEdge?: Maybe<LikesEdge>,
+  __typename?: 'CreateLikePayload';
+  /**
+   * The exact same `clientMutationId` that was provided in the mutation input,
+   * unchanged and unused. May be used by a client to track mutations.
+   */
+  clientMutationId?: Maybe<Scalars['String']>;
+  /** The `Like` that was created by this mutation. */
+  like?: Maybe<Like>;
+  /** Our root query field type. Allows us to run any query from our mutation payload. */
+  query?: Maybe<Query>;
+  /** Reads a single `Trip` that is related to this `Like`. */
+  tripByTripId?: Maybe<Trip>;
+  /** Reads a single `Juncture` that is related to this `Like`. */
+  junctureByJunctureId?: Maybe<Juncture>;
+  /** Reads a single `Post` that is related to this `Like`. */
+  postByPostId?: Maybe<Post>;
+  /** Reads a single `Image` that is related to this `Like`. */
+  imageByImageId?: Maybe<Image>;
+  /** Reads a single `Account` that is related to this `Like`. */
+  accountByUserId?: Maybe<Account>;
+  /** An edge for our `Like`. May be used by Relay 1. */
+  likeEdge?: Maybe<LikesEdge>;
 };
 
 
+/** The output of our create `Like` mutation. */
 export type CreateLikePayloadLikeEdgeArgs = {
-  orderBy?: Maybe<Array<LikesOrderBy>>
+  orderBy?: Maybe<Array<LikesOrderBy>>;
 };
 
+/** All input for the create `LoggedAction` mutation. */
 export type CreateLoggedActionInput = {
-  clientMutationId?: Maybe<Scalars['String']>,
-  loggedAction: LoggedActionInput,
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: Maybe<Scalars['String']>;
+  /** The `LoggedAction` to be created by this mutation. */
+  loggedAction: LoggedActionInput;
 };
 
+/** The output of our create `LoggedAction` mutation. */
 export type CreateLoggedActionPayload = {
-   __typename?: 'CreateLoggedActionPayload',
-  clientMutationId?: Maybe<Scalars['String']>,
-  loggedAction?: Maybe<LoggedAction>,
-  query?: Maybe<Query>,
-  loggedActionEdge?: Maybe<LoggedActionsEdge>,
+  __typename?: 'CreateLoggedActionPayload';
+  /**
+   * The exact same `clientMutationId` that was provided in the mutation input,
+   * unchanged and unused. May be used by a client to track mutations.
+   */
+  clientMutationId?: Maybe<Scalars['String']>;
+  /** The `LoggedAction` that was created by this mutation. */
+  loggedAction?: Maybe<LoggedAction>;
+  /** Our root query field type. Allows us to run any query from our mutation payload. */
+  query?: Maybe<Query>;
+  /** An edge for our `LoggedAction`. May be used by Relay 1. */
+  loggedActionEdge?: Maybe<LoggedActionsEdge>;
 };
 
 
+/** The output of our create `LoggedAction` mutation. */
 export type CreateLoggedActionPayloadLoggedActionEdgeArgs = {
-  orderBy?: Maybe<Array<LoggedActionsOrderBy>>
+  orderBy?: Maybe<Array<LoggedActionsOrderBy>>;
 };
 
+/** All input for the create `Post` mutation. */
 export type CreatePostInput = {
-  clientMutationId?: Maybe<Scalars['String']>,
-  post: PostInput,
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: Maybe<Scalars['String']>;
+  /** The `Post` to be created by this mutation. */
+  post: PostInput;
 };
 
+/** The output of our create `Post` mutation. */
 export type CreatePostPayload = {
-   __typename?: 'CreatePostPayload',
-  clientMutationId?: Maybe<Scalars['String']>,
-  post?: Maybe<Post>,
-  query?: Maybe<Query>,
-  accountByAuthor?: Maybe<Account>,
-  tripByTripId?: Maybe<Trip>,
-  junctureByJunctureId?: Maybe<Juncture>,
-  countryByCountry?: Maybe<Country>,
-  postEdge?: Maybe<PostsEdge>,
+  __typename?: 'CreatePostPayload';
+  /**
+   * The exact same `clientMutationId` that was provided in the mutation input,
+   * unchanged and unused. May be used by a client to track mutations.
+   */
+  clientMutationId?: Maybe<Scalars['String']>;
+  /** The `Post` that was created by this mutation. */
+  post?: Maybe<Post>;
+  /** Our root query field type. Allows us to run any query from our mutation payload. */
+  query?: Maybe<Query>;
+  /** Reads a single `Account` that is related to this `Post`. */
+  accountByAuthor?: Maybe<Account>;
+  /** Reads a single `Trip` that is related to this `Post`. */
+  tripByTripId?: Maybe<Trip>;
+  /** Reads a single `Juncture` that is related to this `Post`. */
+  junctureByJunctureId?: Maybe<Juncture>;
+  /** Reads a single `Country` that is related to this `Post`. */
+  countryByCountry?: Maybe<Country>;
+  /** An edge for our `Post`. May be used by Relay 1. */
+  postEdge?: Maybe<PostsEdge>;
 };
 
 
+/** The output of our create `Post` mutation. */
 export type CreatePostPayloadPostEdgeArgs = {
-  orderBy?: Maybe<Array<PostsOrderBy>>
+  orderBy?: Maybe<Array<PostsOrderBy>>;
 };
 
+/** All input for the create `PostTag` mutation. */
 export type CreatePostTagInput = {
-  clientMutationId?: Maybe<Scalars['String']>,
-  postTag: PostTagInput,
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: Maybe<Scalars['String']>;
+  /** The `PostTag` to be created by this mutation. */
+  postTag: PostTagInput;
 };
 
+/** The output of our create `PostTag` mutation. */
 export type CreatePostTagPayload = {
-   __typename?: 'CreatePostTagPayload',
-  clientMutationId?: Maybe<Scalars['String']>,
-  postTag?: Maybe<PostTag>,
-  query?: Maybe<Query>,
-  postTagEdge?: Maybe<PostTagsEdge>,
+  __typename?: 'CreatePostTagPayload';
+  /**
+   * The exact same `clientMutationId` that was provided in the mutation input,
+   * unchanged and unused. May be used by a client to track mutations.
+   */
+  clientMutationId?: Maybe<Scalars['String']>;
+  /** The `PostTag` that was created by this mutation. */
+  postTag?: Maybe<PostTag>;
+  /** Our root query field type. Allows us to run any query from our mutation payload. */
+  query?: Maybe<Query>;
+  /** An edge for our `PostTag`. May be used by Relay 1. */
+  postTagEdge?: Maybe<PostTagsEdge>;
 };
 
 
+/** The output of our create `PostTag` mutation. */
 export type CreatePostTagPayloadPostTagEdgeArgs = {
-  orderBy?: Maybe<Array<PostTagsOrderBy>>
+  orderBy?: Maybe<Array<PostTagsOrderBy>>;
 };
 
+/** All input for the create `PostToTag` mutation. */
 export type CreatePostToTagInput = {
-  clientMutationId?: Maybe<Scalars['String']>,
-  postToTag: PostToTagInput,
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: Maybe<Scalars['String']>;
+  /** The `PostToTag` to be created by this mutation. */
+  postToTag: PostToTagInput;
 };
 
+/** The output of our create `PostToTag` mutation. */
 export type CreatePostToTagPayload = {
-   __typename?: 'CreatePostToTagPayload',
-  clientMutationId?: Maybe<Scalars['String']>,
-  postToTag?: Maybe<PostToTag>,
-  query?: Maybe<Query>,
-  postByPostId?: Maybe<Post>,
-  postTagByPostTagId?: Maybe<PostTag>,
-  postToTagEdge?: Maybe<PostToTagsEdge>,
+  __typename?: 'CreatePostToTagPayload';
+  /**
+   * The exact same `clientMutationId` that was provided in the mutation input,
+   * unchanged and unused. May be used by a client to track mutations.
+   */
+  clientMutationId?: Maybe<Scalars['String']>;
+  /** The `PostToTag` that was created by this mutation. */
+  postToTag?: Maybe<PostToTag>;
+  /** Our root query field type. Allows us to run any query from our mutation payload. */
+  query?: Maybe<Query>;
+  /** Reads a single `Post` that is related to this `PostToTag`. */
+  postByPostId?: Maybe<Post>;
+  /** Reads a single `PostTag` that is related to this `PostToTag`. */
+  postTagByPostTagId?: Maybe<PostTag>;
+  /** An edge for our `PostToTag`. May be used by Relay 1. */
+  postToTagEdge?: Maybe<PostToTagsEdge>;
 };
 
 
+/** The output of our create `PostToTag` mutation. */
 export type CreatePostToTagPayloadPostToTagEdgeArgs = {
-  orderBy?: Maybe<Array<PostToTagsOrderBy>>
+  orderBy?: Maybe<Array<PostToTagsOrderBy>>;
 };
 
+/** All input for the create `Track` mutation. */
 export type CreateTrackInput = {
-  clientMutationId?: Maybe<Scalars['String']>,
-  track: TrackInput,
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: Maybe<Scalars['String']>;
+  /** The `Track` to be created by this mutation. */
+  track: TrackInput;
 };
 
+/** The output of our create `Track` mutation. */
 export type CreateTrackPayload = {
-   __typename?: 'CreateTrackPayload',
-  clientMutationId?: Maybe<Scalars['String']>,
-  track?: Maybe<Track>,
-  query?: Maybe<Query>,
-  accountByUserId?: Maybe<Account>,
-  accountByTrackUserId?: Maybe<Account>,
-  trackEdge?: Maybe<TracksEdge>,
+  __typename?: 'CreateTrackPayload';
+  /**
+   * The exact same `clientMutationId` that was provided in the mutation input,
+   * unchanged and unused. May be used by a client to track mutations.
+   */
+  clientMutationId?: Maybe<Scalars['String']>;
+  /** The `Track` that was created by this mutation. */
+  track?: Maybe<Track>;
+  /** Our root query field type. Allows us to run any query from our mutation payload. */
+  query?: Maybe<Query>;
+  /** Reads a single `Account` that is related to this `Track`. */
+  accountByUserId?: Maybe<Account>;
+  /** Reads a single `Account` that is related to this `Track`. */
+  accountByTrackUserId?: Maybe<Account>;
+  /** An edge for our `Track`. May be used by Relay 1. */
+  trackEdge?: Maybe<TracksEdge>;
 };
 
 
+/** The output of our create `Track` mutation. */
 export type CreateTrackPayloadTrackEdgeArgs = {
-  orderBy?: Maybe<Array<TracksOrderBy>>
+  orderBy?: Maybe<Array<TracksOrderBy>>;
 };
 
+/** All input for the create `Trip` mutation. */
 export type CreateTripInput = {
-  clientMutationId?: Maybe<Scalars['String']>,
-  trip: TripInput,
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: Maybe<Scalars['String']>;
+  /** The `Trip` to be created by this mutation. */
+  trip: TripInput;
 };
 
+/** The output of our create `Trip` mutation. */
 export type CreateTripPayload = {
-   __typename?: 'CreateTripPayload',
-  clientMutationId?: Maybe<Scalars['String']>,
-  trip?: Maybe<Trip>,
-  query?: Maybe<Query>,
-  accountByUserId?: Maybe<Account>,
-  tripEdge?: Maybe<TripsEdge>,
+  __typename?: 'CreateTripPayload';
+  /**
+   * The exact same `clientMutationId` that was provided in the mutation input,
+   * unchanged and unused. May be used by a client to track mutations.
+   */
+  clientMutationId?: Maybe<Scalars['String']>;
+  /** The `Trip` that was created by this mutation. */
+  trip?: Maybe<Trip>;
+  /** Our root query field type. Allows us to run any query from our mutation payload. */
+  query?: Maybe<Query>;
+  /** Reads a single `Account` that is related to this `Trip`. */
+  accountByUserId?: Maybe<Account>;
+  /** An edge for our `Trip`. May be used by Relay 1. */
+  tripEdge?: Maybe<TripsEdge>;
 };
 
 
+/** The output of our create `Trip` mutation. */
 export type CreateTripPayloadTripEdgeArgs = {
-  orderBy?: Maybe<Array<TripsOrderBy>>
+  orderBy?: Maybe<Array<TripsOrderBy>>;
 };
 
+/** All input for the create `UserAccount` mutation. */
 export type CreateUserAccountInput = {
-  clientMutationId?: Maybe<Scalars['String']>,
-  userAccount: UserAccountInput,
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: Maybe<Scalars['String']>;
+  /** The `UserAccount` to be created by this mutation. */
+  userAccount: UserAccountInput;
 };
 
+/** The output of our create `UserAccount` mutation. */
 export type CreateUserAccountPayload = {
-   __typename?: 'CreateUserAccountPayload',
-  clientMutationId?: Maybe<Scalars['String']>,
-  userAccount?: Maybe<UserAccount>,
-  query?: Maybe<Query>,
-  accountByAccountId?: Maybe<Account>,
-  userAccountEdge?: Maybe<UserAccountsEdge>,
+  __typename?: 'CreateUserAccountPayload';
+  /**
+   * The exact same `clientMutationId` that was provided in the mutation input,
+   * unchanged and unused. May be used by a client to track mutations.
+   */
+  clientMutationId?: Maybe<Scalars['String']>;
+  /** The `UserAccount` that was created by this mutation. */
+  userAccount?: Maybe<UserAccount>;
+  /** Our root query field type. Allows us to run any query from our mutation payload. */
+  query?: Maybe<Query>;
+  /** Reads a single `Account` that is related to this `UserAccount`. */
+  accountByAccountId?: Maybe<Account>;
+  /** An edge for our `UserAccount`. May be used by Relay 1. */
+  userAccountEdge?: Maybe<UserAccountsEdge>;
 };
 
 
+/** The output of our create `UserAccount` mutation. */
 export type CreateUserAccountPayloadUserAccountEdgeArgs = {
-  orderBy?: Maybe<Array<UserAccountsOrderBy>>
+  orderBy?: Maybe<Array<UserAccountsOrderBy>>;
 };
 
+/** All input for the create `UserToCountry` mutation. */
 export type CreateUserToCountryInput = {
-  clientMutationId?: Maybe<Scalars['String']>,
-  userToCountry: UserToCountryInput,
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: Maybe<Scalars['String']>;
+  /** The `UserToCountry` to be created by this mutation. */
+  userToCountry: UserToCountryInput;
 };
 
+/** The output of our create `UserToCountry` mutation. */
 export type CreateUserToCountryPayload = {
-   __typename?: 'CreateUserToCountryPayload',
-  clientMutationId?: Maybe<Scalars['String']>,
-  userToCountry?: Maybe<UserToCountry>,
-  query?: Maybe<Query>,
-  accountByUserId?: Maybe<Account>,
-  countryByCountry?: Maybe<Country>,
-  userToCountryEdge?: Maybe<UserToCountriesEdge>,
+  __typename?: 'CreateUserToCountryPayload';
+  /**
+   * The exact same `clientMutationId` that was provided in the mutation input,
+   * unchanged and unused. May be used by a client to track mutations.
+   */
+  clientMutationId?: Maybe<Scalars['String']>;
+  /** The `UserToCountry` that was created by this mutation. */
+  userToCountry?: Maybe<UserToCountry>;
+  /** Our root query field type. Allows us to run any query from our mutation payload. */
+  query?: Maybe<Query>;
+  /** Reads a single `Account` that is related to this `UserToCountry`. */
+  accountByUserId?: Maybe<Account>;
+  /** Reads a single `Country` that is related to this `UserToCountry`. */
+  countryByCountry?: Maybe<Country>;
+  /** An edge for our `UserToCountry`. May be used by Relay 1. */
+  userToCountryEdge?: Maybe<UserToCountriesEdge>;
 };
 
 
+/** The output of our create `UserToCountry` mutation. */
 export type CreateUserToCountryPayloadUserToCountryEdgeArgs = {
-  orderBy?: Maybe<Array<UserToCountriesOrderBy>>
+  orderBy?: Maybe<Array<UserToCountriesOrderBy>>;
 };
 
 
 
+/** A filter to be used against Datetime fields. All fields are combined with a logical ‘and.’ */
 export type DatetimeFilter = {
-  isNull?: Maybe<Scalars['Boolean']>,
-  equalTo?: Maybe<Scalars['Datetime']>,
-  notEqualTo?: Maybe<Scalars['Datetime']>,
-  distinctFrom?: Maybe<Scalars['Datetime']>,
-  notDistinctFrom?: Maybe<Scalars['Datetime']>,
-  in?: Maybe<Array<Scalars['Datetime']>>,
-  notIn?: Maybe<Array<Scalars['Datetime']>>,
-  lessThan?: Maybe<Scalars['Datetime']>,
-  lessThanOrEqualTo?: Maybe<Scalars['Datetime']>,
-  greaterThan?: Maybe<Scalars['Datetime']>,
-  greaterThanOrEqualTo?: Maybe<Scalars['Datetime']>,
+  /** Is null (if `true` is specified) or is not null (if `false` is specified). */
+  isNull?: Maybe<Scalars['Boolean']>;
+  /** Equal to the specified value. */
+  equalTo?: Maybe<Scalars['Datetime']>;
+  /** Not equal to the specified value. */
+  notEqualTo?: Maybe<Scalars['Datetime']>;
+  /** Not equal to the specified value, treating null like an ordinary value. */
+  distinctFrom?: Maybe<Scalars['Datetime']>;
+  /** Equal to the specified value, treating null like an ordinary value. */
+  notDistinctFrom?: Maybe<Scalars['Datetime']>;
+  /** Included in the specified list. */
+  in?: Maybe<Array<Scalars['Datetime']>>;
+  /** Not included in the specified list. */
+  notIn?: Maybe<Array<Scalars['Datetime']>>;
+  /** Less than the specified value. */
+  lessThan?: Maybe<Scalars['Datetime']>;
+  /** Less than or equal to the specified value. */
+  lessThanOrEqualTo?: Maybe<Scalars['Datetime']>;
+  /** Greater than the specified value. */
+  greaterThan?: Maybe<Scalars['Datetime']>;
+  /** Greater than or equal to the specified value. */
+  greaterThanOrEqualTo?: Maybe<Scalars['Datetime']>;
 };
 
+/** All input for the `deleteAccountById` mutation. */
 export type DeleteAccountByIdInput = {
-  clientMutationId?: Maybe<Scalars['String']>,
-  id: Scalars['Int'],
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: Maybe<Scalars['String']>;
+  /** Primary id for account */
+  id: Scalars['Int'];
 };
 
+/** All input for the `deleteAccountByUsername` mutation. */
 export type DeleteAccountByUsernameInput = {
-  clientMutationId?: Maybe<Scalars['String']>,
-  username: Scalars['String'],
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: Maybe<Scalars['String']>;
+  /** username of account */
+  username: Scalars['String'];
 };
 
+/** All input for the `deleteAccount` mutation. */
 export type DeleteAccountInput = {
-  clientMutationId?: Maybe<Scalars['String']>,
-  nodeId: Scalars['ID'],
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: Maybe<Scalars['String']>;
+  /** The globally unique `ID` which will identify a single `Account` to be deleted. */
+  nodeId: Scalars['ID'];
 };
 
+/** The output of our delete `Account` mutation. */
 export type DeleteAccountPayload = {
-   __typename?: 'DeleteAccountPayload',
-  clientMutationId?: Maybe<Scalars['String']>,
-  account?: Maybe<Account>,
-  deletedAccountId?: Maybe<Scalars['ID']>,
-  query?: Maybe<Query>,
-  accountEdge?: Maybe<AccountsEdge>,
+  __typename?: 'DeleteAccountPayload';
+  /**
+   * The exact same `clientMutationId` that was provided in the mutation input,
+   * unchanged and unused. May be used by a client to track mutations.
+   */
+  clientMutationId?: Maybe<Scalars['String']>;
+  /** The `Account` that was deleted by this mutation. */
+  account?: Maybe<Account>;
+  deletedAccountId?: Maybe<Scalars['ID']>;
+  /** Our root query field type. Allows us to run any query from our mutation payload. */
+  query?: Maybe<Query>;
+  /** An edge for our `Account`. May be used by Relay 1. */
+  accountEdge?: Maybe<AccountsEdge>;
 };
 
 
+/** The output of our delete `Account` mutation. */
 export type DeleteAccountPayloadAccountEdgeArgs = {
-  orderBy?: Maybe<Array<AccountsOrderBy>>
+  orderBy?: Maybe<Array<AccountsOrderBy>>;
 };
 
+/** All input for the `deleteAdminAccountByAccountId` mutation. */
 export type DeleteAdminAccountByAccountIdInput = {
-  clientMutationId?: Maybe<Scalars['String']>,
-  accountId: Scalars['Int'],
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: Maybe<Scalars['String']>;
+  /** The id of the user associated with this admin account. */
+  accountId: Scalars['Int'];
 };
 
+/** All input for the `deleteAdminAccountByEmail` mutation. */
 export type DeleteAdminAccountByEmailInput = {
-  clientMutationId?: Maybe<Scalars['String']>,
-  email: Scalars['String'],
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: Maybe<Scalars['String']>;
+  /** The email address of the admin account. */
+  email: Scalars['String'];
 };
 
+/** All input for the `deleteAdminAccount` mutation. */
 export type DeleteAdminAccountInput = {
-  clientMutationId?: Maybe<Scalars['String']>,
-  nodeId: Scalars['ID'],
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: Maybe<Scalars['String']>;
+  /** The globally unique `ID` which will identify a single `AdminAccount` to be deleted. */
+  nodeId: Scalars['ID'];
 };
 
+/** The output of our delete `AdminAccount` mutation. */
 export type DeleteAdminAccountPayload = {
-   __typename?: 'DeleteAdminAccountPayload',
-  clientMutationId?: Maybe<Scalars['String']>,
-  adminAccount?: Maybe<AdminAccount>,
-  deletedAdminAccountId?: Maybe<Scalars['ID']>,
-  query?: Maybe<Query>,
-  accountByAccountId?: Maybe<Account>,
-  adminAccountEdge?: Maybe<AdminAccountsEdge>,
+  __typename?: 'DeleteAdminAccountPayload';
+  /**
+   * The exact same `clientMutationId` that was provided in the mutation input,
+   * unchanged and unused. May be used by a client to track mutations.
+   */
+  clientMutationId?: Maybe<Scalars['String']>;
+  /** The `AdminAccount` that was deleted by this mutation. */
+  adminAccount?: Maybe<AdminAccount>;
+  deletedAdminAccountId?: Maybe<Scalars['ID']>;
+  /** Our root query field type. Allows us to run any query from our mutation payload. */
+  query?: Maybe<Query>;
+  /** Reads a single `Account` that is related to this `AdminAccount`. */
+  accountByAccountId?: Maybe<Account>;
+  /** An edge for our `AdminAccount`. May be used by Relay 1. */
+  adminAccountEdge?: Maybe<AdminAccountsEdge>;
 };
 
 
+/** The output of our delete `AdminAccount` mutation. */
 export type DeleteAdminAccountPayloadAdminAccountEdgeArgs = {
-  orderBy?: Maybe<Array<AdminAccountsOrderBy>>
+  orderBy?: Maybe<Array<AdminAccountsOrderBy>>;
 };
 
+/** All input for the `deleteConfigById` mutation. */
 export type DeleteConfigByIdInput = {
-  clientMutationId?: Maybe<Scalars['String']>,
-  id: Scalars['Int'],
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: Maybe<Scalars['String']>;
+  id: Scalars['Int'];
 };
 
+/** All input for the `deleteConfig` mutation. */
 export type DeleteConfigInput = {
-  clientMutationId?: Maybe<Scalars['String']>,
-  nodeId: Scalars['ID'],
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: Maybe<Scalars['String']>;
+  /** The globally unique `ID` which will identify a single `Config` to be deleted. */
+  nodeId: Scalars['ID'];
 };
 
+/** The output of our delete `Config` mutation. */
 export type DeleteConfigPayload = {
-   __typename?: 'DeleteConfigPayload',
-  clientMutationId?: Maybe<Scalars['String']>,
-  config?: Maybe<Config>,
-  deletedConfigId?: Maybe<Scalars['ID']>,
-  query?: Maybe<Query>,
-  postByFeaturedStory1?: Maybe<Post>,
-  postByFeaturedStory2?: Maybe<Post>,
-  postByFeaturedStory3?: Maybe<Post>,
-  tripByFeaturedTrip1?: Maybe<Trip>,
-  configEdge?: Maybe<ConfigsEdge>,
+  __typename?: 'DeleteConfigPayload';
+  /**
+   * The exact same `clientMutationId` that was provided in the mutation input,
+   * unchanged and unused. May be used by a client to track mutations.
+   */
+  clientMutationId?: Maybe<Scalars['String']>;
+  /** The `Config` that was deleted by this mutation. */
+  config?: Maybe<Config>;
+  deletedConfigId?: Maybe<Scalars['ID']>;
+  /** Our root query field type. Allows us to run any query from our mutation payload. */
+  query?: Maybe<Query>;
+  /** Reads a single `Post` that is related to this `Config`. */
+  postByFeaturedStory1?: Maybe<Post>;
+  /** Reads a single `Post` that is related to this `Config`. */
+  postByFeaturedStory2?: Maybe<Post>;
+  /** Reads a single `Post` that is related to this `Config`. */
+  postByFeaturedStory3?: Maybe<Post>;
+  /** Reads a single `Trip` that is related to this `Config`. */
+  tripByFeaturedTrip1?: Maybe<Trip>;
+  /** An edge for our `Config`. May be used by Relay 1. */
+  configEdge?: Maybe<ConfigsEdge>;
 };
 
 
+/** The output of our delete `Config` mutation. */
 export type DeleteConfigPayloadConfigEdgeArgs = {
-  orderBy?: Maybe<Array<ConfigsOrderBy>>
+  orderBy?: Maybe<Array<ConfigsOrderBy>>;
 };
 
+/** All input for the `deleteCoordById` mutation. */
 export type DeleteCoordByIdInput = {
-  clientMutationId?: Maybe<Scalars['String']>,
-  id: Scalars['Int'],
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: Maybe<Scalars['String']>;
+  /** Primary id for coordinates */
+  id: Scalars['Int'];
 };
 
+/** All input for the `deleteCoord` mutation. */
 export type DeleteCoordInput = {
-  clientMutationId?: Maybe<Scalars['String']>,
-  nodeId: Scalars['ID'],
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: Maybe<Scalars['String']>;
+  /** The globally unique `ID` which will identify a single `Coord` to be deleted. */
+  nodeId: Scalars['ID'];
 };
 
+/** The output of our delete `Coord` mutation. */
 export type DeleteCoordPayload = {
-   __typename?: 'DeleteCoordPayload',
-  clientMutationId?: Maybe<Scalars['String']>,
-  coord?: Maybe<Coord>,
-  deletedCoordId?: Maybe<Scalars['ID']>,
-  query?: Maybe<Query>,
-  junctureByJunctureId?: Maybe<Juncture>,
-  coordEdge?: Maybe<CoordsEdge>,
+  __typename?: 'DeleteCoordPayload';
+  /**
+   * The exact same `clientMutationId` that was provided in the mutation input,
+   * unchanged and unused. May be used by a client to track mutations.
+   */
+  clientMutationId?: Maybe<Scalars['String']>;
+  /** The `Coord` that was deleted by this mutation. */
+  coord?: Maybe<Coord>;
+  deletedCoordId?: Maybe<Scalars['ID']>;
+  /** Our root query field type. Allows us to run any query from our mutation payload. */
+  query?: Maybe<Query>;
+  /** Reads a single `Juncture` that is related to this `Coord`. */
+  junctureByJunctureId?: Maybe<Juncture>;
+  /** An edge for our `Coord`. May be used by Relay 1. */
+  coordEdge?: Maybe<CoordsEdge>;
 };
 
 
+/** The output of our delete `Coord` mutation. */
 export type DeleteCoordPayloadCoordEdgeArgs = {
-  orderBy?: Maybe<Array<CoordsOrderBy>>
+  orderBy?: Maybe<Array<CoordsOrderBy>>;
 };
 
+/** All input for the `deleteCountryByCode` mutation. */
 export type DeleteCountryByCodeInput = {
-  clientMutationId?: Maybe<Scalars['String']>,
-  code: Scalars['String'],
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: Maybe<Scalars['String']>;
+  /** Primary id and code for country */
+  code: Scalars['String'];
 };
 
+/** All input for the `deleteCountry` mutation. */
 export type DeleteCountryInput = {
-  clientMutationId?: Maybe<Scalars['String']>,
-  nodeId: Scalars['ID'],
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: Maybe<Scalars['String']>;
+  /** The globally unique `ID` which will identify a single `Country` to be deleted. */
+  nodeId: Scalars['ID'];
 };
 
+/** The output of our delete `Country` mutation. */
 export type DeleteCountryPayload = {
-   __typename?: 'DeleteCountryPayload',
-  clientMutationId?: Maybe<Scalars['String']>,
-  country?: Maybe<Country>,
-  deletedCountryId?: Maybe<Scalars['ID']>,
-  query?: Maybe<Query>,
-  countryEdge?: Maybe<CountriesEdge>,
+  __typename?: 'DeleteCountryPayload';
+  /**
+   * The exact same `clientMutationId` that was provided in the mutation input,
+   * unchanged and unused. May be used by a client to track mutations.
+   */
+  clientMutationId?: Maybe<Scalars['String']>;
+  /** The `Country` that was deleted by this mutation. */
+  country?: Maybe<Country>;
+  deletedCountryId?: Maybe<Scalars['ID']>;
+  /** Our root query field type. Allows us to run any query from our mutation payload. */
+  query?: Maybe<Query>;
+  /** An edge for our `Country`. May be used by Relay 1. */
+  countryEdge?: Maybe<CountriesEdge>;
 };
 
 
+/** The output of our delete `Country` mutation. */
 export type DeleteCountryPayloadCountryEdgeArgs = {
-  orderBy?: Maybe<Array<CountriesOrderBy>>
+  orderBy?: Maybe<Array<CountriesOrderBy>>;
 };
 
+/** All input for the `deleteEmailListByEmail` mutation. */
 export type DeleteEmailListByEmailInput = {
-  clientMutationId?: Maybe<Scalars['String']>,
-  email: Scalars['String'],
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: Maybe<Scalars['String']>;
+  /** Email of user */
+  email: Scalars['String'];
 };
 
+/** All input for the `deleteEmailListById` mutation. */
 export type DeleteEmailListByIdInput = {
-  clientMutationId?: Maybe<Scalars['String']>,
-  id: Scalars['Int'],
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: Maybe<Scalars['String']>;
+  /** Primary id for email */
+  id: Scalars['Int'];
 };
 
+/** All input for the `deleteEmailList` mutation. */
 export type DeleteEmailListInput = {
-  clientMutationId?: Maybe<Scalars['String']>,
-  nodeId: Scalars['ID'],
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: Maybe<Scalars['String']>;
+  /** The globally unique `ID` which will identify a single `EmailList` to be deleted. */
+  nodeId: Scalars['ID'];
 };
 
+/** The output of our delete `EmailList` mutation. */
 export type DeleteEmailListPayload = {
-   __typename?: 'DeleteEmailListPayload',
-  clientMutationId?: Maybe<Scalars['String']>,
-  emailList?: Maybe<EmailList>,
-  deletedEmailListId?: Maybe<Scalars['ID']>,
-  query?: Maybe<Query>,
-  emailListEdge?: Maybe<EmailListsEdge>,
+  __typename?: 'DeleteEmailListPayload';
+  /**
+   * The exact same `clientMutationId` that was provided in the mutation input,
+   * unchanged and unused. May be used by a client to track mutations.
+   */
+  clientMutationId?: Maybe<Scalars['String']>;
+  /** The `EmailList` that was deleted by this mutation. */
+  emailList?: Maybe<EmailList>;
+  deletedEmailListId?: Maybe<Scalars['ID']>;
+  /** Our root query field type. Allows us to run any query from our mutation payload. */
+  query?: Maybe<Query>;
+  /** An edge for our `EmailList`. May be used by Relay 1. */
+  emailListEdge?: Maybe<EmailListsEdge>;
 };
 
 
+/** The output of our delete `EmailList` mutation. */
 export type DeleteEmailListPayloadEmailListEdgeArgs = {
-  orderBy?: Maybe<Array<EmailListsOrderBy>>
+  orderBy?: Maybe<Array<EmailListsOrderBy>>;
 };
 
+/** All input for the `deleteImageById` mutation. */
 export type DeleteImageByIdInput = {
-  clientMutationId?: Maybe<Scalars['String']>,
-  id: Scalars['Int'],
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: Maybe<Scalars['String']>;
+  /** Primary id for the photo */
+  id: Scalars['Int'];
 };
 
+/** All input for the `deleteImage` mutation. */
 export type DeleteImageInput = {
-  clientMutationId?: Maybe<Scalars['String']>,
-  nodeId: Scalars['ID'],
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: Maybe<Scalars['String']>;
+  /** The globally unique `ID` which will identify a single `Image` to be deleted. */
+  nodeId: Scalars['ID'];
 };
 
+/** The output of our delete `Image` mutation. */
 export type DeleteImagePayload = {
-   __typename?: 'DeleteImagePayload',
-  clientMutationId?: Maybe<Scalars['String']>,
-  image?: Maybe<Image>,
-  deletedImageId?: Maybe<Scalars['ID']>,
-  query?: Maybe<Query>,
-  tripByTripId?: Maybe<Trip>,
-  junctureByJunctureId?: Maybe<Juncture>,
-  postByPostId?: Maybe<Post>,
-  accountByUserId?: Maybe<Account>,
-  imageEdge?: Maybe<ImagesEdge>,
+  __typename?: 'DeleteImagePayload';
+  /**
+   * The exact same `clientMutationId` that was provided in the mutation input,
+   * unchanged and unused. May be used by a client to track mutations.
+   */
+  clientMutationId?: Maybe<Scalars['String']>;
+  /** The `Image` that was deleted by this mutation. */
+  image?: Maybe<Image>;
+  deletedImageId?: Maybe<Scalars['ID']>;
+  /** Our root query field type. Allows us to run any query from our mutation payload. */
+  query?: Maybe<Query>;
+  /** Reads a single `Trip` that is related to this `Image`. */
+  tripByTripId?: Maybe<Trip>;
+  /** Reads a single `Juncture` that is related to this `Image`. */
+  junctureByJunctureId?: Maybe<Juncture>;
+  /** Reads a single `Post` that is related to this `Image`. */
+  postByPostId?: Maybe<Post>;
+  /** Reads a single `Account` that is related to this `Image`. */
+  accountByUserId?: Maybe<Account>;
+  /** An edge for our `Image`. May be used by Relay 1. */
+  imageEdge?: Maybe<ImagesEdge>;
 };
 
 
+/** The output of our delete `Image` mutation. */
 export type DeleteImagePayloadImageEdgeArgs = {
-  orderBy?: Maybe<Array<ImagesOrderBy>>
+  orderBy?: Maybe<Array<ImagesOrderBy>>;
 };
 
+/** All input for the `deleteJunctureById` mutation. */
 export type DeleteJunctureByIdInput = {
-  clientMutationId?: Maybe<Scalars['String']>,
-  id: Scalars['Int'],
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: Maybe<Scalars['String']>;
+  /** Primary id for juncture */
+  id: Scalars['Int'];
 };
 
+/** All input for the `deleteJuncture` mutation. */
 export type DeleteJunctureInput = {
-  clientMutationId?: Maybe<Scalars['String']>,
-  nodeId: Scalars['ID'],
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: Maybe<Scalars['String']>;
+  /** The globally unique `ID` which will identify a single `Juncture` to be deleted. */
+  nodeId: Scalars['ID'];
 };
 
+/** The output of our delete `Juncture` mutation. */
 export type DeleteJuncturePayload = {
-   __typename?: 'DeleteJuncturePayload',
-  clientMutationId?: Maybe<Scalars['String']>,
-  juncture?: Maybe<Juncture>,
-  deletedJunctureId?: Maybe<Scalars['ID']>,
-  query?: Maybe<Query>,
-  accountByUserId?: Maybe<Account>,
-  tripByTripId?: Maybe<Trip>,
-  countryByCountry?: Maybe<Country>,
-  junctureEdge?: Maybe<JuncturesEdge>,
+  __typename?: 'DeleteJuncturePayload';
+  /**
+   * The exact same `clientMutationId` that was provided in the mutation input,
+   * unchanged and unused. May be used by a client to track mutations.
+   */
+  clientMutationId?: Maybe<Scalars['String']>;
+  /** The `Juncture` that was deleted by this mutation. */
+  juncture?: Maybe<Juncture>;
+  deletedJunctureId?: Maybe<Scalars['ID']>;
+  /** Our root query field type. Allows us to run any query from our mutation payload. */
+  query?: Maybe<Query>;
+  /** Reads a single `Account` that is related to this `Juncture`. */
+  accountByUserId?: Maybe<Account>;
+  /** Reads a single `Trip` that is related to this `Juncture`. */
+  tripByTripId?: Maybe<Trip>;
+  /** Reads a single `Country` that is related to this `Juncture`. */
+  countryByCountry?: Maybe<Country>;
+  /** An edge for our `Juncture`. May be used by Relay 1. */
+  junctureEdge?: Maybe<JuncturesEdge>;
 };
 
 
+/** The output of our delete `Juncture` mutation. */
 export type DeleteJuncturePayloadJunctureEdgeArgs = {
-  orderBy?: Maybe<Array<JuncturesOrderBy>>
+  orderBy?: Maybe<Array<JuncturesOrderBy>>;
 };
 
+/** All input for the `deleteLikeById` mutation. */
 export type DeleteLikeByIdInput = {
-  clientMutationId?: Maybe<Scalars['String']>,
-  id: Scalars['Int'],
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: Maybe<Scalars['String']>;
+  /** Primary id for the like */
+  id: Scalars['Int'];
 };
 
+/** All input for the `deleteLike` mutation. */
 export type DeleteLikeInput = {
-  clientMutationId?: Maybe<Scalars['String']>,
-  nodeId: Scalars['ID'],
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: Maybe<Scalars['String']>;
+  /** The globally unique `ID` which will identify a single `Like` to be deleted. */
+  nodeId: Scalars['ID'];
 };
 
+/** The output of our delete `Like` mutation. */
 export type DeleteLikePayload = {
-   __typename?: 'DeleteLikePayload',
-  clientMutationId?: Maybe<Scalars['String']>,
-  like?: Maybe<Like>,
-  deletedLikeId?: Maybe<Scalars['ID']>,
-  query?: Maybe<Query>,
-  tripByTripId?: Maybe<Trip>,
-  junctureByJunctureId?: Maybe<Juncture>,
-  postByPostId?: Maybe<Post>,
-  imageByImageId?: Maybe<Image>,
-  accountByUserId?: Maybe<Account>,
-  likeEdge?: Maybe<LikesEdge>,
+  __typename?: 'DeleteLikePayload';
+  /**
+   * The exact same `clientMutationId` that was provided in the mutation input,
+   * unchanged and unused. May be used by a client to track mutations.
+   */
+  clientMutationId?: Maybe<Scalars['String']>;
+  /** The `Like` that was deleted by this mutation. */
+  like?: Maybe<Like>;
+  deletedLikeId?: Maybe<Scalars['ID']>;
+  /** Our root query field type. Allows us to run any query from our mutation payload. */
+  query?: Maybe<Query>;
+  /** Reads a single `Trip` that is related to this `Like`. */
+  tripByTripId?: Maybe<Trip>;
+  /** Reads a single `Juncture` that is related to this `Like`. */
+  junctureByJunctureId?: Maybe<Juncture>;
+  /** Reads a single `Post` that is related to this `Like`. */
+  postByPostId?: Maybe<Post>;
+  /** Reads a single `Image` that is related to this `Like`. */
+  imageByImageId?: Maybe<Image>;
+  /** Reads a single `Account` that is related to this `Like`. */
+  accountByUserId?: Maybe<Account>;
+  /** An edge for our `Like`. May be used by Relay 1. */
+  likeEdge?: Maybe<LikesEdge>;
 };
 
 
+/** The output of our delete `Like` mutation. */
 export type DeleteLikePayloadLikeEdgeArgs = {
-  orderBy?: Maybe<Array<LikesOrderBy>>
+  orderBy?: Maybe<Array<LikesOrderBy>>;
 };
 
+/** All input for the `deleteLoggedActionByEventId` mutation. */
 export type DeleteLoggedActionByEventIdInput = {
-  clientMutationId?: Maybe<Scalars['String']>,
-  eventId: Scalars['BigInt'],
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: Maybe<Scalars['String']>;
+  /** Unique identifier for each auditable event */
+  eventId: Scalars['BigInt'];
 };
 
+/** All input for the `deleteLoggedAction` mutation. */
 export type DeleteLoggedActionInput = {
-  clientMutationId?: Maybe<Scalars['String']>,
-  nodeId: Scalars['ID'],
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: Maybe<Scalars['String']>;
+  /** The globally unique `ID` which will identify a single `LoggedAction` to be deleted. */
+  nodeId: Scalars['ID'];
 };
 
+/** The output of our delete `LoggedAction` mutation. */
 export type DeleteLoggedActionPayload = {
-   __typename?: 'DeleteLoggedActionPayload',
-  clientMutationId?: Maybe<Scalars['String']>,
-  loggedAction?: Maybe<LoggedAction>,
-  deletedLoggedActionId?: Maybe<Scalars['ID']>,
-  query?: Maybe<Query>,
-  loggedActionEdge?: Maybe<LoggedActionsEdge>,
+  __typename?: 'DeleteLoggedActionPayload';
+  /**
+   * The exact same `clientMutationId` that was provided in the mutation input,
+   * unchanged and unused. May be used by a client to track mutations.
+   */
+  clientMutationId?: Maybe<Scalars['String']>;
+  /** The `LoggedAction` that was deleted by this mutation. */
+  loggedAction?: Maybe<LoggedAction>;
+  deletedLoggedActionId?: Maybe<Scalars['ID']>;
+  /** Our root query field type. Allows us to run any query from our mutation payload. */
+  query?: Maybe<Query>;
+  /** An edge for our `LoggedAction`. May be used by Relay 1. */
+  loggedActionEdge?: Maybe<LoggedActionsEdge>;
 };
 
 
+/** The output of our delete `LoggedAction` mutation. */
 export type DeleteLoggedActionPayloadLoggedActionEdgeArgs = {
-  orderBy?: Maybe<Array<LoggedActionsOrderBy>>
+  orderBy?: Maybe<Array<LoggedActionsOrderBy>>;
 };
 
+/** All input for the `deletePostById` mutation. */
 export type DeletePostByIdInput = {
-  clientMutationId?: Maybe<Scalars['String']>,
-  id: Scalars['Int'],
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: Maybe<Scalars['String']>;
+  /** Primary id for post */
+  id: Scalars['Int'];
 };
 
+/** All input for the `deletePost` mutation. */
 export type DeletePostInput = {
-  clientMutationId?: Maybe<Scalars['String']>,
-  nodeId: Scalars['ID'],
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: Maybe<Scalars['String']>;
+  /** The globally unique `ID` which will identify a single `Post` to be deleted. */
+  nodeId: Scalars['ID'];
 };
 
+/** The output of our delete `Post` mutation. */
 export type DeletePostPayload = {
-   __typename?: 'DeletePostPayload',
-  clientMutationId?: Maybe<Scalars['String']>,
-  post?: Maybe<Post>,
-  deletedPostId?: Maybe<Scalars['ID']>,
-  query?: Maybe<Query>,
-  accountByAuthor?: Maybe<Account>,
-  tripByTripId?: Maybe<Trip>,
-  junctureByJunctureId?: Maybe<Juncture>,
-  countryByCountry?: Maybe<Country>,
-  postEdge?: Maybe<PostsEdge>,
+  __typename?: 'DeletePostPayload';
+  /**
+   * The exact same `clientMutationId` that was provided in the mutation input,
+   * unchanged and unused. May be used by a client to track mutations.
+   */
+  clientMutationId?: Maybe<Scalars['String']>;
+  /** The `Post` that was deleted by this mutation. */
+  post?: Maybe<Post>;
+  deletedPostId?: Maybe<Scalars['ID']>;
+  /** Our root query field type. Allows us to run any query from our mutation payload. */
+  query?: Maybe<Query>;
+  /** Reads a single `Account` that is related to this `Post`. */
+  accountByAuthor?: Maybe<Account>;
+  /** Reads a single `Trip` that is related to this `Post`. */
+  tripByTripId?: Maybe<Trip>;
+  /** Reads a single `Juncture` that is related to this `Post`. */
+  junctureByJunctureId?: Maybe<Juncture>;
+  /** Reads a single `Country` that is related to this `Post`. */
+  countryByCountry?: Maybe<Country>;
+  /** An edge for our `Post`. May be used by Relay 1. */
+  postEdge?: Maybe<PostsEdge>;
 };
 
 
+/** The output of our delete `Post` mutation. */
 export type DeletePostPayloadPostEdgeArgs = {
-  orderBy?: Maybe<Array<PostsOrderBy>>
+  orderBy?: Maybe<Array<PostsOrderBy>>;
 };
 
+/** All input for the `deletePostTagByName` mutation. */
 export type DeletePostTagByNameInput = {
-  clientMutationId?: Maybe<Scalars['String']>,
-  name: Scalars['String'],
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: Maybe<Scalars['String']>;
+  /** Name of the post tag and primary id */
+  name: Scalars['String'];
 };
 
+/** All input for the `deletePostTag` mutation. */
 export type DeletePostTagInput = {
-  clientMutationId?: Maybe<Scalars['String']>,
-  nodeId: Scalars['ID'],
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: Maybe<Scalars['String']>;
+  /** The globally unique `ID` which will identify a single `PostTag` to be deleted. */
+  nodeId: Scalars['ID'];
 };
 
+/** The output of our delete `PostTag` mutation. */
 export type DeletePostTagPayload = {
-   __typename?: 'DeletePostTagPayload',
-  clientMutationId?: Maybe<Scalars['String']>,
-  postTag?: Maybe<PostTag>,
-  deletedPostTagId?: Maybe<Scalars['ID']>,
-  query?: Maybe<Query>,
-  postTagEdge?: Maybe<PostTagsEdge>,
+  __typename?: 'DeletePostTagPayload';
+  /**
+   * The exact same `clientMutationId` that was provided in the mutation input,
+   * unchanged and unused. May be used by a client to track mutations.
+   */
+  clientMutationId?: Maybe<Scalars['String']>;
+  /** The `PostTag` that was deleted by this mutation. */
+  postTag?: Maybe<PostTag>;
+  deletedPostTagId?: Maybe<Scalars['ID']>;
+  /** Our root query field type. Allows us to run any query from our mutation payload. */
+  query?: Maybe<Query>;
+  /** An edge for our `PostTag`. May be used by Relay 1. */
+  postTagEdge?: Maybe<PostTagsEdge>;
 };
 
 
+/** The output of our delete `PostTag` mutation. */
 export type DeletePostTagPayloadPostTagEdgeArgs = {
-  orderBy?: Maybe<Array<PostTagsOrderBy>>
+  orderBy?: Maybe<Array<PostTagsOrderBy>>;
 };
 
+/** All input for the `deletePostToTagById` mutation. */
 export type DeletePostToTagByIdInput = {
-  clientMutationId?: Maybe<Scalars['String']>,
-  id: Scalars['Int'],
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: Maybe<Scalars['String']>;
+  /** Id of the row */
+  id: Scalars['Int'];
 };
 
+/** All input for the `deletePostToTag` mutation. */
 export type DeletePostToTagInput = {
-  clientMutationId?: Maybe<Scalars['String']>,
-  nodeId: Scalars['ID'],
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: Maybe<Scalars['String']>;
+  /** The globally unique `ID` which will identify a single `PostToTag` to be deleted. */
+  nodeId: Scalars['ID'];
 };
 
+/** The output of our delete `PostToTag` mutation. */
 export type DeletePostToTagPayload = {
-   __typename?: 'DeletePostToTagPayload',
-  clientMutationId?: Maybe<Scalars['String']>,
-  postToTag?: Maybe<PostToTag>,
-  deletedPostToTagId?: Maybe<Scalars['ID']>,
-  query?: Maybe<Query>,
-  postByPostId?: Maybe<Post>,
-  postTagByPostTagId?: Maybe<PostTag>,
-  postToTagEdge?: Maybe<PostToTagsEdge>,
+  __typename?: 'DeletePostToTagPayload';
+  /**
+   * The exact same `clientMutationId` that was provided in the mutation input,
+   * unchanged and unused. May be used by a client to track mutations.
+   */
+  clientMutationId?: Maybe<Scalars['String']>;
+  /** The `PostToTag` that was deleted by this mutation. */
+  postToTag?: Maybe<PostToTag>;
+  deletedPostToTagId?: Maybe<Scalars['ID']>;
+  /** Our root query field type. Allows us to run any query from our mutation payload. */
+  query?: Maybe<Query>;
+  /** Reads a single `Post` that is related to this `PostToTag`. */
+  postByPostId?: Maybe<Post>;
+  /** Reads a single `PostTag` that is related to this `PostToTag`. */
+  postTagByPostTagId?: Maybe<PostTag>;
+  /** An edge for our `PostToTag`. May be used by Relay 1. */
+  postToTagEdge?: Maybe<PostToTagsEdge>;
 };
 
 
+/** The output of our delete `PostToTag` mutation. */
 export type DeletePostToTagPayloadPostToTagEdgeArgs = {
-  orderBy?: Maybe<Array<PostToTagsOrderBy>>
+  orderBy?: Maybe<Array<PostToTagsOrderBy>>;
 };
 
+/** All input for the `deleteTrackById` mutation. */
 export type DeleteTrackByIdInput = {
-  clientMutationId?: Maybe<Scalars['String']>,
-  id: Scalars['Int'],
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: Maybe<Scalars['String']>;
+  /** Primary id for the track */
+  id: Scalars['Int'];
 };
 
+/** All input for the `deleteTrack` mutation. */
 export type DeleteTrackInput = {
-  clientMutationId?: Maybe<Scalars['String']>,
-  nodeId: Scalars['ID'],
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: Maybe<Scalars['String']>;
+  /** The globally unique `ID` which will identify a single `Track` to be deleted. */
+  nodeId: Scalars['ID'];
 };
 
+/** The output of our delete `Track` mutation. */
 export type DeleteTrackPayload = {
-   __typename?: 'DeleteTrackPayload',
-  clientMutationId?: Maybe<Scalars['String']>,
-  track?: Maybe<Track>,
-  deletedTrackId?: Maybe<Scalars['ID']>,
-  query?: Maybe<Query>,
-  accountByUserId?: Maybe<Account>,
-  accountByTrackUserId?: Maybe<Account>,
-  trackEdge?: Maybe<TracksEdge>,
+  __typename?: 'DeleteTrackPayload';
+  /**
+   * The exact same `clientMutationId` that was provided in the mutation input,
+   * unchanged and unused. May be used by a client to track mutations.
+   */
+  clientMutationId?: Maybe<Scalars['String']>;
+  /** The `Track` that was deleted by this mutation. */
+  track?: Maybe<Track>;
+  deletedTrackId?: Maybe<Scalars['ID']>;
+  /** Our root query field type. Allows us to run any query from our mutation payload. */
+  query?: Maybe<Query>;
+  /** Reads a single `Account` that is related to this `Track`. */
+  accountByUserId?: Maybe<Account>;
+  /** Reads a single `Account` that is related to this `Track`. */
+  accountByTrackUserId?: Maybe<Account>;
+  /** An edge for our `Track`. May be used by Relay 1. */
+  trackEdge?: Maybe<TracksEdge>;
 };
 
 
+/** The output of our delete `Track` mutation. */
 export type DeleteTrackPayloadTrackEdgeArgs = {
-  orderBy?: Maybe<Array<TracksOrderBy>>
+  orderBy?: Maybe<Array<TracksOrderBy>>;
 };
 
+/** All input for the `deleteTripById` mutation. */
 export type DeleteTripByIdInput = {
-  clientMutationId?: Maybe<Scalars['String']>,
-  id: Scalars['Int'],
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: Maybe<Scalars['String']>;
+  /** Primary id for trip */
+  id: Scalars['Int'];
 };
 
+/** All input for the `deleteTrip` mutation. */
 export type DeleteTripInput = {
-  clientMutationId?: Maybe<Scalars['String']>,
-  nodeId: Scalars['ID'],
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: Maybe<Scalars['String']>;
+  /** The globally unique `ID` which will identify a single `Trip` to be deleted. */
+  nodeId: Scalars['ID'];
 };
 
+/** The output of our delete `Trip` mutation. */
 export type DeleteTripPayload = {
-   __typename?: 'DeleteTripPayload',
-  clientMutationId?: Maybe<Scalars['String']>,
-  trip?: Maybe<Trip>,
-  deletedTripId?: Maybe<Scalars['ID']>,
-  query?: Maybe<Query>,
-  accountByUserId?: Maybe<Account>,
-  tripEdge?: Maybe<TripsEdge>,
+  __typename?: 'DeleteTripPayload';
+  /**
+   * The exact same `clientMutationId` that was provided in the mutation input,
+   * unchanged and unused. May be used by a client to track mutations.
+   */
+  clientMutationId?: Maybe<Scalars['String']>;
+  /** The `Trip` that was deleted by this mutation. */
+  trip?: Maybe<Trip>;
+  deletedTripId?: Maybe<Scalars['ID']>;
+  /** Our root query field type. Allows us to run any query from our mutation payload. */
+  query?: Maybe<Query>;
+  /** Reads a single `Account` that is related to this `Trip`. */
+  accountByUserId?: Maybe<Account>;
+  /** An edge for our `Trip`. May be used by Relay 1. */
+  tripEdge?: Maybe<TripsEdge>;
 };
 
 
+/** The output of our delete `Trip` mutation. */
 export type DeleteTripPayloadTripEdgeArgs = {
-  orderBy?: Maybe<Array<TripsOrderBy>>
+  orderBy?: Maybe<Array<TripsOrderBy>>;
 };
 
+/** All input for the `deleteUserAccountByAccountId` mutation. */
 export type DeleteUserAccountByAccountIdInput = {
-  clientMutationId?: Maybe<Scalars['String']>,
-  accountId: Scalars['Int'],
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: Maybe<Scalars['String']>;
+  /** The id of the user associated with this account. */
+  accountId: Scalars['Int'];
 };
 
+/** All input for the `deleteUserAccountByEmail` mutation. */
 export type DeleteUserAccountByEmailInput = {
-  clientMutationId?: Maybe<Scalars['String']>,
-  email: Scalars['String'],
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: Maybe<Scalars['String']>;
+  /** The email address of the account. */
+  email: Scalars['String'];
 };
 
+/** All input for the `deleteUserAccount` mutation. */
 export type DeleteUserAccountInput = {
-  clientMutationId?: Maybe<Scalars['String']>,
-  nodeId: Scalars['ID'],
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: Maybe<Scalars['String']>;
+  /** The globally unique `ID` which will identify a single `UserAccount` to be deleted. */
+  nodeId: Scalars['ID'];
 };
 
+/** The output of our delete `UserAccount` mutation. */
 export type DeleteUserAccountPayload = {
-   __typename?: 'DeleteUserAccountPayload',
-  clientMutationId?: Maybe<Scalars['String']>,
-  userAccount?: Maybe<UserAccount>,
-  deletedUserAccountId?: Maybe<Scalars['ID']>,
-  query?: Maybe<Query>,
-  accountByAccountId?: Maybe<Account>,
-  userAccountEdge?: Maybe<UserAccountsEdge>,
+  __typename?: 'DeleteUserAccountPayload';
+  /**
+   * The exact same `clientMutationId` that was provided in the mutation input,
+   * unchanged and unused. May be used by a client to track mutations.
+   */
+  clientMutationId?: Maybe<Scalars['String']>;
+  /** The `UserAccount` that was deleted by this mutation. */
+  userAccount?: Maybe<UserAccount>;
+  deletedUserAccountId?: Maybe<Scalars['ID']>;
+  /** Our root query field type. Allows us to run any query from our mutation payload. */
+  query?: Maybe<Query>;
+  /** Reads a single `Account` that is related to this `UserAccount`. */
+  accountByAccountId?: Maybe<Account>;
+  /** An edge for our `UserAccount`. May be used by Relay 1. */
+  userAccountEdge?: Maybe<UserAccountsEdge>;
 };
 
 
+/** The output of our delete `UserAccount` mutation. */
 export type DeleteUserAccountPayloadUserAccountEdgeArgs = {
-  orderBy?: Maybe<Array<UserAccountsOrderBy>>
+  orderBy?: Maybe<Array<UserAccountsOrderBy>>;
 };
 
+/** All input for the `deleteUserToCountryById` mutation. */
 export type DeleteUserToCountryByIdInput = {
-  clientMutationId?: Maybe<Scalars['String']>,
-  id: Scalars['Int'],
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: Maybe<Scalars['String']>;
+  /** Id for user to country connection */
+  id: Scalars['Int'];
 };
 
+/** All input for the `deleteUserToCountry` mutation. */
 export type DeleteUserToCountryInput = {
-  clientMutationId?: Maybe<Scalars['String']>,
-  nodeId: Scalars['ID'],
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: Maybe<Scalars['String']>;
+  /** The globally unique `ID` which will identify a single `UserToCountry` to be deleted. */
+  nodeId: Scalars['ID'];
 };
 
+/** The output of our delete `UserToCountry` mutation. */
 export type DeleteUserToCountryPayload = {
-   __typename?: 'DeleteUserToCountryPayload',
-  clientMutationId?: Maybe<Scalars['String']>,
-  userToCountry?: Maybe<UserToCountry>,
-  deletedUserToCountryId?: Maybe<Scalars['ID']>,
-  query?: Maybe<Query>,
-  accountByUserId?: Maybe<Account>,
-  countryByCountry?: Maybe<Country>,
-  userToCountryEdge?: Maybe<UserToCountriesEdge>,
+  __typename?: 'DeleteUserToCountryPayload';
+  /**
+   * The exact same `clientMutationId` that was provided in the mutation input,
+   * unchanged and unused. May be used by a client to track mutations.
+   */
+  clientMutationId?: Maybe<Scalars['String']>;
+  /** The `UserToCountry` that was deleted by this mutation. */
+  userToCountry?: Maybe<UserToCountry>;
+  deletedUserToCountryId?: Maybe<Scalars['ID']>;
+  /** Our root query field type. Allows us to run any query from our mutation payload. */
+  query?: Maybe<Query>;
+  /** Reads a single `Account` that is related to this `UserToCountry`. */
+  accountByUserId?: Maybe<Account>;
+  /** Reads a single `Country` that is related to this `UserToCountry`. */
+  countryByCountry?: Maybe<Country>;
+  /** An edge for our `UserToCountry`. May be used by Relay 1. */
+  userToCountryEdge?: Maybe<UserToCountriesEdge>;
 };
 
 
+/** The output of our delete `UserToCountry` mutation. */
 export type DeleteUserToCountryPayloadUserToCountryEdgeArgs = {
-  orderBy?: Maybe<Array<UserToCountriesOrderBy>>
+  orderBy?: Maybe<Array<UserToCountriesOrderBy>>;
 };
 
+/** Table with POMB list of emails */
 export type EmailList = Node & {
-   __typename?: 'EmailList',
-  nodeId: Scalars['ID'],
-  id: Scalars['Int'],
-  email: Scalars['String'],
-  createdAt?: Maybe<Scalars['BigInt']>,
+  __typename?: 'EmailList';
+  /** A globally unique identifier. Can be used in various places throughout the system to identify this single value. */
+  nodeId: Scalars['ID'];
+  /** Primary id for email */
+  id: Scalars['Int'];
+  /** Email of user */
+  email: Scalars['String'];
+  /** When email created */
+  createdAt?: Maybe<Scalars['BigInt']>;
 };
 
+/**
+ * A condition to be used against `EmailList` object types. All fields are tested
+ * for equality and combined with a logical ‘and.’
+ */
 export type EmailListCondition = {
-  id?: Maybe<Scalars['Int']>,
-  email?: Maybe<Scalars['String']>,
-  createdAt?: Maybe<Scalars['BigInt']>,
+  /** Checks for equality with the object’s `id` field. */
+  id?: Maybe<Scalars['Int']>;
+  /** Checks for equality with the object’s `email` field. */
+  email?: Maybe<Scalars['String']>;
+  /** Checks for equality with the object’s `createdAt` field. */
+  createdAt?: Maybe<Scalars['BigInt']>;
 };
 
+/** A filter to be used against `EmailList` object types. All fields are combined with a logical ‘and.’ */
 export type EmailListFilter = {
-  id?: Maybe<IntFilter>,
-  email?: Maybe<StringFilter>,
-  createdAt?: Maybe<BigIntFilter>,
-  and?: Maybe<Array<EmailListFilter>>,
-  or?: Maybe<Array<EmailListFilter>>,
-  not?: Maybe<EmailListFilter>,
+  /** Filter by the object’s `id` field. */
+  id?: Maybe<IntFilter>;
+  /** Filter by the object’s `email` field. */
+  email?: Maybe<StringFilter>;
+  /** Filter by the object’s `createdAt` field. */
+  createdAt?: Maybe<BigIntFilter>;
+  /** Checks for all expressions in this list. */
+  and?: Maybe<Array<EmailListFilter>>;
+  /** Checks for any expressions in this list. */
+  or?: Maybe<Array<EmailListFilter>>;
+  /** Negates the expression. */
+  not?: Maybe<EmailListFilter>;
 };
 
+/** An input for mutations affecting `EmailList` */
 export type EmailListInput = {
-  id?: Maybe<Scalars['Int']>,
-  email: Scalars['String'],
-  createdAt?: Maybe<Scalars['BigInt']>,
+  /** Primary id for email */
+  id?: Maybe<Scalars['Int']>;
+  /** Email of user */
+  email: Scalars['String'];
+  /** When email created */
+  createdAt?: Maybe<Scalars['BigInt']>;
 };
 
+/** Represents an update to a `EmailList`. Fields that are set will be updated. */
 export type EmailListPatch = {
-  id?: Maybe<Scalars['Int']>,
-  email?: Maybe<Scalars['String']>,
-  createdAt?: Maybe<Scalars['BigInt']>,
+  /** Primary id for email */
+  id?: Maybe<Scalars['Int']>;
+  /** Email of user */
+  email?: Maybe<Scalars['String']>;
+  /** When email created */
+  createdAt?: Maybe<Scalars['BigInt']>;
 };
 
+/** A connection to a list of `EmailList` values. */
 export type EmailListsConnection = {
-   __typename?: 'EmailListsConnection',
-  nodes: Array<Maybe<EmailList>>,
-  edges: Array<EmailListsEdge>,
-  pageInfo: PageInfo,
-  totalCount: Scalars['Int'],
+  __typename?: 'EmailListsConnection';
+  /** A list of `EmailList` objects. */
+  nodes: Array<Maybe<EmailList>>;
+  /** A list of edges which contains the `EmailList` and cursor to aid in pagination. */
+  edges: Array<EmailListsEdge>;
+  /** Information to aid in pagination. */
+  pageInfo: PageInfo;
+  /** The count of *all* `EmailList` you could get from the connection. */
+  totalCount: Scalars['Int'];
 };
 
+/** A `EmailList` edge in the connection. */
 export type EmailListsEdge = {
-   __typename?: 'EmailListsEdge',
-  cursor?: Maybe<Scalars['Cursor']>,
-  node?: Maybe<EmailList>,
+  __typename?: 'EmailListsEdge';
+  /** A cursor for use in pagination. */
+  cursor?: Maybe<Scalars['Cursor']>;
+  /** The `EmailList` at the end of the edge. */
+  node?: Maybe<EmailList>;
 };
 
+/** Methods to use when ordering `EmailList`. */
 export enum EmailListsOrderBy {
   Natural = 'NATURAL',
   IdAsc = 'ID_ASC',
@@ -1678,112 +2802,191 @@ export enum EmailListsOrderBy {
   PrimaryKeyDesc = 'PRIMARY_KEY_DESC'
 }
 
+/** Table with site images */
 export type Image = Node & {
-   __typename?: 'Image',
-  nodeId: Scalars['ID'],
-  id: Scalars['Int'],
-  tripId?: Maybe<Scalars['Int']>,
-  junctureId?: Maybe<Scalars['Int']>,
-  postId?: Maybe<Scalars['Int']>,
-  userId: Scalars['Int'],
-  type: ImageType,
-  url: Scalars['String'],
-  title?: Maybe<Scalars['String']>,
-  description?: Maybe<Scalars['String']>,
-  createdAt?: Maybe<Scalars['BigInt']>,
-  updatedAt?: Maybe<Scalars['Datetime']>,
-  tripByTripId?: Maybe<Trip>,
-  junctureByJunctureId?: Maybe<Juncture>,
-  postByPostId?: Maybe<Post>,
-  accountByUserId?: Maybe<Account>,
-  likesByImageId: LikesConnection,
+  __typename?: 'Image';
+  /** A globally unique identifier. Can be used in various places throughout the system to identify this single value. */
+  nodeId: Scalars['ID'];
+  /** Primary id for the photo */
+  id: Scalars['Int'];
+  /** Primary id of trip its related to */
+  tripId?: Maybe<Scalars['Int']>;
+  /** Primary id of juncture its related to */
+  junctureId?: Maybe<Scalars['Int']>;
+  /** Primary id of post its related to */
+  postId?: Maybe<Scalars['Int']>;
+  /** Primary id of user who uploaded image */
+  userId: Scalars['Int'];
+  /** Type of image */
+  type: ImageType;
+  /** Link to image */
+  url: Scalars['String'];
+  /** Title of image */
+  title?: Maybe<Scalars['String']>;
+  /** Description of image */
+  description?: Maybe<Scalars['String']>;
+  /** Time image created at */
+  createdAt?: Maybe<Scalars['BigInt']>;
+  /** Time image updated at */
+  updatedAt?: Maybe<Scalars['Datetime']>;
+  /** Reads a single `Trip` that is related to this `Image`. */
+  tripByTripId?: Maybe<Trip>;
+  /** Reads a single `Juncture` that is related to this `Image`. */
+  junctureByJunctureId?: Maybe<Juncture>;
+  /** Reads a single `Post` that is related to this `Image`. */
+  postByPostId?: Maybe<Post>;
+  /** Reads a single `Account` that is related to this `Image`. */
+  accountByUserId?: Maybe<Account>;
+  /** Reads and enables pagination through a set of `Like`. */
+  likesByImageId: LikesConnection;
 };
 
 
+/** Table with site images */
 export type ImageLikesByImageIdArgs = {
-  first?: Maybe<Scalars['Int']>,
-  last?: Maybe<Scalars['Int']>,
-  offset?: Maybe<Scalars['Int']>,
-  before?: Maybe<Scalars['Cursor']>,
-  after?: Maybe<Scalars['Cursor']>,
-  orderBy?: Maybe<Array<LikesOrderBy>>,
-  condition?: Maybe<LikeCondition>,
-  filter?: Maybe<LikeFilter>
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  before?: Maybe<Scalars['Cursor']>;
+  after?: Maybe<Scalars['Cursor']>;
+  orderBy?: Maybe<Array<LikesOrderBy>>;
+  condition?: Maybe<LikeCondition>;
+  filter?: Maybe<LikeFilter>;
 };
 
+/** A condition to be used against `Image` object types. All fields are tested for equality and combined with a logical ‘and.’ */
 export type ImageCondition = {
-  id?: Maybe<Scalars['Int']>,
-  tripId?: Maybe<Scalars['Int']>,
-  junctureId?: Maybe<Scalars['Int']>,
-  postId?: Maybe<Scalars['Int']>,
-  userId?: Maybe<Scalars['Int']>,
-  type?: Maybe<ImageType>,
-  url?: Maybe<Scalars['String']>,
-  title?: Maybe<Scalars['String']>,
-  description?: Maybe<Scalars['String']>,
-  createdAt?: Maybe<Scalars['BigInt']>,
-  updatedAt?: Maybe<Scalars['Datetime']>,
+  /** Checks for equality with the object’s `id` field. */
+  id?: Maybe<Scalars['Int']>;
+  /** Checks for equality with the object’s `tripId` field. */
+  tripId?: Maybe<Scalars['Int']>;
+  /** Checks for equality with the object’s `junctureId` field. */
+  junctureId?: Maybe<Scalars['Int']>;
+  /** Checks for equality with the object’s `postId` field. */
+  postId?: Maybe<Scalars['Int']>;
+  /** Checks for equality with the object’s `userId` field. */
+  userId?: Maybe<Scalars['Int']>;
+  /** Checks for equality with the object’s `type` field. */
+  type?: Maybe<ImageType>;
+  /** Checks for equality with the object’s `url` field. */
+  url?: Maybe<Scalars['String']>;
+  /** Checks for equality with the object’s `title` field. */
+  title?: Maybe<Scalars['String']>;
+  /** Checks for equality with the object’s `description` field. */
+  description?: Maybe<Scalars['String']>;
+  /** Checks for equality with the object’s `createdAt` field. */
+  createdAt?: Maybe<Scalars['BigInt']>;
+  /** Checks for equality with the object’s `updatedAt` field. */
+  updatedAt?: Maybe<Scalars['Datetime']>;
 };
 
+/** A filter to be used against `Image` object types. All fields are combined with a logical ‘and.’ */
 export type ImageFilter = {
-  id?: Maybe<IntFilter>,
-  tripId?: Maybe<IntFilter>,
-  junctureId?: Maybe<IntFilter>,
-  postId?: Maybe<IntFilter>,
-  userId?: Maybe<IntFilter>,
-  type?: Maybe<ImageTypeFilter>,
-  url?: Maybe<StringFilter>,
-  title?: Maybe<StringFilter>,
-  description?: Maybe<StringFilter>,
-  createdAt?: Maybe<BigIntFilter>,
-  updatedAt?: Maybe<DatetimeFilter>,
-  and?: Maybe<Array<ImageFilter>>,
-  or?: Maybe<Array<ImageFilter>>,
-  not?: Maybe<ImageFilter>,
+  /** Filter by the object’s `id` field. */
+  id?: Maybe<IntFilter>;
+  /** Filter by the object’s `tripId` field. */
+  tripId?: Maybe<IntFilter>;
+  /** Filter by the object’s `junctureId` field. */
+  junctureId?: Maybe<IntFilter>;
+  /** Filter by the object’s `postId` field. */
+  postId?: Maybe<IntFilter>;
+  /** Filter by the object’s `userId` field. */
+  userId?: Maybe<IntFilter>;
+  /** Filter by the object’s `type` field. */
+  type?: Maybe<ImageTypeFilter>;
+  /** Filter by the object’s `url` field. */
+  url?: Maybe<StringFilter>;
+  /** Filter by the object’s `title` field. */
+  title?: Maybe<StringFilter>;
+  /** Filter by the object’s `description` field. */
+  description?: Maybe<StringFilter>;
+  /** Filter by the object’s `createdAt` field. */
+  createdAt?: Maybe<BigIntFilter>;
+  /** Filter by the object’s `updatedAt` field. */
+  updatedAt?: Maybe<DatetimeFilter>;
+  /** Checks for all expressions in this list. */
+  and?: Maybe<Array<ImageFilter>>;
+  /** Checks for any expressions in this list. */
+  or?: Maybe<Array<ImageFilter>>;
+  /** Negates the expression. */
+  not?: Maybe<ImageFilter>;
 };
 
+/** An input for mutations affecting `Image` */
 export type ImageInput = {
-  id?: Maybe<Scalars['Int']>,
-  tripId?: Maybe<Scalars['Int']>,
-  junctureId?: Maybe<Scalars['Int']>,
-  postId?: Maybe<Scalars['Int']>,
-  userId: Scalars['Int'],
-  type: ImageType,
-  url: Scalars['String'],
-  title?: Maybe<Scalars['String']>,
-  description?: Maybe<Scalars['String']>,
-  createdAt?: Maybe<Scalars['BigInt']>,
-  updatedAt?: Maybe<Scalars['Datetime']>,
+  /** Primary id for the photo */
+  id?: Maybe<Scalars['Int']>;
+  /** Primary id of trip its related to */
+  tripId?: Maybe<Scalars['Int']>;
+  /** Primary id of juncture its related to */
+  junctureId?: Maybe<Scalars['Int']>;
+  /** Primary id of post its related to */
+  postId?: Maybe<Scalars['Int']>;
+  /** Primary id of user who uploaded image */
+  userId: Scalars['Int'];
+  /** Type of image */
+  type: ImageType;
+  /** Link to image */
+  url: Scalars['String'];
+  /** Title of image */
+  title?: Maybe<Scalars['String']>;
+  /** Description of image */
+  description?: Maybe<Scalars['String']>;
+  /** Time image created at */
+  createdAt?: Maybe<Scalars['BigInt']>;
+  /** Time image updated at */
+  updatedAt?: Maybe<Scalars['Datetime']>;
 };
 
+/** Represents an update to a `Image`. Fields that are set will be updated. */
 export type ImagePatch = {
-  id?: Maybe<Scalars['Int']>,
-  tripId?: Maybe<Scalars['Int']>,
-  junctureId?: Maybe<Scalars['Int']>,
-  postId?: Maybe<Scalars['Int']>,
-  userId?: Maybe<Scalars['Int']>,
-  type?: Maybe<ImageType>,
-  url?: Maybe<Scalars['String']>,
-  title?: Maybe<Scalars['String']>,
-  description?: Maybe<Scalars['String']>,
-  createdAt?: Maybe<Scalars['BigInt']>,
-  updatedAt?: Maybe<Scalars['Datetime']>,
+  /** Primary id for the photo */
+  id?: Maybe<Scalars['Int']>;
+  /** Primary id of trip its related to */
+  tripId?: Maybe<Scalars['Int']>;
+  /** Primary id of juncture its related to */
+  junctureId?: Maybe<Scalars['Int']>;
+  /** Primary id of post its related to */
+  postId?: Maybe<Scalars['Int']>;
+  /** Primary id of user who uploaded image */
+  userId?: Maybe<Scalars['Int']>;
+  /** Type of image */
+  type?: Maybe<ImageType>;
+  /** Link to image */
+  url?: Maybe<Scalars['String']>;
+  /** Title of image */
+  title?: Maybe<Scalars['String']>;
+  /** Description of image */
+  description?: Maybe<Scalars['String']>;
+  /** Time image created at */
+  createdAt?: Maybe<Scalars['BigInt']>;
+  /** Time image updated at */
+  updatedAt?: Maybe<Scalars['Datetime']>;
 };
 
+/** A connection to a list of `Image` values. */
 export type ImagesConnection = {
-   __typename?: 'ImagesConnection',
-  nodes: Array<Maybe<Image>>,
-  edges: Array<ImagesEdge>,
-  pageInfo: PageInfo,
-  totalCount: Scalars['Int'],
+  __typename?: 'ImagesConnection';
+  /** A list of `Image` objects. */
+  nodes: Array<Maybe<Image>>;
+  /** A list of edges which contains the `Image` and cursor to aid in pagination. */
+  edges: Array<ImagesEdge>;
+  /** Information to aid in pagination. */
+  pageInfo: PageInfo;
+  /** The count of *all* `Image` you could get from the connection. */
+  totalCount: Scalars['Int'];
 };
 
+/** A `Image` edge in the connection. */
 export type ImagesEdge = {
-   __typename?: 'ImagesEdge',
-  cursor?: Maybe<Scalars['Cursor']>,
-  node?: Maybe<Image>,
+  __typename?: 'ImagesEdge';
+  /** A cursor for use in pagination. */
+  cursor?: Maybe<Scalars['Cursor']>;
+  /** The `Image` at the end of the edge. */
+  node?: Maybe<Image>;
 };
 
+/** Methods to use when ordering `Image`. */
 export enum ImagesOrderBy {
   Natural = 'NATURAL',
   IdAsc = 'ID_ASC',
@@ -1819,218 +3022,366 @@ export enum ImageType {
   Banner = 'BANNER'
 }
 
+/** A filter to be used against ImageType fields. All fields are combined with a logical ‘and.’ */
 export type ImageTypeFilter = {
-  isNull?: Maybe<Scalars['Boolean']>,
-  equalTo?: Maybe<ImageType>,
-  notEqualTo?: Maybe<ImageType>,
-  distinctFrom?: Maybe<ImageType>,
-  notDistinctFrom?: Maybe<ImageType>,
-  in?: Maybe<Array<ImageType>>,
-  notIn?: Maybe<Array<ImageType>>,
-  lessThan?: Maybe<ImageType>,
-  lessThanOrEqualTo?: Maybe<ImageType>,
-  greaterThan?: Maybe<ImageType>,
-  greaterThanOrEqualTo?: Maybe<ImageType>,
+  /** Is null (if `true` is specified) or is not null (if `false` is specified). */
+  isNull?: Maybe<Scalars['Boolean']>;
+  /** Equal to the specified value. */
+  equalTo?: Maybe<ImageType>;
+  /** Not equal to the specified value. */
+  notEqualTo?: Maybe<ImageType>;
+  /** Not equal to the specified value, treating null like an ordinary value. */
+  distinctFrom?: Maybe<ImageType>;
+  /** Equal to the specified value, treating null like an ordinary value. */
+  notDistinctFrom?: Maybe<ImageType>;
+  /** Included in the specified list. */
+  in?: Maybe<Array<ImageType>>;
+  /** Not included in the specified list. */
+  notIn?: Maybe<Array<ImageType>>;
+  /** Less than the specified value. */
+  lessThan?: Maybe<ImageType>;
+  /** Less than or equal to the specified value. */
+  lessThanOrEqualTo?: Maybe<ImageType>;
+  /** Greater than the specified value. */
+  greaterThan?: Maybe<ImageType>;
+  /** Greater than or equal to the specified value. */
+  greaterThanOrEqualTo?: Maybe<ImageType>;
 };
 
 
+/** A filter to be used against InternetAddress fields. All fields are combined with a logical ‘and.’ */
 export type InternetAddressFilter = {
-  isNull?: Maybe<Scalars['Boolean']>,
-  equalTo?: Maybe<Scalars['InternetAddress']>,
-  notEqualTo?: Maybe<Scalars['InternetAddress']>,
-  distinctFrom?: Maybe<Scalars['InternetAddress']>,
-  notDistinctFrom?: Maybe<Scalars['InternetAddress']>,
-  in?: Maybe<Array<Scalars['InternetAddress']>>,
-  notIn?: Maybe<Array<Scalars['InternetAddress']>>,
-  lessThan?: Maybe<Scalars['InternetAddress']>,
-  lessThanOrEqualTo?: Maybe<Scalars['InternetAddress']>,
-  greaterThan?: Maybe<Scalars['InternetAddress']>,
-  greaterThanOrEqualTo?: Maybe<Scalars['InternetAddress']>,
-  contains?: Maybe<Scalars['InternetAddress']>,
-  containsOrEqualTo?: Maybe<Scalars['InternetAddress']>,
-  containedBy?: Maybe<Scalars['InternetAddress']>,
-  containedByOrEqualTo?: Maybe<Scalars['InternetAddress']>,
-  containsOrContainedBy?: Maybe<Scalars['InternetAddress']>,
+  /** Is null (if `true` is specified) or is not null (if `false` is specified). */
+  isNull?: Maybe<Scalars['Boolean']>;
+  /** Equal to the specified value. */
+  equalTo?: Maybe<Scalars['InternetAddress']>;
+  /** Not equal to the specified value. */
+  notEqualTo?: Maybe<Scalars['InternetAddress']>;
+  /** Not equal to the specified value, treating null like an ordinary value. */
+  distinctFrom?: Maybe<Scalars['InternetAddress']>;
+  /** Equal to the specified value, treating null like an ordinary value. */
+  notDistinctFrom?: Maybe<Scalars['InternetAddress']>;
+  /** Included in the specified list. */
+  in?: Maybe<Array<Scalars['InternetAddress']>>;
+  /** Not included in the specified list. */
+  notIn?: Maybe<Array<Scalars['InternetAddress']>>;
+  /** Less than the specified value. */
+  lessThan?: Maybe<Scalars['InternetAddress']>;
+  /** Less than or equal to the specified value. */
+  lessThanOrEqualTo?: Maybe<Scalars['InternetAddress']>;
+  /** Greater than the specified value. */
+  greaterThan?: Maybe<Scalars['InternetAddress']>;
+  /** Greater than or equal to the specified value. */
+  greaterThanOrEqualTo?: Maybe<Scalars['InternetAddress']>;
+  /** Contains the specified internet address. */
+  contains?: Maybe<Scalars['InternetAddress']>;
+  /** Contains or equal to the specified internet address. */
+  containsOrEqualTo?: Maybe<Scalars['InternetAddress']>;
+  /** Contained by the specified internet address. */
+  containedBy?: Maybe<Scalars['InternetAddress']>;
+  /** Contained by or equal to the specified internet address. */
+  containedByOrEqualTo?: Maybe<Scalars['InternetAddress']>;
+  /** Contains or contained by the specified internet address. */
+  containsOrContainedBy?: Maybe<Scalars['InternetAddress']>;
 };
 
+/** A filter to be used against Int fields. All fields are combined with a logical ‘and.’ */
 export type IntFilter = {
-  isNull?: Maybe<Scalars['Boolean']>,
-  equalTo?: Maybe<Scalars['Int']>,
-  notEqualTo?: Maybe<Scalars['Int']>,
-  distinctFrom?: Maybe<Scalars['Int']>,
-  notDistinctFrom?: Maybe<Scalars['Int']>,
-  in?: Maybe<Array<Scalars['Int']>>,
-  notIn?: Maybe<Array<Scalars['Int']>>,
-  lessThan?: Maybe<Scalars['Int']>,
-  lessThanOrEqualTo?: Maybe<Scalars['Int']>,
-  greaterThan?: Maybe<Scalars['Int']>,
-  greaterThanOrEqualTo?: Maybe<Scalars['Int']>,
+  /** Is null (if `true` is specified) or is not null (if `false` is specified). */
+  isNull?: Maybe<Scalars['Boolean']>;
+  /** Equal to the specified value. */
+  equalTo?: Maybe<Scalars['Int']>;
+  /** Not equal to the specified value. */
+  notEqualTo?: Maybe<Scalars['Int']>;
+  /** Not equal to the specified value, treating null like an ordinary value. */
+  distinctFrom?: Maybe<Scalars['Int']>;
+  /** Equal to the specified value, treating null like an ordinary value. */
+  notDistinctFrom?: Maybe<Scalars['Int']>;
+  /** Included in the specified list. */
+  in?: Maybe<Array<Scalars['Int']>>;
+  /** Not included in the specified list. */
+  notIn?: Maybe<Array<Scalars['Int']>>;
+  /** Less than the specified value. */
+  lessThan?: Maybe<Scalars['Int']>;
+  /** Less than or equal to the specified value. */
+  lessThanOrEqualTo?: Maybe<Scalars['Int']>;
+  /** Greater than the specified value. */
+  greaterThan?: Maybe<Scalars['Int']>;
+  /** Greater than or equal to the specified value. */
+  greaterThanOrEqualTo?: Maybe<Scalars['Int']>;
 };
 
+/** Table with POMB junctures */
 export type Juncture = Node & {
-   __typename?: 'Juncture',
-  nodeId: Scalars['ID'],
-  id: Scalars['Int'],
-  userId: Scalars['Int'],
-  tripId: Scalars['Int'],
-  name: Scalars['String'],
-  arrivalDate: Scalars['BigInt'],
-  description?: Maybe<Scalars['String']>,
-  type: JunctureType,
-  lat: Scalars['BigFloat'],
-  lon: Scalars['BigFloat'],
-  city?: Maybe<Scalars['String']>,
-  country?: Maybe<Scalars['String']>,
-  isDraft?: Maybe<Scalars['Boolean']>,
-  markerImg?: Maybe<Scalars['String']>,
-  createdAt?: Maybe<Scalars['BigInt']>,
-  updatedAt?: Maybe<Scalars['Datetime']>,
-  accountByUserId?: Maybe<Account>,
-  tripByTripId?: Maybe<Trip>,
-  countryByCountry?: Maybe<Country>,
-  postsByJunctureId: PostsConnection,
-  coordsByJunctureId: CoordsConnection,
-  imagesByJunctureId: ImagesConnection,
-  likesByJunctureId: LikesConnection,
+  __typename?: 'Juncture';
+  /** A globally unique identifier. Can be used in various places throughout the system to identify this single value. */
+  nodeId: Scalars['ID'];
+  /** Primary id for juncture */
+  id: Scalars['Int'];
+  /** User id who created juncture */
+  userId: Scalars['Int'];
+  /** Trip id juncture belongs to */
+  tripId: Scalars['Int'];
+  /** Name of juncture */
+  name: Scalars['String'];
+  /** Date of juncture */
+  arrivalDate: Scalars['BigInt'];
+  /** Description of the juncture */
+  description?: Maybe<Scalars['String']>;
+  /** Type of juncture */
+  type: JunctureType;
+  /** Latitude of the juncture */
+  lat: Scalars['BigFloat'];
+  /** Longitude of the juncture */
+  lon: Scalars['BigFloat'];
+  /** City of the juncture */
+  city?: Maybe<Scalars['String']>;
+  /** Country code of the juncture */
+  country?: Maybe<Scalars['String']>;
+  /** Whether the juncture should be published or not */
+  isDraft?: Maybe<Scalars['Boolean']>;
+  /** Image to be used for markers on our map */
+  markerImg?: Maybe<Scalars['String']>;
+  /** When juncture created */
+  createdAt?: Maybe<Scalars['BigInt']>;
+  /** When juncture last updated */
+  updatedAt?: Maybe<Scalars['Datetime']>;
+  /** Reads a single `Account` that is related to this `Juncture`. */
+  accountByUserId?: Maybe<Account>;
+  /** Reads a single `Trip` that is related to this `Juncture`. */
+  tripByTripId?: Maybe<Trip>;
+  /** Reads a single `Country` that is related to this `Juncture`. */
+  countryByCountry?: Maybe<Country>;
+  /** Reads and enables pagination through a set of `Post`. */
+  postsByJunctureId: PostsConnection;
+  /** Reads and enables pagination through a set of `Coord`. */
+  coordsByJunctureId: CoordsConnection;
+  /** Reads and enables pagination through a set of `Image`. */
+  imagesByJunctureId: ImagesConnection;
+  /** Reads and enables pagination through a set of `Like`. */
+  likesByJunctureId: LikesConnection;
 };
 
 
+/** Table with POMB junctures */
 export type JuncturePostsByJunctureIdArgs = {
-  first?: Maybe<Scalars['Int']>,
-  last?: Maybe<Scalars['Int']>,
-  offset?: Maybe<Scalars['Int']>,
-  before?: Maybe<Scalars['Cursor']>,
-  after?: Maybe<Scalars['Cursor']>,
-  orderBy?: Maybe<Array<PostsOrderBy>>,
-  condition?: Maybe<PostCondition>,
-  filter?: Maybe<PostFilter>
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  before?: Maybe<Scalars['Cursor']>;
+  after?: Maybe<Scalars['Cursor']>;
+  orderBy?: Maybe<Array<PostsOrderBy>>;
+  condition?: Maybe<PostCondition>;
+  filter?: Maybe<PostFilter>;
 };
 
 
+/** Table with POMB junctures */
 export type JunctureCoordsByJunctureIdArgs = {
-  first?: Maybe<Scalars['Int']>,
-  last?: Maybe<Scalars['Int']>,
-  offset?: Maybe<Scalars['Int']>,
-  before?: Maybe<Scalars['Cursor']>,
-  after?: Maybe<Scalars['Cursor']>,
-  orderBy?: Maybe<Array<CoordsOrderBy>>,
-  condition?: Maybe<CoordCondition>,
-  filter?: Maybe<CoordFilter>
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  before?: Maybe<Scalars['Cursor']>;
+  after?: Maybe<Scalars['Cursor']>;
+  orderBy?: Maybe<Array<CoordsOrderBy>>;
+  condition?: Maybe<CoordCondition>;
+  filter?: Maybe<CoordFilter>;
 };
 
 
+/** Table with POMB junctures */
 export type JunctureImagesByJunctureIdArgs = {
-  first?: Maybe<Scalars['Int']>,
-  last?: Maybe<Scalars['Int']>,
-  offset?: Maybe<Scalars['Int']>,
-  before?: Maybe<Scalars['Cursor']>,
-  after?: Maybe<Scalars['Cursor']>,
-  orderBy?: Maybe<Array<ImagesOrderBy>>,
-  condition?: Maybe<ImageCondition>,
-  filter?: Maybe<ImageFilter>
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  before?: Maybe<Scalars['Cursor']>;
+  after?: Maybe<Scalars['Cursor']>;
+  orderBy?: Maybe<Array<ImagesOrderBy>>;
+  condition?: Maybe<ImageCondition>;
+  filter?: Maybe<ImageFilter>;
 };
 
 
+/** Table with POMB junctures */
 export type JunctureLikesByJunctureIdArgs = {
-  first?: Maybe<Scalars['Int']>,
-  last?: Maybe<Scalars['Int']>,
-  offset?: Maybe<Scalars['Int']>,
-  before?: Maybe<Scalars['Cursor']>,
-  after?: Maybe<Scalars['Cursor']>,
-  orderBy?: Maybe<Array<LikesOrderBy>>,
-  condition?: Maybe<LikeCondition>,
-  filter?: Maybe<LikeFilter>
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  before?: Maybe<Scalars['Cursor']>;
+  after?: Maybe<Scalars['Cursor']>;
+  orderBy?: Maybe<Array<LikesOrderBy>>;
+  condition?: Maybe<LikeCondition>;
+  filter?: Maybe<LikeFilter>;
 };
 
+/**
+ * A condition to be used against `Juncture` object types. All fields are tested
+ * for equality and combined with a logical ‘and.’
+ */
 export type JunctureCondition = {
-  id?: Maybe<Scalars['Int']>,
-  userId?: Maybe<Scalars['Int']>,
-  tripId?: Maybe<Scalars['Int']>,
-  name?: Maybe<Scalars['String']>,
-  arrivalDate?: Maybe<Scalars['BigInt']>,
-  description?: Maybe<Scalars['String']>,
-  type?: Maybe<JunctureType>,
-  lat?: Maybe<Scalars['BigFloat']>,
-  lon?: Maybe<Scalars['BigFloat']>,
-  city?: Maybe<Scalars['String']>,
-  country?: Maybe<Scalars['String']>,
-  isDraft?: Maybe<Scalars['Boolean']>,
-  markerImg?: Maybe<Scalars['String']>,
-  createdAt?: Maybe<Scalars['BigInt']>,
-  updatedAt?: Maybe<Scalars['Datetime']>,
+  /** Checks for equality with the object’s `id` field. */
+  id?: Maybe<Scalars['Int']>;
+  /** Checks for equality with the object’s `userId` field. */
+  userId?: Maybe<Scalars['Int']>;
+  /** Checks for equality with the object’s `tripId` field. */
+  tripId?: Maybe<Scalars['Int']>;
+  /** Checks for equality with the object’s `name` field. */
+  name?: Maybe<Scalars['String']>;
+  /** Checks for equality with the object’s `arrivalDate` field. */
+  arrivalDate?: Maybe<Scalars['BigInt']>;
+  /** Checks for equality with the object’s `description` field. */
+  description?: Maybe<Scalars['String']>;
+  /** Checks for equality with the object’s `type` field. */
+  type?: Maybe<JunctureType>;
+  /** Checks for equality with the object’s `lat` field. */
+  lat?: Maybe<Scalars['BigFloat']>;
+  /** Checks for equality with the object’s `lon` field. */
+  lon?: Maybe<Scalars['BigFloat']>;
+  /** Checks for equality with the object’s `city` field. */
+  city?: Maybe<Scalars['String']>;
+  /** Checks for equality with the object’s `country` field. */
+  country?: Maybe<Scalars['String']>;
+  /** Checks for equality with the object’s `isDraft` field. */
+  isDraft?: Maybe<Scalars['Boolean']>;
+  /** Checks for equality with the object’s `markerImg` field. */
+  markerImg?: Maybe<Scalars['String']>;
+  /** Checks for equality with the object’s `createdAt` field. */
+  createdAt?: Maybe<Scalars['BigInt']>;
+  /** Checks for equality with the object’s `updatedAt` field. */
+  updatedAt?: Maybe<Scalars['Datetime']>;
 };
 
+/** A filter to be used against `Juncture` object types. All fields are combined with a logical ‘and.’ */
 export type JunctureFilter = {
-  id?: Maybe<IntFilter>,
-  userId?: Maybe<IntFilter>,
-  tripId?: Maybe<IntFilter>,
-  name?: Maybe<StringFilter>,
-  arrivalDate?: Maybe<BigIntFilter>,
-  description?: Maybe<StringFilter>,
-  type?: Maybe<JunctureTypeFilter>,
-  lat?: Maybe<BigFloatFilter>,
-  lon?: Maybe<BigFloatFilter>,
-  city?: Maybe<StringFilter>,
-  country?: Maybe<StringFilter>,
-  isDraft?: Maybe<BooleanFilter>,
-  markerImg?: Maybe<StringFilter>,
-  createdAt?: Maybe<BigIntFilter>,
-  updatedAt?: Maybe<DatetimeFilter>,
-  and?: Maybe<Array<JunctureFilter>>,
-  or?: Maybe<Array<JunctureFilter>>,
-  not?: Maybe<JunctureFilter>,
+  /** Filter by the object’s `id` field. */
+  id?: Maybe<IntFilter>;
+  /** Filter by the object’s `userId` field. */
+  userId?: Maybe<IntFilter>;
+  /** Filter by the object’s `tripId` field. */
+  tripId?: Maybe<IntFilter>;
+  /** Filter by the object’s `name` field. */
+  name?: Maybe<StringFilter>;
+  /** Filter by the object’s `arrivalDate` field. */
+  arrivalDate?: Maybe<BigIntFilter>;
+  /** Filter by the object’s `description` field. */
+  description?: Maybe<StringFilter>;
+  /** Filter by the object’s `type` field. */
+  type?: Maybe<JunctureTypeFilter>;
+  /** Filter by the object’s `lat` field. */
+  lat?: Maybe<BigFloatFilter>;
+  /** Filter by the object’s `lon` field. */
+  lon?: Maybe<BigFloatFilter>;
+  /** Filter by the object’s `city` field. */
+  city?: Maybe<StringFilter>;
+  /** Filter by the object’s `country` field. */
+  country?: Maybe<StringFilter>;
+  /** Filter by the object’s `isDraft` field. */
+  isDraft?: Maybe<BooleanFilter>;
+  /** Filter by the object’s `markerImg` field. */
+  markerImg?: Maybe<StringFilter>;
+  /** Filter by the object’s `createdAt` field. */
+  createdAt?: Maybe<BigIntFilter>;
+  /** Filter by the object’s `updatedAt` field. */
+  updatedAt?: Maybe<DatetimeFilter>;
+  /** Checks for all expressions in this list. */
+  and?: Maybe<Array<JunctureFilter>>;
+  /** Checks for any expressions in this list. */
+  or?: Maybe<Array<JunctureFilter>>;
+  /** Negates the expression. */
+  not?: Maybe<JunctureFilter>;
 };
 
+/** An input for mutations affecting `Juncture` */
 export type JunctureInput = {
-  id?: Maybe<Scalars['Int']>,
-  userId: Scalars['Int'],
-  tripId: Scalars['Int'],
-  name: Scalars['String'],
-  arrivalDate: Scalars['BigInt'],
-  description?: Maybe<Scalars['String']>,
-  type: JunctureType,
-  lat: Scalars['BigFloat'],
-  lon: Scalars['BigFloat'],
-  city?: Maybe<Scalars['String']>,
-  country?: Maybe<Scalars['String']>,
-  isDraft?: Maybe<Scalars['Boolean']>,
-  markerImg?: Maybe<Scalars['String']>,
-  createdAt?: Maybe<Scalars['BigInt']>,
-  updatedAt?: Maybe<Scalars['Datetime']>,
+  /** Primary id for juncture */
+  id?: Maybe<Scalars['Int']>;
+  /** User id who created juncture */
+  userId: Scalars['Int'];
+  /** Trip id juncture belongs to */
+  tripId: Scalars['Int'];
+  /** Name of juncture */
+  name: Scalars['String'];
+  /** Date of juncture */
+  arrivalDate: Scalars['BigInt'];
+  /** Description of the juncture */
+  description?: Maybe<Scalars['String']>;
+  /** Type of juncture */
+  type: JunctureType;
+  /** Latitude of the juncture */
+  lat: Scalars['BigFloat'];
+  /** Longitude of the juncture */
+  lon: Scalars['BigFloat'];
+  /** City of the juncture */
+  city?: Maybe<Scalars['String']>;
+  /** Country code of the juncture */
+  country?: Maybe<Scalars['String']>;
+  /** Whether the juncture should be published or not */
+  isDraft?: Maybe<Scalars['Boolean']>;
+  /** Image to be used for markers on our map */
+  markerImg?: Maybe<Scalars['String']>;
+  /** When juncture created */
+  createdAt?: Maybe<Scalars['BigInt']>;
+  /** When juncture last updated */
+  updatedAt?: Maybe<Scalars['Datetime']>;
 };
 
+/** Represents an update to a `Juncture`. Fields that are set will be updated. */
 export type JuncturePatch = {
-  id?: Maybe<Scalars['Int']>,
-  userId?: Maybe<Scalars['Int']>,
-  tripId?: Maybe<Scalars['Int']>,
-  name?: Maybe<Scalars['String']>,
-  arrivalDate?: Maybe<Scalars['BigInt']>,
-  description?: Maybe<Scalars['String']>,
-  type?: Maybe<JunctureType>,
-  lat?: Maybe<Scalars['BigFloat']>,
-  lon?: Maybe<Scalars['BigFloat']>,
-  city?: Maybe<Scalars['String']>,
-  country?: Maybe<Scalars['String']>,
-  isDraft?: Maybe<Scalars['Boolean']>,
-  markerImg?: Maybe<Scalars['String']>,
-  createdAt?: Maybe<Scalars['BigInt']>,
-  updatedAt?: Maybe<Scalars['Datetime']>,
+  /** Primary id for juncture */
+  id?: Maybe<Scalars['Int']>;
+  /** User id who created juncture */
+  userId?: Maybe<Scalars['Int']>;
+  /** Trip id juncture belongs to */
+  tripId?: Maybe<Scalars['Int']>;
+  /** Name of juncture */
+  name?: Maybe<Scalars['String']>;
+  /** Date of juncture */
+  arrivalDate?: Maybe<Scalars['BigInt']>;
+  /** Description of the juncture */
+  description?: Maybe<Scalars['String']>;
+  /** Type of juncture */
+  type?: Maybe<JunctureType>;
+  /** Latitude of the juncture */
+  lat?: Maybe<Scalars['BigFloat']>;
+  /** Longitude of the juncture */
+  lon?: Maybe<Scalars['BigFloat']>;
+  /** City of the juncture */
+  city?: Maybe<Scalars['String']>;
+  /** Country code of the juncture */
+  country?: Maybe<Scalars['String']>;
+  /** Whether the juncture should be published or not */
+  isDraft?: Maybe<Scalars['Boolean']>;
+  /** Image to be used for markers on our map */
+  markerImg?: Maybe<Scalars['String']>;
+  /** When juncture created */
+  createdAt?: Maybe<Scalars['BigInt']>;
+  /** When juncture last updated */
+  updatedAt?: Maybe<Scalars['Datetime']>;
 };
 
+/** A connection to a list of `Juncture` values. */
 export type JuncturesConnection = {
-   __typename?: 'JuncturesConnection',
-  nodes: Array<Maybe<Juncture>>,
-  edges: Array<JuncturesEdge>,
-  pageInfo: PageInfo,
-  totalCount: Scalars['Int'],
+  __typename?: 'JuncturesConnection';
+  /** A list of `Juncture` objects. */
+  nodes: Array<Maybe<Juncture>>;
+  /** A list of edges which contains the `Juncture` and cursor to aid in pagination. */
+  edges: Array<JuncturesEdge>;
+  /** Information to aid in pagination. */
+  pageInfo: PageInfo;
+  /** The count of *all* `Juncture` you could get from the connection. */
+  totalCount: Scalars['Int'];
 };
 
+/** A `Juncture` edge in the connection. */
 export type JuncturesEdge = {
-   __typename?: 'JuncturesEdge',
-  cursor?: Maybe<Scalars['Cursor']>,
-  node?: Maybe<Juncture>,
+  __typename?: 'JuncturesEdge';
+  /** A cursor for use in pagination. */
+  cursor?: Maybe<Scalars['Cursor']>;
+  /** The `Juncture` at the end of the edge. */
+  node?: Maybe<Juncture>;
 };
 
+/** Methods to use when ordering `Juncture`. */
 export enum JuncturesOrderBy {
   Natural = 'NATURAL',
   IdAsc = 'ID_ASC',
@@ -2075,111 +3426,191 @@ export enum JunctureType {
   Flight = 'FLIGHT'
 }
 
+/** A filter to be used against JunctureType fields. All fields are combined with a logical ‘and.’ */
 export type JunctureTypeFilter = {
-  isNull?: Maybe<Scalars['Boolean']>,
-  equalTo?: Maybe<JunctureType>,
-  notEqualTo?: Maybe<JunctureType>,
-  distinctFrom?: Maybe<JunctureType>,
-  notDistinctFrom?: Maybe<JunctureType>,
-  in?: Maybe<Array<JunctureType>>,
-  notIn?: Maybe<Array<JunctureType>>,
-  lessThan?: Maybe<JunctureType>,
-  lessThanOrEqualTo?: Maybe<JunctureType>,
-  greaterThan?: Maybe<JunctureType>,
-  greaterThanOrEqualTo?: Maybe<JunctureType>,
+  /** Is null (if `true` is specified) or is not null (if `false` is specified). */
+  isNull?: Maybe<Scalars['Boolean']>;
+  /** Equal to the specified value. */
+  equalTo?: Maybe<JunctureType>;
+  /** Not equal to the specified value. */
+  notEqualTo?: Maybe<JunctureType>;
+  /** Not equal to the specified value, treating null like an ordinary value. */
+  distinctFrom?: Maybe<JunctureType>;
+  /** Equal to the specified value, treating null like an ordinary value. */
+  notDistinctFrom?: Maybe<JunctureType>;
+  /** Included in the specified list. */
+  in?: Maybe<Array<JunctureType>>;
+  /** Not included in the specified list. */
+  notIn?: Maybe<Array<JunctureType>>;
+  /** Less than the specified value. */
+  lessThan?: Maybe<JunctureType>;
+  /** Less than or equal to the specified value. */
+  lessThanOrEqualTo?: Maybe<JunctureType>;
+  /** Greater than the specified value. */
+  greaterThan?: Maybe<JunctureType>;
+  /** Greater than or equal to the specified value. */
+  greaterThanOrEqualTo?: Maybe<JunctureType>;
 };
 
 
 
+/** A filter to be used against KeyValueHash fields. All fields are combined with a logical ‘and.’ */
 export type KeyValueHashFilter = {
-  isNull?: Maybe<Scalars['Boolean']>,
-  equalTo?: Maybe<Scalars['KeyValueHash']>,
-  notEqualTo?: Maybe<Scalars['KeyValueHash']>,
-  distinctFrom?: Maybe<Scalars['KeyValueHash']>,
-  notDistinctFrom?: Maybe<Scalars['KeyValueHash']>,
-  in?: Maybe<Array<Scalars['KeyValueHash']>>,
-  notIn?: Maybe<Array<Scalars['KeyValueHash']>>,
-  contains?: Maybe<Scalars['KeyValueHash']>,
-  containsKey?: Maybe<Scalars['String']>,
-  containsAllKeys?: Maybe<Array<Scalars['String']>>,
-  containsAnyKeys?: Maybe<Array<Scalars['String']>>,
-  containedBy?: Maybe<Scalars['KeyValueHash']>,
+  /** Is null (if `true` is specified) or is not null (if `false` is specified). */
+  isNull?: Maybe<Scalars['Boolean']>;
+  /** Equal to the specified value. */
+  equalTo?: Maybe<Scalars['KeyValueHash']>;
+  /** Not equal to the specified value. */
+  notEqualTo?: Maybe<Scalars['KeyValueHash']>;
+  /** Not equal to the specified value, treating null like an ordinary value. */
+  distinctFrom?: Maybe<Scalars['KeyValueHash']>;
+  /** Equal to the specified value, treating null like an ordinary value. */
+  notDistinctFrom?: Maybe<Scalars['KeyValueHash']>;
+  /** Included in the specified list. */
+  in?: Maybe<Array<Scalars['KeyValueHash']>>;
+  /** Not included in the specified list. */
+  notIn?: Maybe<Array<Scalars['KeyValueHash']>>;
+  /** Contains the specified KeyValueHash. */
+  contains?: Maybe<Scalars['KeyValueHash']>;
+  /** Contains the specified key. */
+  containsKey?: Maybe<Scalars['String']>;
+  /** Contains all of the specified keys. */
+  containsAllKeys?: Maybe<Array<Scalars['String']>>;
+  /** Contains any of the specified keys. */
+  containsAnyKeys?: Maybe<Array<Scalars['String']>>;
+  /** Contained by the specified KeyValueHash. */
+  containedBy?: Maybe<Scalars['KeyValueHash']>;
 };
 
+/** Table with likes for various site assets */
 export type Like = Node & {
-   __typename?: 'Like',
-  nodeId: Scalars['ID'],
-  id: Scalars['Int'],
-  tripId?: Maybe<Scalars['Int']>,
-  junctureId?: Maybe<Scalars['Int']>,
-  postId?: Maybe<Scalars['Int']>,
-  imageId?: Maybe<Scalars['Int']>,
-  userId: Scalars['Int'],
-  createdAt?: Maybe<Scalars['BigInt']>,
-  tripByTripId?: Maybe<Trip>,
-  junctureByJunctureId?: Maybe<Juncture>,
-  postByPostId?: Maybe<Post>,
-  imageByImageId?: Maybe<Image>,
-  accountByUserId?: Maybe<Account>,
+  __typename?: 'Like';
+  /** A globally unique identifier. Can be used in various places throughout the system to identify this single value. */
+  nodeId: Scalars['ID'];
+  /** Primary id for the like */
+  id: Scalars['Int'];
+  /** Primary id of trip its related to */
+  tripId?: Maybe<Scalars['Int']>;
+  /** Primary id of juncture its related to */
+  junctureId?: Maybe<Scalars['Int']>;
+  /** Primary id of image its related to */
+  postId?: Maybe<Scalars['Int']>;
+  imageId?: Maybe<Scalars['Int']>;
+  /** Primary id of user who liked asset */
+  userId: Scalars['Int'];
+  /** Time like created at */
+  createdAt?: Maybe<Scalars['BigInt']>;
+  /** Reads a single `Trip` that is related to this `Like`. */
+  tripByTripId?: Maybe<Trip>;
+  /** Reads a single `Juncture` that is related to this `Like`. */
+  junctureByJunctureId?: Maybe<Juncture>;
+  /** Reads a single `Post` that is related to this `Like`. */
+  postByPostId?: Maybe<Post>;
+  /** Reads a single `Image` that is related to this `Like`. */
+  imageByImageId?: Maybe<Image>;
+  /** Reads a single `Account` that is related to this `Like`. */
+  accountByUserId?: Maybe<Account>;
 };
 
+/** A condition to be used against `Like` object types. All fields are tested for equality and combined with a logical ‘and.’ */
 export type LikeCondition = {
-  id?: Maybe<Scalars['Int']>,
-  tripId?: Maybe<Scalars['Int']>,
-  junctureId?: Maybe<Scalars['Int']>,
-  postId?: Maybe<Scalars['Int']>,
-  imageId?: Maybe<Scalars['Int']>,
-  userId?: Maybe<Scalars['Int']>,
-  createdAt?: Maybe<Scalars['BigInt']>,
+  /** Checks for equality with the object’s `id` field. */
+  id?: Maybe<Scalars['Int']>;
+  /** Checks for equality with the object’s `tripId` field. */
+  tripId?: Maybe<Scalars['Int']>;
+  /** Checks for equality with the object’s `junctureId` field. */
+  junctureId?: Maybe<Scalars['Int']>;
+  /** Checks for equality with the object’s `postId` field. */
+  postId?: Maybe<Scalars['Int']>;
+  /** Checks for equality with the object’s `imageId` field. */
+  imageId?: Maybe<Scalars['Int']>;
+  /** Checks for equality with the object’s `userId` field. */
+  userId?: Maybe<Scalars['Int']>;
+  /** Checks for equality with the object’s `createdAt` field. */
+  createdAt?: Maybe<Scalars['BigInt']>;
 };
 
+/** A filter to be used against `Like` object types. All fields are combined with a logical ‘and.’ */
 export type LikeFilter = {
-  id?: Maybe<IntFilter>,
-  tripId?: Maybe<IntFilter>,
-  junctureId?: Maybe<IntFilter>,
-  postId?: Maybe<IntFilter>,
-  imageId?: Maybe<IntFilter>,
-  userId?: Maybe<IntFilter>,
-  createdAt?: Maybe<BigIntFilter>,
-  and?: Maybe<Array<LikeFilter>>,
-  or?: Maybe<Array<LikeFilter>>,
-  not?: Maybe<LikeFilter>,
+  /** Filter by the object’s `id` field. */
+  id?: Maybe<IntFilter>;
+  /** Filter by the object’s `tripId` field. */
+  tripId?: Maybe<IntFilter>;
+  /** Filter by the object’s `junctureId` field. */
+  junctureId?: Maybe<IntFilter>;
+  /** Filter by the object’s `postId` field. */
+  postId?: Maybe<IntFilter>;
+  /** Filter by the object’s `imageId` field. */
+  imageId?: Maybe<IntFilter>;
+  /** Filter by the object’s `userId` field. */
+  userId?: Maybe<IntFilter>;
+  /** Filter by the object’s `createdAt` field. */
+  createdAt?: Maybe<BigIntFilter>;
+  /** Checks for all expressions in this list. */
+  and?: Maybe<Array<LikeFilter>>;
+  /** Checks for any expressions in this list. */
+  or?: Maybe<Array<LikeFilter>>;
+  /** Negates the expression. */
+  not?: Maybe<LikeFilter>;
 };
 
+/** An input for mutations affecting `Like` */
 export type LikeInput = {
-  id?: Maybe<Scalars['Int']>,
-  tripId?: Maybe<Scalars['Int']>,
-  junctureId?: Maybe<Scalars['Int']>,
-  postId?: Maybe<Scalars['Int']>,
-  imageId?: Maybe<Scalars['Int']>,
-  userId: Scalars['Int'],
-  createdAt?: Maybe<Scalars['BigInt']>,
+  /** Primary id for the like */
+  id?: Maybe<Scalars['Int']>;
+  /** Primary id of trip its related to */
+  tripId?: Maybe<Scalars['Int']>;
+  /** Primary id of juncture its related to */
+  junctureId?: Maybe<Scalars['Int']>;
+  /** Primary id of image its related to */
+  postId?: Maybe<Scalars['Int']>;
+  imageId?: Maybe<Scalars['Int']>;
+  /** Primary id of user who liked asset */
+  userId: Scalars['Int'];
+  /** Time like created at */
+  createdAt?: Maybe<Scalars['BigInt']>;
 };
 
+/** Represents an update to a `Like`. Fields that are set will be updated. */
 export type LikePatch = {
-  id?: Maybe<Scalars['Int']>,
-  tripId?: Maybe<Scalars['Int']>,
-  junctureId?: Maybe<Scalars['Int']>,
-  postId?: Maybe<Scalars['Int']>,
-  imageId?: Maybe<Scalars['Int']>,
-  userId?: Maybe<Scalars['Int']>,
-  createdAt?: Maybe<Scalars['BigInt']>,
+  /** Primary id for the like */
+  id?: Maybe<Scalars['Int']>;
+  /** Primary id of trip its related to */
+  tripId?: Maybe<Scalars['Int']>;
+  /** Primary id of juncture its related to */
+  junctureId?: Maybe<Scalars['Int']>;
+  /** Primary id of image its related to */
+  postId?: Maybe<Scalars['Int']>;
+  imageId?: Maybe<Scalars['Int']>;
+  /** Primary id of user who liked asset */
+  userId?: Maybe<Scalars['Int']>;
+  /** Time like created at */
+  createdAt?: Maybe<Scalars['BigInt']>;
 };
 
+/** A connection to a list of `Like` values. */
 export type LikesConnection = {
-   __typename?: 'LikesConnection',
-  nodes: Array<Maybe<Like>>,
-  edges: Array<LikesEdge>,
-  pageInfo: PageInfo,
-  totalCount: Scalars['Int'],
+  __typename?: 'LikesConnection';
+  /** A list of `Like` objects. */
+  nodes: Array<Maybe<Like>>;
+  /** A list of edges which contains the `Like` and cursor to aid in pagination. */
+  edges: Array<LikesEdge>;
+  /** Information to aid in pagination. */
+  pageInfo: PageInfo;
+  /** The count of *all* `Like` you could get from the connection. */
+  totalCount: Scalars['Int'];
 };
 
+/** A `Like` edge in the connection. */
 export type LikesEdge = {
-   __typename?: 'LikesEdge',
-  cursor?: Maybe<Scalars['Cursor']>,
-  node?: Maybe<Like>,
+  __typename?: 'LikesEdge';
+  /** A cursor for use in pagination. */
+  cursor?: Maybe<Scalars['Cursor']>;
+  /** The `Like` at the end of the edge. */
+  node?: Maybe<Like>;
 };
 
+/** Methods to use when ordering `Like`. */
 export enum LikesOrderBy {
   Natural = 'NATURAL',
   IdAsc = 'ID_ASC',
@@ -2200,85 +3631,160 @@ export enum LikesOrderBy {
   PrimaryKeyDesc = 'PRIMARY_KEY_DESC'
 }
 
+/** History of auditable actions on audited tables, from pomb_private.if_modified_func() */
 export type LoggedAction = Node & {
-   __typename?: 'LoggedAction',
-  nodeId: Scalars['ID'],
-  eventId: Scalars['BigInt'],
-  tableName: Scalars['String'],
-  accountId?: Maybe<Scalars['Int']>,
-  sessionUserName?: Maybe<Scalars['String']>,
-  actionTstampTx: Scalars['Datetime'],
-  clientAddr?: Maybe<Scalars['InternetAddress']>,
-  action: Scalars['String'],
-  rowData?: Maybe<Scalars['KeyValueHash']>,
-  changedFields?: Maybe<Scalars['KeyValueHash']>,
+  __typename?: 'LoggedAction';
+  /** A globally unique identifier. Can be used in various places throughout the system to identify this single value. */
+  nodeId: Scalars['ID'];
+  /** Unique identifier for each auditable event */
+  eventId: Scalars['BigInt'];
+  /** Non-schema-qualified table name of table event occured in */
+  tableName: Scalars['String'];
+  /** User performing the action */
+  accountId?: Maybe<Scalars['Int']>;
+  /** Login / session user whose statement caused the audited event */
+  sessionUserName?: Maybe<Scalars['String']>;
+  /** Transaction start timestamp for tx in which audited event occurred */
+  actionTstampTx: Scalars['Datetime'];
+  /** IP address of client that issued query. Null for unix domain socket. */
+  clientAddr?: Maybe<Scalars['InternetAddress']>;
+  /** Action type; I = insert, D = delete, U = update, T = truncate */
+  action: Scalars['String'];
+  /**
+   * Record value. Null for statement-level trigger. For INSERT this is the new
+   * tuple. For DELETE and UPDATE it is the old tuple.
+   */
+  rowData?: Maybe<Scalars['KeyValueHash']>;
+  /** New values of fields changed by UPDATE. Null except for row-level UPDATE events. */
+  changedFields?: Maybe<Scalars['KeyValueHash']>;
 };
 
+/**
+ * A condition to be used against `LoggedAction` object types. All fields are
+ * tested for equality and combined with a logical ‘and.’
+ */
 export type LoggedActionCondition = {
-  eventId?: Maybe<Scalars['BigInt']>,
-  tableName?: Maybe<Scalars['String']>,
-  accountId?: Maybe<Scalars['Int']>,
-  sessionUserName?: Maybe<Scalars['String']>,
-  actionTstampTx?: Maybe<Scalars['Datetime']>,
-  clientAddr?: Maybe<Scalars['InternetAddress']>,
-  action?: Maybe<Scalars['String']>,
-  rowData?: Maybe<Scalars['KeyValueHash']>,
-  changedFields?: Maybe<Scalars['KeyValueHash']>,
+  /** Checks for equality with the object’s `eventId` field. */
+  eventId?: Maybe<Scalars['BigInt']>;
+  /** Checks for equality with the object’s `tableName` field. */
+  tableName?: Maybe<Scalars['String']>;
+  /** Checks for equality with the object’s `accountId` field. */
+  accountId?: Maybe<Scalars['Int']>;
+  /** Checks for equality with the object’s `sessionUserName` field. */
+  sessionUserName?: Maybe<Scalars['String']>;
+  /** Checks for equality with the object’s `actionTstampTx` field. */
+  actionTstampTx?: Maybe<Scalars['Datetime']>;
+  /** Checks for equality with the object’s `clientAddr` field. */
+  clientAddr?: Maybe<Scalars['InternetAddress']>;
+  /** Checks for equality with the object’s `action` field. */
+  action?: Maybe<Scalars['String']>;
+  /** Checks for equality with the object’s `rowData` field. */
+  rowData?: Maybe<Scalars['KeyValueHash']>;
+  /** Checks for equality with the object’s `changedFields` field. */
+  changedFields?: Maybe<Scalars['KeyValueHash']>;
 };
 
+/** A filter to be used against `LoggedAction` object types. All fields are combined with a logical ‘and.’ */
 export type LoggedActionFilter = {
-  eventId?: Maybe<BigIntFilter>,
-  tableName?: Maybe<StringFilter>,
-  accountId?: Maybe<IntFilter>,
-  sessionUserName?: Maybe<StringFilter>,
-  actionTstampTx?: Maybe<DatetimeFilter>,
-  clientAddr?: Maybe<InternetAddressFilter>,
-  action?: Maybe<StringFilter>,
-  rowData?: Maybe<KeyValueHashFilter>,
-  changedFields?: Maybe<KeyValueHashFilter>,
-  and?: Maybe<Array<LoggedActionFilter>>,
-  or?: Maybe<Array<LoggedActionFilter>>,
-  not?: Maybe<LoggedActionFilter>,
+  /** Filter by the object’s `eventId` field. */
+  eventId?: Maybe<BigIntFilter>;
+  /** Filter by the object’s `tableName` field. */
+  tableName?: Maybe<StringFilter>;
+  /** Filter by the object’s `accountId` field. */
+  accountId?: Maybe<IntFilter>;
+  /** Filter by the object’s `sessionUserName` field. */
+  sessionUserName?: Maybe<StringFilter>;
+  /** Filter by the object’s `actionTstampTx` field. */
+  actionTstampTx?: Maybe<DatetimeFilter>;
+  /** Filter by the object’s `clientAddr` field. */
+  clientAddr?: Maybe<InternetAddressFilter>;
+  /** Filter by the object’s `action` field. */
+  action?: Maybe<StringFilter>;
+  /** Filter by the object’s `rowData` field. */
+  rowData?: Maybe<KeyValueHashFilter>;
+  /** Filter by the object’s `changedFields` field. */
+  changedFields?: Maybe<KeyValueHashFilter>;
+  /** Checks for all expressions in this list. */
+  and?: Maybe<Array<LoggedActionFilter>>;
+  /** Checks for any expressions in this list. */
+  or?: Maybe<Array<LoggedActionFilter>>;
+  /** Negates the expression. */
+  not?: Maybe<LoggedActionFilter>;
 };
 
+/** An input for mutations affecting `LoggedAction` */
 export type LoggedActionInput = {
-  eventId?: Maybe<Scalars['BigInt']>,
-  tableName: Scalars['String'],
-  accountId?: Maybe<Scalars['Int']>,
-  sessionUserName?: Maybe<Scalars['String']>,
-  actionTstampTx: Scalars['Datetime'],
-  clientAddr?: Maybe<Scalars['InternetAddress']>,
-  action: Scalars['String'],
-  rowData?: Maybe<Scalars['KeyValueHash']>,
-  changedFields?: Maybe<Scalars['KeyValueHash']>,
+  /** Unique identifier for each auditable event */
+  eventId?: Maybe<Scalars['BigInt']>;
+  /** Non-schema-qualified table name of table event occured in */
+  tableName: Scalars['String'];
+  /** User performing the action */
+  accountId?: Maybe<Scalars['Int']>;
+  /** Login / session user whose statement caused the audited event */
+  sessionUserName?: Maybe<Scalars['String']>;
+  /** Transaction start timestamp for tx in which audited event occurred */
+  actionTstampTx: Scalars['Datetime'];
+  /** IP address of client that issued query. Null for unix domain socket. */
+  clientAddr?: Maybe<Scalars['InternetAddress']>;
+  /** Action type; I = insert, D = delete, U = update, T = truncate */
+  action: Scalars['String'];
+  /**
+   * Record value. Null for statement-level trigger. For INSERT this is the new
+   * tuple. For DELETE and UPDATE it is the old tuple.
+   */
+  rowData?: Maybe<Scalars['KeyValueHash']>;
+  /** New values of fields changed by UPDATE. Null except for row-level UPDATE events. */
+  changedFields?: Maybe<Scalars['KeyValueHash']>;
 };
 
+/** Represents an update to a `LoggedAction`. Fields that are set will be updated. */
 export type LoggedActionPatch = {
-  eventId?: Maybe<Scalars['BigInt']>,
-  tableName?: Maybe<Scalars['String']>,
-  accountId?: Maybe<Scalars['Int']>,
-  sessionUserName?: Maybe<Scalars['String']>,
-  actionTstampTx?: Maybe<Scalars['Datetime']>,
-  clientAddr?: Maybe<Scalars['InternetAddress']>,
-  action?: Maybe<Scalars['String']>,
-  rowData?: Maybe<Scalars['KeyValueHash']>,
-  changedFields?: Maybe<Scalars['KeyValueHash']>,
+  /** Unique identifier for each auditable event */
+  eventId?: Maybe<Scalars['BigInt']>;
+  /** Non-schema-qualified table name of table event occured in */
+  tableName?: Maybe<Scalars['String']>;
+  /** User performing the action */
+  accountId?: Maybe<Scalars['Int']>;
+  /** Login / session user whose statement caused the audited event */
+  sessionUserName?: Maybe<Scalars['String']>;
+  /** Transaction start timestamp for tx in which audited event occurred */
+  actionTstampTx?: Maybe<Scalars['Datetime']>;
+  /** IP address of client that issued query. Null for unix domain socket. */
+  clientAddr?: Maybe<Scalars['InternetAddress']>;
+  /** Action type; I = insert, D = delete, U = update, T = truncate */
+  action?: Maybe<Scalars['String']>;
+  /**
+   * Record value. Null for statement-level trigger. For INSERT this is the new
+   * tuple. For DELETE and UPDATE it is the old tuple.
+   */
+  rowData?: Maybe<Scalars['KeyValueHash']>;
+  /** New values of fields changed by UPDATE. Null except for row-level UPDATE events. */
+  changedFields?: Maybe<Scalars['KeyValueHash']>;
 };
 
+/** A connection to a list of `LoggedAction` values. */
 export type LoggedActionsConnection = {
-   __typename?: 'LoggedActionsConnection',
-  nodes: Array<Maybe<LoggedAction>>,
-  edges: Array<LoggedActionsEdge>,
-  pageInfo: PageInfo,
-  totalCount: Scalars['Int'],
+  __typename?: 'LoggedActionsConnection';
+  /** A list of `LoggedAction` objects. */
+  nodes: Array<Maybe<LoggedAction>>;
+  /** A list of edges which contains the `LoggedAction` and cursor to aid in pagination. */
+  edges: Array<LoggedActionsEdge>;
+  /** Information to aid in pagination. */
+  pageInfo: PageInfo;
+  /** The count of *all* `LoggedAction` you could get from the connection. */
+  totalCount: Scalars['Int'];
 };
 
+/** A `LoggedAction` edge in the connection. */
 export type LoggedActionsEdge = {
-   __typename?: 'LoggedActionsEdge',
-  cursor?: Maybe<Scalars['Cursor']>,
-  node?: Maybe<LoggedAction>,
+  __typename?: 'LoggedActionsEdge';
+  /** A cursor for use in pagination. */
+  cursor?: Maybe<Scalars['Cursor']>;
+  /** The `LoggedAction` at the end of the edge. */
+  node?: Maybe<LoggedAction>;
 };
 
+/** Methods to use when ordering `LoggedAction`. */
 export enum LoggedActionsOrderBy {
   Natural = 'NATURAL',
   EventIdAsc = 'EVENT_ID_ASC',
@@ -2303,883 +3809,1246 @@ export enum LoggedActionsOrderBy {
   PrimaryKeyDesc = 'PRIMARY_KEY_DESC'
 }
 
+/** The root mutation type which contains root level fields which mutate data. */
 export type Mutation = {
-   __typename?: 'Mutation',
-  createAccount?: Maybe<CreateAccountPayload>,
-  createConfig?: Maybe<CreateConfigPayload>,
-  createCoord?: Maybe<CreateCoordPayload>,
-  createCountry?: Maybe<CreateCountryPayload>,
-  createEmailList?: Maybe<CreateEmailListPayload>,
-  createImage?: Maybe<CreateImagePayload>,
-  createJuncture?: Maybe<CreateJuncturePayload>,
-  createLike?: Maybe<CreateLikePayload>,
-  createLoggedAction?: Maybe<CreateLoggedActionPayload>,
-  createPost?: Maybe<CreatePostPayload>,
-  createPostTag?: Maybe<CreatePostTagPayload>,
-  createPostToTag?: Maybe<CreatePostToTagPayload>,
-  createTrack?: Maybe<CreateTrackPayload>,
-  createTrip?: Maybe<CreateTripPayload>,
-  createUserToCountry?: Maybe<CreateUserToCountryPayload>,
-  createAdminAccount?: Maybe<CreateAdminAccountPayload>,
-  createUserAccount?: Maybe<CreateUserAccountPayload>,
-  updateAccount?: Maybe<UpdateAccountPayload>,
-  updateAccountById?: Maybe<UpdateAccountPayload>,
-  updateAccountByUsername?: Maybe<UpdateAccountPayload>,
-  updateConfig?: Maybe<UpdateConfigPayload>,
-  updateConfigById?: Maybe<UpdateConfigPayload>,
-  updateCoord?: Maybe<UpdateCoordPayload>,
-  updateCoordById?: Maybe<UpdateCoordPayload>,
-  updateCountry?: Maybe<UpdateCountryPayload>,
-  updateCountryByCode?: Maybe<UpdateCountryPayload>,
-  updateEmailList?: Maybe<UpdateEmailListPayload>,
-  updateEmailListById?: Maybe<UpdateEmailListPayload>,
-  updateEmailListByEmail?: Maybe<UpdateEmailListPayload>,
-  updateImage?: Maybe<UpdateImagePayload>,
-  updateImageById?: Maybe<UpdateImagePayload>,
-  updateJuncture?: Maybe<UpdateJuncturePayload>,
-  updateJunctureById?: Maybe<UpdateJuncturePayload>,
-  updateLike?: Maybe<UpdateLikePayload>,
-  updateLikeById?: Maybe<UpdateLikePayload>,
-  updateLoggedAction?: Maybe<UpdateLoggedActionPayload>,
-  updateLoggedActionByEventId?: Maybe<UpdateLoggedActionPayload>,
-  updatePost?: Maybe<UpdatePostPayload>,
-  updatePostById?: Maybe<UpdatePostPayload>,
-  updatePostTag?: Maybe<UpdatePostTagPayload>,
-  updatePostTagByName?: Maybe<UpdatePostTagPayload>,
-  updatePostToTag?: Maybe<UpdatePostToTagPayload>,
-  updatePostToTagById?: Maybe<UpdatePostToTagPayload>,
-  updateTrack?: Maybe<UpdateTrackPayload>,
-  updateTrackById?: Maybe<UpdateTrackPayload>,
-  updateTrip?: Maybe<UpdateTripPayload>,
-  updateTripById?: Maybe<UpdateTripPayload>,
-  updateUserToCountry?: Maybe<UpdateUserToCountryPayload>,
-  updateUserToCountryById?: Maybe<UpdateUserToCountryPayload>,
-  updateAdminAccount?: Maybe<UpdateAdminAccountPayload>,
-  updateAdminAccountByAccountId?: Maybe<UpdateAdminAccountPayload>,
-  updateAdminAccountByEmail?: Maybe<UpdateAdminAccountPayload>,
-  updateUserAccount?: Maybe<UpdateUserAccountPayload>,
-  updateUserAccountByAccountId?: Maybe<UpdateUserAccountPayload>,
-  updateUserAccountByEmail?: Maybe<UpdateUserAccountPayload>,
-  deleteAccount?: Maybe<DeleteAccountPayload>,
-  deleteAccountById?: Maybe<DeleteAccountPayload>,
-  deleteAccountByUsername?: Maybe<DeleteAccountPayload>,
-  deleteConfig?: Maybe<DeleteConfigPayload>,
-  deleteConfigById?: Maybe<DeleteConfigPayload>,
-  deleteCoord?: Maybe<DeleteCoordPayload>,
-  deleteCoordById?: Maybe<DeleteCoordPayload>,
-  deleteCountry?: Maybe<DeleteCountryPayload>,
-  deleteCountryByCode?: Maybe<DeleteCountryPayload>,
-  deleteEmailList?: Maybe<DeleteEmailListPayload>,
-  deleteEmailListById?: Maybe<DeleteEmailListPayload>,
-  deleteEmailListByEmail?: Maybe<DeleteEmailListPayload>,
-  deleteImage?: Maybe<DeleteImagePayload>,
-  deleteImageById?: Maybe<DeleteImagePayload>,
-  deleteJuncture?: Maybe<DeleteJuncturePayload>,
-  deleteJunctureById?: Maybe<DeleteJuncturePayload>,
-  deleteLike?: Maybe<DeleteLikePayload>,
-  deleteLikeById?: Maybe<DeleteLikePayload>,
-  deleteLoggedAction?: Maybe<DeleteLoggedActionPayload>,
-  deleteLoggedActionByEventId?: Maybe<DeleteLoggedActionPayload>,
-  deletePost?: Maybe<DeletePostPayload>,
-  deletePostById?: Maybe<DeletePostPayload>,
-  deletePostTag?: Maybe<DeletePostTagPayload>,
-  deletePostTagByName?: Maybe<DeletePostTagPayload>,
-  deletePostToTag?: Maybe<DeletePostToTagPayload>,
-  deletePostToTagById?: Maybe<DeletePostToTagPayload>,
-  deleteTrack?: Maybe<DeleteTrackPayload>,
-  deleteTrackById?: Maybe<DeleteTrackPayload>,
-  deleteTrip?: Maybe<DeleteTripPayload>,
-  deleteTripById?: Maybe<DeleteTripPayload>,
-  deleteUserToCountry?: Maybe<DeleteUserToCountryPayload>,
-  deleteUserToCountryById?: Maybe<DeleteUserToCountryPayload>,
-  deleteAdminAccount?: Maybe<DeleteAdminAccountPayload>,
-  deleteAdminAccountByAccountId?: Maybe<DeleteAdminAccountPayload>,
-  deleteAdminAccountByEmail?: Maybe<DeleteAdminAccountPayload>,
-  deleteUserAccount?: Maybe<DeleteUserAccountPayload>,
-  deleteUserAccountByAccountId?: Maybe<DeleteUserAccountPayload>,
-  deleteUserAccountByEmail?: Maybe<DeleteUserAccountPayload>,
-  authenticateAdminAccount?: Maybe<AuthenticateAdminAccountPayload>,
-  authenticateUserAccount?: Maybe<AuthenticateUserAccountPayload>,
-  registerAdminAccount?: Maybe<RegisterAdminAccountPayload>,
-  registerUserAccount?: Maybe<RegisterUserAccountPayload>,
-  resetPassword?: Maybe<ResetPasswordPayload>,
-  updatePassword?: Maybe<UpdatePasswordPayload>,
+  __typename?: 'Mutation';
+  /** Creates a single `Account`. */
+  createAccount?: Maybe<CreateAccountPayload>;
+  /** Creates a single `Config`. */
+  createConfig?: Maybe<CreateConfigPayload>;
+  /** Creates a single `Coord`. */
+  createCoord?: Maybe<CreateCoordPayload>;
+  /** Creates a single `Country`. */
+  createCountry?: Maybe<CreateCountryPayload>;
+  /** Creates a single `EmailList`. */
+  createEmailList?: Maybe<CreateEmailListPayload>;
+  /** Creates a single `Image`. */
+  createImage?: Maybe<CreateImagePayload>;
+  /** Creates a single `Juncture`. */
+  createJuncture?: Maybe<CreateJuncturePayload>;
+  /** Creates a single `Like`. */
+  createLike?: Maybe<CreateLikePayload>;
+  /** Creates a single `LoggedAction`. */
+  createLoggedAction?: Maybe<CreateLoggedActionPayload>;
+  /** Creates a single `Post`. */
+  createPost?: Maybe<CreatePostPayload>;
+  /** Creates a single `PostTag`. */
+  createPostTag?: Maybe<CreatePostTagPayload>;
+  /** Creates a single `PostToTag`. */
+  createPostToTag?: Maybe<CreatePostToTagPayload>;
+  /** Creates a single `Track`. */
+  createTrack?: Maybe<CreateTrackPayload>;
+  /** Creates a single `Trip`. */
+  createTrip?: Maybe<CreateTripPayload>;
+  /** Creates a single `UserToCountry`. */
+  createUserToCountry?: Maybe<CreateUserToCountryPayload>;
+  /** Creates a single `AdminAccount`. */
+  createAdminAccount?: Maybe<CreateAdminAccountPayload>;
+  /** Creates a single `UserAccount`. */
+  createUserAccount?: Maybe<CreateUserAccountPayload>;
+  /** Updates a single `Account` using its globally unique id and a patch. */
+  updateAccount?: Maybe<UpdateAccountPayload>;
+  /** Updates a single `Account` using a unique key and a patch. */
+  updateAccountById?: Maybe<UpdateAccountPayload>;
+  /** Updates a single `Account` using a unique key and a patch. */
+  updateAccountByUsername?: Maybe<UpdateAccountPayload>;
+  /** Updates a single `Config` using its globally unique id and a patch. */
+  updateConfig?: Maybe<UpdateConfigPayload>;
+  /** Updates a single `Config` using a unique key and a patch. */
+  updateConfigById?: Maybe<UpdateConfigPayload>;
+  /** Updates a single `Coord` using its globally unique id and a patch. */
+  updateCoord?: Maybe<UpdateCoordPayload>;
+  /** Updates a single `Coord` using a unique key and a patch. */
+  updateCoordById?: Maybe<UpdateCoordPayload>;
+  /** Updates a single `Country` using its globally unique id and a patch. */
+  updateCountry?: Maybe<UpdateCountryPayload>;
+  /** Updates a single `Country` using a unique key and a patch. */
+  updateCountryByCode?: Maybe<UpdateCountryPayload>;
+  /** Updates a single `EmailList` using its globally unique id and a patch. */
+  updateEmailList?: Maybe<UpdateEmailListPayload>;
+  /** Updates a single `EmailList` using a unique key and a patch. */
+  updateEmailListById?: Maybe<UpdateEmailListPayload>;
+  /** Updates a single `EmailList` using a unique key and a patch. */
+  updateEmailListByEmail?: Maybe<UpdateEmailListPayload>;
+  /** Updates a single `Image` using its globally unique id and a patch. */
+  updateImage?: Maybe<UpdateImagePayload>;
+  /** Updates a single `Image` using a unique key and a patch. */
+  updateImageById?: Maybe<UpdateImagePayload>;
+  /** Updates a single `Juncture` using its globally unique id and a patch. */
+  updateJuncture?: Maybe<UpdateJuncturePayload>;
+  /** Updates a single `Juncture` using a unique key and a patch. */
+  updateJunctureById?: Maybe<UpdateJuncturePayload>;
+  /** Updates a single `Like` using its globally unique id and a patch. */
+  updateLike?: Maybe<UpdateLikePayload>;
+  /** Updates a single `Like` using a unique key and a patch. */
+  updateLikeById?: Maybe<UpdateLikePayload>;
+  /** Updates a single `LoggedAction` using its globally unique id and a patch. */
+  updateLoggedAction?: Maybe<UpdateLoggedActionPayload>;
+  /** Updates a single `LoggedAction` using a unique key and a patch. */
+  updateLoggedActionByEventId?: Maybe<UpdateLoggedActionPayload>;
+  /** Updates a single `Post` using its globally unique id and a patch. */
+  updatePost?: Maybe<UpdatePostPayload>;
+  /** Updates a single `Post` using a unique key and a patch. */
+  updatePostById?: Maybe<UpdatePostPayload>;
+  /** Updates a single `PostTag` using its globally unique id and a patch. */
+  updatePostTag?: Maybe<UpdatePostTagPayload>;
+  /** Updates a single `PostTag` using a unique key and a patch. */
+  updatePostTagByName?: Maybe<UpdatePostTagPayload>;
+  /** Updates a single `PostToTag` using its globally unique id and a patch. */
+  updatePostToTag?: Maybe<UpdatePostToTagPayload>;
+  /** Updates a single `PostToTag` using a unique key and a patch. */
+  updatePostToTagById?: Maybe<UpdatePostToTagPayload>;
+  /** Updates a single `Track` using its globally unique id and a patch. */
+  updateTrack?: Maybe<UpdateTrackPayload>;
+  /** Updates a single `Track` using a unique key and a patch. */
+  updateTrackById?: Maybe<UpdateTrackPayload>;
+  /** Updates a single `Trip` using its globally unique id and a patch. */
+  updateTrip?: Maybe<UpdateTripPayload>;
+  /** Updates a single `Trip` using a unique key and a patch. */
+  updateTripById?: Maybe<UpdateTripPayload>;
+  /** Updates a single `UserToCountry` using its globally unique id and a patch. */
+  updateUserToCountry?: Maybe<UpdateUserToCountryPayload>;
+  /** Updates a single `UserToCountry` using a unique key and a patch. */
+  updateUserToCountryById?: Maybe<UpdateUserToCountryPayload>;
+  /** Updates a single `AdminAccount` using its globally unique id and a patch. */
+  updateAdminAccount?: Maybe<UpdateAdminAccountPayload>;
+  /** Updates a single `AdminAccount` using a unique key and a patch. */
+  updateAdminAccountByAccountId?: Maybe<UpdateAdminAccountPayload>;
+  /** Updates a single `AdminAccount` using a unique key and a patch. */
+  updateAdminAccountByEmail?: Maybe<UpdateAdminAccountPayload>;
+  /** Updates a single `UserAccount` using its globally unique id and a patch. */
+  updateUserAccount?: Maybe<UpdateUserAccountPayload>;
+  /** Updates a single `UserAccount` using a unique key and a patch. */
+  updateUserAccountByAccountId?: Maybe<UpdateUserAccountPayload>;
+  /** Updates a single `UserAccount` using a unique key and a patch. */
+  updateUserAccountByEmail?: Maybe<UpdateUserAccountPayload>;
+  /** Deletes a single `Account` using its globally unique id. */
+  deleteAccount?: Maybe<DeleteAccountPayload>;
+  /** Deletes a single `Account` using a unique key. */
+  deleteAccountById?: Maybe<DeleteAccountPayload>;
+  /** Deletes a single `Account` using a unique key. */
+  deleteAccountByUsername?: Maybe<DeleteAccountPayload>;
+  /** Deletes a single `Config` using its globally unique id. */
+  deleteConfig?: Maybe<DeleteConfigPayload>;
+  /** Deletes a single `Config` using a unique key. */
+  deleteConfigById?: Maybe<DeleteConfigPayload>;
+  /** Deletes a single `Coord` using its globally unique id. */
+  deleteCoord?: Maybe<DeleteCoordPayload>;
+  /** Deletes a single `Coord` using a unique key. */
+  deleteCoordById?: Maybe<DeleteCoordPayload>;
+  /** Deletes a single `Country` using its globally unique id. */
+  deleteCountry?: Maybe<DeleteCountryPayload>;
+  /** Deletes a single `Country` using a unique key. */
+  deleteCountryByCode?: Maybe<DeleteCountryPayload>;
+  /** Deletes a single `EmailList` using its globally unique id. */
+  deleteEmailList?: Maybe<DeleteEmailListPayload>;
+  /** Deletes a single `EmailList` using a unique key. */
+  deleteEmailListById?: Maybe<DeleteEmailListPayload>;
+  /** Deletes a single `EmailList` using a unique key. */
+  deleteEmailListByEmail?: Maybe<DeleteEmailListPayload>;
+  /** Deletes a single `Image` using its globally unique id. */
+  deleteImage?: Maybe<DeleteImagePayload>;
+  /** Deletes a single `Image` using a unique key. */
+  deleteImageById?: Maybe<DeleteImagePayload>;
+  /** Deletes a single `Juncture` using its globally unique id. */
+  deleteJuncture?: Maybe<DeleteJuncturePayload>;
+  /** Deletes a single `Juncture` using a unique key. */
+  deleteJunctureById?: Maybe<DeleteJuncturePayload>;
+  /** Deletes a single `Like` using its globally unique id. */
+  deleteLike?: Maybe<DeleteLikePayload>;
+  /** Deletes a single `Like` using a unique key. */
+  deleteLikeById?: Maybe<DeleteLikePayload>;
+  /** Deletes a single `LoggedAction` using its globally unique id. */
+  deleteLoggedAction?: Maybe<DeleteLoggedActionPayload>;
+  /** Deletes a single `LoggedAction` using a unique key. */
+  deleteLoggedActionByEventId?: Maybe<DeleteLoggedActionPayload>;
+  /** Deletes a single `Post` using its globally unique id. */
+  deletePost?: Maybe<DeletePostPayload>;
+  /** Deletes a single `Post` using a unique key. */
+  deletePostById?: Maybe<DeletePostPayload>;
+  /** Deletes a single `PostTag` using its globally unique id. */
+  deletePostTag?: Maybe<DeletePostTagPayload>;
+  /** Deletes a single `PostTag` using a unique key. */
+  deletePostTagByName?: Maybe<DeletePostTagPayload>;
+  /** Deletes a single `PostToTag` using its globally unique id. */
+  deletePostToTag?: Maybe<DeletePostToTagPayload>;
+  /** Deletes a single `PostToTag` using a unique key. */
+  deletePostToTagById?: Maybe<DeletePostToTagPayload>;
+  /** Deletes a single `Track` using its globally unique id. */
+  deleteTrack?: Maybe<DeleteTrackPayload>;
+  /** Deletes a single `Track` using a unique key. */
+  deleteTrackById?: Maybe<DeleteTrackPayload>;
+  /** Deletes a single `Trip` using its globally unique id. */
+  deleteTrip?: Maybe<DeleteTripPayload>;
+  /** Deletes a single `Trip` using a unique key. */
+  deleteTripById?: Maybe<DeleteTripPayload>;
+  /** Deletes a single `UserToCountry` using its globally unique id. */
+  deleteUserToCountry?: Maybe<DeleteUserToCountryPayload>;
+  /** Deletes a single `UserToCountry` using a unique key. */
+  deleteUserToCountryById?: Maybe<DeleteUserToCountryPayload>;
+  /** Deletes a single `AdminAccount` using its globally unique id. */
+  deleteAdminAccount?: Maybe<DeleteAdminAccountPayload>;
+  /** Deletes a single `AdminAccount` using a unique key. */
+  deleteAdminAccountByAccountId?: Maybe<DeleteAdminAccountPayload>;
+  /** Deletes a single `AdminAccount` using a unique key. */
+  deleteAdminAccountByEmail?: Maybe<DeleteAdminAccountPayload>;
+  /** Deletes a single `UserAccount` using its globally unique id. */
+  deleteUserAccount?: Maybe<DeleteUserAccountPayload>;
+  /** Deletes a single `UserAccount` using a unique key. */
+  deleteUserAccountByAccountId?: Maybe<DeleteUserAccountPayload>;
+  /** Deletes a single `UserAccount` using a unique key. */
+  deleteUserAccountByEmail?: Maybe<DeleteUserAccountPayload>;
+  /** Creates a JWT token that will securely identify an admin account and give them certain permissions. */
+  authenticateAdminAccount?: Maybe<AuthenticateAdminAccountPayload>;
+  /** Creates a JWT token that will securely identify an account and give them certain permissions. */
+  authenticateUserAccount?: Maybe<AuthenticateUserAccountPayload>;
+  /** Registers and creates an admin ccount for POMB. */
+  registerAdminAccount?: Maybe<RegisterAdminAccountPayload>;
+  /** Registers and creates a user account for POMB. */
+  registerUserAccount?: Maybe<RegisterUserAccountPayload>;
+  /** Reset the password of a user. */
+  resetPassword?: Maybe<ResetPasswordPayload>;
+  /** Updates the password of a user. */
+  updatePassword?: Maybe<UpdatePasswordPayload>;
 };
 
 
+/** The root mutation type which contains root level fields which mutate data. */
 export type MutationCreateAccountArgs = {
-  input: CreateAccountInput
+  input: CreateAccountInput;
 };
 
 
+/** The root mutation type which contains root level fields which mutate data. */
 export type MutationCreateConfigArgs = {
-  input: CreateConfigInput
+  input: CreateConfigInput;
 };
 
 
+/** The root mutation type which contains root level fields which mutate data. */
 export type MutationCreateCoordArgs = {
-  input: CreateCoordInput
+  input: CreateCoordInput;
 };
 
 
+/** The root mutation type which contains root level fields which mutate data. */
 export type MutationCreateCountryArgs = {
-  input: CreateCountryInput
+  input: CreateCountryInput;
 };
 
 
+/** The root mutation type which contains root level fields which mutate data. */
 export type MutationCreateEmailListArgs = {
-  input: CreateEmailListInput
+  input: CreateEmailListInput;
 };
 
 
+/** The root mutation type which contains root level fields which mutate data. */
 export type MutationCreateImageArgs = {
-  input: CreateImageInput
+  input: CreateImageInput;
 };
 
 
+/** The root mutation type which contains root level fields which mutate data. */
 export type MutationCreateJunctureArgs = {
-  input: CreateJunctureInput
+  input: CreateJunctureInput;
 };
 
 
+/** The root mutation type which contains root level fields which mutate data. */
 export type MutationCreateLikeArgs = {
-  input: CreateLikeInput
+  input: CreateLikeInput;
 };
 
 
+/** The root mutation type which contains root level fields which mutate data. */
 export type MutationCreateLoggedActionArgs = {
-  input: CreateLoggedActionInput
+  input: CreateLoggedActionInput;
 };
 
 
+/** The root mutation type which contains root level fields which mutate data. */
 export type MutationCreatePostArgs = {
-  input: CreatePostInput
+  input: CreatePostInput;
 };
 
 
+/** The root mutation type which contains root level fields which mutate data. */
 export type MutationCreatePostTagArgs = {
-  input: CreatePostTagInput
+  input: CreatePostTagInput;
 };
 
 
+/** The root mutation type which contains root level fields which mutate data. */
 export type MutationCreatePostToTagArgs = {
-  input: CreatePostToTagInput
+  input: CreatePostToTagInput;
 };
 
 
+/** The root mutation type which contains root level fields which mutate data. */
 export type MutationCreateTrackArgs = {
-  input: CreateTrackInput
+  input: CreateTrackInput;
 };
 
 
+/** The root mutation type which contains root level fields which mutate data. */
 export type MutationCreateTripArgs = {
-  input: CreateTripInput
+  input: CreateTripInput;
 };
 
 
+/** The root mutation type which contains root level fields which mutate data. */
 export type MutationCreateUserToCountryArgs = {
-  input: CreateUserToCountryInput
+  input: CreateUserToCountryInput;
 };
 
 
+/** The root mutation type which contains root level fields which mutate data. */
 export type MutationCreateAdminAccountArgs = {
-  input: CreateAdminAccountInput
+  input: CreateAdminAccountInput;
 };
 
 
+/** The root mutation type which contains root level fields which mutate data. */
 export type MutationCreateUserAccountArgs = {
-  input: CreateUserAccountInput
+  input: CreateUserAccountInput;
 };
 
 
+/** The root mutation type which contains root level fields which mutate data. */
 export type MutationUpdateAccountArgs = {
-  input: UpdateAccountInput
+  input: UpdateAccountInput;
 };
 
 
+/** The root mutation type which contains root level fields which mutate data. */
 export type MutationUpdateAccountByIdArgs = {
-  input: UpdateAccountByIdInput
+  input: UpdateAccountByIdInput;
 };
 
 
+/** The root mutation type which contains root level fields which mutate data. */
 export type MutationUpdateAccountByUsernameArgs = {
-  input: UpdateAccountByUsernameInput
+  input: UpdateAccountByUsernameInput;
 };
 
 
+/** The root mutation type which contains root level fields which mutate data. */
 export type MutationUpdateConfigArgs = {
-  input: UpdateConfigInput
+  input: UpdateConfigInput;
 };
 
 
+/** The root mutation type which contains root level fields which mutate data. */
 export type MutationUpdateConfigByIdArgs = {
-  input: UpdateConfigByIdInput
+  input: UpdateConfigByIdInput;
 };
 
 
+/** The root mutation type which contains root level fields which mutate data. */
 export type MutationUpdateCoordArgs = {
-  input: UpdateCoordInput
+  input: UpdateCoordInput;
 };
 
 
+/** The root mutation type which contains root level fields which mutate data. */
 export type MutationUpdateCoordByIdArgs = {
-  input: UpdateCoordByIdInput
+  input: UpdateCoordByIdInput;
 };
 
 
+/** The root mutation type which contains root level fields which mutate data. */
 export type MutationUpdateCountryArgs = {
-  input: UpdateCountryInput
+  input: UpdateCountryInput;
 };
 
 
+/** The root mutation type which contains root level fields which mutate data. */
 export type MutationUpdateCountryByCodeArgs = {
-  input: UpdateCountryByCodeInput
+  input: UpdateCountryByCodeInput;
 };
 
 
+/** The root mutation type which contains root level fields which mutate data. */
 export type MutationUpdateEmailListArgs = {
-  input: UpdateEmailListInput
+  input: UpdateEmailListInput;
 };
 
 
+/** The root mutation type which contains root level fields which mutate data. */
 export type MutationUpdateEmailListByIdArgs = {
-  input: UpdateEmailListByIdInput
+  input: UpdateEmailListByIdInput;
 };
 
 
+/** The root mutation type which contains root level fields which mutate data. */
 export type MutationUpdateEmailListByEmailArgs = {
-  input: UpdateEmailListByEmailInput
+  input: UpdateEmailListByEmailInput;
 };
 
 
+/** The root mutation type which contains root level fields which mutate data. */
 export type MutationUpdateImageArgs = {
-  input: UpdateImageInput
+  input: UpdateImageInput;
 };
 
 
+/** The root mutation type which contains root level fields which mutate data. */
 export type MutationUpdateImageByIdArgs = {
-  input: UpdateImageByIdInput
+  input: UpdateImageByIdInput;
 };
 
 
+/** The root mutation type which contains root level fields which mutate data. */
 export type MutationUpdateJunctureArgs = {
-  input: UpdateJunctureInput
+  input: UpdateJunctureInput;
 };
 
 
+/** The root mutation type which contains root level fields which mutate data. */
 export type MutationUpdateJunctureByIdArgs = {
-  input: UpdateJunctureByIdInput
+  input: UpdateJunctureByIdInput;
 };
 
 
+/** The root mutation type which contains root level fields which mutate data. */
 export type MutationUpdateLikeArgs = {
-  input: UpdateLikeInput
+  input: UpdateLikeInput;
 };
 
 
+/** The root mutation type which contains root level fields which mutate data. */
 export type MutationUpdateLikeByIdArgs = {
-  input: UpdateLikeByIdInput
+  input: UpdateLikeByIdInput;
 };
 
 
+/** The root mutation type which contains root level fields which mutate data. */
 export type MutationUpdateLoggedActionArgs = {
-  input: UpdateLoggedActionInput
+  input: UpdateLoggedActionInput;
 };
 
 
+/** The root mutation type which contains root level fields which mutate data. */
 export type MutationUpdateLoggedActionByEventIdArgs = {
-  input: UpdateLoggedActionByEventIdInput
+  input: UpdateLoggedActionByEventIdInput;
 };
 
 
+/** The root mutation type which contains root level fields which mutate data. */
 export type MutationUpdatePostArgs = {
-  input: UpdatePostInput
+  input: UpdatePostInput;
 };
 
 
+/** The root mutation type which contains root level fields which mutate data. */
 export type MutationUpdatePostByIdArgs = {
-  input: UpdatePostByIdInput
+  input: UpdatePostByIdInput;
 };
 
 
+/** The root mutation type which contains root level fields which mutate data. */
 export type MutationUpdatePostTagArgs = {
-  input: UpdatePostTagInput
+  input: UpdatePostTagInput;
 };
 
 
+/** The root mutation type which contains root level fields which mutate data. */
 export type MutationUpdatePostTagByNameArgs = {
-  input: UpdatePostTagByNameInput
+  input: UpdatePostTagByNameInput;
 };
 
 
+/** The root mutation type which contains root level fields which mutate data. */
 export type MutationUpdatePostToTagArgs = {
-  input: UpdatePostToTagInput
+  input: UpdatePostToTagInput;
 };
 
 
+/** The root mutation type which contains root level fields which mutate data. */
 export type MutationUpdatePostToTagByIdArgs = {
-  input: UpdatePostToTagByIdInput
+  input: UpdatePostToTagByIdInput;
 };
 
 
+/** The root mutation type which contains root level fields which mutate data. */
 export type MutationUpdateTrackArgs = {
-  input: UpdateTrackInput
+  input: UpdateTrackInput;
 };
 
 
+/** The root mutation type which contains root level fields which mutate data. */
 export type MutationUpdateTrackByIdArgs = {
-  input: UpdateTrackByIdInput
+  input: UpdateTrackByIdInput;
 };
 
 
+/** The root mutation type which contains root level fields which mutate data. */
 export type MutationUpdateTripArgs = {
-  input: UpdateTripInput
+  input: UpdateTripInput;
 };
 
 
+/** The root mutation type which contains root level fields which mutate data. */
 export type MutationUpdateTripByIdArgs = {
-  input: UpdateTripByIdInput
+  input: UpdateTripByIdInput;
 };
 
 
+/** The root mutation type which contains root level fields which mutate data. */
 export type MutationUpdateUserToCountryArgs = {
-  input: UpdateUserToCountryInput
+  input: UpdateUserToCountryInput;
 };
 
 
+/** The root mutation type which contains root level fields which mutate data. */
 export type MutationUpdateUserToCountryByIdArgs = {
-  input: UpdateUserToCountryByIdInput
+  input: UpdateUserToCountryByIdInput;
 };
 
 
+/** The root mutation type which contains root level fields which mutate data. */
 export type MutationUpdateAdminAccountArgs = {
-  input: UpdateAdminAccountInput
+  input: UpdateAdminAccountInput;
 };
 
 
+/** The root mutation type which contains root level fields which mutate data. */
 export type MutationUpdateAdminAccountByAccountIdArgs = {
-  input: UpdateAdminAccountByAccountIdInput
+  input: UpdateAdminAccountByAccountIdInput;
 };
 
 
+/** The root mutation type which contains root level fields which mutate data. */
 export type MutationUpdateAdminAccountByEmailArgs = {
-  input: UpdateAdminAccountByEmailInput
+  input: UpdateAdminAccountByEmailInput;
 };
 
 
+/** The root mutation type which contains root level fields which mutate data. */
 export type MutationUpdateUserAccountArgs = {
-  input: UpdateUserAccountInput
+  input: UpdateUserAccountInput;
 };
 
 
+/** The root mutation type which contains root level fields which mutate data. */
 export type MutationUpdateUserAccountByAccountIdArgs = {
-  input: UpdateUserAccountByAccountIdInput
+  input: UpdateUserAccountByAccountIdInput;
 };
 
 
+/** The root mutation type which contains root level fields which mutate data. */
 export type MutationUpdateUserAccountByEmailArgs = {
-  input: UpdateUserAccountByEmailInput
+  input: UpdateUserAccountByEmailInput;
 };
 
 
+/** The root mutation type which contains root level fields which mutate data. */
 export type MutationDeleteAccountArgs = {
-  input: DeleteAccountInput
+  input: DeleteAccountInput;
 };
 
 
+/** The root mutation type which contains root level fields which mutate data. */
 export type MutationDeleteAccountByIdArgs = {
-  input: DeleteAccountByIdInput
+  input: DeleteAccountByIdInput;
 };
 
 
+/** The root mutation type which contains root level fields which mutate data. */
 export type MutationDeleteAccountByUsernameArgs = {
-  input: DeleteAccountByUsernameInput
+  input: DeleteAccountByUsernameInput;
 };
 
 
+/** The root mutation type which contains root level fields which mutate data. */
 export type MutationDeleteConfigArgs = {
-  input: DeleteConfigInput
+  input: DeleteConfigInput;
 };
 
 
+/** The root mutation type which contains root level fields which mutate data. */
 export type MutationDeleteConfigByIdArgs = {
-  input: DeleteConfigByIdInput
+  input: DeleteConfigByIdInput;
 };
 
 
+/** The root mutation type which contains root level fields which mutate data. */
 export type MutationDeleteCoordArgs = {
-  input: DeleteCoordInput
+  input: DeleteCoordInput;
 };
 
 
+/** The root mutation type which contains root level fields which mutate data. */
 export type MutationDeleteCoordByIdArgs = {
-  input: DeleteCoordByIdInput
+  input: DeleteCoordByIdInput;
 };
 
 
+/** The root mutation type which contains root level fields which mutate data. */
 export type MutationDeleteCountryArgs = {
-  input: DeleteCountryInput
+  input: DeleteCountryInput;
 };
 
 
+/** The root mutation type which contains root level fields which mutate data. */
 export type MutationDeleteCountryByCodeArgs = {
-  input: DeleteCountryByCodeInput
+  input: DeleteCountryByCodeInput;
 };
 
 
+/** The root mutation type which contains root level fields which mutate data. */
 export type MutationDeleteEmailListArgs = {
-  input: DeleteEmailListInput
+  input: DeleteEmailListInput;
 };
 
 
+/** The root mutation type which contains root level fields which mutate data. */
 export type MutationDeleteEmailListByIdArgs = {
-  input: DeleteEmailListByIdInput
+  input: DeleteEmailListByIdInput;
 };
 
 
+/** The root mutation type which contains root level fields which mutate data. */
 export type MutationDeleteEmailListByEmailArgs = {
-  input: DeleteEmailListByEmailInput
+  input: DeleteEmailListByEmailInput;
 };
 
 
+/** The root mutation type which contains root level fields which mutate data. */
 export type MutationDeleteImageArgs = {
-  input: DeleteImageInput
+  input: DeleteImageInput;
 };
 
 
+/** The root mutation type which contains root level fields which mutate data. */
 export type MutationDeleteImageByIdArgs = {
-  input: DeleteImageByIdInput
+  input: DeleteImageByIdInput;
 };
 
 
+/** The root mutation type which contains root level fields which mutate data. */
 export type MutationDeleteJunctureArgs = {
-  input: DeleteJunctureInput
+  input: DeleteJunctureInput;
 };
 
 
+/** The root mutation type which contains root level fields which mutate data. */
 export type MutationDeleteJunctureByIdArgs = {
-  input: DeleteJunctureByIdInput
+  input: DeleteJunctureByIdInput;
 };
 
 
+/** The root mutation type which contains root level fields which mutate data. */
 export type MutationDeleteLikeArgs = {
-  input: DeleteLikeInput
+  input: DeleteLikeInput;
 };
 
 
+/** The root mutation type which contains root level fields which mutate data. */
 export type MutationDeleteLikeByIdArgs = {
-  input: DeleteLikeByIdInput
+  input: DeleteLikeByIdInput;
 };
 
 
+/** The root mutation type which contains root level fields which mutate data. */
 export type MutationDeleteLoggedActionArgs = {
-  input: DeleteLoggedActionInput
+  input: DeleteLoggedActionInput;
 };
 
 
+/** The root mutation type which contains root level fields which mutate data. */
 export type MutationDeleteLoggedActionByEventIdArgs = {
-  input: DeleteLoggedActionByEventIdInput
+  input: DeleteLoggedActionByEventIdInput;
 };
 
 
+/** The root mutation type which contains root level fields which mutate data. */
 export type MutationDeletePostArgs = {
-  input: DeletePostInput
+  input: DeletePostInput;
 };
 
 
+/** The root mutation type which contains root level fields which mutate data. */
 export type MutationDeletePostByIdArgs = {
-  input: DeletePostByIdInput
+  input: DeletePostByIdInput;
 };
 
 
+/** The root mutation type which contains root level fields which mutate data. */
 export type MutationDeletePostTagArgs = {
-  input: DeletePostTagInput
+  input: DeletePostTagInput;
 };
 
 
+/** The root mutation type which contains root level fields which mutate data. */
 export type MutationDeletePostTagByNameArgs = {
-  input: DeletePostTagByNameInput
+  input: DeletePostTagByNameInput;
 };
 
 
+/** The root mutation type which contains root level fields which mutate data. */
 export type MutationDeletePostToTagArgs = {
-  input: DeletePostToTagInput
+  input: DeletePostToTagInput;
 };
 
 
+/** The root mutation type which contains root level fields which mutate data. */
 export type MutationDeletePostToTagByIdArgs = {
-  input: DeletePostToTagByIdInput
+  input: DeletePostToTagByIdInput;
 };
 
 
+/** The root mutation type which contains root level fields which mutate data. */
 export type MutationDeleteTrackArgs = {
-  input: DeleteTrackInput
+  input: DeleteTrackInput;
 };
 
 
+/** The root mutation type which contains root level fields which mutate data. */
 export type MutationDeleteTrackByIdArgs = {
-  input: DeleteTrackByIdInput
+  input: DeleteTrackByIdInput;
 };
 
 
+/** The root mutation type which contains root level fields which mutate data. */
 export type MutationDeleteTripArgs = {
-  input: DeleteTripInput
+  input: DeleteTripInput;
 };
 
 
+/** The root mutation type which contains root level fields which mutate data. */
 export type MutationDeleteTripByIdArgs = {
-  input: DeleteTripByIdInput
+  input: DeleteTripByIdInput;
 };
 
 
+/** The root mutation type which contains root level fields which mutate data. */
 export type MutationDeleteUserToCountryArgs = {
-  input: DeleteUserToCountryInput
+  input: DeleteUserToCountryInput;
 };
 
 
+/** The root mutation type which contains root level fields which mutate data. */
 export type MutationDeleteUserToCountryByIdArgs = {
-  input: DeleteUserToCountryByIdInput
+  input: DeleteUserToCountryByIdInput;
 };
 
 
+/** The root mutation type which contains root level fields which mutate data. */
 export type MutationDeleteAdminAccountArgs = {
-  input: DeleteAdminAccountInput
+  input: DeleteAdminAccountInput;
 };
 
 
+/** The root mutation type which contains root level fields which mutate data. */
 export type MutationDeleteAdminAccountByAccountIdArgs = {
-  input: DeleteAdminAccountByAccountIdInput
+  input: DeleteAdminAccountByAccountIdInput;
 };
 
 
+/** The root mutation type which contains root level fields which mutate data. */
 export type MutationDeleteAdminAccountByEmailArgs = {
-  input: DeleteAdminAccountByEmailInput
+  input: DeleteAdminAccountByEmailInput;
 };
 
 
+/** The root mutation type which contains root level fields which mutate data. */
 export type MutationDeleteUserAccountArgs = {
-  input: DeleteUserAccountInput
+  input: DeleteUserAccountInput;
 };
 
 
+/** The root mutation type which contains root level fields which mutate data. */
 export type MutationDeleteUserAccountByAccountIdArgs = {
-  input: DeleteUserAccountByAccountIdInput
+  input: DeleteUserAccountByAccountIdInput;
 };
 
 
+/** The root mutation type which contains root level fields which mutate data. */
 export type MutationDeleteUserAccountByEmailArgs = {
-  input: DeleteUserAccountByEmailInput
+  input: DeleteUserAccountByEmailInput;
 };
 
 
+/** The root mutation type which contains root level fields which mutate data. */
 export type MutationAuthenticateAdminAccountArgs = {
-  input: AuthenticateAdminAccountInput
+  input: AuthenticateAdminAccountInput;
 };
 
 
+/** The root mutation type which contains root level fields which mutate data. */
 export type MutationAuthenticateUserAccountArgs = {
-  input: AuthenticateUserAccountInput
+  input: AuthenticateUserAccountInput;
 };
 
 
+/** The root mutation type which contains root level fields which mutate data. */
 export type MutationRegisterAdminAccountArgs = {
-  input: RegisterAdminAccountInput
+  input: RegisterAdminAccountInput;
 };
 
 
+/** The root mutation type which contains root level fields which mutate data. */
 export type MutationRegisterUserAccountArgs = {
-  input: RegisterUserAccountInput
+  input: RegisterUserAccountInput;
 };
 
 
+/** The root mutation type which contains root level fields which mutate data. */
 export type MutationResetPasswordArgs = {
-  input: ResetPasswordInput
+  input: ResetPasswordInput;
 };
 
 
+/** The root mutation type which contains root level fields which mutate data. */
 export type MutationUpdatePasswordArgs = {
-  input: UpdatePasswordInput
+  input: UpdatePasswordInput;
 };
 
+/** An object with a globally unique `ID`. */
 export type Node = {
-  nodeId: Scalars['ID'],
+  /** A globally unique identifier. Can be used in various places throughout the system to identify this single value. */
+  nodeId: Scalars['ID'];
 };
 
+/** Information about pagination in a connection. */
 export type PageInfo = {
-   __typename?: 'PageInfo',
-  hasNextPage: Scalars['Boolean'],
-  hasPreviousPage: Scalars['Boolean'],
-  startCursor?: Maybe<Scalars['Cursor']>,
-  endCursor?: Maybe<Scalars['Cursor']>,
+  __typename?: 'PageInfo';
+  /** When paginating forwards, are there more items? */
+  hasNextPage: Scalars['Boolean'];
+  /** When paginating backwards, are there more items? */
+  hasPreviousPage: Scalars['Boolean'];
+  /** When paginating backwards, the cursor to continue. */
+  startCursor?: Maybe<Scalars['Cursor']>;
+  /** When paginating forwards, the cursor to continue. */
+  endCursor?: Maybe<Scalars['Cursor']>;
 };
 
+/** Table with POMB posts */
 export type Post = Node & {
-   __typename?: 'Post',
-  nodeId: Scalars['ID'],
-  id: Scalars['Int'],
-  author: Scalars['Int'],
-  title: Scalars['String'],
-  subtitle: Scalars['String'],
-  content: Scalars['String'],
-  tripId?: Maybe<Scalars['Int']>,
-  junctureId?: Maybe<Scalars['Int']>,
-  city?: Maybe<Scalars['String']>,
-  country?: Maybe<Scalars['String']>,
-  isDraft: Scalars['Boolean'],
-  isScheduled: Scalars['Boolean'],
-  scheduledDate?: Maybe<Scalars['BigInt']>,
-  isPublished: Scalars['Boolean'],
-  publishedDate?: Maybe<Scalars['BigInt']>,
-  createdAt?: Maybe<Scalars['BigInt']>,
-  updatedAt?: Maybe<Scalars['Datetime']>,
-  accountByAuthor?: Maybe<Account>,
-  tripByTripId?: Maybe<Trip>,
-  junctureByJunctureId?: Maybe<Juncture>,
-  countryByCountry?: Maybe<Country>,
-  postToTagsByPostId: PostToTagsConnection,
-  imagesByPostId: ImagesConnection,
-  likesByPostId: LikesConnection,
-  configsByFeaturedStory1: ConfigsConnection,
-  configsByFeaturedStory2: ConfigsConnection,
-  configsByFeaturedStory3: ConfigsConnection,
+  __typename?: 'Post';
+  /** A globally unique identifier. Can be used in various places throughout the system to identify this single value. */
+  nodeId: Scalars['ID'];
+  /** Primary id for post */
+  id: Scalars['Int'];
+  author: Scalars['Int'];
+  /** Title of the post */
+  title: Scalars['String'];
+  /** Subtitle of post */
+  subtitle: Scalars['String'];
+  /** Content of post */
+  content: Scalars['String'];
+  /** Trip the post is related to */
+  tripId?: Maybe<Scalars['Int']>;
+  /** Juncture the post is related to */
+  junctureId?: Maybe<Scalars['Int']>;
+  /** City the post is related to */
+  city?: Maybe<Scalars['String']>;
+  /** Country the post is related to */
+  country?: Maybe<Scalars['String']>;
+  /** Post is a draft */
+  isDraft: Scalars['Boolean'];
+  /** Post is scheduled */
+  isScheduled: Scalars['Boolean'];
+  /** Date post is scheduled */
+  scheduledDate?: Maybe<Scalars['BigInt']>;
+  /** Post is published */
+  isPublished: Scalars['Boolean'];
+  /** Date post is published */
+  publishedDate?: Maybe<Scalars['BigInt']>;
+  /** When post created */
+  createdAt?: Maybe<Scalars['BigInt']>;
+  /** Last updated date */
+  updatedAt?: Maybe<Scalars['Datetime']>;
+  /** Reads a single `Account` that is related to this `Post`. */
+  accountByAuthor?: Maybe<Account>;
+  /** Reads a single `Trip` that is related to this `Post`. */
+  tripByTripId?: Maybe<Trip>;
+  /** Reads a single `Juncture` that is related to this `Post`. */
+  junctureByJunctureId?: Maybe<Juncture>;
+  /** Reads a single `Country` that is related to this `Post`. */
+  countryByCountry?: Maybe<Country>;
+  /** Reads and enables pagination through a set of `PostToTag`. */
+  postToTagsByPostId: PostToTagsConnection;
+  /** Reads and enables pagination through a set of `Image`. */
+  imagesByPostId: ImagesConnection;
+  /** Reads and enables pagination through a set of `Like`. */
+  likesByPostId: LikesConnection;
+  /** Reads and enables pagination through a set of `Config`. */
+  configsByFeaturedStory1: ConfigsConnection;
+  /** Reads and enables pagination through a set of `Config`. */
+  configsByFeaturedStory2: ConfigsConnection;
+  /** Reads and enables pagination through a set of `Config`. */
+  configsByFeaturedStory3: ConfigsConnection;
 };
 
 
+/** Table with POMB posts */
 export type PostPostToTagsByPostIdArgs = {
-  first?: Maybe<Scalars['Int']>,
-  last?: Maybe<Scalars['Int']>,
-  offset?: Maybe<Scalars['Int']>,
-  before?: Maybe<Scalars['Cursor']>,
-  after?: Maybe<Scalars['Cursor']>,
-  orderBy?: Maybe<Array<PostToTagsOrderBy>>,
-  condition?: Maybe<PostToTagCondition>,
-  filter?: Maybe<PostToTagFilter>
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  before?: Maybe<Scalars['Cursor']>;
+  after?: Maybe<Scalars['Cursor']>;
+  orderBy?: Maybe<Array<PostToTagsOrderBy>>;
+  condition?: Maybe<PostToTagCondition>;
+  filter?: Maybe<PostToTagFilter>;
 };
 
 
+/** Table with POMB posts */
 export type PostImagesByPostIdArgs = {
-  first?: Maybe<Scalars['Int']>,
-  last?: Maybe<Scalars['Int']>,
-  offset?: Maybe<Scalars['Int']>,
-  before?: Maybe<Scalars['Cursor']>,
-  after?: Maybe<Scalars['Cursor']>,
-  orderBy?: Maybe<Array<ImagesOrderBy>>,
-  condition?: Maybe<ImageCondition>,
-  filter?: Maybe<ImageFilter>
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  before?: Maybe<Scalars['Cursor']>;
+  after?: Maybe<Scalars['Cursor']>;
+  orderBy?: Maybe<Array<ImagesOrderBy>>;
+  condition?: Maybe<ImageCondition>;
+  filter?: Maybe<ImageFilter>;
 };
 
 
+/** Table with POMB posts */
 export type PostLikesByPostIdArgs = {
-  first?: Maybe<Scalars['Int']>,
-  last?: Maybe<Scalars['Int']>,
-  offset?: Maybe<Scalars['Int']>,
-  before?: Maybe<Scalars['Cursor']>,
-  after?: Maybe<Scalars['Cursor']>,
-  orderBy?: Maybe<Array<LikesOrderBy>>,
-  condition?: Maybe<LikeCondition>,
-  filter?: Maybe<LikeFilter>
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  before?: Maybe<Scalars['Cursor']>;
+  after?: Maybe<Scalars['Cursor']>;
+  orderBy?: Maybe<Array<LikesOrderBy>>;
+  condition?: Maybe<LikeCondition>;
+  filter?: Maybe<LikeFilter>;
 };
 
 
+/** Table with POMB posts */
 export type PostConfigsByFeaturedStory1Args = {
-  first?: Maybe<Scalars['Int']>,
-  last?: Maybe<Scalars['Int']>,
-  offset?: Maybe<Scalars['Int']>,
-  before?: Maybe<Scalars['Cursor']>,
-  after?: Maybe<Scalars['Cursor']>,
-  orderBy?: Maybe<Array<ConfigsOrderBy>>,
-  condition?: Maybe<ConfigCondition>,
-  filter?: Maybe<ConfigFilter>
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  before?: Maybe<Scalars['Cursor']>;
+  after?: Maybe<Scalars['Cursor']>;
+  orderBy?: Maybe<Array<ConfigsOrderBy>>;
+  condition?: Maybe<ConfigCondition>;
+  filter?: Maybe<ConfigFilter>;
 };
 
 
+/** Table with POMB posts */
 export type PostConfigsByFeaturedStory2Args = {
-  first?: Maybe<Scalars['Int']>,
-  last?: Maybe<Scalars['Int']>,
-  offset?: Maybe<Scalars['Int']>,
-  before?: Maybe<Scalars['Cursor']>,
-  after?: Maybe<Scalars['Cursor']>,
-  orderBy?: Maybe<Array<ConfigsOrderBy>>,
-  condition?: Maybe<ConfigCondition>,
-  filter?: Maybe<ConfigFilter>
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  before?: Maybe<Scalars['Cursor']>;
+  after?: Maybe<Scalars['Cursor']>;
+  orderBy?: Maybe<Array<ConfigsOrderBy>>;
+  condition?: Maybe<ConfigCondition>;
+  filter?: Maybe<ConfigFilter>;
 };
 
 
+/** Table with POMB posts */
 export type PostConfigsByFeaturedStory3Args = {
-  first?: Maybe<Scalars['Int']>,
-  last?: Maybe<Scalars['Int']>,
-  offset?: Maybe<Scalars['Int']>,
-  before?: Maybe<Scalars['Cursor']>,
-  after?: Maybe<Scalars['Cursor']>,
-  orderBy?: Maybe<Array<ConfigsOrderBy>>,
-  condition?: Maybe<ConfigCondition>,
-  filter?: Maybe<ConfigFilter>
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  before?: Maybe<Scalars['Cursor']>;
+  after?: Maybe<Scalars['Cursor']>;
+  orderBy?: Maybe<Array<ConfigsOrderBy>>;
+  condition?: Maybe<ConfigCondition>;
+  filter?: Maybe<ConfigFilter>;
 };
 
+/** A condition to be used against `Post` object types. All fields are tested for equality and combined with a logical ‘and.’ */
 export type PostCondition = {
-  id?: Maybe<Scalars['Int']>,
-  author?: Maybe<Scalars['Int']>,
-  title?: Maybe<Scalars['String']>,
-  subtitle?: Maybe<Scalars['String']>,
-  content?: Maybe<Scalars['String']>,
-  tripId?: Maybe<Scalars['Int']>,
-  junctureId?: Maybe<Scalars['Int']>,
-  city?: Maybe<Scalars['String']>,
-  country?: Maybe<Scalars['String']>,
-  isDraft?: Maybe<Scalars['Boolean']>,
-  isScheduled?: Maybe<Scalars['Boolean']>,
-  scheduledDate?: Maybe<Scalars['BigInt']>,
-  isPublished?: Maybe<Scalars['Boolean']>,
-  publishedDate?: Maybe<Scalars['BigInt']>,
-  createdAt?: Maybe<Scalars['BigInt']>,
-  updatedAt?: Maybe<Scalars['Datetime']>,
+  /** Checks for equality with the object’s `id` field. */
+  id?: Maybe<Scalars['Int']>;
+  /** Checks for equality with the object’s `author` field. */
+  author?: Maybe<Scalars['Int']>;
+  /** Checks for equality with the object’s `title` field. */
+  title?: Maybe<Scalars['String']>;
+  /** Checks for equality with the object’s `subtitle` field. */
+  subtitle?: Maybe<Scalars['String']>;
+  /** Checks for equality with the object’s `content` field. */
+  content?: Maybe<Scalars['String']>;
+  /** Checks for equality with the object’s `tripId` field. */
+  tripId?: Maybe<Scalars['Int']>;
+  /** Checks for equality with the object’s `junctureId` field. */
+  junctureId?: Maybe<Scalars['Int']>;
+  /** Checks for equality with the object’s `city` field. */
+  city?: Maybe<Scalars['String']>;
+  /** Checks for equality with the object’s `country` field. */
+  country?: Maybe<Scalars['String']>;
+  /** Checks for equality with the object’s `isDraft` field. */
+  isDraft?: Maybe<Scalars['Boolean']>;
+  /** Checks for equality with the object’s `isScheduled` field. */
+  isScheduled?: Maybe<Scalars['Boolean']>;
+  /** Checks for equality with the object’s `scheduledDate` field. */
+  scheduledDate?: Maybe<Scalars['BigInt']>;
+  /** Checks for equality with the object’s `isPublished` field. */
+  isPublished?: Maybe<Scalars['Boolean']>;
+  /** Checks for equality with the object’s `publishedDate` field. */
+  publishedDate?: Maybe<Scalars['BigInt']>;
+  /** Checks for equality with the object’s `createdAt` field. */
+  createdAt?: Maybe<Scalars['BigInt']>;
+  /** Checks for equality with the object’s `updatedAt` field. */
+  updatedAt?: Maybe<Scalars['Datetime']>;
 };
 
+/** A filter to be used against `Post` object types. All fields are combined with a logical ‘and.’ */
 export type PostFilter = {
-  id?: Maybe<IntFilter>,
-  author?: Maybe<IntFilter>,
-  title?: Maybe<StringFilter>,
-  subtitle?: Maybe<StringFilter>,
-  content?: Maybe<StringFilter>,
-  tripId?: Maybe<IntFilter>,
-  junctureId?: Maybe<IntFilter>,
-  city?: Maybe<StringFilter>,
-  country?: Maybe<StringFilter>,
-  isDraft?: Maybe<BooleanFilter>,
-  isScheduled?: Maybe<BooleanFilter>,
-  scheduledDate?: Maybe<BigIntFilter>,
-  isPublished?: Maybe<BooleanFilter>,
-  publishedDate?: Maybe<BigIntFilter>,
-  createdAt?: Maybe<BigIntFilter>,
-  updatedAt?: Maybe<DatetimeFilter>,
-  and?: Maybe<Array<PostFilter>>,
-  or?: Maybe<Array<PostFilter>>,
-  not?: Maybe<PostFilter>,
+  /** Filter by the object’s `id` field. */
+  id?: Maybe<IntFilter>;
+  /** Filter by the object’s `author` field. */
+  author?: Maybe<IntFilter>;
+  /** Filter by the object’s `title` field. */
+  title?: Maybe<StringFilter>;
+  /** Filter by the object’s `subtitle` field. */
+  subtitle?: Maybe<StringFilter>;
+  /** Filter by the object’s `content` field. */
+  content?: Maybe<StringFilter>;
+  /** Filter by the object’s `tripId` field. */
+  tripId?: Maybe<IntFilter>;
+  /** Filter by the object’s `junctureId` field. */
+  junctureId?: Maybe<IntFilter>;
+  /** Filter by the object’s `city` field. */
+  city?: Maybe<StringFilter>;
+  /** Filter by the object’s `country` field. */
+  country?: Maybe<StringFilter>;
+  /** Filter by the object’s `isDraft` field. */
+  isDraft?: Maybe<BooleanFilter>;
+  /** Filter by the object’s `isScheduled` field. */
+  isScheduled?: Maybe<BooleanFilter>;
+  /** Filter by the object’s `scheduledDate` field. */
+  scheduledDate?: Maybe<BigIntFilter>;
+  /** Filter by the object’s `isPublished` field. */
+  isPublished?: Maybe<BooleanFilter>;
+  /** Filter by the object’s `publishedDate` field. */
+  publishedDate?: Maybe<BigIntFilter>;
+  /** Filter by the object’s `createdAt` field. */
+  createdAt?: Maybe<BigIntFilter>;
+  /** Filter by the object’s `updatedAt` field. */
+  updatedAt?: Maybe<DatetimeFilter>;
+  /** Checks for all expressions in this list. */
+  and?: Maybe<Array<PostFilter>>;
+  /** Checks for any expressions in this list. */
+  or?: Maybe<Array<PostFilter>>;
+  /** Negates the expression. */
+  not?: Maybe<PostFilter>;
 };
 
+/** An input for mutations affecting `Post` */
 export type PostInput = {
-  id?: Maybe<Scalars['Int']>,
-  author: Scalars['Int'],
-  title: Scalars['String'],
-  subtitle: Scalars['String'],
-  content: Scalars['String'],
-  tripId?: Maybe<Scalars['Int']>,
-  junctureId?: Maybe<Scalars['Int']>,
-  city?: Maybe<Scalars['String']>,
-  country?: Maybe<Scalars['String']>,
-  isDraft: Scalars['Boolean'],
-  isScheduled: Scalars['Boolean'],
-  scheduledDate?: Maybe<Scalars['BigInt']>,
-  isPublished: Scalars['Boolean'],
-  publishedDate?: Maybe<Scalars['BigInt']>,
-  createdAt?: Maybe<Scalars['BigInt']>,
-  updatedAt?: Maybe<Scalars['Datetime']>,
+  /** Primary id for post */
+  id?: Maybe<Scalars['Int']>;
+  author: Scalars['Int'];
+  /** Title of the post */
+  title: Scalars['String'];
+  /** Subtitle of post */
+  subtitle: Scalars['String'];
+  /** Content of post */
+  content: Scalars['String'];
+  /** Trip the post is related to */
+  tripId?: Maybe<Scalars['Int']>;
+  /** Juncture the post is related to */
+  junctureId?: Maybe<Scalars['Int']>;
+  /** City the post is related to */
+  city?: Maybe<Scalars['String']>;
+  /** Country the post is related to */
+  country?: Maybe<Scalars['String']>;
+  /** Post is a draft */
+  isDraft: Scalars['Boolean'];
+  /** Post is scheduled */
+  isScheduled: Scalars['Boolean'];
+  /** Date post is scheduled */
+  scheduledDate?: Maybe<Scalars['BigInt']>;
+  /** Post is published */
+  isPublished: Scalars['Boolean'];
+  /** Date post is published */
+  publishedDate?: Maybe<Scalars['BigInt']>;
+  /** When post created */
+  createdAt?: Maybe<Scalars['BigInt']>;
+  /** Last updated date */
+  updatedAt?: Maybe<Scalars['Datetime']>;
 };
 
+/** Represents an update to a `Post`. Fields that are set will be updated. */
 export type PostPatch = {
-  id?: Maybe<Scalars['Int']>,
-  author?: Maybe<Scalars['Int']>,
-  title?: Maybe<Scalars['String']>,
-  subtitle?: Maybe<Scalars['String']>,
-  content?: Maybe<Scalars['String']>,
-  tripId?: Maybe<Scalars['Int']>,
-  junctureId?: Maybe<Scalars['Int']>,
-  city?: Maybe<Scalars['String']>,
-  country?: Maybe<Scalars['String']>,
-  isDraft?: Maybe<Scalars['Boolean']>,
-  isScheduled?: Maybe<Scalars['Boolean']>,
-  scheduledDate?: Maybe<Scalars['BigInt']>,
-  isPublished?: Maybe<Scalars['Boolean']>,
-  publishedDate?: Maybe<Scalars['BigInt']>,
-  createdAt?: Maybe<Scalars['BigInt']>,
-  updatedAt?: Maybe<Scalars['Datetime']>,
+  /** Primary id for post */
+  id?: Maybe<Scalars['Int']>;
+  author?: Maybe<Scalars['Int']>;
+  /** Title of the post */
+  title?: Maybe<Scalars['String']>;
+  /** Subtitle of post */
+  subtitle?: Maybe<Scalars['String']>;
+  /** Content of post */
+  content?: Maybe<Scalars['String']>;
+  /** Trip the post is related to */
+  tripId?: Maybe<Scalars['Int']>;
+  /** Juncture the post is related to */
+  junctureId?: Maybe<Scalars['Int']>;
+  /** City the post is related to */
+  city?: Maybe<Scalars['String']>;
+  /** Country the post is related to */
+  country?: Maybe<Scalars['String']>;
+  /** Post is a draft */
+  isDraft?: Maybe<Scalars['Boolean']>;
+  /** Post is scheduled */
+  isScheduled?: Maybe<Scalars['Boolean']>;
+  /** Date post is scheduled */
+  scheduledDate?: Maybe<Scalars['BigInt']>;
+  /** Post is published */
+  isPublished?: Maybe<Scalars['Boolean']>;
+  /** Date post is published */
+  publishedDate?: Maybe<Scalars['BigInt']>;
+  /** When post created */
+  createdAt?: Maybe<Scalars['BigInt']>;
+  /** Last updated date */
+  updatedAt?: Maybe<Scalars['Datetime']>;
 };
 
+/** A connection to a list of `Post` values. */
 export type PostsConnection = {
-   __typename?: 'PostsConnection',
-  nodes: Array<Maybe<Post>>,
-  edges: Array<PostsEdge>,
-  pageInfo: PageInfo,
-  totalCount: Scalars['Int'],
+  __typename?: 'PostsConnection';
+  /** A list of `Post` objects. */
+  nodes: Array<Maybe<Post>>;
+  /** A list of edges which contains the `Post` and cursor to aid in pagination. */
+  edges: Array<PostsEdge>;
+  /** Information to aid in pagination. */
+  pageInfo: PageInfo;
+  /** The count of *all* `Post` you could get from the connection. */
+  totalCount: Scalars['Int'];
 };
 
 export type PostSearchIndex = {
-   __typename?: 'PostSearchIndex',
-  id?: Maybe<Scalars['Int']>,
-  author?: Maybe<Scalars['Int']>,
-  title?: Maybe<Scalars['String']>,
-  subtitle?: Maybe<Scalars['String']>,
-  content?: Maybe<Scalars['String']>,
-  tripId?: Maybe<Scalars['Int']>,
-  junctureId?: Maybe<Scalars['Int']>,
-  city?: Maybe<Scalars['String']>,
-  country?: Maybe<Scalars['String']>,
-  isDraft?: Maybe<Scalars['Boolean']>,
-  isScheduled?: Maybe<Scalars['Boolean']>,
-  scheduledDate?: Maybe<Scalars['BigInt']>,
-  isPublished?: Maybe<Scalars['Boolean']>,
-  publishedDate?: Maybe<Scalars['BigInt']>,
-  createdAt?: Maybe<Scalars['BigInt']>,
-  updatedAt?: Maybe<Scalars['Datetime']>,
-  document?: Maybe<Scalars['String']>,
+  __typename?: 'PostSearchIndex';
+  id?: Maybe<Scalars['Int']>;
+  author?: Maybe<Scalars['Int']>;
+  title?: Maybe<Scalars['String']>;
+  subtitle?: Maybe<Scalars['String']>;
+  content?: Maybe<Scalars['String']>;
+  tripId?: Maybe<Scalars['Int']>;
+  junctureId?: Maybe<Scalars['Int']>;
+  city?: Maybe<Scalars['String']>;
+  country?: Maybe<Scalars['String']>;
+  isDraft?: Maybe<Scalars['Boolean']>;
+  isScheduled?: Maybe<Scalars['Boolean']>;
+  scheduledDate?: Maybe<Scalars['BigInt']>;
+  isPublished?: Maybe<Scalars['Boolean']>;
+  publishedDate?: Maybe<Scalars['BigInt']>;
+  createdAt?: Maybe<Scalars['BigInt']>;
+  updatedAt?: Maybe<Scalars['Datetime']>;
+  document?: Maybe<Scalars['String']>;
 };
 
+/**
+ * A condition to be used against `PostSearchIndex` object types. All fields are
+ * tested for equality and combined with a logical ‘and.’
+ */
 export type PostSearchIndexCondition = {
-  id?: Maybe<Scalars['Int']>,
-  author?: Maybe<Scalars['Int']>,
-  title?: Maybe<Scalars['String']>,
-  subtitle?: Maybe<Scalars['String']>,
-  content?: Maybe<Scalars['String']>,
-  tripId?: Maybe<Scalars['Int']>,
-  junctureId?: Maybe<Scalars['Int']>,
-  city?: Maybe<Scalars['String']>,
-  country?: Maybe<Scalars['String']>,
-  isDraft?: Maybe<Scalars['Boolean']>,
-  isScheduled?: Maybe<Scalars['Boolean']>,
-  scheduledDate?: Maybe<Scalars['BigInt']>,
-  isPublished?: Maybe<Scalars['Boolean']>,
-  publishedDate?: Maybe<Scalars['BigInt']>,
-  createdAt?: Maybe<Scalars['BigInt']>,
-  updatedAt?: Maybe<Scalars['Datetime']>,
-  document?: Maybe<Scalars['String']>,
+  /** Checks for equality with the object’s `id` field. */
+  id?: Maybe<Scalars['Int']>;
+  /** Checks for equality with the object’s `author` field. */
+  author?: Maybe<Scalars['Int']>;
+  /** Checks for equality with the object’s `title` field. */
+  title?: Maybe<Scalars['String']>;
+  /** Checks for equality with the object’s `subtitle` field. */
+  subtitle?: Maybe<Scalars['String']>;
+  /** Checks for equality with the object’s `content` field. */
+  content?: Maybe<Scalars['String']>;
+  /** Checks for equality with the object’s `tripId` field. */
+  tripId?: Maybe<Scalars['Int']>;
+  /** Checks for equality with the object’s `junctureId` field. */
+  junctureId?: Maybe<Scalars['Int']>;
+  /** Checks for equality with the object’s `city` field. */
+  city?: Maybe<Scalars['String']>;
+  /** Checks for equality with the object’s `country` field. */
+  country?: Maybe<Scalars['String']>;
+  /** Checks for equality with the object’s `isDraft` field. */
+  isDraft?: Maybe<Scalars['Boolean']>;
+  /** Checks for equality with the object’s `isScheduled` field. */
+  isScheduled?: Maybe<Scalars['Boolean']>;
+  /** Checks for equality with the object’s `scheduledDate` field. */
+  scheduledDate?: Maybe<Scalars['BigInt']>;
+  /** Checks for equality with the object’s `isPublished` field. */
+  isPublished?: Maybe<Scalars['Boolean']>;
+  /** Checks for equality with the object’s `publishedDate` field. */
+  publishedDate?: Maybe<Scalars['BigInt']>;
+  /** Checks for equality with the object’s `createdAt` field. */
+  createdAt?: Maybe<Scalars['BigInt']>;
+  /** Checks for equality with the object’s `updatedAt` field. */
+  updatedAt?: Maybe<Scalars['Datetime']>;
+  /** Checks for equality with the object’s `document` field. */
+  document?: Maybe<Scalars['String']>;
 };
 
+/** A filter to be used against `PostSearchIndex` object types. All fields are combined with a logical ‘and.’ */
 export type PostSearchIndexFilter = {
-  id?: Maybe<IntFilter>,
-  author?: Maybe<IntFilter>,
-  title?: Maybe<StringFilter>,
-  subtitle?: Maybe<StringFilter>,
-  content?: Maybe<StringFilter>,
-  tripId?: Maybe<IntFilter>,
-  junctureId?: Maybe<IntFilter>,
-  city?: Maybe<StringFilter>,
-  country?: Maybe<StringFilter>,
-  isDraft?: Maybe<BooleanFilter>,
-  isScheduled?: Maybe<BooleanFilter>,
-  scheduledDate?: Maybe<BigIntFilter>,
-  isPublished?: Maybe<BooleanFilter>,
-  publishedDate?: Maybe<BigIntFilter>,
-  createdAt?: Maybe<BigIntFilter>,
-  updatedAt?: Maybe<DatetimeFilter>,
-  and?: Maybe<Array<PostSearchIndexFilter>>,
-  or?: Maybe<Array<PostSearchIndexFilter>>,
-  not?: Maybe<PostSearchIndexFilter>,
+  /** Filter by the object’s `id` field. */
+  id?: Maybe<IntFilter>;
+  /** Filter by the object’s `author` field. */
+  author?: Maybe<IntFilter>;
+  /** Filter by the object’s `title` field. */
+  title?: Maybe<StringFilter>;
+  /** Filter by the object’s `subtitle` field. */
+  subtitle?: Maybe<StringFilter>;
+  /** Filter by the object’s `content` field. */
+  content?: Maybe<StringFilter>;
+  /** Filter by the object’s `tripId` field. */
+  tripId?: Maybe<IntFilter>;
+  /** Filter by the object’s `junctureId` field. */
+  junctureId?: Maybe<IntFilter>;
+  /** Filter by the object’s `city` field. */
+  city?: Maybe<StringFilter>;
+  /** Filter by the object’s `country` field. */
+  country?: Maybe<StringFilter>;
+  /** Filter by the object’s `isDraft` field. */
+  isDraft?: Maybe<BooleanFilter>;
+  /** Filter by the object’s `isScheduled` field. */
+  isScheduled?: Maybe<BooleanFilter>;
+  /** Filter by the object’s `scheduledDate` field. */
+  scheduledDate?: Maybe<BigIntFilter>;
+  /** Filter by the object’s `isPublished` field. */
+  isPublished?: Maybe<BooleanFilter>;
+  /** Filter by the object’s `publishedDate` field. */
+  publishedDate?: Maybe<BigIntFilter>;
+  /** Filter by the object’s `createdAt` field. */
+  createdAt?: Maybe<BigIntFilter>;
+  /** Filter by the object’s `updatedAt` field. */
+  updatedAt?: Maybe<DatetimeFilter>;
+  /** Checks for all expressions in this list. */
+  and?: Maybe<Array<PostSearchIndexFilter>>;
+  /** Checks for any expressions in this list. */
+  or?: Maybe<Array<PostSearchIndexFilter>>;
+  /** Negates the expression. */
+  not?: Maybe<PostSearchIndexFilter>;
 };
 
+/** A connection to a list of `PostSearchIndex` values. */
 export type PostSearchIndicesConnection = {
-   __typename?: 'PostSearchIndicesConnection',
-  nodes: Array<Maybe<PostSearchIndex>>,
-  edges: Array<PostSearchIndicesEdge>,
-  pageInfo: PageInfo,
-  totalCount: Scalars['Int'],
+  __typename?: 'PostSearchIndicesConnection';
+  /** A list of `PostSearchIndex` objects. */
+  nodes: Array<Maybe<PostSearchIndex>>;
+  /** A list of edges which contains the `PostSearchIndex` and cursor to aid in pagination. */
+  edges: Array<PostSearchIndicesEdge>;
+  /** Information to aid in pagination. */
+  pageInfo: PageInfo;
+  /** The count of *all* `PostSearchIndex` you could get from the connection. */
+  totalCount: Scalars['Int'];
 };
 
+/** A `PostSearchIndex` edge in the connection. */
 export type PostSearchIndicesEdge = {
-   __typename?: 'PostSearchIndicesEdge',
-  cursor?: Maybe<Scalars['Cursor']>,
-  node?: Maybe<PostSearchIndex>,
+  __typename?: 'PostSearchIndicesEdge';
+  /** A cursor for use in pagination. */
+  cursor?: Maybe<Scalars['Cursor']>;
+  /** The `PostSearchIndex` at the end of the edge. */
+  node?: Maybe<PostSearchIndex>;
 };
 
+/** Methods to use when ordering `PostSearchIndex`. */
 export enum PostSearchIndicesOrderBy {
   Natural = 'NATURAL',
   IdAsc = 'ID_ASC',
@@ -3218,12 +5087,16 @@ export enum PostSearchIndicesOrderBy {
   DocumentDesc = 'DOCUMENT_DESC'
 }
 
+/** A `Post` edge in the connection. */
 export type PostsEdge = {
-   __typename?: 'PostsEdge',
-  cursor?: Maybe<Scalars['Cursor']>,
-  node?: Maybe<Post>,
+  __typename?: 'PostsEdge';
+  /** A cursor for use in pagination. */
+  cursor?: Maybe<Scalars['Cursor']>;
+  /** The `Post` at the end of the edge. */
+  node?: Maybe<Post>;
 };
 
+/** Methods to use when ordering `Post`. */
 export enum PostsOrderBy {
   Natural = 'NATURAL',
   IdAsc = 'ID_ASC',
@@ -3262,63 +5135,93 @@ export enum PostsOrderBy {
   PrimaryKeyDesc = 'PRIMARY_KEY_DESC'
 }
 
+/** Table with post tags available */
 export type PostTag = Node & {
-   __typename?: 'PostTag',
-  nodeId: Scalars['ID'],
-  name: Scalars['String'],
-  tagDescription?: Maybe<Scalars['String']>,
-  postToTagsByPostTagId: PostToTagsConnection,
+  __typename?: 'PostTag';
+  /** A globally unique identifier. Can be used in various places throughout the system to identify this single value. */
+  nodeId: Scalars['ID'];
+  /** Name of the post tag and primary id */
+  name: Scalars['String'];
+  /** Description of the post tag */
+  tagDescription?: Maybe<Scalars['String']>;
+  /** Reads and enables pagination through a set of `PostToTag`. */
+  postToTagsByPostTagId: PostToTagsConnection;
 };
 
 
+/** Table with post tags available */
 export type PostTagPostToTagsByPostTagIdArgs = {
-  first?: Maybe<Scalars['Int']>,
-  last?: Maybe<Scalars['Int']>,
-  offset?: Maybe<Scalars['Int']>,
-  before?: Maybe<Scalars['Cursor']>,
-  after?: Maybe<Scalars['Cursor']>,
-  orderBy?: Maybe<Array<PostToTagsOrderBy>>,
-  condition?: Maybe<PostToTagCondition>,
-  filter?: Maybe<PostToTagFilter>
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  before?: Maybe<Scalars['Cursor']>;
+  after?: Maybe<Scalars['Cursor']>;
+  orderBy?: Maybe<Array<PostToTagsOrderBy>>;
+  condition?: Maybe<PostToTagCondition>;
+  filter?: Maybe<PostToTagFilter>;
 };
 
+/** A condition to be used against `PostTag` object types. All fields are tested for equality and combined with a logical ‘and.’ */
 export type PostTagCondition = {
-  name?: Maybe<Scalars['String']>,
-  tagDescription?: Maybe<Scalars['String']>,
+  /** Checks for equality with the object’s `name` field. */
+  name?: Maybe<Scalars['String']>;
+  /** Checks for equality with the object’s `tagDescription` field. */
+  tagDescription?: Maybe<Scalars['String']>;
 };
 
+/** A filter to be used against `PostTag` object types. All fields are combined with a logical ‘and.’ */
 export type PostTagFilter = {
-  name?: Maybe<StringFilter>,
-  tagDescription?: Maybe<StringFilter>,
-  and?: Maybe<Array<PostTagFilter>>,
-  or?: Maybe<Array<PostTagFilter>>,
-  not?: Maybe<PostTagFilter>,
+  /** Filter by the object’s `name` field. */
+  name?: Maybe<StringFilter>;
+  /** Filter by the object’s `tagDescription` field. */
+  tagDescription?: Maybe<StringFilter>;
+  /** Checks for all expressions in this list. */
+  and?: Maybe<Array<PostTagFilter>>;
+  /** Checks for any expressions in this list. */
+  or?: Maybe<Array<PostTagFilter>>;
+  /** Negates the expression. */
+  not?: Maybe<PostTagFilter>;
 };
 
+/** An input for mutations affecting `PostTag` */
 export type PostTagInput = {
-  name: Scalars['String'],
-  tagDescription?: Maybe<Scalars['String']>,
+  /** Name of the post tag and primary id */
+  name: Scalars['String'];
+  /** Description of the post tag */
+  tagDescription?: Maybe<Scalars['String']>;
 };
 
+/** Represents an update to a `PostTag`. Fields that are set will be updated. */
 export type PostTagPatch = {
-  name?: Maybe<Scalars['String']>,
-  tagDescription?: Maybe<Scalars['String']>,
+  /** Name of the post tag and primary id */
+  name?: Maybe<Scalars['String']>;
+  /** Description of the post tag */
+  tagDescription?: Maybe<Scalars['String']>;
 };
 
+/** A connection to a list of `PostTag` values. */
 export type PostTagsConnection = {
-   __typename?: 'PostTagsConnection',
-  nodes: Array<Maybe<PostTag>>,
-  edges: Array<PostTagsEdge>,
-  pageInfo: PageInfo,
-  totalCount: Scalars['Int'],
+  __typename?: 'PostTagsConnection';
+  /** A list of `PostTag` objects. */
+  nodes: Array<Maybe<PostTag>>;
+  /** A list of edges which contains the `PostTag` and cursor to aid in pagination. */
+  edges: Array<PostTagsEdge>;
+  /** Information to aid in pagination. */
+  pageInfo: PageInfo;
+  /** The count of *all* `PostTag` you could get from the connection. */
+  totalCount: Scalars['Int'];
 };
 
+/** A `PostTag` edge in the connection. */
 export type PostTagsEdge = {
-   __typename?: 'PostTagsEdge',
-  cursor?: Maybe<Scalars['Cursor']>,
-  node?: Maybe<PostTag>,
+  __typename?: 'PostTagsEdge';
+  /** A cursor for use in pagination. */
+  cursor?: Maybe<Scalars['Cursor']>;
+  /** The `PostTag` at the end of the edge. */
+  node?: Maybe<PostTag>;
 };
 
+/** Methods to use when ordering `PostTag`. */
 export enum PostTagsOrderBy {
   Natural = 'NATURAL',
   NameAsc = 'NAME_ASC',
@@ -3329,57 +5232,95 @@ export enum PostTagsOrderBy {
   PrimaryKeyDesc = 'PRIMARY_KEY_DESC'
 }
 
+/** Join table for tags on a post */
 export type PostToTag = Node & {
-   __typename?: 'PostToTag',
-  nodeId: Scalars['ID'],
-  id: Scalars['Int'],
-  postId: Scalars['Int'],
-  postTagId: Scalars['String'],
-  postByPostId?: Maybe<Post>,
-  postTagByPostTagId?: Maybe<PostTag>,
+  __typename?: 'PostToTag';
+  /** A globally unique identifier. Can be used in various places throughout the system to identify this single value. */
+  nodeId: Scalars['ID'];
+  /** Id of the row */
+  id: Scalars['Int'];
+  /** Id of the post */
+  postId: Scalars['Int'];
+  /** Name of the post tag */
+  postTagId: Scalars['String'];
+  /** Reads a single `Post` that is related to this `PostToTag`. */
+  postByPostId?: Maybe<Post>;
+  /** Reads a single `PostTag` that is related to this `PostToTag`. */
+  postTagByPostTagId?: Maybe<PostTag>;
 };
 
+/**
+ * A condition to be used against `PostToTag` object types. All fields are tested
+ * for equality and combined with a logical ‘and.’
+ */
 export type PostToTagCondition = {
-  id?: Maybe<Scalars['Int']>,
-  postId?: Maybe<Scalars['Int']>,
-  postTagId?: Maybe<Scalars['String']>,
+  /** Checks for equality with the object’s `id` field. */
+  id?: Maybe<Scalars['Int']>;
+  /** Checks for equality with the object’s `postId` field. */
+  postId?: Maybe<Scalars['Int']>;
+  /** Checks for equality with the object’s `postTagId` field. */
+  postTagId?: Maybe<Scalars['String']>;
 };
 
+/** A filter to be used against `PostToTag` object types. All fields are combined with a logical ‘and.’ */
 export type PostToTagFilter = {
-  id?: Maybe<IntFilter>,
-  postId?: Maybe<IntFilter>,
-  postTagId?: Maybe<StringFilter>,
-  and?: Maybe<Array<PostToTagFilter>>,
-  or?: Maybe<Array<PostToTagFilter>>,
-  not?: Maybe<PostToTagFilter>,
+  /** Filter by the object’s `id` field. */
+  id?: Maybe<IntFilter>;
+  /** Filter by the object’s `postId` field. */
+  postId?: Maybe<IntFilter>;
+  /** Filter by the object’s `postTagId` field. */
+  postTagId?: Maybe<StringFilter>;
+  /** Checks for all expressions in this list. */
+  and?: Maybe<Array<PostToTagFilter>>;
+  /** Checks for any expressions in this list. */
+  or?: Maybe<Array<PostToTagFilter>>;
+  /** Negates the expression. */
+  not?: Maybe<PostToTagFilter>;
 };
 
+/** An input for mutations affecting `PostToTag` */
 export type PostToTagInput = {
-  id?: Maybe<Scalars['Int']>,
-  postId: Scalars['Int'],
-  postTagId: Scalars['String'],
+  /** Id of the row */
+  id?: Maybe<Scalars['Int']>;
+  /** Id of the post */
+  postId: Scalars['Int'];
+  /** Name of the post tag */
+  postTagId: Scalars['String'];
 };
 
+/** Represents an update to a `PostToTag`. Fields that are set will be updated. */
 export type PostToTagPatch = {
-  id?: Maybe<Scalars['Int']>,
-  postId?: Maybe<Scalars['Int']>,
-  postTagId?: Maybe<Scalars['String']>,
+  /** Id of the row */
+  id?: Maybe<Scalars['Int']>;
+  /** Id of the post */
+  postId?: Maybe<Scalars['Int']>;
+  /** Name of the post tag */
+  postTagId?: Maybe<Scalars['String']>;
 };
 
+/** A connection to a list of `PostToTag` values. */
 export type PostToTagsConnection = {
-   __typename?: 'PostToTagsConnection',
-  nodes: Array<Maybe<PostToTag>>,
-  edges: Array<PostToTagsEdge>,
-  pageInfo: PageInfo,
-  totalCount: Scalars['Int'],
+  __typename?: 'PostToTagsConnection';
+  /** A list of `PostToTag` objects. */
+  nodes: Array<Maybe<PostToTag>>;
+  /** A list of edges which contains the `PostToTag` and cursor to aid in pagination. */
+  edges: Array<PostToTagsEdge>;
+  /** Information to aid in pagination. */
+  pageInfo: PageInfo;
+  /** The count of *all* `PostToTag` you could get from the connection. */
+  totalCount: Scalars['Int'];
 };
 
+/** A `PostToTag` edge in the connection. */
 export type PostToTagsEdge = {
-   __typename?: 'PostToTagsEdge',
-  cursor?: Maybe<Scalars['Cursor']>,
-  node?: Maybe<PostToTag>,
+  __typename?: 'PostToTagsEdge';
+  /** A cursor for use in pagination. */
+  cursor?: Maybe<Scalars['Cursor']>;
+  /** The `PostToTag` at the end of the edge. */
+  node?: Maybe<PostToTag>;
 };
 
+/** Methods to use when ordering `PostToTag`. */
 export enum PostToTagsOrderBy {
   Natural = 'NATURAL',
   IdAsc = 'ID_ASC',
@@ -3392,711 +5333,946 @@ export enum PostToTagsOrderBy {
   PrimaryKeyDesc = 'PRIMARY_KEY_DESC'
 }
 
+/** The root query type which gives access points into the data universe. */
 export type Query = Node & {
-   __typename?: 'Query',
-  query: Query,
-  nodeId: Scalars['ID'],
-  node?: Maybe<Node>,
-  allAccounts?: Maybe<AccountsConnection>,
-  allAccountSearchIndices?: Maybe<AccountSearchIndicesConnection>,
-  allConfigs?: Maybe<ConfigsConnection>,
-  allCoords?: Maybe<CoordsConnection>,
-  allCountries?: Maybe<CountriesConnection>,
-  allEmailLists?: Maybe<EmailListsConnection>,
-  allImages?: Maybe<ImagesConnection>,
-  allJunctures?: Maybe<JuncturesConnection>,
-  allLikes?: Maybe<LikesConnection>,
-  allLoggedActions?: Maybe<LoggedActionsConnection>,
-  allPosts?: Maybe<PostsConnection>,
-  allPostSearchIndices?: Maybe<PostSearchIndicesConnection>,
-  allPostTags?: Maybe<PostTagsConnection>,
-  allPostToTags?: Maybe<PostToTagsConnection>,
-  allTracks?: Maybe<TracksConnection>,
-  allTrips?: Maybe<TripsConnection>,
-  allTripSearchIndices?: Maybe<TripSearchIndicesConnection>,
-  allUserToCountries?: Maybe<UserToCountriesConnection>,
-  allAdminAccounts?: Maybe<AdminAccountsConnection>,
-  allUserAccounts?: Maybe<UserAccountsConnection>,
-  accountById?: Maybe<Account>,
-  accountByUsername?: Maybe<Account>,
-  configById?: Maybe<Config>,
-  coordById?: Maybe<Coord>,
-  countryByCode?: Maybe<Country>,
-  emailListById?: Maybe<EmailList>,
-  emailListByEmail?: Maybe<EmailList>,
-  imageById?: Maybe<Image>,
-  junctureById?: Maybe<Juncture>,
-  likeById?: Maybe<Like>,
-  loggedActionByEventId?: Maybe<LoggedAction>,
-  postById?: Maybe<Post>,
-  postTagByName?: Maybe<PostTag>,
-  postToTagById?: Maybe<PostToTag>,
-  trackById?: Maybe<Track>,
-  tripById?: Maybe<Trip>,
-  userToCountryById?: Maybe<UserToCountry>,
-  adminAccountByAccountId?: Maybe<AdminAccount>,
-  adminAccountByEmail?: Maybe<AdminAccount>,
-  userAccountByAccountId?: Maybe<UserAccount>,
-  userAccountByEmail?: Maybe<UserAccount>,
-  currentAccount?: Maybe<Account>,
-  searchAccounts: AccountSearchIndicesConnection,
-  searchCountries: CountriesConnection,
-  searchPosts: PostSearchIndicesConnection,
-  searchTags: PostTagsConnection,
-  searchTrips: TripSearchIndicesConnection,
-  account?: Maybe<Account>,
-  config?: Maybe<Config>,
-  coord?: Maybe<Coord>,
-  country?: Maybe<Country>,
-  emailList?: Maybe<EmailList>,
-  image?: Maybe<Image>,
-  juncture?: Maybe<Juncture>,
-  like?: Maybe<Like>,
-  loggedAction?: Maybe<LoggedAction>,
-  post?: Maybe<Post>,
-  postTag?: Maybe<PostTag>,
-  postToTag?: Maybe<PostToTag>,
-  track?: Maybe<Track>,
-  trip?: Maybe<Trip>,
-  userToCountry?: Maybe<UserToCountry>,
-  adminAccount?: Maybe<AdminAccount>,
-  userAccount?: Maybe<UserAccount>,
+  __typename?: 'Query';
+  /**
+   * Exposes the root query type nested one level down. This is helpful for Relay 1
+   * which can only query top level fields if they are in a particular form.
+   */
+  query: Query;
+  /** The root query type must be a `Node` to work well with Relay 1 mutations. This just resolves to `query`. */
+  nodeId: Scalars['ID'];
+  /** Fetches an object given its globally unique `ID`. */
+  node?: Maybe<Node>;
+  /** Reads and enables pagination through a set of `Account`. */
+  allAccounts?: Maybe<AccountsConnection>;
+  /** Reads and enables pagination through a set of `AccountSearchIndex`. */
+  allAccountSearchIndices?: Maybe<AccountSearchIndicesConnection>;
+  /** Reads and enables pagination through a set of `Config`. */
+  allConfigs?: Maybe<ConfigsConnection>;
+  /** Reads and enables pagination through a set of `Coord`. */
+  allCoords?: Maybe<CoordsConnection>;
+  /** Reads and enables pagination through a set of `Country`. */
+  allCountries?: Maybe<CountriesConnection>;
+  /** Reads and enables pagination through a set of `EmailList`. */
+  allEmailLists?: Maybe<EmailListsConnection>;
+  /** Reads and enables pagination through a set of `Image`. */
+  allImages?: Maybe<ImagesConnection>;
+  /** Reads and enables pagination through a set of `Juncture`. */
+  allJunctures?: Maybe<JuncturesConnection>;
+  /** Reads and enables pagination through a set of `Like`. */
+  allLikes?: Maybe<LikesConnection>;
+  /** Reads and enables pagination through a set of `LoggedAction`. */
+  allLoggedActions?: Maybe<LoggedActionsConnection>;
+  /** Reads and enables pagination through a set of `Post`. */
+  allPosts?: Maybe<PostsConnection>;
+  /** Reads and enables pagination through a set of `PostSearchIndex`. */
+  allPostSearchIndices?: Maybe<PostSearchIndicesConnection>;
+  /** Reads and enables pagination through a set of `PostTag`. */
+  allPostTags?: Maybe<PostTagsConnection>;
+  /** Reads and enables pagination through a set of `PostToTag`. */
+  allPostToTags?: Maybe<PostToTagsConnection>;
+  /** Reads and enables pagination through a set of `Track`. */
+  allTracks?: Maybe<TracksConnection>;
+  /** Reads and enables pagination through a set of `Trip`. */
+  allTrips?: Maybe<TripsConnection>;
+  /** Reads and enables pagination through a set of `TripSearchIndex`. */
+  allTripSearchIndices?: Maybe<TripSearchIndicesConnection>;
+  /** Reads and enables pagination through a set of `UserToCountry`. */
+  allUserToCountries?: Maybe<UserToCountriesConnection>;
+  /** Reads and enables pagination through a set of `AdminAccount`. */
+  allAdminAccounts?: Maybe<AdminAccountsConnection>;
+  /** Reads and enables pagination through a set of `UserAccount`. */
+  allUserAccounts?: Maybe<UserAccountsConnection>;
+  accountById?: Maybe<Account>;
+  accountByUsername?: Maybe<Account>;
+  configById?: Maybe<Config>;
+  coordById?: Maybe<Coord>;
+  countryByCode?: Maybe<Country>;
+  emailListById?: Maybe<EmailList>;
+  emailListByEmail?: Maybe<EmailList>;
+  imageById?: Maybe<Image>;
+  junctureById?: Maybe<Juncture>;
+  likeById?: Maybe<Like>;
+  loggedActionByEventId?: Maybe<LoggedAction>;
+  postById?: Maybe<Post>;
+  postTagByName?: Maybe<PostTag>;
+  postToTagById?: Maybe<PostToTag>;
+  trackById?: Maybe<Track>;
+  tripById?: Maybe<Trip>;
+  userToCountryById?: Maybe<UserToCountry>;
+  adminAccountByAccountId?: Maybe<AdminAccount>;
+  adminAccountByEmail?: Maybe<AdminAccount>;
+  userAccountByAccountId?: Maybe<UserAccount>;
+  userAccountByEmail?: Maybe<UserAccount>;
+  /** Gets the account that was identified by our JWT. */
+  currentAccount?: Maybe<Account>;
+  /** Returns accounts given a search term. */
+  searchAccounts: AccountSearchIndicesConnection;
+  /** Returns countries containing a given query term. */
+  searchCountries: CountriesConnection;
+  /** Returns posts given a search term. */
+  searchPosts: PostSearchIndicesConnection;
+  /** Returns tags containing a given query term. */
+  searchTags: PostTagsConnection;
+  /** Returns trips given a search term. */
+  searchTrips: TripSearchIndicesConnection;
+  /** Reads a single `Account` using its globally unique `ID`. */
+  account?: Maybe<Account>;
+  /** Reads a single `Config` using its globally unique `ID`. */
+  config?: Maybe<Config>;
+  /** Reads a single `Coord` using its globally unique `ID`. */
+  coord?: Maybe<Coord>;
+  /** Reads a single `Country` using its globally unique `ID`. */
+  country?: Maybe<Country>;
+  /** Reads a single `EmailList` using its globally unique `ID`. */
+  emailList?: Maybe<EmailList>;
+  /** Reads a single `Image` using its globally unique `ID`. */
+  image?: Maybe<Image>;
+  /** Reads a single `Juncture` using its globally unique `ID`. */
+  juncture?: Maybe<Juncture>;
+  /** Reads a single `Like` using its globally unique `ID`. */
+  like?: Maybe<Like>;
+  /** Reads a single `LoggedAction` using its globally unique `ID`. */
+  loggedAction?: Maybe<LoggedAction>;
+  /** Reads a single `Post` using its globally unique `ID`. */
+  post?: Maybe<Post>;
+  /** Reads a single `PostTag` using its globally unique `ID`. */
+  postTag?: Maybe<PostTag>;
+  /** Reads a single `PostToTag` using its globally unique `ID`. */
+  postToTag?: Maybe<PostToTag>;
+  /** Reads a single `Track` using its globally unique `ID`. */
+  track?: Maybe<Track>;
+  /** Reads a single `Trip` using its globally unique `ID`. */
+  trip?: Maybe<Trip>;
+  /** Reads a single `UserToCountry` using its globally unique `ID`. */
+  userToCountry?: Maybe<UserToCountry>;
+  /** Reads a single `AdminAccount` using its globally unique `ID`. */
+  adminAccount?: Maybe<AdminAccount>;
+  /** Reads a single `UserAccount` using its globally unique `ID`. */
+  userAccount?: Maybe<UserAccount>;
 };
 
 
+/** The root query type which gives access points into the data universe. */
 export type QueryNodeArgs = {
-  nodeId: Scalars['ID']
+  nodeId: Scalars['ID'];
 };
 
 
+/** The root query type which gives access points into the data universe. */
 export type QueryAllAccountsArgs = {
-  first?: Maybe<Scalars['Int']>,
-  last?: Maybe<Scalars['Int']>,
-  offset?: Maybe<Scalars['Int']>,
-  before?: Maybe<Scalars['Cursor']>,
-  after?: Maybe<Scalars['Cursor']>,
-  orderBy?: Maybe<Array<AccountsOrderBy>>,
-  condition?: Maybe<AccountCondition>,
-  filter?: Maybe<AccountFilter>
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  before?: Maybe<Scalars['Cursor']>;
+  after?: Maybe<Scalars['Cursor']>;
+  orderBy?: Maybe<Array<AccountsOrderBy>>;
+  condition?: Maybe<AccountCondition>;
+  filter?: Maybe<AccountFilter>;
 };
 
 
+/** The root query type which gives access points into the data universe. */
 export type QueryAllAccountSearchIndicesArgs = {
-  first?: Maybe<Scalars['Int']>,
-  last?: Maybe<Scalars['Int']>,
-  offset?: Maybe<Scalars['Int']>,
-  before?: Maybe<Scalars['Cursor']>,
-  after?: Maybe<Scalars['Cursor']>,
-  orderBy?: Maybe<Array<AccountSearchIndicesOrderBy>>,
-  condition?: Maybe<AccountSearchIndexCondition>,
-  filter?: Maybe<AccountSearchIndexFilter>
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  before?: Maybe<Scalars['Cursor']>;
+  after?: Maybe<Scalars['Cursor']>;
+  orderBy?: Maybe<Array<AccountSearchIndicesOrderBy>>;
+  condition?: Maybe<AccountSearchIndexCondition>;
+  filter?: Maybe<AccountSearchIndexFilter>;
 };
 
 
+/** The root query type which gives access points into the data universe. */
 export type QueryAllConfigsArgs = {
-  first?: Maybe<Scalars['Int']>,
-  last?: Maybe<Scalars['Int']>,
-  offset?: Maybe<Scalars['Int']>,
-  before?: Maybe<Scalars['Cursor']>,
-  after?: Maybe<Scalars['Cursor']>,
-  orderBy?: Maybe<Array<ConfigsOrderBy>>,
-  condition?: Maybe<ConfigCondition>,
-  filter?: Maybe<ConfigFilter>
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  before?: Maybe<Scalars['Cursor']>;
+  after?: Maybe<Scalars['Cursor']>;
+  orderBy?: Maybe<Array<ConfigsOrderBy>>;
+  condition?: Maybe<ConfigCondition>;
+  filter?: Maybe<ConfigFilter>;
 };
 
 
+/** The root query type which gives access points into the data universe. */
 export type QueryAllCoordsArgs = {
-  first?: Maybe<Scalars['Int']>,
-  last?: Maybe<Scalars['Int']>,
-  offset?: Maybe<Scalars['Int']>,
-  before?: Maybe<Scalars['Cursor']>,
-  after?: Maybe<Scalars['Cursor']>,
-  orderBy?: Maybe<Array<CoordsOrderBy>>,
-  condition?: Maybe<CoordCondition>,
-  filter?: Maybe<CoordFilter>
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  before?: Maybe<Scalars['Cursor']>;
+  after?: Maybe<Scalars['Cursor']>;
+  orderBy?: Maybe<Array<CoordsOrderBy>>;
+  condition?: Maybe<CoordCondition>;
+  filter?: Maybe<CoordFilter>;
 };
 
 
+/** The root query type which gives access points into the data universe. */
 export type QueryAllCountriesArgs = {
-  first?: Maybe<Scalars['Int']>,
-  last?: Maybe<Scalars['Int']>,
-  offset?: Maybe<Scalars['Int']>,
-  before?: Maybe<Scalars['Cursor']>,
-  after?: Maybe<Scalars['Cursor']>,
-  orderBy?: Maybe<Array<CountriesOrderBy>>,
-  condition?: Maybe<CountryCondition>,
-  filter?: Maybe<CountryFilter>
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  before?: Maybe<Scalars['Cursor']>;
+  after?: Maybe<Scalars['Cursor']>;
+  orderBy?: Maybe<Array<CountriesOrderBy>>;
+  condition?: Maybe<CountryCondition>;
+  filter?: Maybe<CountryFilter>;
 };
 
 
+/** The root query type which gives access points into the data universe. */
 export type QueryAllEmailListsArgs = {
-  first?: Maybe<Scalars['Int']>,
-  last?: Maybe<Scalars['Int']>,
-  offset?: Maybe<Scalars['Int']>,
-  before?: Maybe<Scalars['Cursor']>,
-  after?: Maybe<Scalars['Cursor']>,
-  orderBy?: Maybe<Array<EmailListsOrderBy>>,
-  condition?: Maybe<EmailListCondition>,
-  filter?: Maybe<EmailListFilter>
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  before?: Maybe<Scalars['Cursor']>;
+  after?: Maybe<Scalars['Cursor']>;
+  orderBy?: Maybe<Array<EmailListsOrderBy>>;
+  condition?: Maybe<EmailListCondition>;
+  filter?: Maybe<EmailListFilter>;
 };
 
 
+/** The root query type which gives access points into the data universe. */
 export type QueryAllImagesArgs = {
-  first?: Maybe<Scalars['Int']>,
-  last?: Maybe<Scalars['Int']>,
-  offset?: Maybe<Scalars['Int']>,
-  before?: Maybe<Scalars['Cursor']>,
-  after?: Maybe<Scalars['Cursor']>,
-  orderBy?: Maybe<Array<ImagesOrderBy>>,
-  condition?: Maybe<ImageCondition>,
-  filter?: Maybe<ImageFilter>
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  before?: Maybe<Scalars['Cursor']>;
+  after?: Maybe<Scalars['Cursor']>;
+  orderBy?: Maybe<Array<ImagesOrderBy>>;
+  condition?: Maybe<ImageCondition>;
+  filter?: Maybe<ImageFilter>;
 };
 
 
+/** The root query type which gives access points into the data universe. */
 export type QueryAllJuncturesArgs = {
-  first?: Maybe<Scalars['Int']>,
-  last?: Maybe<Scalars['Int']>,
-  offset?: Maybe<Scalars['Int']>,
-  before?: Maybe<Scalars['Cursor']>,
-  after?: Maybe<Scalars['Cursor']>,
-  orderBy?: Maybe<Array<JuncturesOrderBy>>,
-  condition?: Maybe<JunctureCondition>,
-  filter?: Maybe<JunctureFilter>
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  before?: Maybe<Scalars['Cursor']>;
+  after?: Maybe<Scalars['Cursor']>;
+  orderBy?: Maybe<Array<JuncturesOrderBy>>;
+  condition?: Maybe<JunctureCondition>;
+  filter?: Maybe<JunctureFilter>;
 };
 
 
+/** The root query type which gives access points into the data universe. */
 export type QueryAllLikesArgs = {
-  first?: Maybe<Scalars['Int']>,
-  last?: Maybe<Scalars['Int']>,
-  offset?: Maybe<Scalars['Int']>,
-  before?: Maybe<Scalars['Cursor']>,
-  after?: Maybe<Scalars['Cursor']>,
-  orderBy?: Maybe<Array<LikesOrderBy>>,
-  condition?: Maybe<LikeCondition>,
-  filter?: Maybe<LikeFilter>
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  before?: Maybe<Scalars['Cursor']>;
+  after?: Maybe<Scalars['Cursor']>;
+  orderBy?: Maybe<Array<LikesOrderBy>>;
+  condition?: Maybe<LikeCondition>;
+  filter?: Maybe<LikeFilter>;
 };
 
 
+/** The root query type which gives access points into the data universe. */
 export type QueryAllLoggedActionsArgs = {
-  first?: Maybe<Scalars['Int']>,
-  last?: Maybe<Scalars['Int']>,
-  offset?: Maybe<Scalars['Int']>,
-  before?: Maybe<Scalars['Cursor']>,
-  after?: Maybe<Scalars['Cursor']>,
-  orderBy?: Maybe<Array<LoggedActionsOrderBy>>,
-  condition?: Maybe<LoggedActionCondition>,
-  filter?: Maybe<LoggedActionFilter>
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  before?: Maybe<Scalars['Cursor']>;
+  after?: Maybe<Scalars['Cursor']>;
+  orderBy?: Maybe<Array<LoggedActionsOrderBy>>;
+  condition?: Maybe<LoggedActionCondition>;
+  filter?: Maybe<LoggedActionFilter>;
 };
 
 
+/** The root query type which gives access points into the data universe. */
 export type QueryAllPostsArgs = {
-  first?: Maybe<Scalars['Int']>,
-  last?: Maybe<Scalars['Int']>,
-  offset?: Maybe<Scalars['Int']>,
-  before?: Maybe<Scalars['Cursor']>,
-  after?: Maybe<Scalars['Cursor']>,
-  orderBy?: Maybe<Array<PostsOrderBy>>,
-  condition?: Maybe<PostCondition>,
-  filter?: Maybe<PostFilter>
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  before?: Maybe<Scalars['Cursor']>;
+  after?: Maybe<Scalars['Cursor']>;
+  orderBy?: Maybe<Array<PostsOrderBy>>;
+  condition?: Maybe<PostCondition>;
+  filter?: Maybe<PostFilter>;
 };
 
 
+/** The root query type which gives access points into the data universe. */
 export type QueryAllPostSearchIndicesArgs = {
-  first?: Maybe<Scalars['Int']>,
-  last?: Maybe<Scalars['Int']>,
-  offset?: Maybe<Scalars['Int']>,
-  before?: Maybe<Scalars['Cursor']>,
-  after?: Maybe<Scalars['Cursor']>,
-  orderBy?: Maybe<Array<PostSearchIndicesOrderBy>>,
-  condition?: Maybe<PostSearchIndexCondition>,
-  filter?: Maybe<PostSearchIndexFilter>
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  before?: Maybe<Scalars['Cursor']>;
+  after?: Maybe<Scalars['Cursor']>;
+  orderBy?: Maybe<Array<PostSearchIndicesOrderBy>>;
+  condition?: Maybe<PostSearchIndexCondition>;
+  filter?: Maybe<PostSearchIndexFilter>;
 };
 
 
+/** The root query type which gives access points into the data universe. */
 export type QueryAllPostTagsArgs = {
-  first?: Maybe<Scalars['Int']>,
-  last?: Maybe<Scalars['Int']>,
-  offset?: Maybe<Scalars['Int']>,
-  before?: Maybe<Scalars['Cursor']>,
-  after?: Maybe<Scalars['Cursor']>,
-  orderBy?: Maybe<Array<PostTagsOrderBy>>,
-  condition?: Maybe<PostTagCondition>,
-  filter?: Maybe<PostTagFilter>
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  before?: Maybe<Scalars['Cursor']>;
+  after?: Maybe<Scalars['Cursor']>;
+  orderBy?: Maybe<Array<PostTagsOrderBy>>;
+  condition?: Maybe<PostTagCondition>;
+  filter?: Maybe<PostTagFilter>;
 };
 
 
+/** The root query type which gives access points into the data universe. */
 export type QueryAllPostToTagsArgs = {
-  first?: Maybe<Scalars['Int']>,
-  last?: Maybe<Scalars['Int']>,
-  offset?: Maybe<Scalars['Int']>,
-  before?: Maybe<Scalars['Cursor']>,
-  after?: Maybe<Scalars['Cursor']>,
-  orderBy?: Maybe<Array<PostToTagsOrderBy>>,
-  condition?: Maybe<PostToTagCondition>,
-  filter?: Maybe<PostToTagFilter>
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  before?: Maybe<Scalars['Cursor']>;
+  after?: Maybe<Scalars['Cursor']>;
+  orderBy?: Maybe<Array<PostToTagsOrderBy>>;
+  condition?: Maybe<PostToTagCondition>;
+  filter?: Maybe<PostToTagFilter>;
 };
 
 
+/** The root query type which gives access points into the data universe. */
 export type QueryAllTracksArgs = {
-  first?: Maybe<Scalars['Int']>,
-  last?: Maybe<Scalars['Int']>,
-  offset?: Maybe<Scalars['Int']>,
-  before?: Maybe<Scalars['Cursor']>,
-  after?: Maybe<Scalars['Cursor']>,
-  orderBy?: Maybe<Array<TracksOrderBy>>,
-  condition?: Maybe<TrackCondition>,
-  filter?: Maybe<TrackFilter>
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  before?: Maybe<Scalars['Cursor']>;
+  after?: Maybe<Scalars['Cursor']>;
+  orderBy?: Maybe<Array<TracksOrderBy>>;
+  condition?: Maybe<TrackCondition>;
+  filter?: Maybe<TrackFilter>;
 };
 
 
+/** The root query type which gives access points into the data universe. */
 export type QueryAllTripsArgs = {
-  first?: Maybe<Scalars['Int']>,
-  last?: Maybe<Scalars['Int']>,
-  offset?: Maybe<Scalars['Int']>,
-  before?: Maybe<Scalars['Cursor']>,
-  after?: Maybe<Scalars['Cursor']>,
-  orderBy?: Maybe<Array<TripsOrderBy>>,
-  condition?: Maybe<TripCondition>,
-  filter?: Maybe<TripFilter>
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  before?: Maybe<Scalars['Cursor']>;
+  after?: Maybe<Scalars['Cursor']>;
+  orderBy?: Maybe<Array<TripsOrderBy>>;
+  condition?: Maybe<TripCondition>;
+  filter?: Maybe<TripFilter>;
 };
 
 
+/** The root query type which gives access points into the data universe. */
 export type QueryAllTripSearchIndicesArgs = {
-  first?: Maybe<Scalars['Int']>,
-  last?: Maybe<Scalars['Int']>,
-  offset?: Maybe<Scalars['Int']>,
-  before?: Maybe<Scalars['Cursor']>,
-  after?: Maybe<Scalars['Cursor']>,
-  orderBy?: Maybe<Array<TripSearchIndicesOrderBy>>,
-  condition?: Maybe<TripSearchIndexCondition>,
-  filter?: Maybe<TripSearchIndexFilter>
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  before?: Maybe<Scalars['Cursor']>;
+  after?: Maybe<Scalars['Cursor']>;
+  orderBy?: Maybe<Array<TripSearchIndicesOrderBy>>;
+  condition?: Maybe<TripSearchIndexCondition>;
+  filter?: Maybe<TripSearchIndexFilter>;
 };
 
 
+/** The root query type which gives access points into the data universe. */
 export type QueryAllUserToCountriesArgs = {
-  first?: Maybe<Scalars['Int']>,
-  last?: Maybe<Scalars['Int']>,
-  offset?: Maybe<Scalars['Int']>,
-  before?: Maybe<Scalars['Cursor']>,
-  after?: Maybe<Scalars['Cursor']>,
-  orderBy?: Maybe<Array<UserToCountriesOrderBy>>,
-  condition?: Maybe<UserToCountryCondition>,
-  filter?: Maybe<UserToCountryFilter>
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  before?: Maybe<Scalars['Cursor']>;
+  after?: Maybe<Scalars['Cursor']>;
+  orderBy?: Maybe<Array<UserToCountriesOrderBy>>;
+  condition?: Maybe<UserToCountryCondition>;
+  filter?: Maybe<UserToCountryFilter>;
 };
 
 
+/** The root query type which gives access points into the data universe. */
 export type QueryAllAdminAccountsArgs = {
-  first?: Maybe<Scalars['Int']>,
-  last?: Maybe<Scalars['Int']>,
-  offset?: Maybe<Scalars['Int']>,
-  before?: Maybe<Scalars['Cursor']>,
-  after?: Maybe<Scalars['Cursor']>,
-  orderBy?: Maybe<Array<AdminAccountsOrderBy>>,
-  condition?: Maybe<AdminAccountCondition>,
-  filter?: Maybe<AdminAccountFilter>
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  before?: Maybe<Scalars['Cursor']>;
+  after?: Maybe<Scalars['Cursor']>;
+  orderBy?: Maybe<Array<AdminAccountsOrderBy>>;
+  condition?: Maybe<AdminAccountCondition>;
+  filter?: Maybe<AdminAccountFilter>;
 };
 
 
+/** The root query type which gives access points into the data universe. */
 export type QueryAllUserAccountsArgs = {
-  first?: Maybe<Scalars['Int']>,
-  last?: Maybe<Scalars['Int']>,
-  offset?: Maybe<Scalars['Int']>,
-  before?: Maybe<Scalars['Cursor']>,
-  after?: Maybe<Scalars['Cursor']>,
-  orderBy?: Maybe<Array<UserAccountsOrderBy>>,
-  condition?: Maybe<UserAccountCondition>,
-  filter?: Maybe<UserAccountFilter>
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  before?: Maybe<Scalars['Cursor']>;
+  after?: Maybe<Scalars['Cursor']>;
+  orderBy?: Maybe<Array<UserAccountsOrderBy>>;
+  condition?: Maybe<UserAccountCondition>;
+  filter?: Maybe<UserAccountFilter>;
 };
 
 
+/** The root query type which gives access points into the data universe. */
 export type QueryAccountByIdArgs = {
-  id: Scalars['Int']
+  id: Scalars['Int'];
 };
 
 
+/** The root query type which gives access points into the data universe. */
 export type QueryAccountByUsernameArgs = {
-  username: Scalars['String']
+  username: Scalars['String'];
 };
 
 
+/** The root query type which gives access points into the data universe. */
 export type QueryConfigByIdArgs = {
-  id: Scalars['Int']
+  id: Scalars['Int'];
 };
 
 
+/** The root query type which gives access points into the data universe. */
 export type QueryCoordByIdArgs = {
-  id: Scalars['Int']
+  id: Scalars['Int'];
 };
 
 
+/** The root query type which gives access points into the data universe. */
 export type QueryCountryByCodeArgs = {
-  code: Scalars['String']
+  code: Scalars['String'];
 };
 
 
+/** The root query type which gives access points into the data universe. */
 export type QueryEmailListByIdArgs = {
-  id: Scalars['Int']
+  id: Scalars['Int'];
 };
 
 
+/** The root query type which gives access points into the data universe. */
 export type QueryEmailListByEmailArgs = {
-  email: Scalars['String']
+  email: Scalars['String'];
 };
 
 
+/** The root query type which gives access points into the data universe. */
 export type QueryImageByIdArgs = {
-  id: Scalars['Int']
+  id: Scalars['Int'];
 };
 
 
+/** The root query type which gives access points into the data universe. */
 export type QueryJunctureByIdArgs = {
-  id: Scalars['Int']
+  id: Scalars['Int'];
 };
 
 
+/** The root query type which gives access points into the data universe. */
 export type QueryLikeByIdArgs = {
-  id: Scalars['Int']
+  id: Scalars['Int'];
 };
 
 
+/** The root query type which gives access points into the data universe. */
 export type QueryLoggedActionByEventIdArgs = {
-  eventId: Scalars['BigInt']
+  eventId: Scalars['BigInt'];
 };
 
 
+/** The root query type which gives access points into the data universe. */
 export type QueryPostByIdArgs = {
-  id: Scalars['Int']
+  id: Scalars['Int'];
 };
 
 
+/** The root query type which gives access points into the data universe. */
 export type QueryPostTagByNameArgs = {
-  name: Scalars['String']
+  name: Scalars['String'];
 };
 
 
+/** The root query type which gives access points into the data universe. */
 export type QueryPostToTagByIdArgs = {
-  id: Scalars['Int']
+  id: Scalars['Int'];
 };
 
 
+/** The root query type which gives access points into the data universe. */
 export type QueryTrackByIdArgs = {
-  id: Scalars['Int']
+  id: Scalars['Int'];
 };
 
 
+/** The root query type which gives access points into the data universe. */
 export type QueryTripByIdArgs = {
-  id: Scalars['Int']
+  id: Scalars['Int'];
 };
 
 
+/** The root query type which gives access points into the data universe. */
 export type QueryUserToCountryByIdArgs = {
-  id: Scalars['Int']
+  id: Scalars['Int'];
 };
 
 
+/** The root query type which gives access points into the data universe. */
 export type QueryAdminAccountByAccountIdArgs = {
-  accountId: Scalars['Int']
+  accountId: Scalars['Int'];
 };
 
 
+/** The root query type which gives access points into the data universe. */
 export type QueryAdminAccountByEmailArgs = {
-  email: Scalars['String']
+  email: Scalars['String'];
 };
 
 
+/** The root query type which gives access points into the data universe. */
 export type QueryUserAccountByAccountIdArgs = {
-  accountId: Scalars['Int']
+  accountId: Scalars['Int'];
 };
 
 
+/** The root query type which gives access points into the data universe. */
 export type QueryUserAccountByEmailArgs = {
-  email: Scalars['String']
+  email: Scalars['String'];
 };
 
 
+/** The root query type which gives access points into the data universe. */
 export type QuerySearchAccountsArgs = {
-  query?: Maybe<Scalars['String']>,
-  first?: Maybe<Scalars['Int']>,
-  last?: Maybe<Scalars['Int']>,
-  offset?: Maybe<Scalars['Int']>,
-  before?: Maybe<Scalars['Cursor']>,
-  after?: Maybe<Scalars['Cursor']>,
-  filter?: Maybe<AccountSearchIndexFilter>
+  query?: Maybe<Scalars['String']>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  before?: Maybe<Scalars['Cursor']>;
+  after?: Maybe<Scalars['Cursor']>;
+  filter?: Maybe<AccountSearchIndexFilter>;
 };
 
 
+/** The root query type which gives access points into the data universe. */
 export type QuerySearchCountriesArgs = {
-  query?: Maybe<Scalars['String']>,
-  first?: Maybe<Scalars['Int']>,
-  last?: Maybe<Scalars['Int']>,
-  offset?: Maybe<Scalars['Int']>,
-  before?: Maybe<Scalars['Cursor']>,
-  after?: Maybe<Scalars['Cursor']>,
-  filter?: Maybe<CountryFilter>
+  query?: Maybe<Scalars['String']>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  before?: Maybe<Scalars['Cursor']>;
+  after?: Maybe<Scalars['Cursor']>;
+  filter?: Maybe<CountryFilter>;
 };
 
 
+/** The root query type which gives access points into the data universe. */
 export type QuerySearchPostsArgs = {
-  query?: Maybe<Scalars['String']>,
-  first?: Maybe<Scalars['Int']>,
-  last?: Maybe<Scalars['Int']>,
-  offset?: Maybe<Scalars['Int']>,
-  before?: Maybe<Scalars['Cursor']>,
-  after?: Maybe<Scalars['Cursor']>,
-  filter?: Maybe<PostSearchIndexFilter>
+  query?: Maybe<Scalars['String']>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  before?: Maybe<Scalars['Cursor']>;
+  after?: Maybe<Scalars['Cursor']>;
+  filter?: Maybe<PostSearchIndexFilter>;
 };
 
 
+/** The root query type which gives access points into the data universe. */
 export type QuerySearchTagsArgs = {
-  query?: Maybe<Scalars['String']>,
-  first?: Maybe<Scalars['Int']>,
-  last?: Maybe<Scalars['Int']>,
-  offset?: Maybe<Scalars['Int']>,
-  before?: Maybe<Scalars['Cursor']>,
-  after?: Maybe<Scalars['Cursor']>,
-  filter?: Maybe<PostTagFilter>
+  query?: Maybe<Scalars['String']>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  before?: Maybe<Scalars['Cursor']>;
+  after?: Maybe<Scalars['Cursor']>;
+  filter?: Maybe<PostTagFilter>;
 };
 
 
+/** The root query type which gives access points into the data universe. */
 export type QuerySearchTripsArgs = {
-  query?: Maybe<Scalars['String']>,
-  first?: Maybe<Scalars['Int']>,
-  last?: Maybe<Scalars['Int']>,
-  offset?: Maybe<Scalars['Int']>,
-  before?: Maybe<Scalars['Cursor']>,
-  after?: Maybe<Scalars['Cursor']>,
-  filter?: Maybe<TripSearchIndexFilter>
+  query?: Maybe<Scalars['String']>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  before?: Maybe<Scalars['Cursor']>;
+  after?: Maybe<Scalars['Cursor']>;
+  filter?: Maybe<TripSearchIndexFilter>;
 };
 
 
+/** The root query type which gives access points into the data universe. */
 export type QueryAccountArgs = {
-  nodeId: Scalars['ID']
+  nodeId: Scalars['ID'];
 };
 
 
+/** The root query type which gives access points into the data universe. */
 export type QueryConfigArgs = {
-  nodeId: Scalars['ID']
+  nodeId: Scalars['ID'];
 };
 
 
+/** The root query type which gives access points into the data universe. */
 export type QueryCoordArgs = {
-  nodeId: Scalars['ID']
+  nodeId: Scalars['ID'];
 };
 
 
+/** The root query type which gives access points into the data universe. */
 export type QueryCountryArgs = {
-  nodeId: Scalars['ID']
+  nodeId: Scalars['ID'];
 };
 
 
+/** The root query type which gives access points into the data universe. */
 export type QueryEmailListArgs = {
-  nodeId: Scalars['ID']
+  nodeId: Scalars['ID'];
 };
 
 
+/** The root query type which gives access points into the data universe. */
 export type QueryImageArgs = {
-  nodeId: Scalars['ID']
+  nodeId: Scalars['ID'];
 };
 
 
+/** The root query type which gives access points into the data universe. */
 export type QueryJunctureArgs = {
-  nodeId: Scalars['ID']
+  nodeId: Scalars['ID'];
 };
 
 
+/** The root query type which gives access points into the data universe. */
 export type QueryLikeArgs = {
-  nodeId: Scalars['ID']
+  nodeId: Scalars['ID'];
 };
 
 
+/** The root query type which gives access points into the data universe. */
 export type QueryLoggedActionArgs = {
-  nodeId: Scalars['ID']
+  nodeId: Scalars['ID'];
 };
 
 
+/** The root query type which gives access points into the data universe. */
 export type QueryPostArgs = {
-  nodeId: Scalars['ID']
+  nodeId: Scalars['ID'];
 };
 
 
+/** The root query type which gives access points into the data universe. */
 export type QueryPostTagArgs = {
-  nodeId: Scalars['ID']
+  nodeId: Scalars['ID'];
 };
 
 
+/** The root query type which gives access points into the data universe. */
 export type QueryPostToTagArgs = {
-  nodeId: Scalars['ID']
+  nodeId: Scalars['ID'];
 };
 
 
+/** The root query type which gives access points into the data universe. */
 export type QueryTrackArgs = {
-  nodeId: Scalars['ID']
+  nodeId: Scalars['ID'];
 };
 
 
+/** The root query type which gives access points into the data universe. */
 export type QueryTripArgs = {
-  nodeId: Scalars['ID']
+  nodeId: Scalars['ID'];
 };
 
 
+/** The root query type which gives access points into the data universe. */
 export type QueryUserToCountryArgs = {
-  nodeId: Scalars['ID']
+  nodeId: Scalars['ID'];
 };
 
 
+/** The root query type which gives access points into the data universe. */
 export type QueryAdminAccountArgs = {
-  nodeId: Scalars['ID']
+  nodeId: Scalars['ID'];
 };
 
 
+/** The root query type which gives access points into the data universe. */
 export type QueryUserAccountArgs = {
-  nodeId: Scalars['ID']
+  nodeId: Scalars['ID'];
 };
 
+/** All input for the `registerAdminAccount` mutation. */
 export type RegisterAdminAccountInput = {
-  clientMutationId?: Maybe<Scalars['String']>,
-  username: Scalars['String'],
-  firstName: Scalars['String'],
-  lastName: Scalars['String'],
-  email: Scalars['String'],
-  password: Scalars['String'],
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: Maybe<Scalars['String']>;
+  username: Scalars['String'];
+  firstName: Scalars['String'];
+  lastName: Scalars['String'];
+  email: Scalars['String'];
+  password: Scalars['String'];
 };
 
+/** The output of our `registerAdminAccount` mutation. */
 export type RegisterAdminAccountPayload = {
-   __typename?: 'RegisterAdminAccountPayload',
-  clientMutationId?: Maybe<Scalars['String']>,
-  account?: Maybe<Account>,
-  query?: Maybe<Query>,
-  accountEdge?: Maybe<AccountsEdge>,
+  __typename?: 'RegisterAdminAccountPayload';
+  /**
+   * The exact same `clientMutationId` that was provided in the mutation input,
+   * unchanged and unused. May be used by a client to track mutations.
+   */
+  clientMutationId?: Maybe<Scalars['String']>;
+  account?: Maybe<Account>;
+  /** Our root query field type. Allows us to run any query from our mutation payload. */
+  query?: Maybe<Query>;
+  /** An edge for our `Account`. May be used by Relay 1. */
+  accountEdge?: Maybe<AccountsEdge>;
 };
 
 
+/** The output of our `registerAdminAccount` mutation. */
 export type RegisterAdminAccountPayloadAccountEdgeArgs = {
-  orderBy?: Maybe<Array<AccountsOrderBy>>
+  orderBy?: Maybe<Array<AccountsOrderBy>>;
 };
 
+/** All input for the `registerUserAccount` mutation. */
 export type RegisterUserAccountInput = {
-  clientMutationId?: Maybe<Scalars['String']>,
-  username: Scalars['String'],
-  firstName: Scalars['String'],
-  lastName: Scalars['String'],
-  email: Scalars['String'],
-  password: Scalars['String'],
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: Maybe<Scalars['String']>;
+  username: Scalars['String'];
+  firstName: Scalars['String'];
+  lastName: Scalars['String'];
+  email: Scalars['String'];
+  password: Scalars['String'];
 };
 
+/** The output of our `registerUserAccount` mutation. */
 export type RegisterUserAccountPayload = {
-   __typename?: 'RegisterUserAccountPayload',
-  clientMutationId?: Maybe<Scalars['String']>,
-  account?: Maybe<Account>,
-  query?: Maybe<Query>,
-  accountEdge?: Maybe<AccountsEdge>,
+  __typename?: 'RegisterUserAccountPayload';
+  /**
+   * The exact same `clientMutationId` that was provided in the mutation input,
+   * unchanged and unused. May be used by a client to track mutations.
+   */
+  clientMutationId?: Maybe<Scalars['String']>;
+  account?: Maybe<Account>;
+  /** Our root query field type. Allows us to run any query from our mutation payload. */
+  query?: Maybe<Query>;
+  /** An edge for our `Account`. May be used by Relay 1. */
+  accountEdge?: Maybe<AccountsEdge>;
 };
 
 
+/** The output of our `registerUserAccount` mutation. */
 export type RegisterUserAccountPayloadAccountEdgeArgs = {
-  orderBy?: Maybe<Array<AccountsOrderBy>>
+  orderBy?: Maybe<Array<AccountsOrderBy>>;
 };
 
+/** All input for the `resetPassword` mutation. */
 export type ResetPasswordInput = {
-  clientMutationId?: Maybe<Scalars['String']>,
-  email: Scalars['String'],
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: Maybe<Scalars['String']>;
+  email: Scalars['String'];
 };
 
+/** The output of our `resetPassword` mutation. */
 export type ResetPasswordPayload = {
-   __typename?: 'ResetPasswordPayload',
-  clientMutationId?: Maybe<Scalars['String']>,
-  string?: Maybe<Scalars['String']>,
-  query?: Maybe<Query>,
+  __typename?: 'ResetPasswordPayload';
+  /**
+   * The exact same `clientMutationId` that was provided in the mutation input,
+   * unchanged and unused. May be used by a client to track mutations.
+   */
+  clientMutationId?: Maybe<Scalars['String']>;
+  string?: Maybe<Scalars['String']>;
+  /** Our root query field type. Allows us to run any query from our mutation payload. */
+  query?: Maybe<Query>;
 };
 
+/** A filter to be used against String fields. All fields are combined with a logical ‘and.’ */
 export type StringFilter = {
-  isNull?: Maybe<Scalars['Boolean']>,
-  equalTo?: Maybe<Scalars['String']>,
-  notEqualTo?: Maybe<Scalars['String']>,
-  distinctFrom?: Maybe<Scalars['String']>,
-  notDistinctFrom?: Maybe<Scalars['String']>,
-  in?: Maybe<Array<Scalars['String']>>,
-  notIn?: Maybe<Array<Scalars['String']>>,
-  lessThan?: Maybe<Scalars['String']>,
-  lessThanOrEqualTo?: Maybe<Scalars['String']>,
-  greaterThan?: Maybe<Scalars['String']>,
-  greaterThanOrEqualTo?: Maybe<Scalars['String']>,
-  includes?: Maybe<Scalars['String']>,
-  notIncludes?: Maybe<Scalars['String']>,
-  includesInsensitive?: Maybe<Scalars['String']>,
-  notIncludesInsensitive?: Maybe<Scalars['String']>,
-  startsWith?: Maybe<Scalars['String']>,
-  notStartsWith?: Maybe<Scalars['String']>,
-  startsWithInsensitive?: Maybe<Scalars['String']>,
-  notStartsWithInsensitive?: Maybe<Scalars['String']>,
-  endsWith?: Maybe<Scalars['String']>,
-  notEndsWith?: Maybe<Scalars['String']>,
-  endsWithInsensitive?: Maybe<Scalars['String']>,
-  notEndsWithInsensitive?: Maybe<Scalars['String']>,
-  like?: Maybe<Scalars['String']>,
-  notLike?: Maybe<Scalars['String']>,
-  likeInsensitive?: Maybe<Scalars['String']>,
-  notLikeInsensitive?: Maybe<Scalars['String']>,
-  similarTo?: Maybe<Scalars['String']>,
-  notSimilarTo?: Maybe<Scalars['String']>,
+  /** Is null (if `true` is specified) or is not null (if `false` is specified). */
+  isNull?: Maybe<Scalars['Boolean']>;
+  /** Equal to the specified value. */
+  equalTo?: Maybe<Scalars['String']>;
+  /** Not equal to the specified value. */
+  notEqualTo?: Maybe<Scalars['String']>;
+  /** Not equal to the specified value, treating null like an ordinary value. */
+  distinctFrom?: Maybe<Scalars['String']>;
+  /** Equal to the specified value, treating null like an ordinary value. */
+  notDistinctFrom?: Maybe<Scalars['String']>;
+  /** Included in the specified list. */
+  in?: Maybe<Array<Scalars['String']>>;
+  /** Not included in the specified list. */
+  notIn?: Maybe<Array<Scalars['String']>>;
+  /** Less than the specified value. */
+  lessThan?: Maybe<Scalars['String']>;
+  /** Less than or equal to the specified value. */
+  lessThanOrEqualTo?: Maybe<Scalars['String']>;
+  /** Greater than the specified value. */
+  greaterThan?: Maybe<Scalars['String']>;
+  /** Greater than or equal to the specified value. */
+  greaterThanOrEqualTo?: Maybe<Scalars['String']>;
+  /** Contains the specified string (case-sensitive). */
+  includes?: Maybe<Scalars['String']>;
+  /** Does not contain the specified string (case-sensitive). */
+  notIncludes?: Maybe<Scalars['String']>;
+  /** Contains the specified string (case-insensitive). */
+  includesInsensitive?: Maybe<Scalars['String']>;
+  /** Does not contain the specified string (case-insensitive). */
+  notIncludesInsensitive?: Maybe<Scalars['String']>;
+  /** Starts with the specified string (case-sensitive). */
+  startsWith?: Maybe<Scalars['String']>;
+  /** Does not start with the specified string (case-sensitive). */
+  notStartsWith?: Maybe<Scalars['String']>;
+  /** Starts with the specified string (case-insensitive). */
+  startsWithInsensitive?: Maybe<Scalars['String']>;
+  /** Does not start with the specified string (case-insensitive). */
+  notStartsWithInsensitive?: Maybe<Scalars['String']>;
+  /** Ends with the specified string (case-sensitive). */
+  endsWith?: Maybe<Scalars['String']>;
+  /** Does not end with the specified string (case-sensitive). */
+  notEndsWith?: Maybe<Scalars['String']>;
+  /** Ends with the specified string (case-insensitive). */
+  endsWithInsensitive?: Maybe<Scalars['String']>;
+  /** Does not end with the specified string (case-insensitive). */
+  notEndsWithInsensitive?: Maybe<Scalars['String']>;
+  /**
+   * Matches the specified pattern (case-sensitive). An underscore (_) matches any
+   * single character; a percent sign (%) matches any sequence of zero or more characters.
+   */
+  like?: Maybe<Scalars['String']>;
+  /**
+   * Does not match the specified pattern (case-sensitive). An underscore (_)
+   * matches any single character; a percent sign (%) matches any sequence of zero
+   * or more characters.
+   */
+  notLike?: Maybe<Scalars['String']>;
+  /**
+   * Matches the specified pattern (case-insensitive). An underscore (_) matches
+   * any single character; a percent sign (%) matches any sequence of zero or more characters.
+   */
+  likeInsensitive?: Maybe<Scalars['String']>;
+  /**
+   * Does not match the specified pattern (case-insensitive). An underscore (_)
+   * matches any single character; a percent sign (%) matches any sequence of zero
+   * or more characters.
+   */
+  notLikeInsensitive?: Maybe<Scalars['String']>;
+  /** Matches the specified pattern using the SQL standard's definition of a regular expression. */
+  similarTo?: Maybe<Scalars['String']>;
+  /** Does not match the specified pattern using the SQL standard's definition of a regular expression. */
+  notSimilarTo?: Maybe<Scalars['String']>;
 };
 
+/** Table with connection between users to track/follow other users */
 export type Track = Node & {
-   __typename?: 'Track',
-  nodeId: Scalars['ID'],
-  id: Scalars['Int'],
-  userId: Scalars['Int'],
-  trackUserId: Scalars['Int'],
-  createdAt?: Maybe<Scalars['BigInt']>,
-  accountByUserId?: Maybe<Account>,
-  accountByTrackUserId?: Maybe<Account>,
+  __typename?: 'Track';
+  /** A globally unique identifier. Can be used in various places throughout the system to identify this single value. */
+  nodeId: Scalars['ID'];
+  /** Primary id for the track */
+  id: Scalars['Int'];
+  /** Primary id of user who is going to track */
+  userId: Scalars['Int'];
+  /** Primary id user who will be tracked */
+  trackUserId: Scalars['Int'];
+  /** Time track created at */
+  createdAt?: Maybe<Scalars['BigInt']>;
+  /** Reads a single `Account` that is related to this `Track`. */
+  accountByUserId?: Maybe<Account>;
+  /** Reads a single `Account` that is related to this `Track`. */
+  accountByTrackUserId?: Maybe<Account>;
 };
 
+/** A condition to be used against `Track` object types. All fields are tested for equality and combined with a logical ‘and.’ */
 export type TrackCondition = {
-  id?: Maybe<Scalars['Int']>,
-  userId?: Maybe<Scalars['Int']>,
-  trackUserId?: Maybe<Scalars['Int']>,
-  createdAt?: Maybe<Scalars['BigInt']>,
+  /** Checks for equality with the object’s `id` field. */
+  id?: Maybe<Scalars['Int']>;
+  /** Checks for equality with the object’s `userId` field. */
+  userId?: Maybe<Scalars['Int']>;
+  /** Checks for equality with the object’s `trackUserId` field. */
+  trackUserId?: Maybe<Scalars['Int']>;
+  /** Checks for equality with the object’s `createdAt` field. */
+  createdAt?: Maybe<Scalars['BigInt']>;
 };
 
+/** A filter to be used against `Track` object types. All fields are combined with a logical ‘and.’ */
 export type TrackFilter = {
-  id?: Maybe<IntFilter>,
-  userId?: Maybe<IntFilter>,
-  trackUserId?: Maybe<IntFilter>,
-  createdAt?: Maybe<BigIntFilter>,
-  and?: Maybe<Array<TrackFilter>>,
-  or?: Maybe<Array<TrackFilter>>,
-  not?: Maybe<TrackFilter>,
+  /** Filter by the object’s `id` field. */
+  id?: Maybe<IntFilter>;
+  /** Filter by the object’s `userId` field. */
+  userId?: Maybe<IntFilter>;
+  /** Filter by the object’s `trackUserId` field. */
+  trackUserId?: Maybe<IntFilter>;
+  /** Filter by the object’s `createdAt` field. */
+  createdAt?: Maybe<BigIntFilter>;
+  /** Checks for all expressions in this list. */
+  and?: Maybe<Array<TrackFilter>>;
+  /** Checks for any expressions in this list. */
+  or?: Maybe<Array<TrackFilter>>;
+  /** Negates the expression. */
+  not?: Maybe<TrackFilter>;
 };
 
+/** An input for mutations affecting `Track` */
 export type TrackInput = {
-  id?: Maybe<Scalars['Int']>,
-  userId: Scalars['Int'],
-  trackUserId: Scalars['Int'],
-  createdAt?: Maybe<Scalars['BigInt']>,
+  /** Primary id for the track */
+  id?: Maybe<Scalars['Int']>;
+  /** Primary id of user who is going to track */
+  userId: Scalars['Int'];
+  /** Primary id user who will be tracked */
+  trackUserId: Scalars['Int'];
+  /** Time track created at */
+  createdAt?: Maybe<Scalars['BigInt']>;
 };
 
+/** Represents an update to a `Track`. Fields that are set will be updated. */
 export type TrackPatch = {
-  id?: Maybe<Scalars['Int']>,
-  userId?: Maybe<Scalars['Int']>,
-  trackUserId?: Maybe<Scalars['Int']>,
-  createdAt?: Maybe<Scalars['BigInt']>,
+  /** Primary id for the track */
+  id?: Maybe<Scalars['Int']>;
+  /** Primary id of user who is going to track */
+  userId?: Maybe<Scalars['Int']>;
+  /** Primary id user who will be tracked */
+  trackUserId?: Maybe<Scalars['Int']>;
+  /** Time track created at */
+  createdAt?: Maybe<Scalars['BigInt']>;
 };
 
+/** A connection to a list of `Track` values. */
 export type TracksConnection = {
-   __typename?: 'TracksConnection',
-  nodes: Array<Maybe<Track>>,
-  edges: Array<TracksEdge>,
-  pageInfo: PageInfo,
-  totalCount: Scalars['Int'],
+  __typename?: 'TracksConnection';
+  /** A list of `Track` objects. */
+  nodes: Array<Maybe<Track>>;
+  /** A list of edges which contains the `Track` and cursor to aid in pagination. */
+  edges: Array<TracksEdge>;
+  /** Information to aid in pagination. */
+  pageInfo: PageInfo;
+  /** The count of *all* `Track` you could get from the connection. */
+  totalCount: Scalars['Int'];
 };
 
+/** A `Track` edge in the connection. */
 export type TracksEdge = {
-   __typename?: 'TracksEdge',
-  cursor?: Maybe<Scalars['Cursor']>,
-  node?: Maybe<Track>,
+  __typename?: 'TracksEdge';
+  /** A cursor for use in pagination. */
+  cursor?: Maybe<Scalars['Cursor']>;
+  /** The `Track` at the end of the edge. */
+  node?: Maybe<Track>;
 };
 
+/** Methods to use when ordering `Track`. */
 export enum TracksOrderBy {
   Natural = 'NATURAL',
   IdAsc = 'ID_ASC',
@@ -4111,209 +6287,322 @@ export enum TracksOrderBy {
   PrimaryKeyDesc = 'PRIMARY_KEY_DESC'
 }
 
+/** Table with POMB trips */
 export type Trip = Node & {
-   __typename?: 'Trip',
-  nodeId: Scalars['ID'],
-  id: Scalars['Int'],
-  userId: Scalars['Int'],
-  name: Scalars['String'],
-  description?: Maybe<Scalars['String']>,
-  startDate: Scalars['BigInt'],
-  endDate?: Maybe<Scalars['BigInt']>,
-  startLat: Scalars['BigFloat'],
-  startLon: Scalars['BigFloat'],
-  createdAt?: Maybe<Scalars['BigInt']>,
-  updatedAt?: Maybe<Scalars['Datetime']>,
-  accountByUserId?: Maybe<Account>,
-  juncturesByTripId: JuncturesConnection,
-  postsByTripId: PostsConnection,
-  imagesByTripId: ImagesConnection,
-  likesByTripId: LikesConnection,
-  configsByFeaturedTrip1: ConfigsConnection,
+  __typename?: 'Trip';
+  /** A globally unique identifier. Can be used in various places throughout the system to identify this single value. */
+  nodeId: Scalars['ID'];
+  /** Primary id for trip */
+  id: Scalars['Int'];
+  /** User id who created trip */
+  userId: Scalars['Int'];
+  /** Name of trip */
+  name: Scalars['String'];
+  /** Description of trip */
+  description?: Maybe<Scalars['String']>;
+  /** Start date of trip */
+  startDate: Scalars['BigInt'];
+  /** End date of trip */
+  endDate?: Maybe<Scalars['BigInt']>;
+  /** Starting point latitude of trip */
+  startLat: Scalars['BigFloat'];
+  /** Starting poiht longitude of trip */
+  startLon: Scalars['BigFloat'];
+  /** When trip created */
+  createdAt?: Maybe<Scalars['BigInt']>;
+  /** When trip last updated */
+  updatedAt?: Maybe<Scalars['Datetime']>;
+  /** Reads a single `Account` that is related to this `Trip`. */
+  accountByUserId?: Maybe<Account>;
+  /** Reads and enables pagination through a set of `Juncture`. */
+  juncturesByTripId: JuncturesConnection;
+  /** Reads and enables pagination through a set of `Post`. */
+  postsByTripId: PostsConnection;
+  /** Reads and enables pagination through a set of `Image`. */
+  imagesByTripId: ImagesConnection;
+  /** Reads and enables pagination through a set of `Like`. */
+  likesByTripId: LikesConnection;
+  /** Reads and enables pagination through a set of `Config`. */
+  configsByFeaturedTrip1: ConfigsConnection;
 };
 
 
+/** Table with POMB trips */
 export type TripJuncturesByTripIdArgs = {
-  first?: Maybe<Scalars['Int']>,
-  last?: Maybe<Scalars['Int']>,
-  offset?: Maybe<Scalars['Int']>,
-  before?: Maybe<Scalars['Cursor']>,
-  after?: Maybe<Scalars['Cursor']>,
-  orderBy?: Maybe<Array<JuncturesOrderBy>>,
-  condition?: Maybe<JunctureCondition>,
-  filter?: Maybe<JunctureFilter>
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  before?: Maybe<Scalars['Cursor']>;
+  after?: Maybe<Scalars['Cursor']>;
+  orderBy?: Maybe<Array<JuncturesOrderBy>>;
+  condition?: Maybe<JunctureCondition>;
+  filter?: Maybe<JunctureFilter>;
 };
 
 
+/** Table with POMB trips */
 export type TripPostsByTripIdArgs = {
-  first?: Maybe<Scalars['Int']>,
-  last?: Maybe<Scalars['Int']>,
-  offset?: Maybe<Scalars['Int']>,
-  before?: Maybe<Scalars['Cursor']>,
-  after?: Maybe<Scalars['Cursor']>,
-  orderBy?: Maybe<Array<PostsOrderBy>>,
-  condition?: Maybe<PostCondition>,
-  filter?: Maybe<PostFilter>
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  before?: Maybe<Scalars['Cursor']>;
+  after?: Maybe<Scalars['Cursor']>;
+  orderBy?: Maybe<Array<PostsOrderBy>>;
+  condition?: Maybe<PostCondition>;
+  filter?: Maybe<PostFilter>;
 };
 
 
+/** Table with POMB trips */
 export type TripImagesByTripIdArgs = {
-  first?: Maybe<Scalars['Int']>,
-  last?: Maybe<Scalars['Int']>,
-  offset?: Maybe<Scalars['Int']>,
-  before?: Maybe<Scalars['Cursor']>,
-  after?: Maybe<Scalars['Cursor']>,
-  orderBy?: Maybe<Array<ImagesOrderBy>>,
-  condition?: Maybe<ImageCondition>,
-  filter?: Maybe<ImageFilter>
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  before?: Maybe<Scalars['Cursor']>;
+  after?: Maybe<Scalars['Cursor']>;
+  orderBy?: Maybe<Array<ImagesOrderBy>>;
+  condition?: Maybe<ImageCondition>;
+  filter?: Maybe<ImageFilter>;
 };
 
 
+/** Table with POMB trips */
 export type TripLikesByTripIdArgs = {
-  first?: Maybe<Scalars['Int']>,
-  last?: Maybe<Scalars['Int']>,
-  offset?: Maybe<Scalars['Int']>,
-  before?: Maybe<Scalars['Cursor']>,
-  after?: Maybe<Scalars['Cursor']>,
-  orderBy?: Maybe<Array<LikesOrderBy>>,
-  condition?: Maybe<LikeCondition>,
-  filter?: Maybe<LikeFilter>
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  before?: Maybe<Scalars['Cursor']>;
+  after?: Maybe<Scalars['Cursor']>;
+  orderBy?: Maybe<Array<LikesOrderBy>>;
+  condition?: Maybe<LikeCondition>;
+  filter?: Maybe<LikeFilter>;
 };
 
 
+/** Table with POMB trips */
 export type TripConfigsByFeaturedTrip1Args = {
-  first?: Maybe<Scalars['Int']>,
-  last?: Maybe<Scalars['Int']>,
-  offset?: Maybe<Scalars['Int']>,
-  before?: Maybe<Scalars['Cursor']>,
-  after?: Maybe<Scalars['Cursor']>,
-  orderBy?: Maybe<Array<ConfigsOrderBy>>,
-  condition?: Maybe<ConfigCondition>,
-  filter?: Maybe<ConfigFilter>
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  before?: Maybe<Scalars['Cursor']>;
+  after?: Maybe<Scalars['Cursor']>;
+  orderBy?: Maybe<Array<ConfigsOrderBy>>;
+  condition?: Maybe<ConfigCondition>;
+  filter?: Maybe<ConfigFilter>;
 };
 
+/** A condition to be used against `Trip` object types. All fields are tested for equality and combined with a logical ‘and.’ */
 export type TripCondition = {
-  id?: Maybe<Scalars['Int']>,
-  userId?: Maybe<Scalars['Int']>,
-  name?: Maybe<Scalars['String']>,
-  description?: Maybe<Scalars['String']>,
-  startDate?: Maybe<Scalars['BigInt']>,
-  endDate?: Maybe<Scalars['BigInt']>,
-  startLat?: Maybe<Scalars['BigFloat']>,
-  startLon?: Maybe<Scalars['BigFloat']>,
-  createdAt?: Maybe<Scalars['BigInt']>,
-  updatedAt?: Maybe<Scalars['Datetime']>,
+  /** Checks for equality with the object’s `id` field. */
+  id?: Maybe<Scalars['Int']>;
+  /** Checks for equality with the object’s `userId` field. */
+  userId?: Maybe<Scalars['Int']>;
+  /** Checks for equality with the object’s `name` field. */
+  name?: Maybe<Scalars['String']>;
+  /** Checks for equality with the object’s `description` field. */
+  description?: Maybe<Scalars['String']>;
+  /** Checks for equality with the object’s `startDate` field. */
+  startDate?: Maybe<Scalars['BigInt']>;
+  /** Checks for equality with the object’s `endDate` field. */
+  endDate?: Maybe<Scalars['BigInt']>;
+  /** Checks for equality with the object’s `startLat` field. */
+  startLat?: Maybe<Scalars['BigFloat']>;
+  /** Checks for equality with the object’s `startLon` field. */
+  startLon?: Maybe<Scalars['BigFloat']>;
+  /** Checks for equality with the object’s `createdAt` field. */
+  createdAt?: Maybe<Scalars['BigInt']>;
+  /** Checks for equality with the object’s `updatedAt` field. */
+  updatedAt?: Maybe<Scalars['Datetime']>;
 };
 
+/** A filter to be used against `Trip` object types. All fields are combined with a logical ‘and.’ */
 export type TripFilter = {
-  id?: Maybe<IntFilter>,
-  userId?: Maybe<IntFilter>,
-  name?: Maybe<StringFilter>,
-  description?: Maybe<StringFilter>,
-  startDate?: Maybe<BigIntFilter>,
-  endDate?: Maybe<BigIntFilter>,
-  startLat?: Maybe<BigFloatFilter>,
-  startLon?: Maybe<BigFloatFilter>,
-  createdAt?: Maybe<BigIntFilter>,
-  updatedAt?: Maybe<DatetimeFilter>,
-  and?: Maybe<Array<TripFilter>>,
-  or?: Maybe<Array<TripFilter>>,
-  not?: Maybe<TripFilter>,
+  /** Filter by the object’s `id` field. */
+  id?: Maybe<IntFilter>;
+  /** Filter by the object’s `userId` field. */
+  userId?: Maybe<IntFilter>;
+  /** Filter by the object’s `name` field. */
+  name?: Maybe<StringFilter>;
+  /** Filter by the object’s `description` field. */
+  description?: Maybe<StringFilter>;
+  /** Filter by the object’s `startDate` field. */
+  startDate?: Maybe<BigIntFilter>;
+  /** Filter by the object’s `endDate` field. */
+  endDate?: Maybe<BigIntFilter>;
+  /** Filter by the object’s `startLat` field. */
+  startLat?: Maybe<BigFloatFilter>;
+  /** Filter by the object’s `startLon` field. */
+  startLon?: Maybe<BigFloatFilter>;
+  /** Filter by the object’s `createdAt` field. */
+  createdAt?: Maybe<BigIntFilter>;
+  /** Filter by the object’s `updatedAt` field. */
+  updatedAt?: Maybe<DatetimeFilter>;
+  /** Checks for all expressions in this list. */
+  and?: Maybe<Array<TripFilter>>;
+  /** Checks for any expressions in this list. */
+  or?: Maybe<Array<TripFilter>>;
+  /** Negates the expression. */
+  not?: Maybe<TripFilter>;
 };
 
+/** An input for mutations affecting `Trip` */
 export type TripInput = {
-  id?: Maybe<Scalars['Int']>,
-  userId: Scalars['Int'],
-  name: Scalars['String'],
-  description?: Maybe<Scalars['String']>,
-  startDate: Scalars['BigInt'],
-  endDate?: Maybe<Scalars['BigInt']>,
-  startLat: Scalars['BigFloat'],
-  startLon: Scalars['BigFloat'],
-  createdAt?: Maybe<Scalars['BigInt']>,
-  updatedAt?: Maybe<Scalars['Datetime']>,
+  /** Primary id for trip */
+  id?: Maybe<Scalars['Int']>;
+  /** User id who created trip */
+  userId: Scalars['Int'];
+  /** Name of trip */
+  name: Scalars['String'];
+  /** Description of trip */
+  description?: Maybe<Scalars['String']>;
+  /** Start date of trip */
+  startDate: Scalars['BigInt'];
+  /** End date of trip */
+  endDate?: Maybe<Scalars['BigInt']>;
+  /** Starting point latitude of trip */
+  startLat: Scalars['BigFloat'];
+  /** Starting poiht longitude of trip */
+  startLon: Scalars['BigFloat'];
+  /** When trip created */
+  createdAt?: Maybe<Scalars['BigInt']>;
+  /** When trip last updated */
+  updatedAt?: Maybe<Scalars['Datetime']>;
 };
 
+/** Represents an update to a `Trip`. Fields that are set will be updated. */
 export type TripPatch = {
-  id?: Maybe<Scalars['Int']>,
-  userId?: Maybe<Scalars['Int']>,
-  name?: Maybe<Scalars['String']>,
-  description?: Maybe<Scalars['String']>,
-  startDate?: Maybe<Scalars['BigInt']>,
-  endDate?: Maybe<Scalars['BigInt']>,
-  startLat?: Maybe<Scalars['BigFloat']>,
-  startLon?: Maybe<Scalars['BigFloat']>,
-  createdAt?: Maybe<Scalars['BigInt']>,
-  updatedAt?: Maybe<Scalars['Datetime']>,
+  /** Primary id for trip */
+  id?: Maybe<Scalars['Int']>;
+  /** User id who created trip */
+  userId?: Maybe<Scalars['Int']>;
+  /** Name of trip */
+  name?: Maybe<Scalars['String']>;
+  /** Description of trip */
+  description?: Maybe<Scalars['String']>;
+  /** Start date of trip */
+  startDate?: Maybe<Scalars['BigInt']>;
+  /** End date of trip */
+  endDate?: Maybe<Scalars['BigInt']>;
+  /** Starting point latitude of trip */
+  startLat?: Maybe<Scalars['BigFloat']>;
+  /** Starting poiht longitude of trip */
+  startLon?: Maybe<Scalars['BigFloat']>;
+  /** When trip created */
+  createdAt?: Maybe<Scalars['BigInt']>;
+  /** When trip last updated */
+  updatedAt?: Maybe<Scalars['Datetime']>;
 };
 
+/** A connection to a list of `Trip` values. */
 export type TripsConnection = {
-   __typename?: 'TripsConnection',
-  nodes: Array<Maybe<Trip>>,
-  edges: Array<TripsEdge>,
-  pageInfo: PageInfo,
-  totalCount: Scalars['Int'],
+  __typename?: 'TripsConnection';
+  /** A list of `Trip` objects. */
+  nodes: Array<Maybe<Trip>>;
+  /** A list of edges which contains the `Trip` and cursor to aid in pagination. */
+  edges: Array<TripsEdge>;
+  /** Information to aid in pagination. */
+  pageInfo: PageInfo;
+  /** The count of *all* `Trip` you could get from the connection. */
+  totalCount: Scalars['Int'];
 };
 
 export type TripSearchIndex = {
-   __typename?: 'TripSearchIndex',
-  id?: Maybe<Scalars['Int']>,
-  userId?: Maybe<Scalars['Int']>,
-  name?: Maybe<Scalars['String']>,
-  description?: Maybe<Scalars['String']>,
-  startDate?: Maybe<Scalars['BigInt']>,
-  endDate?: Maybe<Scalars['BigInt']>,
-  startLat?: Maybe<Scalars['BigFloat']>,
-  startLon?: Maybe<Scalars['BigFloat']>,
-  createdAt?: Maybe<Scalars['BigInt']>,
-  updatedAt?: Maybe<Scalars['Datetime']>,
-  document?: Maybe<Scalars['String']>,
+  __typename?: 'TripSearchIndex';
+  id?: Maybe<Scalars['Int']>;
+  userId?: Maybe<Scalars['Int']>;
+  name?: Maybe<Scalars['String']>;
+  description?: Maybe<Scalars['String']>;
+  startDate?: Maybe<Scalars['BigInt']>;
+  endDate?: Maybe<Scalars['BigInt']>;
+  startLat?: Maybe<Scalars['BigFloat']>;
+  startLon?: Maybe<Scalars['BigFloat']>;
+  createdAt?: Maybe<Scalars['BigInt']>;
+  updatedAt?: Maybe<Scalars['Datetime']>;
+  document?: Maybe<Scalars['String']>;
 };
 
+/**
+ * A condition to be used against `TripSearchIndex` object types. All fields are
+ * tested for equality and combined with a logical ‘and.’
+ */
 export type TripSearchIndexCondition = {
-  id?: Maybe<Scalars['Int']>,
-  userId?: Maybe<Scalars['Int']>,
-  name?: Maybe<Scalars['String']>,
-  description?: Maybe<Scalars['String']>,
-  startDate?: Maybe<Scalars['BigInt']>,
-  endDate?: Maybe<Scalars['BigInt']>,
-  startLat?: Maybe<Scalars['BigFloat']>,
-  startLon?: Maybe<Scalars['BigFloat']>,
-  createdAt?: Maybe<Scalars['BigInt']>,
-  updatedAt?: Maybe<Scalars['Datetime']>,
-  document?: Maybe<Scalars['String']>,
+  /** Checks for equality with the object’s `id` field. */
+  id?: Maybe<Scalars['Int']>;
+  /** Checks for equality with the object’s `userId` field. */
+  userId?: Maybe<Scalars['Int']>;
+  /** Checks for equality with the object’s `name` field. */
+  name?: Maybe<Scalars['String']>;
+  /** Checks for equality with the object’s `description` field. */
+  description?: Maybe<Scalars['String']>;
+  /** Checks for equality with the object’s `startDate` field. */
+  startDate?: Maybe<Scalars['BigInt']>;
+  /** Checks for equality with the object’s `endDate` field. */
+  endDate?: Maybe<Scalars['BigInt']>;
+  /** Checks for equality with the object’s `startLat` field. */
+  startLat?: Maybe<Scalars['BigFloat']>;
+  /** Checks for equality with the object’s `startLon` field. */
+  startLon?: Maybe<Scalars['BigFloat']>;
+  /** Checks for equality with the object’s `createdAt` field. */
+  createdAt?: Maybe<Scalars['BigInt']>;
+  /** Checks for equality with the object’s `updatedAt` field. */
+  updatedAt?: Maybe<Scalars['Datetime']>;
+  /** Checks for equality with the object’s `document` field. */
+  document?: Maybe<Scalars['String']>;
 };
 
+/** A filter to be used against `TripSearchIndex` object types. All fields are combined with a logical ‘and.’ */
 export type TripSearchIndexFilter = {
-  id?: Maybe<IntFilter>,
-  userId?: Maybe<IntFilter>,
-  name?: Maybe<StringFilter>,
-  description?: Maybe<StringFilter>,
-  startDate?: Maybe<BigIntFilter>,
-  endDate?: Maybe<BigIntFilter>,
-  startLat?: Maybe<BigFloatFilter>,
-  startLon?: Maybe<BigFloatFilter>,
-  createdAt?: Maybe<BigIntFilter>,
-  updatedAt?: Maybe<DatetimeFilter>,
-  and?: Maybe<Array<TripSearchIndexFilter>>,
-  or?: Maybe<Array<TripSearchIndexFilter>>,
-  not?: Maybe<TripSearchIndexFilter>,
+  /** Filter by the object’s `id` field. */
+  id?: Maybe<IntFilter>;
+  /** Filter by the object’s `userId` field. */
+  userId?: Maybe<IntFilter>;
+  /** Filter by the object’s `name` field. */
+  name?: Maybe<StringFilter>;
+  /** Filter by the object’s `description` field. */
+  description?: Maybe<StringFilter>;
+  /** Filter by the object’s `startDate` field. */
+  startDate?: Maybe<BigIntFilter>;
+  /** Filter by the object’s `endDate` field. */
+  endDate?: Maybe<BigIntFilter>;
+  /** Filter by the object’s `startLat` field. */
+  startLat?: Maybe<BigFloatFilter>;
+  /** Filter by the object’s `startLon` field. */
+  startLon?: Maybe<BigFloatFilter>;
+  /** Filter by the object’s `createdAt` field. */
+  createdAt?: Maybe<BigIntFilter>;
+  /** Filter by the object’s `updatedAt` field. */
+  updatedAt?: Maybe<DatetimeFilter>;
+  /** Checks for all expressions in this list. */
+  and?: Maybe<Array<TripSearchIndexFilter>>;
+  /** Checks for any expressions in this list. */
+  or?: Maybe<Array<TripSearchIndexFilter>>;
+  /** Negates the expression. */
+  not?: Maybe<TripSearchIndexFilter>;
 };
 
+/** A connection to a list of `TripSearchIndex` values. */
 export type TripSearchIndicesConnection = {
-   __typename?: 'TripSearchIndicesConnection',
-  nodes: Array<Maybe<TripSearchIndex>>,
-  edges: Array<TripSearchIndicesEdge>,
-  pageInfo: PageInfo,
-  totalCount: Scalars['Int'],
+  __typename?: 'TripSearchIndicesConnection';
+  /** A list of `TripSearchIndex` objects. */
+  nodes: Array<Maybe<TripSearchIndex>>;
+  /** A list of edges which contains the `TripSearchIndex` and cursor to aid in pagination. */
+  edges: Array<TripSearchIndicesEdge>;
+  /** Information to aid in pagination. */
+  pageInfo: PageInfo;
+  /** The count of *all* `TripSearchIndex` you could get from the connection. */
+  totalCount: Scalars['Int'];
 };
 
+/** A `TripSearchIndex` edge in the connection. */
 export type TripSearchIndicesEdge = {
-   __typename?: 'TripSearchIndicesEdge',
-  cursor?: Maybe<Scalars['Cursor']>,
-  node?: Maybe<TripSearchIndex>,
+  __typename?: 'TripSearchIndicesEdge';
+  /** A cursor for use in pagination. */
+  cursor?: Maybe<Scalars['Cursor']>;
+  /** The `TripSearchIndex` at the end of the edge. */
+  node?: Maybe<TripSearchIndex>;
 };
 
+/** Methods to use when ordering `TripSearchIndex`. */
 export enum TripSearchIndicesOrderBy {
   Natural = 'NATURAL',
   IdAsc = 'ID_ASC',
@@ -4340,12 +6629,16 @@ export enum TripSearchIndicesOrderBy {
   DocumentDesc = 'DOCUMENT_DESC'
 }
 
+/** A `Trip` edge in the connection. */
 export type TripsEdge = {
-   __typename?: 'TripsEdge',
-  cursor?: Maybe<Scalars['Cursor']>,
-  node?: Maybe<Trip>,
+  __typename?: 'TripsEdge';
+  /** A cursor for use in pagination. */
+  cursor?: Maybe<Scalars['Cursor']>;
+  /** The `Trip` at the end of the edge. */
+  node?: Maybe<Trip>;
 };
 
+/** Methods to use when ordering `Trip`. */
 export enum TripsOrderBy {
   Natural = 'NATURAL',
   IdAsc = 'ID_ASC',
@@ -4372,549 +6665,1045 @@ export enum TripsOrderBy {
   PrimaryKeyDesc = 'PRIMARY_KEY_DESC'
 }
 
+/** All input for the `updateAccountById` mutation. */
 export type UpdateAccountByIdInput = {
-  clientMutationId?: Maybe<Scalars['String']>,
-  accountPatch: AccountPatch,
-  id: Scalars['Int'],
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: Maybe<Scalars['String']>;
+  /** An object where the defined keys will be set on the `Account` being updated. */
+  accountPatch: AccountPatch;
+  /** Primary id for account */
+  id: Scalars['Int'];
 };
 
+/** All input for the `updateAccountByUsername` mutation. */
 export type UpdateAccountByUsernameInput = {
-  clientMutationId?: Maybe<Scalars['String']>,
-  accountPatch: AccountPatch,
-  username: Scalars['String'],
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: Maybe<Scalars['String']>;
+  /** An object where the defined keys will be set on the `Account` being updated. */
+  accountPatch: AccountPatch;
+  /** username of account */
+  username: Scalars['String'];
 };
 
+/** All input for the `updateAccount` mutation. */
 export type UpdateAccountInput = {
-  clientMutationId?: Maybe<Scalars['String']>,
-  nodeId: Scalars['ID'],
-  accountPatch: AccountPatch,
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: Maybe<Scalars['String']>;
+  /** The globally unique `ID` which will identify a single `Account` to be updated. */
+  nodeId: Scalars['ID'];
+  /** An object where the defined keys will be set on the `Account` being updated. */
+  accountPatch: AccountPatch;
 };
 
+/** The output of our update `Account` mutation. */
 export type UpdateAccountPayload = {
-   __typename?: 'UpdateAccountPayload',
-  clientMutationId?: Maybe<Scalars['String']>,
-  account?: Maybe<Account>,
-  query?: Maybe<Query>,
-  accountEdge?: Maybe<AccountsEdge>,
+  __typename?: 'UpdateAccountPayload';
+  /**
+   * The exact same `clientMutationId` that was provided in the mutation input,
+   * unchanged and unused. May be used by a client to track mutations.
+   */
+  clientMutationId?: Maybe<Scalars['String']>;
+  /** The `Account` that was updated by this mutation. */
+  account?: Maybe<Account>;
+  /** Our root query field type. Allows us to run any query from our mutation payload. */
+  query?: Maybe<Query>;
+  /** An edge for our `Account`. May be used by Relay 1. */
+  accountEdge?: Maybe<AccountsEdge>;
 };
 
 
+/** The output of our update `Account` mutation. */
 export type UpdateAccountPayloadAccountEdgeArgs = {
-  orderBy?: Maybe<Array<AccountsOrderBy>>
+  orderBy?: Maybe<Array<AccountsOrderBy>>;
 };
 
+/** All input for the `updateAdminAccountByAccountId` mutation. */
 export type UpdateAdminAccountByAccountIdInput = {
-  clientMutationId?: Maybe<Scalars['String']>,
-  adminAccountPatch: AdminAccountPatch,
-  accountId: Scalars['Int'],
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: Maybe<Scalars['String']>;
+  /** An object where the defined keys will be set on the `AdminAccount` being updated. */
+  adminAccountPatch: AdminAccountPatch;
+  /** The id of the user associated with this admin account. */
+  accountId: Scalars['Int'];
 };
 
+/** All input for the `updateAdminAccountByEmail` mutation. */
 export type UpdateAdminAccountByEmailInput = {
-  clientMutationId?: Maybe<Scalars['String']>,
-  adminAccountPatch: AdminAccountPatch,
-  email: Scalars['String'],
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: Maybe<Scalars['String']>;
+  /** An object where the defined keys will be set on the `AdminAccount` being updated. */
+  adminAccountPatch: AdminAccountPatch;
+  /** The email address of the admin account. */
+  email: Scalars['String'];
 };
 
+/** All input for the `updateAdminAccount` mutation. */
 export type UpdateAdminAccountInput = {
-  clientMutationId?: Maybe<Scalars['String']>,
-  nodeId: Scalars['ID'],
-  adminAccountPatch: AdminAccountPatch,
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: Maybe<Scalars['String']>;
+  /** The globally unique `ID` which will identify a single `AdminAccount` to be updated. */
+  nodeId: Scalars['ID'];
+  /** An object where the defined keys will be set on the `AdminAccount` being updated. */
+  adminAccountPatch: AdminAccountPatch;
 };
 
+/** The output of our update `AdminAccount` mutation. */
 export type UpdateAdminAccountPayload = {
-   __typename?: 'UpdateAdminAccountPayload',
-  clientMutationId?: Maybe<Scalars['String']>,
-  adminAccount?: Maybe<AdminAccount>,
-  query?: Maybe<Query>,
-  accountByAccountId?: Maybe<Account>,
-  adminAccountEdge?: Maybe<AdminAccountsEdge>,
+  __typename?: 'UpdateAdminAccountPayload';
+  /**
+   * The exact same `clientMutationId` that was provided in the mutation input,
+   * unchanged and unused. May be used by a client to track mutations.
+   */
+  clientMutationId?: Maybe<Scalars['String']>;
+  /** The `AdminAccount` that was updated by this mutation. */
+  adminAccount?: Maybe<AdminAccount>;
+  /** Our root query field type. Allows us to run any query from our mutation payload. */
+  query?: Maybe<Query>;
+  /** Reads a single `Account` that is related to this `AdminAccount`. */
+  accountByAccountId?: Maybe<Account>;
+  /** An edge for our `AdminAccount`. May be used by Relay 1. */
+  adminAccountEdge?: Maybe<AdminAccountsEdge>;
 };
 
 
+/** The output of our update `AdminAccount` mutation. */
 export type UpdateAdminAccountPayloadAdminAccountEdgeArgs = {
-  orderBy?: Maybe<Array<AdminAccountsOrderBy>>
+  orderBy?: Maybe<Array<AdminAccountsOrderBy>>;
 };
 
+/** All input for the `updateConfigById` mutation. */
 export type UpdateConfigByIdInput = {
-  clientMutationId?: Maybe<Scalars['String']>,
-  configPatch: ConfigPatch,
-  id: Scalars['Int'],
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: Maybe<Scalars['String']>;
+  /** An object where the defined keys will be set on the `Config` being updated. */
+  configPatch: ConfigPatch;
+  id: Scalars['Int'];
 };
 
+/** All input for the `updateConfig` mutation. */
 export type UpdateConfigInput = {
-  clientMutationId?: Maybe<Scalars['String']>,
-  nodeId: Scalars['ID'],
-  configPatch: ConfigPatch,
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: Maybe<Scalars['String']>;
+  /** The globally unique `ID` which will identify a single `Config` to be updated. */
+  nodeId: Scalars['ID'];
+  /** An object where the defined keys will be set on the `Config` being updated. */
+  configPatch: ConfigPatch;
 };
 
+/** The output of our update `Config` mutation. */
 export type UpdateConfigPayload = {
-   __typename?: 'UpdateConfigPayload',
-  clientMutationId?: Maybe<Scalars['String']>,
-  config?: Maybe<Config>,
-  query?: Maybe<Query>,
-  postByFeaturedStory1?: Maybe<Post>,
-  postByFeaturedStory2?: Maybe<Post>,
-  postByFeaturedStory3?: Maybe<Post>,
-  tripByFeaturedTrip1?: Maybe<Trip>,
-  configEdge?: Maybe<ConfigsEdge>,
+  __typename?: 'UpdateConfigPayload';
+  /**
+   * The exact same `clientMutationId` that was provided in the mutation input,
+   * unchanged and unused. May be used by a client to track mutations.
+   */
+  clientMutationId?: Maybe<Scalars['String']>;
+  /** The `Config` that was updated by this mutation. */
+  config?: Maybe<Config>;
+  /** Our root query field type. Allows us to run any query from our mutation payload. */
+  query?: Maybe<Query>;
+  /** Reads a single `Post` that is related to this `Config`. */
+  postByFeaturedStory1?: Maybe<Post>;
+  /** Reads a single `Post` that is related to this `Config`. */
+  postByFeaturedStory2?: Maybe<Post>;
+  /** Reads a single `Post` that is related to this `Config`. */
+  postByFeaturedStory3?: Maybe<Post>;
+  /** Reads a single `Trip` that is related to this `Config`. */
+  tripByFeaturedTrip1?: Maybe<Trip>;
+  /** An edge for our `Config`. May be used by Relay 1. */
+  configEdge?: Maybe<ConfigsEdge>;
 };
 
 
+/** The output of our update `Config` mutation. */
 export type UpdateConfigPayloadConfigEdgeArgs = {
-  orderBy?: Maybe<Array<ConfigsOrderBy>>
+  orderBy?: Maybe<Array<ConfigsOrderBy>>;
 };
 
+/** All input for the `updateCoordById` mutation. */
 export type UpdateCoordByIdInput = {
-  clientMutationId?: Maybe<Scalars['String']>,
-  coordPatch: CoordPatch,
-  id: Scalars['Int'],
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: Maybe<Scalars['String']>;
+  /** An object where the defined keys will be set on the `Coord` being updated. */
+  coordPatch: CoordPatch;
+  /** Primary id for coordinates */
+  id: Scalars['Int'];
 };
 
+/** All input for the `updateCoord` mutation. */
 export type UpdateCoordInput = {
-  clientMutationId?: Maybe<Scalars['String']>,
-  nodeId: Scalars['ID'],
-  coordPatch: CoordPatch,
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: Maybe<Scalars['String']>;
+  /** The globally unique `ID` which will identify a single `Coord` to be updated. */
+  nodeId: Scalars['ID'];
+  /** An object where the defined keys will be set on the `Coord` being updated. */
+  coordPatch: CoordPatch;
 };
 
+/** The output of our update `Coord` mutation. */
 export type UpdateCoordPayload = {
-   __typename?: 'UpdateCoordPayload',
-  clientMutationId?: Maybe<Scalars['String']>,
-  coord?: Maybe<Coord>,
-  query?: Maybe<Query>,
-  junctureByJunctureId?: Maybe<Juncture>,
-  coordEdge?: Maybe<CoordsEdge>,
+  __typename?: 'UpdateCoordPayload';
+  /**
+   * The exact same `clientMutationId` that was provided in the mutation input,
+   * unchanged and unused. May be used by a client to track mutations.
+   */
+  clientMutationId?: Maybe<Scalars['String']>;
+  /** The `Coord` that was updated by this mutation. */
+  coord?: Maybe<Coord>;
+  /** Our root query field type. Allows us to run any query from our mutation payload. */
+  query?: Maybe<Query>;
+  /** Reads a single `Juncture` that is related to this `Coord`. */
+  junctureByJunctureId?: Maybe<Juncture>;
+  /** An edge for our `Coord`. May be used by Relay 1. */
+  coordEdge?: Maybe<CoordsEdge>;
 };
 
 
+/** The output of our update `Coord` mutation. */
 export type UpdateCoordPayloadCoordEdgeArgs = {
-  orderBy?: Maybe<Array<CoordsOrderBy>>
+  orderBy?: Maybe<Array<CoordsOrderBy>>;
 };
 
+/** All input for the `updateCountryByCode` mutation. */
 export type UpdateCountryByCodeInput = {
-  clientMutationId?: Maybe<Scalars['String']>,
-  countryPatch: CountryPatch,
-  code: Scalars['String'],
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: Maybe<Scalars['String']>;
+  /** An object where the defined keys will be set on the `Country` being updated. */
+  countryPatch: CountryPatch;
+  /** Primary id and code for country */
+  code: Scalars['String'];
 };
 
+/** All input for the `updateCountry` mutation. */
 export type UpdateCountryInput = {
-  clientMutationId?: Maybe<Scalars['String']>,
-  nodeId: Scalars['ID'],
-  countryPatch: CountryPatch,
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: Maybe<Scalars['String']>;
+  /** The globally unique `ID` which will identify a single `Country` to be updated. */
+  nodeId: Scalars['ID'];
+  /** An object where the defined keys will be set on the `Country` being updated. */
+  countryPatch: CountryPatch;
 };
 
+/** The output of our update `Country` mutation. */
 export type UpdateCountryPayload = {
-   __typename?: 'UpdateCountryPayload',
-  clientMutationId?: Maybe<Scalars['String']>,
-  country?: Maybe<Country>,
-  query?: Maybe<Query>,
-  countryEdge?: Maybe<CountriesEdge>,
+  __typename?: 'UpdateCountryPayload';
+  /**
+   * The exact same `clientMutationId` that was provided in the mutation input,
+   * unchanged and unused. May be used by a client to track mutations.
+   */
+  clientMutationId?: Maybe<Scalars['String']>;
+  /** The `Country` that was updated by this mutation. */
+  country?: Maybe<Country>;
+  /** Our root query field type. Allows us to run any query from our mutation payload. */
+  query?: Maybe<Query>;
+  /** An edge for our `Country`. May be used by Relay 1. */
+  countryEdge?: Maybe<CountriesEdge>;
 };
 
 
+/** The output of our update `Country` mutation. */
 export type UpdateCountryPayloadCountryEdgeArgs = {
-  orderBy?: Maybe<Array<CountriesOrderBy>>
+  orderBy?: Maybe<Array<CountriesOrderBy>>;
 };
 
+/** All input for the `updateEmailListByEmail` mutation. */
 export type UpdateEmailListByEmailInput = {
-  clientMutationId?: Maybe<Scalars['String']>,
-  emailListPatch: EmailListPatch,
-  email: Scalars['String'],
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: Maybe<Scalars['String']>;
+  /** An object where the defined keys will be set on the `EmailList` being updated. */
+  emailListPatch: EmailListPatch;
+  /** Email of user */
+  email: Scalars['String'];
 };
 
+/** All input for the `updateEmailListById` mutation. */
 export type UpdateEmailListByIdInput = {
-  clientMutationId?: Maybe<Scalars['String']>,
-  emailListPatch: EmailListPatch,
-  id: Scalars['Int'],
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: Maybe<Scalars['String']>;
+  /** An object where the defined keys will be set on the `EmailList` being updated. */
+  emailListPatch: EmailListPatch;
+  /** Primary id for email */
+  id: Scalars['Int'];
 };
 
+/** All input for the `updateEmailList` mutation. */
 export type UpdateEmailListInput = {
-  clientMutationId?: Maybe<Scalars['String']>,
-  nodeId: Scalars['ID'],
-  emailListPatch: EmailListPatch,
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: Maybe<Scalars['String']>;
+  /** The globally unique `ID` which will identify a single `EmailList` to be updated. */
+  nodeId: Scalars['ID'];
+  /** An object where the defined keys will be set on the `EmailList` being updated. */
+  emailListPatch: EmailListPatch;
 };
 
+/** The output of our update `EmailList` mutation. */
 export type UpdateEmailListPayload = {
-   __typename?: 'UpdateEmailListPayload',
-  clientMutationId?: Maybe<Scalars['String']>,
-  emailList?: Maybe<EmailList>,
-  query?: Maybe<Query>,
-  emailListEdge?: Maybe<EmailListsEdge>,
+  __typename?: 'UpdateEmailListPayload';
+  /**
+   * The exact same `clientMutationId` that was provided in the mutation input,
+   * unchanged and unused. May be used by a client to track mutations.
+   */
+  clientMutationId?: Maybe<Scalars['String']>;
+  /** The `EmailList` that was updated by this mutation. */
+  emailList?: Maybe<EmailList>;
+  /** Our root query field type. Allows us to run any query from our mutation payload. */
+  query?: Maybe<Query>;
+  /** An edge for our `EmailList`. May be used by Relay 1. */
+  emailListEdge?: Maybe<EmailListsEdge>;
 };
 
 
+/** The output of our update `EmailList` mutation. */
 export type UpdateEmailListPayloadEmailListEdgeArgs = {
-  orderBy?: Maybe<Array<EmailListsOrderBy>>
+  orderBy?: Maybe<Array<EmailListsOrderBy>>;
 };
 
+/** All input for the `updateImageById` mutation. */
 export type UpdateImageByIdInput = {
-  clientMutationId?: Maybe<Scalars['String']>,
-  imagePatch: ImagePatch,
-  id: Scalars['Int'],
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: Maybe<Scalars['String']>;
+  /** An object where the defined keys will be set on the `Image` being updated. */
+  imagePatch: ImagePatch;
+  /** Primary id for the photo */
+  id: Scalars['Int'];
 };
 
+/** All input for the `updateImage` mutation. */
 export type UpdateImageInput = {
-  clientMutationId?: Maybe<Scalars['String']>,
-  nodeId: Scalars['ID'],
-  imagePatch: ImagePatch,
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: Maybe<Scalars['String']>;
+  /** The globally unique `ID` which will identify a single `Image` to be updated. */
+  nodeId: Scalars['ID'];
+  /** An object where the defined keys will be set on the `Image` being updated. */
+  imagePatch: ImagePatch;
 };
 
+/** The output of our update `Image` mutation. */
 export type UpdateImagePayload = {
-   __typename?: 'UpdateImagePayload',
-  clientMutationId?: Maybe<Scalars['String']>,
-  image?: Maybe<Image>,
-  query?: Maybe<Query>,
-  tripByTripId?: Maybe<Trip>,
-  junctureByJunctureId?: Maybe<Juncture>,
-  postByPostId?: Maybe<Post>,
-  accountByUserId?: Maybe<Account>,
-  imageEdge?: Maybe<ImagesEdge>,
+  __typename?: 'UpdateImagePayload';
+  /**
+   * The exact same `clientMutationId` that was provided in the mutation input,
+   * unchanged and unused. May be used by a client to track mutations.
+   */
+  clientMutationId?: Maybe<Scalars['String']>;
+  /** The `Image` that was updated by this mutation. */
+  image?: Maybe<Image>;
+  /** Our root query field type. Allows us to run any query from our mutation payload. */
+  query?: Maybe<Query>;
+  /** Reads a single `Trip` that is related to this `Image`. */
+  tripByTripId?: Maybe<Trip>;
+  /** Reads a single `Juncture` that is related to this `Image`. */
+  junctureByJunctureId?: Maybe<Juncture>;
+  /** Reads a single `Post` that is related to this `Image`. */
+  postByPostId?: Maybe<Post>;
+  /** Reads a single `Account` that is related to this `Image`. */
+  accountByUserId?: Maybe<Account>;
+  /** An edge for our `Image`. May be used by Relay 1. */
+  imageEdge?: Maybe<ImagesEdge>;
 };
 
 
+/** The output of our update `Image` mutation. */
 export type UpdateImagePayloadImageEdgeArgs = {
-  orderBy?: Maybe<Array<ImagesOrderBy>>
+  orderBy?: Maybe<Array<ImagesOrderBy>>;
 };
 
+/** All input for the `updateJunctureById` mutation. */
 export type UpdateJunctureByIdInput = {
-  clientMutationId?: Maybe<Scalars['String']>,
-  juncturePatch: JuncturePatch,
-  id: Scalars['Int'],
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: Maybe<Scalars['String']>;
+  /** An object where the defined keys will be set on the `Juncture` being updated. */
+  juncturePatch: JuncturePatch;
+  /** Primary id for juncture */
+  id: Scalars['Int'];
 };
 
+/** All input for the `updateJuncture` mutation. */
 export type UpdateJunctureInput = {
-  clientMutationId?: Maybe<Scalars['String']>,
-  nodeId: Scalars['ID'],
-  juncturePatch: JuncturePatch,
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: Maybe<Scalars['String']>;
+  /** The globally unique `ID` which will identify a single `Juncture` to be updated. */
+  nodeId: Scalars['ID'];
+  /** An object where the defined keys will be set on the `Juncture` being updated. */
+  juncturePatch: JuncturePatch;
 };
 
+/** The output of our update `Juncture` mutation. */
 export type UpdateJuncturePayload = {
-   __typename?: 'UpdateJuncturePayload',
-  clientMutationId?: Maybe<Scalars['String']>,
-  juncture?: Maybe<Juncture>,
-  query?: Maybe<Query>,
-  accountByUserId?: Maybe<Account>,
-  tripByTripId?: Maybe<Trip>,
-  countryByCountry?: Maybe<Country>,
-  junctureEdge?: Maybe<JuncturesEdge>,
+  __typename?: 'UpdateJuncturePayload';
+  /**
+   * The exact same `clientMutationId` that was provided in the mutation input,
+   * unchanged and unused. May be used by a client to track mutations.
+   */
+  clientMutationId?: Maybe<Scalars['String']>;
+  /** The `Juncture` that was updated by this mutation. */
+  juncture?: Maybe<Juncture>;
+  /** Our root query field type. Allows us to run any query from our mutation payload. */
+  query?: Maybe<Query>;
+  /** Reads a single `Account` that is related to this `Juncture`. */
+  accountByUserId?: Maybe<Account>;
+  /** Reads a single `Trip` that is related to this `Juncture`. */
+  tripByTripId?: Maybe<Trip>;
+  /** Reads a single `Country` that is related to this `Juncture`. */
+  countryByCountry?: Maybe<Country>;
+  /** An edge for our `Juncture`. May be used by Relay 1. */
+  junctureEdge?: Maybe<JuncturesEdge>;
 };
 
 
+/** The output of our update `Juncture` mutation. */
 export type UpdateJuncturePayloadJunctureEdgeArgs = {
-  orderBy?: Maybe<Array<JuncturesOrderBy>>
+  orderBy?: Maybe<Array<JuncturesOrderBy>>;
 };
 
+/** All input for the `updateLikeById` mutation. */
 export type UpdateLikeByIdInput = {
-  clientMutationId?: Maybe<Scalars['String']>,
-  likePatch: LikePatch,
-  id: Scalars['Int'],
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: Maybe<Scalars['String']>;
+  /** An object where the defined keys will be set on the `Like` being updated. */
+  likePatch: LikePatch;
+  /** Primary id for the like */
+  id: Scalars['Int'];
 };
 
+/** All input for the `updateLike` mutation. */
 export type UpdateLikeInput = {
-  clientMutationId?: Maybe<Scalars['String']>,
-  nodeId: Scalars['ID'],
-  likePatch: LikePatch,
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: Maybe<Scalars['String']>;
+  /** The globally unique `ID` which will identify a single `Like` to be updated. */
+  nodeId: Scalars['ID'];
+  /** An object where the defined keys will be set on the `Like` being updated. */
+  likePatch: LikePatch;
 };
 
+/** The output of our update `Like` mutation. */
 export type UpdateLikePayload = {
-   __typename?: 'UpdateLikePayload',
-  clientMutationId?: Maybe<Scalars['String']>,
-  like?: Maybe<Like>,
-  query?: Maybe<Query>,
-  tripByTripId?: Maybe<Trip>,
-  junctureByJunctureId?: Maybe<Juncture>,
-  postByPostId?: Maybe<Post>,
-  imageByImageId?: Maybe<Image>,
-  accountByUserId?: Maybe<Account>,
-  likeEdge?: Maybe<LikesEdge>,
+  __typename?: 'UpdateLikePayload';
+  /**
+   * The exact same `clientMutationId` that was provided in the mutation input,
+   * unchanged and unused. May be used by a client to track mutations.
+   */
+  clientMutationId?: Maybe<Scalars['String']>;
+  /** The `Like` that was updated by this mutation. */
+  like?: Maybe<Like>;
+  /** Our root query field type. Allows us to run any query from our mutation payload. */
+  query?: Maybe<Query>;
+  /** Reads a single `Trip` that is related to this `Like`. */
+  tripByTripId?: Maybe<Trip>;
+  /** Reads a single `Juncture` that is related to this `Like`. */
+  junctureByJunctureId?: Maybe<Juncture>;
+  /** Reads a single `Post` that is related to this `Like`. */
+  postByPostId?: Maybe<Post>;
+  /** Reads a single `Image` that is related to this `Like`. */
+  imageByImageId?: Maybe<Image>;
+  /** Reads a single `Account` that is related to this `Like`. */
+  accountByUserId?: Maybe<Account>;
+  /** An edge for our `Like`. May be used by Relay 1. */
+  likeEdge?: Maybe<LikesEdge>;
 };
 
 
+/** The output of our update `Like` mutation. */
 export type UpdateLikePayloadLikeEdgeArgs = {
-  orderBy?: Maybe<Array<LikesOrderBy>>
+  orderBy?: Maybe<Array<LikesOrderBy>>;
 };
 
+/** All input for the `updateLoggedActionByEventId` mutation. */
 export type UpdateLoggedActionByEventIdInput = {
-  clientMutationId?: Maybe<Scalars['String']>,
-  loggedActionPatch: LoggedActionPatch,
-  eventId: Scalars['BigInt'],
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: Maybe<Scalars['String']>;
+  /** An object where the defined keys will be set on the `LoggedAction` being updated. */
+  loggedActionPatch: LoggedActionPatch;
+  /** Unique identifier for each auditable event */
+  eventId: Scalars['BigInt'];
 };
 
+/** All input for the `updateLoggedAction` mutation. */
 export type UpdateLoggedActionInput = {
-  clientMutationId?: Maybe<Scalars['String']>,
-  nodeId: Scalars['ID'],
-  loggedActionPatch: LoggedActionPatch,
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: Maybe<Scalars['String']>;
+  /** The globally unique `ID` which will identify a single `LoggedAction` to be updated. */
+  nodeId: Scalars['ID'];
+  /** An object where the defined keys will be set on the `LoggedAction` being updated. */
+  loggedActionPatch: LoggedActionPatch;
 };
 
+/** The output of our update `LoggedAction` mutation. */
 export type UpdateLoggedActionPayload = {
-   __typename?: 'UpdateLoggedActionPayload',
-  clientMutationId?: Maybe<Scalars['String']>,
-  loggedAction?: Maybe<LoggedAction>,
-  query?: Maybe<Query>,
-  loggedActionEdge?: Maybe<LoggedActionsEdge>,
+  __typename?: 'UpdateLoggedActionPayload';
+  /**
+   * The exact same `clientMutationId` that was provided in the mutation input,
+   * unchanged and unused. May be used by a client to track mutations.
+   */
+  clientMutationId?: Maybe<Scalars['String']>;
+  /** The `LoggedAction` that was updated by this mutation. */
+  loggedAction?: Maybe<LoggedAction>;
+  /** Our root query field type. Allows us to run any query from our mutation payload. */
+  query?: Maybe<Query>;
+  /** An edge for our `LoggedAction`. May be used by Relay 1. */
+  loggedActionEdge?: Maybe<LoggedActionsEdge>;
 };
 
 
+/** The output of our update `LoggedAction` mutation. */
 export type UpdateLoggedActionPayloadLoggedActionEdgeArgs = {
-  orderBy?: Maybe<Array<LoggedActionsOrderBy>>
+  orderBy?: Maybe<Array<LoggedActionsOrderBy>>;
 };
 
+/** All input for the `updatePassword` mutation. */
 export type UpdatePasswordInput = {
-  clientMutationId?: Maybe<Scalars['String']>,
-  userId: Scalars['Int'],
-  password: Scalars['String'],
-  newPassword: Scalars['String'],
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: Maybe<Scalars['String']>;
+  userId: Scalars['Int'];
+  password: Scalars['String'];
+  newPassword: Scalars['String'];
 };
 
+/** The output of our `updatePassword` mutation. */
 export type UpdatePasswordPayload = {
-   __typename?: 'UpdatePasswordPayload',
-  clientMutationId?: Maybe<Scalars['String']>,
-  boolean?: Maybe<Scalars['Boolean']>,
-  query?: Maybe<Query>,
+  __typename?: 'UpdatePasswordPayload';
+  /**
+   * The exact same `clientMutationId` that was provided in the mutation input,
+   * unchanged and unused. May be used by a client to track mutations.
+   */
+  clientMutationId?: Maybe<Scalars['String']>;
+  boolean?: Maybe<Scalars['Boolean']>;
+  /** Our root query field type. Allows us to run any query from our mutation payload. */
+  query?: Maybe<Query>;
 };
 
+/** All input for the `updatePostById` mutation. */
 export type UpdatePostByIdInput = {
-  clientMutationId?: Maybe<Scalars['String']>,
-  postPatch: PostPatch,
-  id: Scalars['Int'],
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: Maybe<Scalars['String']>;
+  /** An object where the defined keys will be set on the `Post` being updated. */
+  postPatch: PostPatch;
+  /** Primary id for post */
+  id: Scalars['Int'];
 };
 
+/** All input for the `updatePost` mutation. */
 export type UpdatePostInput = {
-  clientMutationId?: Maybe<Scalars['String']>,
-  nodeId: Scalars['ID'],
-  postPatch: PostPatch,
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: Maybe<Scalars['String']>;
+  /** The globally unique `ID` which will identify a single `Post` to be updated. */
+  nodeId: Scalars['ID'];
+  /** An object where the defined keys will be set on the `Post` being updated. */
+  postPatch: PostPatch;
 };
 
+/** The output of our update `Post` mutation. */
 export type UpdatePostPayload = {
-   __typename?: 'UpdatePostPayload',
-  clientMutationId?: Maybe<Scalars['String']>,
-  post?: Maybe<Post>,
-  query?: Maybe<Query>,
-  accountByAuthor?: Maybe<Account>,
-  tripByTripId?: Maybe<Trip>,
-  junctureByJunctureId?: Maybe<Juncture>,
-  countryByCountry?: Maybe<Country>,
-  postEdge?: Maybe<PostsEdge>,
+  __typename?: 'UpdatePostPayload';
+  /**
+   * The exact same `clientMutationId` that was provided in the mutation input,
+   * unchanged and unused. May be used by a client to track mutations.
+   */
+  clientMutationId?: Maybe<Scalars['String']>;
+  /** The `Post` that was updated by this mutation. */
+  post?: Maybe<Post>;
+  /** Our root query field type. Allows us to run any query from our mutation payload. */
+  query?: Maybe<Query>;
+  /** Reads a single `Account` that is related to this `Post`. */
+  accountByAuthor?: Maybe<Account>;
+  /** Reads a single `Trip` that is related to this `Post`. */
+  tripByTripId?: Maybe<Trip>;
+  /** Reads a single `Juncture` that is related to this `Post`. */
+  junctureByJunctureId?: Maybe<Juncture>;
+  /** Reads a single `Country` that is related to this `Post`. */
+  countryByCountry?: Maybe<Country>;
+  /** An edge for our `Post`. May be used by Relay 1. */
+  postEdge?: Maybe<PostsEdge>;
 };
 
 
+/** The output of our update `Post` mutation. */
 export type UpdatePostPayloadPostEdgeArgs = {
-  orderBy?: Maybe<Array<PostsOrderBy>>
+  orderBy?: Maybe<Array<PostsOrderBy>>;
 };
 
+/** All input for the `updatePostTagByName` mutation. */
 export type UpdatePostTagByNameInput = {
-  clientMutationId?: Maybe<Scalars['String']>,
-  postTagPatch: PostTagPatch,
-  name: Scalars['String'],
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: Maybe<Scalars['String']>;
+  /** An object where the defined keys will be set on the `PostTag` being updated. */
+  postTagPatch: PostTagPatch;
+  /** Name of the post tag and primary id */
+  name: Scalars['String'];
 };
 
+/** All input for the `updatePostTag` mutation. */
 export type UpdatePostTagInput = {
-  clientMutationId?: Maybe<Scalars['String']>,
-  nodeId: Scalars['ID'],
-  postTagPatch: PostTagPatch,
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: Maybe<Scalars['String']>;
+  /** The globally unique `ID` which will identify a single `PostTag` to be updated. */
+  nodeId: Scalars['ID'];
+  /** An object where the defined keys will be set on the `PostTag` being updated. */
+  postTagPatch: PostTagPatch;
 };
 
+/** The output of our update `PostTag` mutation. */
 export type UpdatePostTagPayload = {
-   __typename?: 'UpdatePostTagPayload',
-  clientMutationId?: Maybe<Scalars['String']>,
-  postTag?: Maybe<PostTag>,
-  query?: Maybe<Query>,
-  postTagEdge?: Maybe<PostTagsEdge>,
+  __typename?: 'UpdatePostTagPayload';
+  /**
+   * The exact same `clientMutationId` that was provided in the mutation input,
+   * unchanged and unused. May be used by a client to track mutations.
+   */
+  clientMutationId?: Maybe<Scalars['String']>;
+  /** The `PostTag` that was updated by this mutation. */
+  postTag?: Maybe<PostTag>;
+  /** Our root query field type. Allows us to run any query from our mutation payload. */
+  query?: Maybe<Query>;
+  /** An edge for our `PostTag`. May be used by Relay 1. */
+  postTagEdge?: Maybe<PostTagsEdge>;
 };
 
 
+/** The output of our update `PostTag` mutation. */
 export type UpdatePostTagPayloadPostTagEdgeArgs = {
-  orderBy?: Maybe<Array<PostTagsOrderBy>>
+  orderBy?: Maybe<Array<PostTagsOrderBy>>;
 };
 
+/** All input for the `updatePostToTagById` mutation. */
 export type UpdatePostToTagByIdInput = {
-  clientMutationId?: Maybe<Scalars['String']>,
-  postToTagPatch: PostToTagPatch,
-  id: Scalars['Int'],
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: Maybe<Scalars['String']>;
+  /** An object where the defined keys will be set on the `PostToTag` being updated. */
+  postToTagPatch: PostToTagPatch;
+  /** Id of the row */
+  id: Scalars['Int'];
 };
 
+/** All input for the `updatePostToTag` mutation. */
 export type UpdatePostToTagInput = {
-  clientMutationId?: Maybe<Scalars['String']>,
-  nodeId: Scalars['ID'],
-  postToTagPatch: PostToTagPatch,
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: Maybe<Scalars['String']>;
+  /** The globally unique `ID` which will identify a single `PostToTag` to be updated. */
+  nodeId: Scalars['ID'];
+  /** An object where the defined keys will be set on the `PostToTag` being updated. */
+  postToTagPatch: PostToTagPatch;
 };
 
+/** The output of our update `PostToTag` mutation. */
 export type UpdatePostToTagPayload = {
-   __typename?: 'UpdatePostToTagPayload',
-  clientMutationId?: Maybe<Scalars['String']>,
-  postToTag?: Maybe<PostToTag>,
-  query?: Maybe<Query>,
-  postByPostId?: Maybe<Post>,
-  postTagByPostTagId?: Maybe<PostTag>,
-  postToTagEdge?: Maybe<PostToTagsEdge>,
+  __typename?: 'UpdatePostToTagPayload';
+  /**
+   * The exact same `clientMutationId` that was provided in the mutation input,
+   * unchanged and unused. May be used by a client to track mutations.
+   */
+  clientMutationId?: Maybe<Scalars['String']>;
+  /** The `PostToTag` that was updated by this mutation. */
+  postToTag?: Maybe<PostToTag>;
+  /** Our root query field type. Allows us to run any query from our mutation payload. */
+  query?: Maybe<Query>;
+  /** Reads a single `Post` that is related to this `PostToTag`. */
+  postByPostId?: Maybe<Post>;
+  /** Reads a single `PostTag` that is related to this `PostToTag`. */
+  postTagByPostTagId?: Maybe<PostTag>;
+  /** An edge for our `PostToTag`. May be used by Relay 1. */
+  postToTagEdge?: Maybe<PostToTagsEdge>;
 };
 
 
+/** The output of our update `PostToTag` mutation. */
 export type UpdatePostToTagPayloadPostToTagEdgeArgs = {
-  orderBy?: Maybe<Array<PostToTagsOrderBy>>
+  orderBy?: Maybe<Array<PostToTagsOrderBy>>;
 };
 
+/** All input for the `updateTrackById` mutation. */
 export type UpdateTrackByIdInput = {
-  clientMutationId?: Maybe<Scalars['String']>,
-  trackPatch: TrackPatch,
-  id: Scalars['Int'],
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: Maybe<Scalars['String']>;
+  /** An object where the defined keys will be set on the `Track` being updated. */
+  trackPatch: TrackPatch;
+  /** Primary id for the track */
+  id: Scalars['Int'];
 };
 
+/** All input for the `updateTrack` mutation. */
 export type UpdateTrackInput = {
-  clientMutationId?: Maybe<Scalars['String']>,
-  nodeId: Scalars['ID'],
-  trackPatch: TrackPatch,
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: Maybe<Scalars['String']>;
+  /** The globally unique `ID` which will identify a single `Track` to be updated. */
+  nodeId: Scalars['ID'];
+  /** An object where the defined keys will be set on the `Track` being updated. */
+  trackPatch: TrackPatch;
 };
 
+/** The output of our update `Track` mutation. */
 export type UpdateTrackPayload = {
-   __typename?: 'UpdateTrackPayload',
-  clientMutationId?: Maybe<Scalars['String']>,
-  track?: Maybe<Track>,
-  query?: Maybe<Query>,
-  accountByUserId?: Maybe<Account>,
-  accountByTrackUserId?: Maybe<Account>,
-  trackEdge?: Maybe<TracksEdge>,
+  __typename?: 'UpdateTrackPayload';
+  /**
+   * The exact same `clientMutationId` that was provided in the mutation input,
+   * unchanged and unused. May be used by a client to track mutations.
+   */
+  clientMutationId?: Maybe<Scalars['String']>;
+  /** The `Track` that was updated by this mutation. */
+  track?: Maybe<Track>;
+  /** Our root query field type. Allows us to run any query from our mutation payload. */
+  query?: Maybe<Query>;
+  /** Reads a single `Account` that is related to this `Track`. */
+  accountByUserId?: Maybe<Account>;
+  /** Reads a single `Account` that is related to this `Track`. */
+  accountByTrackUserId?: Maybe<Account>;
+  /** An edge for our `Track`. May be used by Relay 1. */
+  trackEdge?: Maybe<TracksEdge>;
 };
 
 
+/** The output of our update `Track` mutation. */
 export type UpdateTrackPayloadTrackEdgeArgs = {
-  orderBy?: Maybe<Array<TracksOrderBy>>
+  orderBy?: Maybe<Array<TracksOrderBy>>;
 };
 
+/** All input for the `updateTripById` mutation. */
 export type UpdateTripByIdInput = {
-  clientMutationId?: Maybe<Scalars['String']>,
-  tripPatch: TripPatch,
-  id: Scalars['Int'],
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: Maybe<Scalars['String']>;
+  /** An object where the defined keys will be set on the `Trip` being updated. */
+  tripPatch: TripPatch;
+  /** Primary id for trip */
+  id: Scalars['Int'];
 };
 
+/** All input for the `updateTrip` mutation. */
 export type UpdateTripInput = {
-  clientMutationId?: Maybe<Scalars['String']>,
-  nodeId: Scalars['ID'],
-  tripPatch: TripPatch,
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: Maybe<Scalars['String']>;
+  /** The globally unique `ID` which will identify a single `Trip` to be updated. */
+  nodeId: Scalars['ID'];
+  /** An object where the defined keys will be set on the `Trip` being updated. */
+  tripPatch: TripPatch;
 };
 
+/** The output of our update `Trip` mutation. */
 export type UpdateTripPayload = {
-   __typename?: 'UpdateTripPayload',
-  clientMutationId?: Maybe<Scalars['String']>,
-  trip?: Maybe<Trip>,
-  query?: Maybe<Query>,
-  accountByUserId?: Maybe<Account>,
-  tripEdge?: Maybe<TripsEdge>,
+  __typename?: 'UpdateTripPayload';
+  /**
+   * The exact same `clientMutationId` that was provided in the mutation input,
+   * unchanged and unused. May be used by a client to track mutations.
+   */
+  clientMutationId?: Maybe<Scalars['String']>;
+  /** The `Trip` that was updated by this mutation. */
+  trip?: Maybe<Trip>;
+  /** Our root query field type. Allows us to run any query from our mutation payload. */
+  query?: Maybe<Query>;
+  /** Reads a single `Account` that is related to this `Trip`. */
+  accountByUserId?: Maybe<Account>;
+  /** An edge for our `Trip`. May be used by Relay 1. */
+  tripEdge?: Maybe<TripsEdge>;
 };
 
 
+/** The output of our update `Trip` mutation. */
 export type UpdateTripPayloadTripEdgeArgs = {
-  orderBy?: Maybe<Array<TripsOrderBy>>
+  orderBy?: Maybe<Array<TripsOrderBy>>;
 };
 
+/** All input for the `updateUserAccountByAccountId` mutation. */
 export type UpdateUserAccountByAccountIdInput = {
-  clientMutationId?: Maybe<Scalars['String']>,
-  userAccountPatch: UserAccountPatch,
-  accountId: Scalars['Int'],
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: Maybe<Scalars['String']>;
+  /** An object where the defined keys will be set on the `UserAccount` being updated. */
+  userAccountPatch: UserAccountPatch;
+  /** The id of the user associated with this account. */
+  accountId: Scalars['Int'];
 };
 
+/** All input for the `updateUserAccountByEmail` mutation. */
 export type UpdateUserAccountByEmailInput = {
-  clientMutationId?: Maybe<Scalars['String']>,
-  userAccountPatch: UserAccountPatch,
-  email: Scalars['String'],
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: Maybe<Scalars['String']>;
+  /** An object where the defined keys will be set on the `UserAccount` being updated. */
+  userAccountPatch: UserAccountPatch;
+  /** The email address of the account. */
+  email: Scalars['String'];
 };
 
+/** All input for the `updateUserAccount` mutation. */
 export type UpdateUserAccountInput = {
-  clientMutationId?: Maybe<Scalars['String']>,
-  nodeId: Scalars['ID'],
-  userAccountPatch: UserAccountPatch,
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: Maybe<Scalars['String']>;
+  /** The globally unique `ID` which will identify a single `UserAccount` to be updated. */
+  nodeId: Scalars['ID'];
+  /** An object where the defined keys will be set on the `UserAccount` being updated. */
+  userAccountPatch: UserAccountPatch;
 };
 
+/** The output of our update `UserAccount` mutation. */
 export type UpdateUserAccountPayload = {
-   __typename?: 'UpdateUserAccountPayload',
-  clientMutationId?: Maybe<Scalars['String']>,
-  userAccount?: Maybe<UserAccount>,
-  query?: Maybe<Query>,
-  accountByAccountId?: Maybe<Account>,
-  userAccountEdge?: Maybe<UserAccountsEdge>,
+  __typename?: 'UpdateUserAccountPayload';
+  /**
+   * The exact same `clientMutationId` that was provided in the mutation input,
+   * unchanged and unused. May be used by a client to track mutations.
+   */
+  clientMutationId?: Maybe<Scalars['String']>;
+  /** The `UserAccount` that was updated by this mutation. */
+  userAccount?: Maybe<UserAccount>;
+  /** Our root query field type. Allows us to run any query from our mutation payload. */
+  query?: Maybe<Query>;
+  /** Reads a single `Account` that is related to this `UserAccount`. */
+  accountByAccountId?: Maybe<Account>;
+  /** An edge for our `UserAccount`. May be used by Relay 1. */
+  userAccountEdge?: Maybe<UserAccountsEdge>;
 };
 
 
+/** The output of our update `UserAccount` mutation. */
 export type UpdateUserAccountPayloadUserAccountEdgeArgs = {
-  orderBy?: Maybe<Array<UserAccountsOrderBy>>
+  orderBy?: Maybe<Array<UserAccountsOrderBy>>;
 };
 
+/** All input for the `updateUserToCountryById` mutation. */
 export type UpdateUserToCountryByIdInput = {
-  clientMutationId?: Maybe<Scalars['String']>,
-  userToCountryPatch: UserToCountryPatch,
-  id: Scalars['Int'],
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: Maybe<Scalars['String']>;
+  /** An object where the defined keys will be set on the `UserToCountry` being updated. */
+  userToCountryPatch: UserToCountryPatch;
+  /** Id for user to country connection */
+  id: Scalars['Int'];
 };
 
+/** All input for the `updateUserToCountry` mutation. */
 export type UpdateUserToCountryInput = {
-  clientMutationId?: Maybe<Scalars['String']>,
-  nodeId: Scalars['ID'],
-  userToCountryPatch: UserToCountryPatch,
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: Maybe<Scalars['String']>;
+  /** The globally unique `ID` which will identify a single `UserToCountry` to be updated. */
+  nodeId: Scalars['ID'];
+  /** An object where the defined keys will be set on the `UserToCountry` being updated. */
+  userToCountryPatch: UserToCountryPatch;
 };
 
+/** The output of our update `UserToCountry` mutation. */
 export type UpdateUserToCountryPayload = {
-   __typename?: 'UpdateUserToCountryPayload',
-  clientMutationId?: Maybe<Scalars['String']>,
-  userToCountry?: Maybe<UserToCountry>,
-  query?: Maybe<Query>,
-  accountByUserId?: Maybe<Account>,
-  countryByCountry?: Maybe<Country>,
-  userToCountryEdge?: Maybe<UserToCountriesEdge>,
+  __typename?: 'UpdateUserToCountryPayload';
+  /**
+   * The exact same `clientMutationId` that was provided in the mutation input,
+   * unchanged and unused. May be used by a client to track mutations.
+   */
+  clientMutationId?: Maybe<Scalars['String']>;
+  /** The `UserToCountry` that was updated by this mutation. */
+  userToCountry?: Maybe<UserToCountry>;
+  /** Our root query field type. Allows us to run any query from our mutation payload. */
+  query?: Maybe<Query>;
+  /** Reads a single `Account` that is related to this `UserToCountry`. */
+  accountByUserId?: Maybe<Account>;
+  /** Reads a single `Country` that is related to this `UserToCountry`. */
+  countryByCountry?: Maybe<Country>;
+  /** An edge for our `UserToCountry`. May be used by Relay 1. */
+  userToCountryEdge?: Maybe<UserToCountriesEdge>;
 };
 
 
+/** The output of our update `UserToCountry` mutation. */
 export type UpdateUserToCountryPayloadUserToCountryEdgeArgs = {
-  orderBy?: Maybe<Array<UserToCountriesOrderBy>>
+  orderBy?: Maybe<Array<UserToCountriesOrderBy>>;
 };
 
+/** Private information about a user’s account. */
 export type UserAccount = Node & {
-   __typename?: 'UserAccount',
-  nodeId: Scalars['ID'],
-  accountId: Scalars['Int'],
-  email: Scalars['String'],
-  passwordHash: Scalars['String'],
-  accountByAccountId?: Maybe<Account>,
+  __typename?: 'UserAccount';
+  /** A globally unique identifier. Can be used in various places throughout the system to identify this single value. */
+  nodeId: Scalars['ID'];
+  /** The id of the user associated with this account. */
+  accountId: Scalars['Int'];
+  /** The email address of the account. */
+  email: Scalars['String'];
+  /** An opaque hash of the account’s password. */
+  passwordHash: Scalars['String'];
+  /** Reads a single `Account` that is related to this `UserAccount`. */
+  accountByAccountId?: Maybe<Account>;
 };
 
+/**
+ * A condition to be used against `UserAccount` object types. All fields are tested
+ * for equality and combined with a logical ‘and.’
+ */
 export type UserAccountCondition = {
-  accountId?: Maybe<Scalars['Int']>,
-  email?: Maybe<Scalars['String']>,
-  passwordHash?: Maybe<Scalars['String']>,
+  /** Checks for equality with the object’s `accountId` field. */
+  accountId?: Maybe<Scalars['Int']>;
+  /** Checks for equality with the object’s `email` field. */
+  email?: Maybe<Scalars['String']>;
+  /** Checks for equality with the object’s `passwordHash` field. */
+  passwordHash?: Maybe<Scalars['String']>;
 };
 
+/** A filter to be used against `UserAccount` object types. All fields are combined with a logical ‘and.’ */
 export type UserAccountFilter = {
-  accountId?: Maybe<IntFilter>,
-  email?: Maybe<StringFilter>,
-  passwordHash?: Maybe<StringFilter>,
-  and?: Maybe<Array<UserAccountFilter>>,
-  or?: Maybe<Array<UserAccountFilter>>,
-  not?: Maybe<UserAccountFilter>,
+  /** Filter by the object’s `accountId` field. */
+  accountId?: Maybe<IntFilter>;
+  /** Filter by the object’s `email` field. */
+  email?: Maybe<StringFilter>;
+  /** Filter by the object’s `passwordHash` field. */
+  passwordHash?: Maybe<StringFilter>;
+  /** Checks for all expressions in this list. */
+  and?: Maybe<Array<UserAccountFilter>>;
+  /** Checks for any expressions in this list. */
+  or?: Maybe<Array<UserAccountFilter>>;
+  /** Negates the expression. */
+  not?: Maybe<UserAccountFilter>;
 };
 
+/** An input for mutations affecting `UserAccount` */
 export type UserAccountInput = {
-  accountId: Scalars['Int'],
-  email: Scalars['String'],
-  passwordHash: Scalars['String'],
+  /** The id of the user associated with this account. */
+  accountId: Scalars['Int'];
+  /** The email address of the account. */
+  email: Scalars['String'];
+  /** An opaque hash of the account’s password. */
+  passwordHash: Scalars['String'];
 };
 
+/** Represents an update to a `UserAccount`. Fields that are set will be updated. */
 export type UserAccountPatch = {
-  accountId?: Maybe<Scalars['Int']>,
-  email?: Maybe<Scalars['String']>,
-  passwordHash?: Maybe<Scalars['String']>,
+  /** The id of the user associated with this account. */
+  accountId?: Maybe<Scalars['Int']>;
+  /** The email address of the account. */
+  email?: Maybe<Scalars['String']>;
+  /** An opaque hash of the account’s password. */
+  passwordHash?: Maybe<Scalars['String']>;
 };
 
+/** A connection to a list of `UserAccount` values. */
 export type UserAccountsConnection = {
-   __typename?: 'UserAccountsConnection',
-  nodes: Array<Maybe<UserAccount>>,
-  edges: Array<UserAccountsEdge>,
-  pageInfo: PageInfo,
-  totalCount: Scalars['Int'],
+  __typename?: 'UserAccountsConnection';
+  /** A list of `UserAccount` objects. */
+  nodes: Array<Maybe<UserAccount>>;
+  /** A list of edges which contains the `UserAccount` and cursor to aid in pagination. */
+  edges: Array<UserAccountsEdge>;
+  /** Information to aid in pagination. */
+  pageInfo: PageInfo;
+  /** The count of *all* `UserAccount` you could get from the connection. */
+  totalCount: Scalars['Int'];
 };
 
+/** A `UserAccount` edge in the connection. */
 export type UserAccountsEdge = {
-   __typename?: 'UserAccountsEdge',
-  cursor?: Maybe<Scalars['Cursor']>,
-  node?: Maybe<UserAccount>,
+  __typename?: 'UserAccountsEdge';
+  /** A cursor for use in pagination. */
+  cursor?: Maybe<Scalars['Cursor']>;
+  /** The `UserAccount` at the end of the edge. */
+  node?: Maybe<UserAccount>;
 };
 
+/** Methods to use when ordering `UserAccount`. */
 export enum UserAccountsOrderBy {
   Natural = 'NATURAL',
   AccountIdAsc = 'ACCOUNT_ID_ASC',
@@ -4927,20 +7716,29 @@ export enum UserAccountsOrderBy {
   PrimaryKeyDesc = 'PRIMARY_KEY_DESC'
 }
 
+/** A connection to a list of `UserToCountry` values. */
 export type UserToCountriesConnection = {
-   __typename?: 'UserToCountriesConnection',
-  nodes: Array<Maybe<UserToCountry>>,
-  edges: Array<UserToCountriesEdge>,
-  pageInfo: PageInfo,
-  totalCount: Scalars['Int'],
+  __typename?: 'UserToCountriesConnection';
+  /** A list of `UserToCountry` objects. */
+  nodes: Array<Maybe<UserToCountry>>;
+  /** A list of edges which contains the `UserToCountry` and cursor to aid in pagination. */
+  edges: Array<UserToCountriesEdge>;
+  /** Information to aid in pagination. */
+  pageInfo: PageInfo;
+  /** The count of *all* `UserToCountry` you could get from the connection. */
+  totalCount: Scalars['Int'];
 };
 
+/** A `UserToCountry` edge in the connection. */
 export type UserToCountriesEdge = {
-   __typename?: 'UserToCountriesEdge',
-  cursor?: Maybe<Scalars['Cursor']>,
-  node?: Maybe<UserToCountry>,
+  __typename?: 'UserToCountriesEdge';
+  /** A cursor for use in pagination. */
+  cursor?: Maybe<Scalars['Cursor']>;
+  /** The `UserToCountry` at the end of the edge. */
+  node?: Maybe<UserToCountry>;
 };
 
+/** Methods to use when ordering `UserToCountry`. */
 export enum UserToCountriesOrderBy {
   Natural = 'NATURAL',
   IdAsc = 'ID_ASC',
@@ -4955,46 +7753,80 @@ export enum UserToCountriesOrderBy {
   PrimaryKeyDesc = 'PRIMARY_KEY_DESC'
 }
 
+/** Table with user to country one to many */
 export type UserToCountry = Node & {
-   __typename?: 'UserToCountry',
-  nodeId: Scalars['ID'],
-  id: Scalars['Int'],
-  userId: Scalars['Int'],
-  country: Scalars['String'],
-  createdAt?: Maybe<Scalars['Datetime']>,
-  accountByUserId?: Maybe<Account>,
-  countryByCountry?: Maybe<Country>,
+  __typename?: 'UserToCountry';
+  /** A globally unique identifier. Can be used in various places throughout the system to identify this single value. */
+  nodeId: Scalars['ID'];
+  /** Id for user to country connection */
+  id: Scalars['Int'];
+  /** user of connection */
+  userId: Scalars['Int'];
+  /** Country user has visited */
+  country: Scalars['String'];
+  /** Timestamp connection created */
+  createdAt?: Maybe<Scalars['Datetime']>;
+  /** Reads a single `Account` that is related to this `UserToCountry`. */
+  accountByUserId?: Maybe<Account>;
+  /** Reads a single `Country` that is related to this `UserToCountry`. */
+  countryByCountry?: Maybe<Country>;
 };
 
+/**
+ * A condition to be used against `UserToCountry` object types. All fields are
+ * tested for equality and combined with a logical ‘and.’
+ */
 export type UserToCountryCondition = {
-  id?: Maybe<Scalars['Int']>,
-  userId?: Maybe<Scalars['Int']>,
-  country?: Maybe<Scalars['String']>,
-  createdAt?: Maybe<Scalars['Datetime']>,
+  /** Checks for equality with the object’s `id` field. */
+  id?: Maybe<Scalars['Int']>;
+  /** Checks for equality with the object’s `userId` field. */
+  userId?: Maybe<Scalars['Int']>;
+  /** Checks for equality with the object’s `country` field. */
+  country?: Maybe<Scalars['String']>;
+  /** Checks for equality with the object’s `createdAt` field. */
+  createdAt?: Maybe<Scalars['Datetime']>;
 };
 
+/** A filter to be used against `UserToCountry` object types. All fields are combined with a logical ‘and.’ */
 export type UserToCountryFilter = {
-  id?: Maybe<IntFilter>,
-  userId?: Maybe<IntFilter>,
-  country?: Maybe<StringFilter>,
-  createdAt?: Maybe<DatetimeFilter>,
-  and?: Maybe<Array<UserToCountryFilter>>,
-  or?: Maybe<Array<UserToCountryFilter>>,
-  not?: Maybe<UserToCountryFilter>,
+  /** Filter by the object’s `id` field. */
+  id?: Maybe<IntFilter>;
+  /** Filter by the object’s `userId` field. */
+  userId?: Maybe<IntFilter>;
+  /** Filter by the object’s `country` field. */
+  country?: Maybe<StringFilter>;
+  /** Filter by the object’s `createdAt` field. */
+  createdAt?: Maybe<DatetimeFilter>;
+  /** Checks for all expressions in this list. */
+  and?: Maybe<Array<UserToCountryFilter>>;
+  /** Checks for any expressions in this list. */
+  or?: Maybe<Array<UserToCountryFilter>>;
+  /** Negates the expression. */
+  not?: Maybe<UserToCountryFilter>;
 };
 
+/** An input for mutations affecting `UserToCountry` */
 export type UserToCountryInput = {
-  id?: Maybe<Scalars['Int']>,
-  userId: Scalars['Int'],
-  country: Scalars['String'],
-  createdAt?: Maybe<Scalars['Datetime']>,
+  /** Id for user to country connection */
+  id?: Maybe<Scalars['Int']>;
+  /** user of connection */
+  userId: Scalars['Int'];
+  /** Country user has visited */
+  country: Scalars['String'];
+  /** Timestamp connection created */
+  createdAt?: Maybe<Scalars['Datetime']>;
 };
 
+/** Represents an update to a `UserToCountry`. Fields that are set will be updated. */
 export type UserToCountryPatch = {
-  id?: Maybe<Scalars['Int']>,
-  userId?: Maybe<Scalars['Int']>,
-  country?: Maybe<Scalars['String']>,
-  createdAt?: Maybe<Scalars['Datetime']>,
+  /** Id for user to country connection */
+  id?: Maybe<Scalars['Int']>;
+  /** user of connection */
+  userId?: Maybe<Scalars['Int']>;
+  /** Country user has visited */
+  country?: Maybe<Scalars['String']>;
+  /** Timestamp connection created */
+  createdAt?: Maybe<Scalars['Datetime']>;
 };
 
 export type AccountByAuthorFragment = (
@@ -5005,7 +7837,7 @@ export type AccountByAuthorFragment = (
 export type ImagesByPostIdFragment = (
   { __typename?: 'Image' }
   & Pick<Image, 'id' | 'url' | 'type'>
-  & { accountByUserId: Maybe<(
+  & { accountByUserId?: Maybe<(
     { __typename?: 'Account' }
     & Pick<Account, 'id'>
   )> }
@@ -5014,7 +7846,7 @@ export type ImagesByPostIdFragment = (
 export type ImageFragment = (
   { __typename?: 'Image' }
   & Pick<Image, 'id' | 'url' | 'description' | 'title' | 'type'>
-  & { accountByUserId: Maybe<(
+  & { accountByUserId?: Maybe<(
     { __typename?: 'Account' }
     & Pick<Account, 'id' | 'username'>
   )>, likesByUser: (
@@ -5037,7 +7869,7 @@ export type JunctureDataFragment = (
     & { nodes: Array<Maybe<(
       { __typename?: 'Post' }
       & Pick<Post, 'id' | 'title' | 'publishedDate'>
-      & { accountByAuthor: Maybe<(
+      & { accountByAuthor?: Maybe<(
         { __typename?: 'Account' }
         & AccountByAuthorFragment
       )>, imagesByPostId: (
@@ -5045,7 +7877,7 @@ export type JunctureDataFragment = (
         & { nodes: Array<Maybe<(
           { __typename?: 'Image' }
           & Pick<Image, 'id' | 'url' | 'type'>
-          & { accountByUserId: Maybe<(
+          & { accountByUserId?: Maybe<(
             { __typename?: 'Account' }
             & Pick<Account, 'id'>
           )> }
@@ -5057,7 +7889,7 @@ export type JunctureDataFragment = (
     & { nodes: Array<Maybe<(
       { __typename?: 'Image' }
       & Pick<Image, 'id' | 'postId' | 'type' | 'url' | 'description'>
-      & { accountByUserId: Maybe<(
+      & { accountByUserId?: Maybe<(
         { __typename?: 'Account' }
         & Pick<Account, 'id' | 'username'>
       )>, likesByUser: (
@@ -5101,87 +7933,87 @@ export type TripsByUserIdFragment = (
 );
 
 export type AuthAdminAccountMutationVariables = {
-  email: Scalars['String'],
-  password: Scalars['String']
+  email: Scalars['String'];
+  password: Scalars['String'];
 };
 
 
 export type AuthAdminAccountMutation = (
   { __typename?: 'Mutation' }
-  & { authenticateAdminAccount: Maybe<(
+  & { authenticateAdminAccount?: Maybe<(
     { __typename?: 'AuthenticateAdminAccountPayload' }
     & Pick<AuthenticateAdminAccountPayload, 'jwtToken'>
   )> }
 );
 
 export type AuthUserAccountMutationVariables = {
-  email: Scalars['String'],
-  password: Scalars['String']
+  email: Scalars['String'];
+  password: Scalars['String'];
 };
 
 
 export type AuthUserAccountMutation = (
   { __typename?: 'Mutation' }
-  & { authenticateUserAccount: Maybe<(
+  & { authenticateUserAccount?: Maybe<(
     { __typename?: 'AuthenticateUserAccountPayload' }
     & Pick<AuthenticateUserAccountPayload, 'jwtToken'>
   )> }
 );
 
 export type CreateEmailListEntryMutationVariables = {
-  email: Scalars['String']
+  email: Scalars['String'];
 };
 
 
 export type CreateEmailListEntryMutation = (
   { __typename?: 'Mutation' }
-  & { createEmailList: Maybe<(
+  & { createEmailList?: Maybe<(
     { __typename?: 'CreateEmailListPayload' }
     & Pick<CreateEmailListPayload, 'clientMutationId'>
   )> }
 );
 
 export type CreateImageMutationVariables = {
-  tripId?: Maybe<Scalars['Int']>,
-  junctureId?: Maybe<Scalars['Int']>,
-  postId?: Maybe<Scalars['Int']>,
-  userId: Scalars['Int'],
-  type: ImageType,
-  url: Scalars['String'],
-  title?: Maybe<Scalars['String']>,
-  description?: Maybe<Scalars['String']>
+  tripId?: Maybe<Scalars['Int']>;
+  junctureId?: Maybe<Scalars['Int']>;
+  postId?: Maybe<Scalars['Int']>;
+  userId: Scalars['Int'];
+  type: ImageType;
+  url: Scalars['String'];
+  title?: Maybe<Scalars['String']>;
+  description?: Maybe<Scalars['String']>;
 };
 
 
 export type CreateImageMutation = (
   { __typename?: 'Mutation' }
-  & { createImage: Maybe<(
+  & { createImage?: Maybe<(
     { __typename?: 'CreateImagePayload' }
     & Pick<CreateImagePayload, 'clientMutationId'>
   )> }
 );
 
 export type CreateJunctureMutationVariables = {
-  userId: Scalars['Int'],
-  tripId: Scalars['Int'],
-  type: JunctureType,
-  name: Scalars['String'],
-  arrivalDate: Scalars['BigInt'],
-  description?: Maybe<Scalars['String']>,
-  lat: Scalars['BigFloat'],
-  lon: Scalars['BigFloat'],
-  city?: Maybe<Scalars['String']>,
-  country?: Maybe<Scalars['String']>,
-  isDraft?: Maybe<Scalars['Boolean']>,
-  markerImg?: Maybe<Scalars['String']>
+  userId: Scalars['Int'];
+  tripId: Scalars['Int'];
+  type: JunctureType;
+  name: Scalars['String'];
+  arrivalDate: Scalars['BigInt'];
+  description?: Maybe<Scalars['String']>;
+  lat: Scalars['BigFloat'];
+  lon: Scalars['BigFloat'];
+  city?: Maybe<Scalars['String']>;
+  country?: Maybe<Scalars['String']>;
+  isDraft?: Maybe<Scalars['Boolean']>;
+  markerImg?: Maybe<Scalars['String']>;
 };
 
 
 export type CreateJunctureMutation = (
   { __typename?: 'Mutation' }
-  & { createJuncture: Maybe<(
+  & { createJuncture?: Maybe<(
     { __typename?: 'CreateJuncturePayload' }
-    & { juncture: Maybe<(
+    & { juncture?: Maybe<(
       { __typename?: 'Juncture' }
       & Pick<Juncture, 'id'>
     )> }
@@ -5189,21 +8021,21 @@ export type CreateJunctureMutation = (
 );
 
 export type CreateLikeMutationVariables = {
-  tripId?: Maybe<Scalars['Int']>,
-  junctureId?: Maybe<Scalars['Int']>,
-  postId?: Maybe<Scalars['Int']>,
-  imageId?: Maybe<Scalars['Int']>,
-  userId: Scalars['Int']
+  tripId?: Maybe<Scalars['Int']>;
+  junctureId?: Maybe<Scalars['Int']>;
+  postId?: Maybe<Scalars['Int']>;
+  imageId?: Maybe<Scalars['Int']>;
+  userId: Scalars['Int'];
 };
 
 
 export type CreateLikeMutation = (
   { __typename?: 'Mutation' }
-  & { createLike: Maybe<(
+  & { createLike?: Maybe<(
     { __typename?: 'CreateLikePayload' }
-    & { likeEdge: Maybe<(
+    & { likeEdge?: Maybe<(
       { __typename?: 'LikesEdge' }
-      & { node: Maybe<(
+      & { node?: Maybe<(
         { __typename?: 'Like' }
         & Pick<Like, 'id'>
       )> }
@@ -5212,27 +8044,27 @@ export type CreateLikeMutation = (
 );
 
 export type CreatePostMutationVariables = {
-  author: Scalars['Int'],
-  title: Scalars['String'],
-  subtitle: Scalars['String'],
-  content: Scalars['String'],
-  isDraft: Scalars['Boolean'],
-  isScheduled: Scalars['Boolean'],
-  isPublished: Scalars['Boolean'],
-  tripId?: Maybe<Scalars['Int']>,
-  city?: Maybe<Scalars['String']>,
-  country?: Maybe<Scalars['String']>,
-  junctureId?: Maybe<Scalars['Int']>,
-  scheduledDate?: Maybe<Scalars['BigInt']>,
-  publishedDate?: Maybe<Scalars['BigInt']>
+  author: Scalars['Int'];
+  title: Scalars['String'];
+  subtitle: Scalars['String'];
+  content: Scalars['String'];
+  isDraft: Scalars['Boolean'];
+  isScheduled: Scalars['Boolean'];
+  isPublished: Scalars['Boolean'];
+  tripId?: Maybe<Scalars['Int']>;
+  city?: Maybe<Scalars['String']>;
+  country?: Maybe<Scalars['String']>;
+  junctureId?: Maybe<Scalars['Int']>;
+  scheduledDate?: Maybe<Scalars['BigInt']>;
+  publishedDate?: Maybe<Scalars['BigInt']>;
 };
 
 
 export type CreatePostMutation = (
   { __typename?: 'Mutation' }
-  & { createPost: Maybe<(
+  & { createPost?: Maybe<(
     { __typename?: 'CreatePostPayload' }
-    & { post: Maybe<(
+    & { post?: Maybe<(
       { __typename?: 'Post' }
       & Pick<Post, 'id'>
     )> }
@@ -5240,16 +8072,16 @@ export type CreatePostMutation = (
 );
 
 export type CreatePostTagMutationVariables = {
-  name: Scalars['String'],
-  tagDescription?: Maybe<Scalars['String']>
+  name: Scalars['String'];
+  tagDescription?: Maybe<Scalars['String']>;
 };
 
 
 export type CreatePostTagMutation = (
   { __typename?: 'Mutation' }
-  & { createPostTag: Maybe<(
+  & { createPostTag?: Maybe<(
     { __typename?: 'CreatePostTagPayload' }
-    & { postTag: Maybe<(
+    & { postTag?: Maybe<(
       { __typename?: 'PostTag' }
       & Pick<PostTag, 'name'>
     )> }
@@ -5257,35 +8089,35 @@ export type CreatePostTagMutation = (
 );
 
 export type CreateTrackMutationVariables = {
-  userId: Scalars['Int'],
-  trackUserId: Scalars['Int']
+  userId: Scalars['Int'];
+  trackUserId: Scalars['Int'];
 };
 
 
 export type CreateTrackMutation = (
   { __typename?: 'Mutation' }
-  & { createTrack: Maybe<(
+  & { createTrack?: Maybe<(
     { __typename?: 'CreateTrackPayload' }
     & Pick<CreateTrackPayload, 'clientMutationId'>
   )> }
 );
 
 export type CreateTripMutationVariables = {
-  userId: Scalars['Int'],
-  name: Scalars['String'],
-  description?: Maybe<Scalars['String']>,
-  startDate: Scalars['BigInt'],
-  endDate?: Maybe<Scalars['BigInt']>,
-  startLat: Scalars['BigFloat'],
-  startLon: Scalars['BigFloat']
+  userId: Scalars['Int'];
+  name: Scalars['String'];
+  description?: Maybe<Scalars['String']>;
+  startDate: Scalars['BigInt'];
+  endDate?: Maybe<Scalars['BigInt']>;
+  startLat: Scalars['BigFloat'];
+  startLon: Scalars['BigFloat'];
 };
 
 
 export type CreateTripMutation = (
   { __typename?: 'Mutation' }
-  & { createTrip: Maybe<(
+  & { createTrip?: Maybe<(
     { __typename?: 'CreateTripPayload' }
-    & { trip: Maybe<(
+    & { trip?: Maybe<(
       { __typename?: 'Trip' }
       & Pick<Trip, 'id'>
     )> }
@@ -5293,81 +8125,81 @@ export type CreateTripMutation = (
 );
 
 export type CreateUserToCountryMutationVariables = {
-  code: Scalars['String'],
-  userId: Scalars['Int']
+  code: Scalars['String'];
+  userId: Scalars['Int'];
 };
 
 
 export type CreateUserToCountryMutation = (
   { __typename?: 'Mutation' }
-  & { createUserToCountry: Maybe<(
+  & { createUserToCountry?: Maybe<(
     { __typename?: 'CreateUserToCountryPayload' }
     & Pick<CreateUserToCountryPayload, 'clientMutationId'>
   )> }
 );
 
 export type DeleteAccountMutationVariables = {
-  userId: Scalars['Int']
+  userId: Scalars['Int'];
 };
 
 
 export type DeleteAccountMutation = (
   { __typename?: 'Mutation' }
-  & { deleteAccountById: Maybe<(
+  & { deleteAccountById?: Maybe<(
     { __typename?: 'DeleteAccountPayload' }
     & Pick<DeleteAccountPayload, 'clientMutationId'>
   )> }
 );
 
 export type DeleteImageByIdMutationVariables = {
-  id: Scalars['Int']
+  id: Scalars['Int'];
 };
 
 
 export type DeleteImageByIdMutation = (
   { __typename?: 'Mutation' }
-  & { deleteImageById: Maybe<(
+  & { deleteImageById?: Maybe<(
     { __typename?: 'DeleteImagePayload' }
     & Pick<DeleteImagePayload, 'clientMutationId'>
   )> }
 );
 
 export type DeleteJunctureByIdMutationVariables = {
-  junctureId: Scalars['Int']
+  junctureId: Scalars['Int'];
 };
 
 
 export type DeleteJunctureByIdMutation = (
   { __typename?: 'Mutation' }
-  & { deleteJunctureById: Maybe<(
+  & { deleteJunctureById?: Maybe<(
     { __typename?: 'DeleteJuncturePayload' }
     & Pick<DeleteJuncturePayload, 'clientMutationId'>
   )> }
 );
 
 export type DeleteLikeByIdMutationVariables = {
-  likeId: Scalars['Int']
+  likeId: Scalars['Int'];
 };
 
 
 export type DeleteLikeByIdMutation = (
   { __typename?: 'Mutation' }
-  & { deleteLikeById: Maybe<(
+  & { deleteLikeById?: Maybe<(
     { __typename?: 'DeleteLikePayload' }
     & Pick<DeleteLikePayload, 'clientMutationId'>
   )> }
 );
 
 export type DeletePostByIdMutationVariables = {
-  id: Scalars['Int']
+  id: Scalars['Int'];
 };
 
 
 export type DeletePostByIdMutation = (
   { __typename?: 'Mutation' }
-  & { deletePostById: Maybe<(
+  & { deletePostById?: Maybe<(
     { __typename?: 'DeletePostPayload' }
-    & { post: Maybe<(
+    & { post?: Maybe<(
       { __typename?: 'Post' }
       & Pick<Post, 'title'>
     )> }
@@ -5375,58 +8207,58 @@ export type DeletePostByIdMutation = (
 );
 
 export type DeletePostToTagByIdMutationVariables = {
-  id: Scalars['Int']
+  id: Scalars['Int'];
 };
 
 
 export type DeletePostToTagByIdMutation = (
   { __typename?: 'Mutation' }
-  & { deletePostToTagById: Maybe<(
+  & { deletePostToTagById?: Maybe<(
     { __typename?: 'DeletePostToTagPayload' }
     & Pick<DeletePostToTagPayload, 'clientMutationId'>
   )> }
 );
 
 export type DeleteTrackByIdMutationVariables = {
-  trackId: Scalars['Int']
+  trackId: Scalars['Int'];
 };
 
 
 export type DeleteTrackByIdMutation = (
   { __typename?: 'Mutation' }
-  & { deleteTrackById: Maybe<(
+  & { deleteTrackById?: Maybe<(
     { __typename?: 'DeleteTrackPayload' }
     & Pick<DeleteTrackPayload, 'clientMutationId'>
   )> }
 );
 
 export type DeleteTripByIdMutationVariables = {
-  tripId: Scalars['Int']
+  tripId: Scalars['Int'];
 };
 
 
 export type DeleteTripByIdMutation = (
   { __typename?: 'Mutation' }
-  & { deleteTripById: Maybe<(
+  & { deleteTripById?: Maybe<(
     { __typename?: 'DeleteTripPayload' }
     & Pick<DeleteTripPayload, 'clientMutationId'>
   )> }
 );
 
 export type RegisterAdminAccountMutationVariables = {
-  username: Scalars['String'],
-  firstName: Scalars['String'],
-  lastName: Scalars['String'],
-  password: Scalars['String'],
-  email: Scalars['String']
+  username: Scalars['String'];
+  firstName: Scalars['String'];
+  lastName: Scalars['String'];
+  password: Scalars['String'];
+  email: Scalars['String'];
 };
 
 
 export type RegisterAdminAccountMutation = (
   { __typename?: 'Mutation' }
-  & { registerAdminAccount: Maybe<(
+  & { registerAdminAccount?: Maybe<(
     { __typename?: 'RegisterAdminAccountPayload' }
-    & { account: Maybe<(
+    & { account?: Maybe<(
       { __typename?: 'Account' }
       & AccountByAuthorFragment
     )> }
@@ -5434,19 +8266,19 @@ export type RegisterAdminAccountMutation = (
 );
 
 export type RegisterUserAccountMutationVariables = {
-  username: Scalars['String'],
-  firstName: Scalars['String'],
-  lastName: Scalars['String'],
-  password: Scalars['String'],
-  email: Scalars['String']
+  username: Scalars['String'];
+  firstName: Scalars['String'];
+  lastName: Scalars['String'];
+  password: Scalars['String'];
+  email: Scalars['String'];
 };
 
 
 export type RegisterUserAccountMutation = (
   { __typename?: 'Mutation' }
-  & { registerUserAccount: Maybe<(
+  & { registerUserAccount?: Maybe<(
     { __typename?: 'RegisterUserAccountPayload' }
-    & { account: Maybe<(
+    & { account?: Maybe<(
       { __typename?: 'Account' }
       & AccountByAuthorFragment
     )> }
@@ -5454,36 +8286,36 @@ export type RegisterUserAccountMutation = (
 );
 
 export type ResetPasswordMutationVariables = {
-  email: Scalars['String']
+  email: Scalars['String'];
 };
 
 
 export type ResetPasswordMutation = (
   { __typename?: 'Mutation' }
-  & { resetPassword: Maybe<(
+  & { resetPassword?: Maybe<(
     { __typename?: 'ResetPasswordPayload' }
     & Pick<ResetPasswordPayload, 'string'>
   )> }
 );
 
 export type UpdateAccountByIdMutationVariables = {
-  id: Scalars['Int'],
-  firstName: Scalars['String'],
-  lastName: Scalars['String'],
-  userStatus?: Maybe<Scalars['String']>,
-  heroPhoto?: Maybe<Scalars['String']>,
-  profilePhoto?: Maybe<Scalars['String']>,
-  city?: Maybe<Scalars['String']>,
-  country?: Maybe<Scalars['String']>,
-  autoUpdate: Scalars['Boolean']
+  id: Scalars['Int'];
+  firstName: Scalars['String'];
+  lastName: Scalars['String'];
+  userStatus?: Maybe<Scalars['String']>;
+  heroPhoto?: Maybe<Scalars['String']>;
+  profilePhoto?: Maybe<Scalars['String']>;
+  city?: Maybe<Scalars['String']>;
+  country?: Maybe<Scalars['String']>;
+  autoUpdate: Scalars['Boolean'];
 };
 
 
 export type UpdateAccountByIdMutation = (
   { __typename?: 'Mutation' }
-  & { updateAccountById: Maybe<(
+  & { updateAccountById?: Maybe<(
     { __typename?: 'UpdateAccountPayload' }
-    & { account: Maybe<(
+    & { account?: Maybe<(
       { __typename?: 'Account' }
       & Pick<Account, 'userStatus' | 'heroPhoto' | 'profilePhoto' | 'city' | 'country' | 'autoUpdateLocation'>
       & AccountByAuthorFragment
@@ -5492,43 +8324,43 @@ export type UpdateAccountByIdMutation = (
 );
 
 export type UpdateConfigMutationVariables = {
-  primaryColor: Scalars['String'],
-  secondaryColor: Scalars['String'],
-  tagline: Scalars['String'],
-  heroBanner: Scalars['String']
+  primaryColor: Scalars['String'];
+  secondaryColor: Scalars['String'];
+  tagline: Scalars['String'];
+  heroBanner: Scalars['String'];
 };
 
 
 export type UpdateConfigMutation = (
   { __typename?: 'Mutation' }
-  & { updateConfigById: Maybe<(
+  & { updateConfigById?: Maybe<(
     { __typename?: 'UpdateConfigPayload' }
     & Pick<UpdateConfigPayload, 'clientMutationId'>
   )> }
 );
 
 export type UpdateJunctureMutationVariables = {
-  junctureId: Scalars['Int'],
-  userId?: Maybe<Scalars['Int']>,
-  tripId?: Maybe<Scalars['Int']>,
-  type?: Maybe<JunctureType>,
-  name?: Maybe<Scalars['String']>,
-  arrivalDate?: Maybe<Scalars['BigInt']>,
-  description?: Maybe<Scalars['String']>,
-  lat?: Maybe<Scalars['BigFloat']>,
-  lon?: Maybe<Scalars['BigFloat']>,
-  city?: Maybe<Scalars['String']>,
-  country?: Maybe<Scalars['String']>,
-  isDraft?: Maybe<Scalars['Boolean']>,
-  markerImg?: Maybe<Scalars['String']>
+  junctureId: Scalars['Int'];
+  userId?: Maybe<Scalars['Int']>;
+  tripId?: Maybe<Scalars['Int']>;
+  type?: Maybe<JunctureType>;
+  name?: Maybe<Scalars['String']>;
+  arrivalDate?: Maybe<Scalars['BigInt']>;
+  description?: Maybe<Scalars['String']>;
+  lat?: Maybe<Scalars['BigFloat']>;
+  lon?: Maybe<Scalars['BigFloat']>;
+  city?: Maybe<Scalars['String']>;
+  country?: Maybe<Scalars['String']>;
+  isDraft?: Maybe<Scalars['Boolean']>;
+  markerImg?: Maybe<Scalars['String']>;
 };
 
 
 export type UpdateJunctureMutation = (
   { __typename?: 'Mutation' }
-  & { updateJunctureById: Maybe<(
+  & { updateJunctureById?: Maybe<(
     { __typename?: 'UpdateJuncturePayload' }
-    & { juncture: Maybe<(
+    & { juncture?: Maybe<(
       { __typename?: 'Juncture' }
       & Pick<Juncture, 'id'>
     )> }
@@ -5536,42 +8368,42 @@ export type UpdateJunctureMutation = (
 );
 
 export type UpdatePasswordMutationVariables = {
-  userId: Scalars['Int'],
-  password: Scalars['String'],
-  newPassword: Scalars['String']
+  userId: Scalars['Int'];
+  password: Scalars['String'];
+  newPassword: Scalars['String'];
 };
 
 
 export type UpdatePasswordMutation = (
   { __typename?: 'Mutation' }
-  & { updatePassword: Maybe<(
+  & { updatePassword?: Maybe<(
     { __typename?: 'UpdatePasswordPayload' }
     & Pick<UpdatePasswordPayload, 'boolean'>
   )> }
 );
 
 export type UpdatePostByIdMutationVariables = {
-  postId: Scalars['Int'],
-  title?: Maybe<Scalars['String']>,
-  subtitle?: Maybe<Scalars['String']>,
-  content?: Maybe<Scalars['String']>,
-  tripId?: Maybe<Scalars['Int']>,
-  junctureId?: Maybe<Scalars['Int']>,
-  city?: Maybe<Scalars['String']>,
-  country?: Maybe<Scalars['String']>,
-  isDraft?: Maybe<Scalars['Boolean']>,
-  isScheduled?: Maybe<Scalars['Boolean']>,
-  isPublished?: Maybe<Scalars['Boolean']>,
-  scheduledDate?: Maybe<Scalars['BigInt']>,
-  publishedDate?: Maybe<Scalars['BigInt']>
+  postId: Scalars['Int'];
+  title?: Maybe<Scalars['String']>;
+  subtitle?: Maybe<Scalars['String']>;
+  content?: Maybe<Scalars['String']>;
+  tripId?: Maybe<Scalars['Int']>;
+  junctureId?: Maybe<Scalars['Int']>;
+  city?: Maybe<Scalars['String']>;
+  country?: Maybe<Scalars['String']>;
+  isDraft?: Maybe<Scalars['Boolean']>;
+  isScheduled?: Maybe<Scalars['Boolean']>;
+  isPublished?: Maybe<Scalars['Boolean']>;
+  scheduledDate?: Maybe<Scalars['BigInt']>;
+  publishedDate?: Maybe<Scalars['BigInt']>;
 };
 
 
 export type UpdatePostByIdMutation = (
   { __typename?: 'Mutation' }
-  & { updatePostById: Maybe<(
+  & { updatePostById?: Maybe<(
     { __typename?: 'UpdatePostPayload' }
-    & { post: Maybe<(
+    & { post?: Maybe<(
       { __typename?: 'Post' }
       & Pick<Post, 'id'>
     )> }
@@ -5579,21 +8411,21 @@ export type UpdatePostByIdMutation = (
 );
 
 export type UpdateTripByIdMutationVariables = {
-  tripId: Scalars['Int'],
-  name?: Maybe<Scalars['String']>,
-  description?: Maybe<Scalars['String']>,
-  startDate?: Maybe<Scalars['BigInt']>,
-  endDate?: Maybe<Scalars['BigInt']>,
-  startLat?: Maybe<Scalars['BigFloat']>,
-  startLon?: Maybe<Scalars['BigFloat']>
+  tripId: Scalars['Int'];
+  name?: Maybe<Scalars['String']>;
+  description?: Maybe<Scalars['String']>;
+  startDate?: Maybe<Scalars['BigInt']>;
+  endDate?: Maybe<Scalars['BigInt']>;
+  startLat?: Maybe<Scalars['BigFloat']>;
+  startLon?: Maybe<Scalars['BigFloat']>;
 };
 
 
 export type UpdateTripByIdMutation = (
   { __typename?: 'Mutation' }
-  & { updateTripById: Maybe<(
+  & { updateTripById?: Maybe<(
     { __typename?: 'UpdateTripPayload' }
-    & { trip: Maybe<(
+    & { trip?: Maybe<(
       { __typename?: 'Trip' }
       & Pick<Trip, 'id'>
     )> }
@@ -5601,14 +8433,14 @@ export type UpdateTripByIdMutation = (
 );
 
 export type AccountByUsernameQueryVariables = {
-  username: Scalars['String'],
-  userId?: Maybe<Scalars['Int']>
+  username: Scalars['String'];
+  userId?: Maybe<Scalars['Int']>;
 };
 
 
 export type AccountByUsernameQuery = (
   { __typename?: 'Query' }
-  & { accountByUsername: Maybe<(
+  & { accountByUsername?: Maybe<(
     { __typename?: 'Account' }
     & Pick<Account, 'id' | 'username' | 'firstName' | 'lastName' | 'profilePhoto' | 'heroPhoto' | 'city' | 'country' | 'userStatus'>
     & { postsByAuthor: (
@@ -5616,7 +8448,7 @@ export type AccountByUsernameQuery = (
       & { nodes: Array<Maybe<(
         { __typename?: 'Post' }
         & Pick<Post, 'id' | 'title'>
-        & { accountByAuthor: Maybe<(
+        & { accountByAuthor?: Maybe<(
           { __typename?: 'Account' }
           & AccountByAuthorFragment
         )>, imagesByPostId: (
@@ -5632,7 +8464,7 @@ export type AccountByUsernameQuery = (
       & { nodes: Array<Maybe<(
         { __typename?: 'Image' }
         & Pick<Image, 'id' | 'url' | 'title' | 'type' | 'description'>
-        & { accountByUserId: Maybe<(
+        & { accountByUserId?: Maybe<(
           { __typename?: 'Account' }
           & Pick<Account, 'id' | 'username'>
         )>, likesByUser: (
@@ -5675,7 +8507,7 @@ export type AccountByUsernameQuery = (
       { __typename?: 'UserToCountriesConnection' }
       & { nodes: Array<Maybe<(
         { __typename?: 'UserToCountry' }
-        & { countryByCountry: Maybe<(
+        & { countryByCountry?: Maybe<(
           { __typename?: 'Country' }
           & Pick<Country, 'code' | 'name'>
         )> }
@@ -5689,12 +8521,12 @@ export type AllConfigsQueryVariables = {};
 
 export type AllConfigsQuery = (
   { __typename?: 'Query' }
-  & { allConfigs: Maybe<(
+  & { allConfigs?: Maybe<(
     { __typename?: 'ConfigsConnection' }
     & { nodes: Array<Maybe<(
       { __typename?: 'Config' }
       & Pick<Config, 'primaryColor' | 'secondaryColor' | 'tagline' | 'heroBanner'>
-      & { postByFeaturedStory1: Maybe<(
+      & { postByFeaturedStory1?: Maybe<(
         { __typename?: 'Post' }
         & Pick<Post, 'id' | 'title' | 'subtitle'>
         & { imagesByPostId: (
@@ -5704,7 +8536,7 @@ export type AllConfigsQuery = (
             & Pick<Image, 'url'>
           )>> }
         ) }
-      )>, postByFeaturedStory2: Maybe<(
+      )>, postByFeaturedStory2?: Maybe<(
         { __typename?: 'Post' }
         & Pick<Post, 'id' | 'title' | 'subtitle'>
         & { imagesByPostId: (
@@ -5714,7 +8546,7 @@ export type AllConfigsQuery = (
             & Pick<Image, 'url'>
           )>> }
         ) }
-      )>, postByFeaturedStory3: Maybe<(
+      )>, postByFeaturedStory3?: Maybe<(
         { __typename?: 'Post' }
         & Pick<Post, 'id' | 'title' | 'subtitle'>
         & { imagesByPostId: (
@@ -5724,7 +8556,7 @@ export type AllConfigsQuery = (
             & Pick<Image, 'url'>
           )>> }
         ) }
-      )>, tripByFeaturedTrip1: Maybe<(
+      )>, tripByFeaturedTrip1?: Maybe<(
         { __typename?: 'Trip' }
         & Pick<Trip, 'id' | 'name' | 'startDate' | 'endDate'>
         & { imagesByTripId: (
@@ -5744,7 +8576,7 @@ export type GetAllCountriesQueryVariables = {};
 
 export type GetAllCountriesQuery = (
   { __typename?: 'Query' }
-  & { allCountries: Maybe<(
+  & { allCountries?: Maybe<(
     { __typename?: 'CountriesConnection' }
     & { nodes: Array<Maybe<(
       { __typename?: 'Country' }
@@ -5754,16 +8586,16 @@ export type GetAllCountriesQuery = (
 );
 
 export type AllImagesByTripQueryVariables = {
-  tripId: Scalars['Int'],
-  first?: Maybe<Scalars['Int']>,
-  offset?: Maybe<Scalars['Int']>,
-  userId?: Maybe<Scalars['Int']>
+  tripId: Scalars['Int'];
+  first?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  userId?: Maybe<Scalars['Int']>;
 };
 
 
 export type AllImagesByTripQuery = (
   { __typename?: 'Query' }
-  & { allImages: Maybe<(
+  & { allImages?: Maybe<(
     { __typename?: 'ImagesConnection' }
     & { nodes: Array<Maybe<(
       { __typename?: 'Image' }
@@ -5773,15 +8605,15 @@ export type AllImagesByTripQuery = (
 );
 
 export type AllImagesByUserQueryVariables = {
-  userId?: Maybe<Scalars['Int']>,
-  first?: Maybe<Scalars['Int']>,
-  offset?: Maybe<Scalars['Int']>
+  userId?: Maybe<Scalars['Int']>;
+  first?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
 };
 
 
 export type AllImagesByUserQuery = (
   { __typename?: 'Query' }
-  & { allImages: Maybe<(
+  & { allImages?: Maybe<(
     { __typename?: 'ImagesConnection' }
     & { nodes: Array<Maybe<(
       { __typename?: 'Image' }
@@ -5791,14 +8623,14 @@ export type AllImagesByUserQuery = (
 );
 
 export type RecentImagesQueryVariables = {
-  last?: Maybe<Scalars['Int']>,
-  userId?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>;
+  userId?: Maybe<Scalars['Int']>;
 };
 
 
 export type RecentImagesQuery = (
   { __typename?: 'Query' }
-  & { allImages: Maybe<(
+  & { allImages?: Maybe<(
     { __typename?: 'ImagesConnection' }
     & { nodes: Array<Maybe<(
       { __typename?: 'Image' }
@@ -5812,7 +8644,7 @@ export type AllPostTagsQueryVariables = {};
 
 export type AllPostTagsQuery = (
   { __typename?: 'Query' }
-  & { allPostTags: Maybe<(
+  & { allPostTags?: Maybe<(
     { __typename?: 'PostTagsConnection' }
     & { nodes: Array<Maybe<(
       { __typename?: 'PostTag' }
@@ -5822,20 +8654,20 @@ export type AllPostTagsQuery = (
 );
 
 export type AllPostToTagsQueryVariables = {
-  tagId?: Maybe<Scalars['String']>
+  tagId?: Maybe<Scalars['String']>;
 };
 
 
 export type AllPostToTagsQuery = (
   { __typename?: 'Query' }
-  & { allPostToTags: Maybe<(
+  & { allPostToTags?: Maybe<(
     { __typename?: 'PostToTagsConnection' }
     & { nodes: Array<Maybe<(
       { __typename?: 'PostToTag' }
-      & { postByPostId: Maybe<(
+      & { postByPostId?: Maybe<(
         { __typename?: 'Post' }
         & Pick<Post, 'id' | 'title' | 'subtitle' | 'createdAt'>
-        & { accountByAuthor: Maybe<(
+        & { accountByAuthor?: Maybe<(
           { __typename?: 'Account' }
           & AccountByAuthorFragment
         )>, imagesByPostId: (
@@ -5852,13 +8684,13 @@ export type AllPostToTagsQuery = (
 );
 
 export type AllPostsByUserQueryVariables = {
-  author: Scalars['Int']
+  author: Scalars['Int'];
 };
 
 
 export type AllPostsByUserQuery = (
   { __typename?: 'Query' }
-  & { allPosts: Maybe<(
+  & { allPosts?: Maybe<(
     { __typename?: 'PostsConnection' }
     & { nodes: Array<Maybe<(
       { __typename?: 'Post' }
@@ -5868,19 +8700,19 @@ export type AllPostsByUserQuery = (
 );
 
 export type AllPublishedPostsQueryVariables = {
-  quantity?: Maybe<Scalars['Int']>,
-  offset?: Maybe<Scalars['Int']>
+  quantity?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
 };
 
 
 export type AllPublishedPostsQuery = (
   { __typename?: 'Query' }
-  & { allPosts: Maybe<(
+  & { allPosts?: Maybe<(
     { __typename?: 'PostsConnection' }
     & Pick<PostsConnection, 'totalCount'>
     & { nodes: Array<Maybe<(
       { __typename?: 'Post' }
-      & { accountByAuthor: Maybe<(
+      & { accountByAuthor?: Maybe<(
         { __typename?: 'Account' }
         & AccountByAuthorFragment
       )>, imagesByPostId: (
@@ -5896,14 +8728,14 @@ export type AllPublishedPostsQuery = (
 );
 
 export type CheckTrackingByUserQueryVariables = {
-  trackedUser: Scalars['Int'],
-  trackingUser: Scalars['Int']
+  trackedUser: Scalars['Int'];
+  trackingUser: Scalars['Int'];
 };
 
 
 export type CheckTrackingByUserQuery = (
   { __typename?: 'Query' }
-  & { accountById: Maybe<(
+  & { accountById?: Maybe<(
     { __typename?: 'Account' }
     & { tracksByTrackUserId: (
       { __typename?: 'TracksConnection' }
@@ -5920,7 +8752,7 @@ export type CurrentAccountQueryVariables = {};
 
 export type CurrentAccountQuery = (
   { __typename?: 'Query' }
-  & { currentAccount: Maybe<(
+  & { currentAccount?: Maybe<(
     { __typename?: 'Account' }
     & Pick<Account, 'id' | 'firstName' | 'lastName' | 'username' | 'profilePhoto' | 'heroPhoto' | 'userStatus' | 'city' | 'country' | 'autoUpdateLocation' | 'autoUpdateVisited'>
     & { userToCountriesByUserId: (
@@ -5928,7 +8760,7 @@ export type CurrentAccountQuery = (
       & { nodes: Array<Maybe<(
         { __typename?: 'UserToCountry' }
         & Pick<UserToCountry, 'id'>
-        & { countryByCountry: Maybe<(
+        & { countryByCountry?: Maybe<(
           { __typename?: 'Country' }
           & Pick<Country, 'code' | 'name'>
         )> }
@@ -5938,14 +8770,14 @@ export type CurrentAccountQuery = (
 );
 
 export type FullJunctureByIdQueryVariables = {
-  id: Scalars['Int'],
-  userId?: Maybe<Scalars['Int']>
+  id: Scalars['Int'];
+  userId?: Maybe<Scalars['Int']>;
 };
 
 
 export type FullJunctureByIdQuery = (
   { __typename?: 'Query' }
-  & { junctureById: Maybe<(
+  & { junctureById?: Maybe<(
     { __typename?: 'Juncture' }
     & Pick<Juncture, 'lat' | 'lon' | 'markerImg' | 'userId'>
     & { coordsByJunctureId: (
@@ -5954,7 +8786,7 @@ export type FullJunctureByIdQuery = (
         { __typename?: 'Coord' }
         & Pick<Coord, 'id' | 'lat' | 'lon' | 'elevation' | 'coordTime'>
       )>> }
-    ), tripByTripId: Maybe<(
+    ), tripByTripId?: Maybe<(
       { __typename?: 'Trip' }
       & Pick<Trip, 'id' | 'name'>
       & { juncturesByTripId: (
@@ -5979,48 +8811,48 @@ export type FullJunctureByIdQuery = (
 );
 
 export type PartialJunctureByIdQueryVariables = {
-  id: Scalars['Int'],
-  userId?: Maybe<Scalars['Int']>
+  id: Scalars['Int'];
+  userId?: Maybe<Scalars['Int']>;
 };
 
 
 export type PartialJunctureByIdQuery = (
   { __typename?: 'Query' }
-  & { junctureById: Maybe<(
+  & { junctureById?: Maybe<(
     { __typename?: 'Juncture' }
     & JunctureDataFragment
   )> }
 );
 
 export type PostByIdQueryVariables = {
-  id: Scalars['Int'],
-  userId?: Maybe<Scalars['Int']>
+  id: Scalars['Int'];
+  userId?: Maybe<Scalars['Int']>;
 };
 
 
 export type PostByIdQuery = (
   { __typename?: 'Query' }
-  & { postById: Maybe<(
+  & { postById?: Maybe<(
     { __typename?: 'Post' }
     & Pick<Post, 'id' | 'title' | 'subtitle' | 'content' | 'createdAt' | 'updatedAt' | 'scheduledDate' | 'publishedDate' | 'isDraft' | 'isScheduled' | 'tripId' | 'junctureId' | 'city' | 'country'>
-    & { accountByAuthor: Maybe<(
+    & { accountByAuthor?: Maybe<(
       { __typename?: 'Account' }
       & AccountByAuthorFragment
     )>, postToTagsByPostId: (
       { __typename?: 'PostToTagsConnection' }
       & { nodes: Array<Maybe<(
         { __typename?: 'PostToTag' }
-        & { postTagByPostTagId: Maybe<(
+        & { postTagByPostTagId?: Maybe<(
           { __typename?: 'PostTag' }
           & Pick<PostTag, 'name'>
           & { postToTagsByPostTagId: (
             { __typename?: 'PostToTagsConnection' }
             & { nodes: Array<Maybe<(
               { __typename?: 'PostToTag' }
-              & { postByPostId: Maybe<(
+              & { postByPostId?: Maybe<(
                 { __typename?: 'Post' }
                 & Pick<Post, 'id' | 'title' | 'createdAt'>
-                & { accountByAuthor: Maybe<(
+                & { accountByAuthor?: Maybe<(
                   { __typename?: 'Account' }
                   & AccountByAuthorFragment
                 )>, imagesByPostId: (
@@ -6040,7 +8872,7 @@ export type PostByIdQuery = (
       & { nodes: Array<Maybe<(
         { __typename?: 'Image' }
         & Pick<Image, 'id' | 'type' | 'url' | 'description' | 'title'>
-        & { accountByUserId: Maybe<(
+        & { accountByUserId?: Maybe<(
           { __typename?: 'Account' }
           & Pick<Account, 'id' | 'username'>
         )>, likesByUser: (
@@ -6068,21 +8900,22 @@ export type PostByIdQuery = (
 );
 
 export type PostsByTripQueryVariables = {
-  id: Scalars['Int']
+  id: Scalars['Int'];
 };
 
 
 export type PostsByTripQuery = (
   { __typename?: 'Query' }
-  & { tripById: Maybe<(
+  & { tripById?: Maybe<(
     { __typename?: 'Trip' }
+    & Pick<Trip, 'id'>
     & { postsByTripId: (
       { __typename?: 'PostsConnection' }
       & Pick<PostsConnection, 'totalCount'>
       & { nodes: Array<Maybe<(
         { __typename?: 'Post' }
         & Pick<Post, 'id' | 'title' | 'subtitle' | 'createdAt'>
-        & { accountByAuthor: Maybe<(
+        & { accountByAuthor?: Maybe<(
           { __typename?: 'Account' }
           & AccountByAuthorFragment
         )>, imagesByPostId: (
@@ -6098,13 +8931,13 @@ export type PostsByTripQuery = (
 );
 
 export type RecentUserActivityQueryVariables = {
-  username: Scalars['String']
+  username: Scalars['String'];
 };
 
 
 export type RecentUserActivityQuery = (
   { __typename?: 'Query' }
-  & { accountByUsername: Maybe<(
+  & { accountByUsername?: Maybe<(
     { __typename?: 'Account' }
     & { tripsByUserId: (
       { __typename?: 'TripsConnection' }
@@ -6136,7 +8969,7 @@ export type RecentUserActivityQuery = (
 );
 
 export type SearchSiteQueryVariables = {
-  query: Scalars['String']
+  query: Scalars['String'];
 };
 
 
@@ -6164,7 +8997,7 @@ export type SearchSiteQuery = (
 );
 
 export type SearchTagsQueryVariables = {
-  query: Scalars['String']
+  query: Scalars['String'];
 };
 
 
@@ -6180,7 +9013,7 @@ export type SearchTagsQuery = (
 );
 
 export type SearchCountriesQueryVariables = {
-  query: Scalars['String']
+  query: Scalars['String'];
 };
 
 
@@ -6196,8 +9029,8 @@ export type SearchCountriesQuery = (
 );
 
 export type SearchPostsQueryVariables = {
-  query: Scalars['String'],
-  postStatus?: Maybe<Scalars['String']>
+  query: Scalars['String'];
+  postStatus?: Maybe<Scalars['String']>;
 };
 
 
@@ -6213,13 +9046,13 @@ export type SearchPostsQuery = (
 );
 
 export type TagsByNameQueryVariables = {
-  tagName: Scalars['String']
+  tagName: Scalars['String'];
 };
 
 
 export type TagsByNameQuery = (
   { __typename?: 'Query' }
-  & { allPostTags: Maybe<(
+  & { allPostTags?: Maybe<(
     { __typename?: 'PostTagsConnection' }
     & { nodes: Array<Maybe<(
       { __typename?: 'PostTag' }
@@ -6229,14 +9062,14 @@ export type TagsByNameQuery = (
 );
 
 export type TripByIdQueryVariables = {
-  id: Scalars['Int'],
-  userId?: Maybe<Scalars['Int']>
+  id: Scalars['Int'];
+  userId?: Maybe<Scalars['Int']>;
 };
 
 
 export type TripByIdQuery = (
   { __typename?: 'Query' }
-  & { tripById: Maybe<(
+  & { tripById?: Maybe<(
     { __typename?: 'Trip' }
     & Pick<Trip, 'id' | 'name' | 'startDate' | 'endDate' | 'startLat' | 'startLon' | 'description'>
     & { juncturesByTripId: (
@@ -6253,7 +9086,7 @@ export type TripByIdQuery = (
           )>> }
         ) }
       )>> }
-    ), accountByUserId: Maybe<(
+    ), accountByUserId?: Maybe<(
       { __typename?: 'Account' }
       & Pick<Account, 'profilePhoto'>
       & AccountByAuthorFragment
@@ -6265,7 +9098,7 @@ export type TripByIdQuery = (
       & { nodes: Array<Maybe<(
         { __typename?: 'Image' }
         & Pick<Image, 'id' | 'url' | 'title' | 'type' | 'description'>
-        & { accountByUserId: Maybe<(
+        & { accountByUserId?: Maybe<(
           { __typename?: 'Account' }
           & Pick<Account, 'id' | 'username'>
         )>, likesByUser: (
@@ -6284,7 +9117,7 @@ export type TripByIdQuery = (
       & { nodes: Array<Maybe<(
         { __typename?: 'Image' }
         & Pick<Image, 'id' | 'url' | 'title' | 'type' | 'description'>
-        & { accountByUserId: Maybe<(
+        & { accountByUserId?: Maybe<(
           { __typename?: 'Account' }
           & Pick<Account, 'id' | 'username'>
         )>, likesByUser: (
@@ -6312,13 +9145,13 @@ export type TripByIdQuery = (
 );
 
 export type TripsByUserDashboardQueryVariables = {
-  id: Scalars['Int']
+  id: Scalars['Int'];
 };
 
 
 export type TripsByUserDashboardQuery = (
   { __typename?: 'Query' }
-  & { allTrips: Maybe<(
+  & { allTrips?: Maybe<(
     { __typename?: 'TripsConnection' }
     & { nodes: Array<Maybe<(
       { __typename?: 'Trip' }
@@ -6341,13 +9174,13 @@ export type TripsByUserDashboardQuery = (
 );
 
 export type TripsByUserIdQueryVariables = {
-  userId: Scalars['Int']
+  userId: Scalars['Int'];
 };
 
 
 export type TripsByUserIdQuery = (
   { __typename?: 'Query' }
-  & { allTrips: Maybe<(
+  & { allTrips?: Maybe<(
     { __typename?: 'TripsConnection' }
     & { nodes: Array<Maybe<(
       { __typename?: 'Trip' }
@@ -6357,13 +9190,13 @@ export type TripsByUserIdQuery = (
 );
 
 export type TripsByUserQueryVariables = {
-  id: Scalars['Int']
+  id: Scalars['Int'];
 };
 
 
 export type TripsByUserQuery = (
   { __typename?: 'Query' }
-  & { allTrips: Maybe<(
+  & { allTrips?: Maybe<(
     { __typename?: 'TripsConnection' }
     & { nodes: Array<Maybe<(
       { __typename?: 'Trip' }
@@ -6380,13 +9213,13 @@ export type TripsByUserQuery = (
 );
 
 export type UserTrackedTripsQueryVariables = {
-  username: Scalars['String']
+  username: Scalars['String'];
 };
 
 
 export type UserTrackedTripsQuery = (
   { __typename?: 'Query' }
-  & { accountByUsername: Maybe<(
+  & { accountByUsername?: Maybe<(
     { __typename?: 'Account' }
     & Pick<Account, 'id'>
     & { tracksByUserId: (
@@ -6394,7 +9227,7 @@ export type UserTrackedTripsQuery = (
       & Pick<TracksConnection, 'totalCount'>
       & { nodes: Array<Maybe<(
         { __typename?: 'Track' }
-        & { accountByTrackUserId: Maybe<(
+        & { accountByTrackUserId?: Maybe<(
           { __typename?: 'Account' }
           & Pick<Account, 'profilePhoto'>
           & { tripsByUserId: (
@@ -7516,6 +10349,7 @@ ${ImagesByPostIdFragmentDoc}`;
 export const PostsByTripDocument = gql`
     query postsByTrip($id: Int!) {
   tripById(id: $id) {
+    id
     postsByTripId(first: 10, orderBy: ID_DESC) {
       totalCount
       nodes {

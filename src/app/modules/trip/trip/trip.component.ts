@@ -218,23 +218,35 @@ export class TripComponent implements OnDestroy, AfterViewInit {
   }
 
   populateStats(): void {
-    // populate stats
-    const stats = [];
-
-    stats.push({ icon: 'git-merge', label: 'Junctures', value: this.tripData.juncturesByTripId.totalCount });
-    stats.push({ icon: 'globe', label: 'Countries', value: this.countryFlags.length || 1 });
-    stats.push({ icon: 'images', label: 'Photos', value: this.tripData.imagesByTripId.totalCount });
-    stats.push({ icon: 'albums', label: 'Posts', value: this.postCount });
-    stats.push({
-      icon: 'calendar',
-      label: 'Days',
-      value: this.utilService.differenceDays(+this.tripData.startDate, +this.tripData.endDate)
-    });
-
-    this.stats = stats;
+    this.stats = [
+      {
+        icon: 'git-merge',
+        label: 'Junctures',
+        value: this.tripData.juncturesByTripId.totalCount
+      },
+      {
+        icon: 'globe-outline',
+        label: 'Countries',
+        value: this.countryFlags.length || 1
+      },
+      {
+        icon: 'images',
+        label: 'Photos',
+        value: this.tripData.imagesByTripId.totalCount
+      },
+      {
+        icon: 'albums',
+        label: 'Posts',
+        value: this.postCount
+      },
+      {
+        icon: 'calendar-outline',
+        label: 'Days',
+        value: this.utilService.differenceDays(+this.tripData.startDate, +this.tripData.endDate)
+      }
+    ];
     this.analyticsService.getPageViews().then(
-      result => {
-        const { views } = result as any;
+      ({ views }) => {
         this.stats.push({ icon: 'eye', label: 'Views', value: views });
       }
     );

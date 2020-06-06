@@ -2,6 +2,10 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
+  // {
+  //   path: '',
+  //   loadChildren: () => import('./modules/splash/splash.module').then(m => m.SplashModule),
+  // },
   {
     path: '',
     loadChildren: () => import('./modules/home/home.module').then(m => m.HomeModule),
@@ -69,7 +73,11 @@ const routes: Routes = [
   {
     path: 'admin',
     loadChildren: () => import('./modules/admin/admin.module').then( m => m.AdminModule)
-  }
+  },
+  {
+    path: 'tracking',
+    loadChildren: () => import('./modules/tracking/tracking.module').then( m => m.TrackingModule)
+  },
 ];
 
 @NgModule({

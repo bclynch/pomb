@@ -1,6 +1,10 @@
-.imageUploaderPopover {
+::ng-deep .imageUploaderPopover {
   ion-backdrop {
     opacity: 0!important;
+  }
+  .popover-content {
+    background: var(--white);
+    color: var(--black);
   }
 }
 .popoverContainer {

@@ -7,6 +7,8 @@ import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
 import { DisqusModule } from 'ngx-disqus';
 import { AgmCoreModule } from '@agm/core';
 import { ENV } from '../../environments/environment';
+import { ShareButtonsModule } from 'ngx-sharebuttons/buttons';
+import { ShareIconsModule } from 'ngx-sharebuttons/icons';
 
 // components
 import { ChartComponent } from './chart/chart.component';
@@ -52,6 +54,8 @@ import { FadeCarouselComponent } from './fadeCarousel/fadeCarousel.component';
 import { UnitToggleComponent } from './unitToggle/unitToggle.component';
 import { ShareBtnsComponent } from './shareBtns/shareBtns.component';
 import { CommentsComponent } from './comments/comments.component';
+import { GoogleChartComponent } from './charts/geoChart.component';
+import { TagsComponent } from './tags/tags.component';
 
 @NgModule({
   declarations: [
@@ -97,7 +101,9 @@ import { CommentsComponent } from './comments/comments.component';
     FadeCarouselComponent,
     UnitToggleComponent,
     ShareBtnsComponent,
-    CommentsComponent
+    CommentsComponent,
+    GoogleChartComponent,
+    TagsComponent
   ],
   imports: [
     CommonModule,
@@ -108,6 +114,8 @@ import { CommentsComponent } from './comments/comments.component';
     FroalaEditorModule.forRoot(),
     FroalaViewModule.forRoot(),
     DisqusModule,
+    ShareButtonsModule,
+    ShareIconsModule,
     AgmCoreModule.forRoot({
       apiKey: ENV.googleAPIKey,
     }),
@@ -155,7 +163,9 @@ import { CommentsComponent } from './comments/comments.component';
     FadeCarouselComponent,
     UnitToggleComponent,
     ShareBtnsComponent,
-    CommentsComponent
+    CommentsComponent,
+    GoogleChartComponent,
+    TagsComponent
   ],
   entryComponents: [
     RegistrationModalComponent,

@@ -12,9 +12,11 @@ declare var google: any;
     <div>
       <div id="geoChart" [style.width]="this.mapWidth"></div>
     </div>
-    `
+    `,
+    styleUrls: ['./geoChart.component.scss']
 })
 export class GoogleChartComponent implements OnChanges, OnDestroy {
+  private static googleLoaded: any;
   @Input() mapWidth = '900px';
   @Input() backgroundColor = 'white';
   @Input() datalessColor = 'grey';
@@ -22,7 +24,6 @@ export class GoogleChartComponent implements OnChanges, OnDestroy {
   @Input() region: string = null;
   @Input() countries: string[];
 
-  private static googleLoaded: any;
   private options;
   private data;
   private chart;

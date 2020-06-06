@@ -1,10 +1,12 @@
 // modding the nav bar for this page
-.pageWrapperContainer {
-  margin: 0;
+::ng-deep app-trip {
+  .pageWrapperContainer {
+    margin: 0;
 
-  .navBarContainer {
-    position: absolute;
-    background: transparent;
+    #navBar {
+      position: absolute;
+      background: transparent;
+    }
   }
 }
 

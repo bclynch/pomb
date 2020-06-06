@@ -7,7 +7,8 @@ import { RouterService } from '../../services/router.service';
 
 @Component({
   selector: 'app-profile-hero-banner',
-  templateUrl: 'profileHeroBanner.component.html'
+  templateUrl: 'profileHeroBanner.component.html',
+  styleUrls: ['./profileHeroBanner.component.scss']
 })
 export class ProfileHeroBannerComponent {
   @Input() user;

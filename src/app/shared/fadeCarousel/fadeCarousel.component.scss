@@ -42,10 +42,6 @@
       > div {
         width: 40px;
         padding-right: 5px;
-
-        img {
-    
-        }
       }
     } 
     .modalLauncherBtn {
@@ -100,15 +96,27 @@
         .statLabel {
           display: none;
         }
-        .statValue, .likeValue {
+        .statValue {
           margin: 5px 0;
           font-size: 18px;
           font-weight: bold;
           color: var(--secondary);
         }
       }
-      .likeLabel {
-        display: none;
+      app-like-counter {
+        ::ng-deep ion-icon {
+          font-size: 36px;
+        }
+        ::ng-deep .likeLabel {
+          display: none;
+          color: var(--white);
+        }
+        ::ng-deep .likeValue {
+          margin: 5px 0;
+          font-size: 18px;
+          font-weight: bold;
+          color: var(--secondary);
+        }
       }
     }
   }
@@ -118,7 +126,7 @@
   .flagsContainer {
     width: 30% !important;
   }
-  .statLabel, .likeLabel {
+  .statLabel, ::ng-deep .likeLabel {
     display: block !important;
   }
 }

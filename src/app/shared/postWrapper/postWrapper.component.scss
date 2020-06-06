@@ -18,9 +18,8 @@
       margin: 0 10px 0 5px;
       font-weight: bold;
     }
-    .trackUserContainer {
+    ::ng-deep .trackUserContainer {
       font-size: 12px;
-      width: 80px;
     }
   }
   .bottomRow {

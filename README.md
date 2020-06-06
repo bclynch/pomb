@@ -4,8 +4,9 @@
 
 ### Migration Todos
 
-- Fix forms (bleh)
+- ~~Fix forms (bleh)~~
 - ~~Hide disqus like edmflare~~
+- Fix dashboards (user and admin)
 
 ### Top Priorities
 

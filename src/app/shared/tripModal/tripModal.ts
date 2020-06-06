@@ -13,7 +13,7 @@ import { GalleryImgActionPopoverComponent } from '../galleryImgAction/galleryImg
 import { Trip } from '../../models/Trip.model';
 
 @Component({
-  selector: 'TripModal',
+  selector: 'app-trip-modal',
   templateUrl: 'tripModal.html',
   styleUrls: ['./tripModal.scss']
 })
@@ -142,15 +142,10 @@ export class TripModalComponent {
       );
     } else {
       this.modalCtrl.dismiss({
-        isExisting: this.params.data.tripId ? true : false,
-        name: this.tripModel.name,
-        timeStart: this.tripModel.timeStart,
-        timeEnd: this.tripModel.timeEnd,
-        bannerImages: this.tripModel.bannerImages,
+        ...this.tripModel,
+        isExisting: !!(this.params.data.tripId),
         startLat: this.coords.lat,
-        startLon: this.coords.lon,
-        description: this.tripModel.description,
-        photoHasChanged: this.tripModel.photoHasChanged
+        startLon: this.coords.lon
       });
     }
   }
@@ -224,7 +219,8 @@ export class TripModalComponent {
   deleteTrip() {
     this.alertService.confirm(
       'Delete Trip',
-      'Are you sure you want to delete this trip? All the associated information will be deleted and this action cannot be reversed',
+      `Are you sure you want to delete this trip? All the associated \
+      information will be deleted and this action cannot be reversed`,
       { label: 'Delete Trip', handler: () =>  {
         this.deleteTripByIdGQL.mutate({
           tripId: this.params.data.tripId

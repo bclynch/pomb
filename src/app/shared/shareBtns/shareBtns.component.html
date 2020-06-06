@@ -1,7 +1,6 @@
 <div class="shareBtnsContainer" [ngClass]="justIcons ? 'icons' : ''">
-  <share-buttons [theme]="'material-dark'"
-    [showCount]="true"
-    [exclude]="['linkedin','google','stumble','whatsapp','tumblr','vk','telegram','email','copy','print']"
+  <share-buttons theme="material-dark"
+    [include]="['facebook','twitter','reddit','pinterest','email']"
     [size]="size"
     [url]="address"
     [title]="title"

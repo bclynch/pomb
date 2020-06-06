@@ -1,3 +1,9 @@
+::ng-deep .modal-wrapper {
+  @media (min-width: 768px) {
+    width: 700px!important;
+    left: calc(50% - (700px/2));
+  }
+}
 .modalContainer {
   background: var(--white);
   height: 100%;
