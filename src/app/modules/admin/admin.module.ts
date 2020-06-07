@@ -4,6 +4,12 @@ import { AdminPage } from './admin';
 import { Routes, RouterModule } from '@angular/router';
 import { SharedModule } from '../../shared/shared.module';
 import { RoleGuardService as RoleGuard } from '../../services/roleGuard.service';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+
+import { AdminConfigPage } from './subViews/config/config';
+import { AdminDashboardPage } from './subViews/dashboard/dashboard';
+import { AdminPostsPage } from './subViews/posts/posts';
+import { AdminUsersPage } from './subViews/users/users';
 
 const routes: Routes = [
   { path: '',
@@ -42,11 +48,19 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [AdminPage],
+  declarations: [
+    AdminPage,
+    AdminPostsPage,
+    AdminUsersPage,
+    AdminConfigPage,
+    AdminDashboardPage
+  ],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
-    SharedModule
+    SharedModule,
+    ReactiveFormsModule,
+    FormsModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { MenuController } from '@ionic/angular';
-import {Apollo} from 'apollo-angular';
+import { Apollo } from 'apollo-angular';
 import { DomSanitizer } from '@angular/platform-browser';
 
 // import { DashboardService } from '../../../services/dashboard.service';
@@ -17,7 +17,8 @@ interface ListOption {
 
 @Component({
   selector: 'page-useradmin',
-  templateUrl: 'admin.html'
+  templateUrl: 'admin.html',
+  styleUrls: ['./admin.scss']
 })
 export class UserAdminPage {
 

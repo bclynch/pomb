@@ -6,7 +6,12 @@
 
 - ~~Fix forms (bleh)~~
 - ~~Hide disqus like edmflare~~
-- Fix dashboards (user and admin)
+- ~~Fix dashboards (user and admin)~~
+- Asset creation / update / deletion testing:
+    - Trip
+    - Juncure
+    - Post
+    - Pics
 
 ### Top Priorities
 

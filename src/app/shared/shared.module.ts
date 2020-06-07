@@ -38,6 +38,8 @@ import { CreatePostModalComponent } from './createPostModal/createPostModal';
 import { ExploreModalComponent } from './exploreModal/exploreModal';
 import { MobileNavModalComponent } from './mobileNavModal/mobileNavModal';
 import { ImageUploaderPopoverComponent } from './imageUploader/imageUploaderPopover.component';
+import { GradientPopoverComponent } from './gradientPopover/gradientPopover.component';
+import { DeleteAccountModalComponent } from './deleteAccountModal/deleteAccountModal';
 import { TripModalComponent } from './tripModal/tripModal';
 import { JunctureModalComponent } from './junctureModal/junctureModal';
 import { DatePickerModalComponent } from './datepickerModal/datepickerModal';
@@ -56,6 +58,7 @@ import { ShareBtnsComponent } from './shareBtns/shareBtns.component';
 import { CommentsComponent } from './comments/comments.component';
 import { GoogleChartComponent } from './charts/geoChart.component';
 import { TagsComponent } from './tags/tags.component';
+import { CountrySearchComponent } from './countrySearch/countrySearch.component';
 
 @NgModule({
   declarations: [
@@ -85,6 +88,8 @@ import { TagsComponent } from './tags/tags.component';
     ExploreModalComponent,
     MobileNavModalComponent,
     ImageUploaderPopoverComponent,
+    GradientPopoverComponent,
+    DeleteAccountModalComponent,
     TripModalComponent,
     JunctureModalComponent,
     DatePickerModalComponent,
@@ -103,7 +108,8 @@ import { TagsComponent } from './tags/tags.component';
     ShareBtnsComponent,
     CommentsComponent,
     GoogleChartComponent,
-    TagsComponent
+    TagsComponent,
+    CountrySearchComponent
   ],
   imports: [
     CommonModule,
@@ -147,6 +153,8 @@ import { TagsComponent } from './tags/tags.component';
     ExploreModalComponent,
     MobileNavModalComponent,
     ImageUploaderPopoverComponent,
+    GradientPopoverComponent,
+    DeleteAccountModalComponent,
     TripModalComponent,
     JunctureModalComponent,
     DatePickerModalComponent,
@@ -165,7 +173,8 @@ import { TagsComponent } from './tags/tags.component';
     ShareBtnsComponent,
     CommentsComponent,
     GoogleChartComponent,
-    TagsComponent
+    TagsComponent,
+    CountrySearchComponent
   ],
   entryComponents: [
     RegistrationModalComponent,
@@ -174,6 +183,8 @@ import { TagsComponent } from './tags/tags.component';
     ExploreModalComponent,
     MobileNavModalComponent,
     ImageUploaderPopoverComponent,
+    GradientPopoverComponent,
+    DeleteAccountModalComponent,
     TripModalComponent,
     JunctureModalComponent,
     DatePickerModalComponent

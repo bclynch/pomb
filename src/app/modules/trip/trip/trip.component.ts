@@ -21,7 +21,7 @@ import { PostsByTripGQL, TripByIdGQL } from 'src/app/generated/graphql';
 @Component({
   selector: 'app-trip',
   templateUrl: './trip.component.html',
-  styleUrls: ['./trip.component.scss'],
+  styleUrls: ['./trip.component.scss']
 })
 export class TripComponent implements OnDestroy, AfterViewInit {
   disqusId: string;

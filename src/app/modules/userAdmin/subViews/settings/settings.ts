@@ -1,17 +1,18 @@
 import { Component, ViewChild } from '@angular/core';
-import { ToastController, ModalController } from 'ionic-angular';
+import { ToastController, ModalController } from '@ionic/angular';
 
 import { SettingsService } from '../../../../services/settings.service';
 import { RouterService } from '../../../../services/router.service';
-import { APIService } from '../../../../services/api.service';
 import { UserService } from '../../../../services/user.service';
 import { AlertService } from '../../../../services/alert.service';
 
-import { DeleteAccountModal } from '../../../../components/modals/deleteAccountModal/deleteAccountModal';
+import { DeleteAccountModalComponent } from '../../../../shared/deleteAccountModal/deleteAccountModal';
+import { UpdatePasswordGQL } from '../../../../generated/graphql';
 
 @Component({
   selector: 'page-useradmin-settings',
-  templateUrl: 'settings.html'
+  templateUrl: 'settings.html',
+  styleUrls: ['./settings.scss']
 })
 export class UserAdminSettingsPage {
   @ViewChild('changeForm') form;
@@ -19,21 +20,25 @@ export class UserAdminSettingsPage {
   changeModel = { currentPassword: '', newPassword: '', confirmPassword: '' };
 
   constructor(
-    private settingsService: SettingsService,
-    private routerService: RouterService,
-    private apiService: APIService,
+    public settingsService: SettingsService,
+    public routerService: RouterService,
     private userService: UserService,
     private toastCtrl: ToastController,
     private alertService: AlertService,
-    private modalCtrl: ModalController
+    private modalCtrl: ModalController,
+    private updatePasswordGQL: UpdatePasswordGQL
   ) {  }
 
-  changePassword(model) {
-    this.apiService.updatePassword(this.userService.user.id, model.currentPassword, model.newPassword).subscribe(
-      result => {
-        if (result.data.updatePassword.boolean) {
-          const toast = this.toastCtrl.create({
-            message: `Password changed`,
+  changePassword({ currentPassword, newPassword }) {
+    this.updatePasswordGQL.mutate({
+      userId: this.userService.user.id,
+      password: currentPassword,
+      newPassword
+    }).subscribe(
+      async ({ data }) => {
+        if (data.updatePassword.boolean) {
+          const toast = await this.toastCtrl.create({
+            message: 'Password changed',
             duration: 3000,
             position: 'top'
           });
@@ -41,14 +46,21 @@ export class UserAdminSettingsPage {
           toast.present();
           this.form.reset();
         } else {
-          this.alertService.alert('Password Change Failed', 'Something went wrong. Make sure you have the correct current password');
+          this.alertService.alert(
+            'Password Change Failed',
+            'Something went wrong. Make sure you have the correct current password'
+          );
         }
       }
     );
   }
 
-  presentModal() {
-    const modal = this.modalCtrl.create(DeleteAccountModal, { }, { cssClass: 'deleteAccountModal' });
-    modal.present();
+  async presentModal() {
+    const modal = await this.modalCtrl.create({
+      component: DeleteAccountModalComponent,
+      cssClass: 'deleteAccountModal'
+    });
+
+    await modal.present();
   }
 }

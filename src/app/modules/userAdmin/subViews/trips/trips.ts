@@ -1,45 +1,63 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 
-import { APIService } from '../../../../services/api.service';
 import { UserService } from '../../../../services/user.service';
 import { SettingsService } from '../../../../services/settings.service';
-import { BroadcastService } from '../../../../services/broadcast.service';
+import { AppService } from '../../../../services/app.service';
 import { UtilService } from '../../../../services/util.service';
 import { RouterService } from '../../../../services/router.service';
 import { TripService } from '../../../../services/trip.service';
 import { JunctureService } from '../../../../services/juncture.service';
 
-import { Trip } from '../../../../models/Trip.model';
+// import { Trip } from '../../../../models/Trip.model';
+import { SubscriptionLike } from 'rxjs';
+import { TripsByUserDashboardGQL } from '../../../../generated/graphql';
 
 @Component({
   selector: 'page-useradmin-trips',
-  templateUrl: 'trips.html'
+  templateUrl: 'trips.html',
+  styleUrls: ['./trips.scss']
 })
-export class UserAdminTripsPage {
+export class UserAdminTripsPage implements OnDestroy {
 
   tripsQuery;
-  tripsData: Trip[];
+  tripsData;
   activeTrip: number = null;
 
+  initSubscription: SubscriptionLike;
+
   constructor(
-    private apiService: APIService,
     private userService: UserService,
-    private settingsService: SettingsService,
-    private broadcastService: BroadcastService,
+    public settingsService: SettingsService,
+    private appService: AppService,
     private utilService: UtilService,
-    private routerService: RouterService,
-    private sanitizer: DomSanitizer,
+    public routerService: RouterService,
+    public sanitizer: DomSanitizer,
     private tripService: TripService,
-    private junctureService: JunctureService
+    private junctureService: JunctureService,
+    private tripsByUserDashboardGQL: TripsByUserDashboardGQL
   ) {
-    this.settingsService.appInited ? this.init() : this.broadcastService.on('appIsReady', () => this.init());
+    this.initSubscription = this.appService.appInited.subscribe(
+      (inited) =>  {
+        if (inited) {
+          this.init();
+        }
+      }
+    );
+  }
+
+  ngOnDestroy() {
+    this.initSubscription.unsubscribe();
   }
 
   init() {
     // splitting up to refetch below on edits
-    this.tripsQuery = this.apiService.getTripsUserDashboard(this.userService.user.id).valueChanges.subscribe(
-      result => this.tripsData = result.data.allTrips.nodes
+    this.tripsQuery = this.tripsByUserDashboardGQL.fetch({
+      id: this.userService.user.id
+    }).subscribe(
+      ({ data }) => {
+        this.tripsData = data.allTrips.nodes;
+      }
     );
   }
 
@@ -49,14 +67,10 @@ export class UserAdminTripsPage {
   }
 
   editTrip(index: number) {
-    this.tripService.openTripModal(this.tripsData[index].id).then(
-      result => {}
-    );
+    this.tripService.openTripModal(this.tripsData[index].id);
   }
 
   editJuncture(index: number) {
-    this.junctureService.openJunctureModal(this.tripsData[this.activeTrip].juncturesByTripId.nodes[index].id).then(
-      result => {}
-    );
+    this.junctureService.openJunctureModal(this.tripsData[this.activeTrip].juncturesByTripId.nodes[index].id);
   }
 }

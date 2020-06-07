@@ -19,7 +19,8 @@ interface ListOption {
 
 @Component({
   selector: 'page-admin',
-  templateUrl: 'admin.html'
+  templateUrl: 'admin.html',
+  styleUrls: ['./admin.scss']
 })
 export class AdminPage implements OnDestroy {
 

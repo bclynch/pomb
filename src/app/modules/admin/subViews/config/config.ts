@@ -1,29 +1,43 @@
-import { Component } from '@angular/core';
-import { PopoverController, ToastController } from 'ionic-angular';
+import { Component, OnDestroy } from '@angular/core';
+import { PopoverController, ToastController } from '@ionic/angular';
 
 import { SettingsService } from '../../../../services/settings.service';
-import { BroadcastService } from '../../../../services/broadcast.service';
-import { APIService } from '../../../../services/api.service';
+import { AppService } from '../../../../services/app.service';
 
-import { GradientPopover } from '../../../../components/popovers/gradient/gradientPopover.component';
-import { ImageUploaderPopover } from '../../../../components/popovers/imageUploader/imageUploaderPopover.component';
+import { GradientPopoverComponent } from '../../../../shared/gradientPopover/gradientPopover.component';
+import { ImageUploaderPopoverComponent } from '../../../../shared/imageUploader/imageUploaderPopover.component';
+import { SubscriptionLike } from 'rxjs';
+import { UpdateConfigGQL } from '../../../../generated/graphql';
 
 @Component({
   selector: 'page-admin-config',
-  templateUrl: 'config.html'
+  templateUrl: 'config.html',
+  styleUrls: ['./config.scss']
 })
-export class AdminConfigPage {
+export class AdminConfigPage implements OnDestroy {
 
   styleModel = { primaryColor: null, secondaryColor: null, tagline: null, heroBanner: null };
 
+  initSubscription: SubscriptionLike;
+
   constructor(
-    private broadcastService: BroadcastService,
+    private appService: AppService,
     private settingsService: SettingsService,
     private popoverCtrl: PopoverController,
-    private apiService: APIService,
     private toastCtrl: ToastController,
+    private updateConfigGQL: UpdateConfigGQL
   ) {
-    this.settingsService.appInited ? this.init() : this.broadcastService.on('appIsReady', () => this.init());
+    this.initSubscription = this.appService.appInited.subscribe(
+      (inited) =>  {
+        if (inited) {
+          this.init();
+        }
+      }
+    );
+  }
+
+  ngOnDestroy() {
+    this.initSubscription.unsubscribe();
   }
 
   init() {
@@ -33,36 +47,46 @@ export class AdminConfigPage {
     this.styleModel.heroBanner = this.settingsService.heroBanner;
   }
 
-  presentGradientPopover(e: Event) {
-    const popover = this.popoverCtrl.create(GradientPopover, {}, { cssClass: 'gradientPopover' });
-    popover.present({
-      ev: e
+  async presentGradientPopover(e: Event) {
+    const popover = await this.popoverCtrl.create({
+      component: GradientPopoverComponent,
+      cssClass: 'gradientPopover',
     });
-    popover.onDidDismiss((data) => {
-      if (data) {
-        this.styleModel.primaryColor = data.primaryColor;
-        this.styleModel.secondaryColor = data.secondaryColor;
-      }
-    });
+
+    await popover.present();
+
+    const { data } = await popover.onWillDismiss();
+    if (data) {
+      this.styleModel.primaryColor = data.primaryColor;
+      this.styleModel.secondaryColor = data.secondaryColor;
+    }
   }
 
-  presentImageUploaderPopover() {
-    const popover = this.popoverCtrl.create(ImageUploaderPopover, { type: 'banner', size: { width: 1200, height: 300 } }, { cssClass: 'imageUploaderPopover', enableBackdropDismiss: false });
-    popover.present();
-    popover.onDidDismiss((data) => {
-      if (data) this.styleModel.heroBanner = data[0].url;
+  async presentImageUploaderPopover() {
+    const popover = await this.popoverCtrl.create({
+      component: ImageUploaderPopoverComponent,
+      componentProps: { type: 'banner', size: { width: 1200, height: 300 } },
+      cssClass: 'imageUploaderPopover',
+      backdropDismiss: false
     });
+
+    await popover.present();
+
+    const { data } = await popover.onWillDismiss();
+    if (data) {
+      this.styleModel.heroBanner = data[0].url;
+    }
   }
 
   updateStyle() {
-    this.apiService.updateConfig(this.styleModel.primaryColor, this.styleModel.secondaryColor, this.styleModel.tagline, this.styleModel.heroBanner).subscribe(
-      () => {
+    this.updateConfigGQL.mutate({ ...this.styleModel }).subscribe(
+      async () => {
         this.settingsService.primaryColor = this.styleModel.primaryColor;
         this.settingsService.secondaryColor = this.styleModel.secondaryColor;
         this.settingsService.tagline = this.styleModel.tagline;
         this.settingsService.heroBanner = this.styleModel.heroBanner;
 
-        const toast = this.toastCtrl.create({
+        const toast = await this.toastCtrl.create({
           message: `New site settings saved`,
           duration: 3000,
           position: 'top'

@@ -1,4 +1,4 @@
-page-useradmin {
+::ng-deep page-useradmin {
   > div {
     height: 100%;
   }
@@ -72,6 +72,7 @@ page-useradmin {
     height: 100%;
     overflow: scroll;
     -ms-overflow-style: none;
+    color: red !important;
 
     .menuToggleBtn {
       position: absolute;
@@ -100,6 +101,7 @@ page-useradmin {
       padding: 15px 10px 0;
       overflow: scroll;
       -ms-overflow-style: none;
+      color: var(--black);
   
       .contentGroup {     
         background: white;

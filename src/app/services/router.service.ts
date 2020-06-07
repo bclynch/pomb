@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Router, ActivatedRoute, NavigationEnd, NavigationStart, NavigationExtras } from '@angular/router';
+import { Router, ActivatedRoute, NavigationStart, NavigationExtras } from '@angular/router';
 
-// Services
 import { UtilService } from '../services/util.service';
 import { filter } from 'rxjs/operators';
 
@@ -32,7 +31,8 @@ export class RouterService {
   grabBaseRoute(url: string): string {
     let baseUrl: string;
     // means there is at least one param or no fragment
-    // therefore we need to split at the '?' to grab everything before the query params (which will always be before the fragments)
+    // therefore we need to split at the '?' to grab everything before the query params
+    // (which will always be before the fragments)
     if (Object.keys(this.params)[0] || !this.fragment) {
       baseUrl = url.split('?')[0];
     } else {

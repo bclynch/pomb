@@ -1,4 +1,4 @@
-page-admin {
+::ng-deep page-admin {
     > div {
         height: 100%;
     }
@@ -79,6 +79,7 @@ page-admin {
 				padding: 15px 10px 0;
 				overflow: scroll;
 				-ms-overflow-style: none;
+				color: var(--black);
 		
 				.contentGroup {     
 					background: white;

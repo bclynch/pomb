@@ -4,50 +4,38 @@ import { UserAdminPage } from './admin';
 import { Routes, RouterModule } from '@angular/router';
 import { SharedModule } from '../../shared/shared.module';
 import { RoleGuardService as RoleGuard } from '../../services/roleGuard.service';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+
+import { UserAdminDashboardPage } from './subViews/dashboard/dashboard';
+import { UserAdminConfigPage } from './subViews/config/config';
+import { UserAdminTripsPage } from './subViews/trips/trips';
+import { UserAdminSettingsPage } from './subViews/settings/settings';
 
 const routes: Routes = [
   {
     path: '',
-    children: [
-      {
-        path: 'admin',
-        canActivate: [RoleGuard],
-        data: {
-          expectedRole: ['pomb_account', 'pomb_admin']
-        },
-        component: UserAdminPage
-      },
-      {
-        path: 'post-dashboard',
-        canActivate: [RoleGuard],
-        data: {
-          expectedRole: ['pomb_account', 'pomb_admin']
-        },
-        loadChildren: () => import('../dashboard/dashboard.module').then(m => m.DashboardModule)
-      },
-      {
-        path: ':username',
-        children: [
-          {
-            path: '',
-            loadChildren: () => import('../profile/profile.module').then(m => m.ProfileModule)
-          },
-          {
-            path: 'photos',
-            loadChildren: () => import('../photos/photos.module').then(m => m.PhotosModule)
-          }
-        ]
-      },
-    ]
+    canActivate: [RoleGuard],
+    data: {
+      expectedRole: ['pomb_account', 'pomb_admin']
+    },
+    component: UserAdminPage
   },
 ];
 
 @NgModule({
-  declarations: [UserAdminPage],
+  declarations: [
+    UserAdminPage,
+    UserAdminConfigPage,
+    UserAdminDashboardPage,
+    UserAdminSettingsPage,
+    UserAdminTripsPage
+  ],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
-    SharedModule
+    SharedModule,
+    ReactiveFormsModule,
+    FormsModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

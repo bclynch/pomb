@@ -1,43 +1,45 @@
-<div *ngIf="dataReady">
-  <ion-menu type="overlay" [content]="mycontent" [attr.style]="sanitizer.bypassSecurityTrustStyle('--secondary:' + settingsService.secondaryColor)">
-    <ion-content>
-      <ion-icon 
-        name="close" 
-        class="closeMenuBtn" 
-        menuToggle
-      ></ion-icon>
-      <div class="logo">
-        <span 
-          (click)="routerService.navigateToPage('')" 
-          class="gradientText"
-          title="Home"
-          [style.background-image]="'linear-gradient(to right, ' + settingsService.primaryColor + ', ' + settingsService.secondaryColor + ')'"
-        >POMB</span>
-      </div>
-      <div class="listContainer">
-        <div 
-          *ngFor="let option of navListOptions" 
-          class="boldFont option"
-          (click)="navigate(option.path)"
-          [style.color]="activeDashView === option.path ? settingsService.secondaryColor : null"  
-        >
-          <ion-icon [name]="option.icon"></ion-icon>
-          <div>{{option.label}}</div>
-        </div>
-      </div>
-    </ion-content>
-  </ion-menu>
-
-  <div #mycontent class="dashboardContent">
+<ion-menu
+  type="overlay"
+  contentId="abc"
+  [attr.style]="sanitizer.bypassSecurityTrustStyle('--secondary:' + settingsService.secondaryColor)"
+>
+  <ion-content>
     <ion-icon 
-      (click)="openMenu()"
-      class="menuToggleBtn" 
-      name="menu"
-      *ngIf="displayMenuToggle" 
+      name="close" 
+      class="closeMenuBtn" 
+      menuToggle
     ></ion-icon>
-    <page-admin-dashboard *ngIf="activeDashView === 'dashboard'"></page-admin-dashboard>
-    <page-admin-config *ngIf="activeDashView === 'config'"></page-admin-config>
-    <page-admin-users *ngIf="activeDashView === 'users'"></page-admin-users>
-    <page-admin-posts *ngIf="activeDashView === 'posts'"></page-admin-posts>
-  </div>
-</div>
+    <div class="logo">
+      <span 
+        (click)="routerService.navigateToPage('')" 
+        class="gradientText"
+        title="Home"
+        [style.background-image]="'linear-gradient(to right, ' + settingsService.primaryColor + ', ' + settingsService.secondaryColor + ')'"
+      >POMB</span>
+    </div>
+    <div class="listContainer">
+      <div 
+        *ngFor="let option of navListOptions" 
+        class="boldFont option"
+        (click)="navigate(option.path)"
+        [style.color]="activeDashView === option.path ? settingsService.secondaryColor : null"  
+      >
+        <ion-icon [name]="option.icon"></ion-icon>
+        <div>{{option.label}}</div>
+      </div>
+    </div>
+  </ion-content>
+</ion-menu>
+
+<ion-content id="abc" class="dashboardContent" main>
+  <ion-icon 
+    (click)="openMenu()"
+    class="menuToggleBtn" 
+    name="menu"
+    *ngIf="displayMenuToggle" 
+  ></ion-icon>
+  <page-admin-dashboard *ngIf="activeDashView === 'dashboard'"></page-admin-dashboard>
+  <page-admin-config *ngIf="activeDashView === 'config'"></page-admin-config>
+  <page-admin-users *ngIf="activeDashView === 'users'"></page-admin-users>
+  <page-admin-posts *ngIf="activeDashView === 'posts'"></page-admin-posts>
+</ion-content>
