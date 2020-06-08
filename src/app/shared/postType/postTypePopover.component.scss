@@ -1,27 +1,23 @@
-.postTypePopover {
+::ng-deep .postTypePopover {
   ion-backdrop {
     opacity: 0!important;
   }
   .popover-content {
     // @extend %popoverContent;
-    width: 225px !important;
+    width: 275px !important;
+  }
+}
+.popoverContainer {
+  background: var(--white);
+  width: 100%;
+  border-radius: 2px;
+  overflow: hidden;
 
-    PostTypePopover {
+  .popoverItem {
+    padding: 10px!important;
 
-      .popoverContainer {
-        background: var(--white);
-        width: 100%;
-        border-radius: 2px;
-        overflow: hidden;
-
-        .popoverItem {
-          padding: 10px!important;
-
-          .popoverLabel {
-            font-size: 20px;
-          }
-        }
-      }
+    .popoverLabel {
+      font-size: 20px;
     }
   }
 }

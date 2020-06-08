@@ -27,6 +27,8 @@ query postById($id: Int!, $userId: Int) {
                 id,
                 title,
                 createdAt,
+                publishedDate,
+                content,
                 accountByAuthor {
                   ...AccountByAuthor
                 },

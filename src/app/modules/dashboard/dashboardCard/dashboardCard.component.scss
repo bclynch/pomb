@@ -1,0 +1,65 @@
+.dashboardCardContainer {
+  display: flex;
+  cursor: pointer;
+
+  &.active {
+    background: #BABBBD;
+    border-top: solid 1px #fff;
+    border-bottom: solid 1px #fff;
+  }
+  .postInfoContainer {
+    flex: 1;
+    padding: 14px 10px 14px 18px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    h2 {
+      margin-top: 0;
+    }
+    .btmRow {
+      display: flex;
+      align-items: center;
+
+      .cardTag {
+        background: #BABBBD;
+        padding: 5px;
+        margin-right: 5px;
+      }
+    }
+  }
+  .btnsContainer {
+    display: flex;
+    flex-direction: column;
+
+    > div {
+      flex: 1;
+      width: 90px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-left: solid 1px var(--white);
+      padding: 10px 0;
+    }
+    .editBtn:hover,
+    .previewBtn:hover {
+      opacity: .7;
+    }
+    .previewBtn {
+      border-top: solid 1px var(--white);
+      border-bottom: solid 1px var(--white);
+    }
+    .deleteBtn:hover {
+      background: var(--danger);
+      color: var(--white);
+    }
+  }
+  @media (min-width: 600px) {
+    .postInfoContainer {
+      padding: 18px 5px 18px 24px;
+    }
+  }
+}
+.dashboardCardContainer:hover {
+  background: #BABBBD;
+}

@@ -49,7 +49,7 @@ export class UserService {
           this.recentPosts = data.accountByUsername.postsByAuthor.nodes;
           resolve();
         },
-        () => reject()
+        (err) => reject(err)
       );
     });
   }

@@ -138,6 +138,11 @@
           ::ng-deep .profileContainer {
             height: 32px;
             width: 32px;
+
+            .photo {
+              height: inherit;
+              width: inherit;
+            }
           }
         }
 
@@ -234,6 +239,7 @@
               cursor: pointer;
               padding: 5px 10px;
               transition: .3s;
+              text-align: center;
             }
             .junctureLink:hover {
               border: solid 1px var(--secondary);

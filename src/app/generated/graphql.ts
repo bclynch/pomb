@@ -7927,7 +7927,7 @@ export type TripsByUserIdFragment = (
     { __typename?: 'ImagesConnection' }
     & { nodes: Array<Maybe<(
       { __typename?: 'Image' }
-      & Pick<Image, 'url'>
+      & Pick<Image, 'id' | 'url'>
     )>> }
   ) }
 );
@@ -8851,7 +8851,7 @@ export type PostByIdQuery = (
               { __typename?: 'PostToTag' }
               & { postByPostId?: Maybe<(
                 { __typename?: 'Post' }
-                & Pick<Post, 'id' | 'title' | 'createdAt'>
+                & Pick<Post, 'id' | 'title' | 'createdAt' | 'publishedDate' | 'content'>
                 & { accountByAuthor?: Maybe<(
                   { __typename?: 'Account' }
                   & AccountByAuthorFragment
@@ -8960,7 +8960,7 @@ export type RecentUserActivityQuery = (
           { __typename?: 'ImagesConnection' }
           & { nodes: Array<Maybe<(
             { __typename?: 'Image' }
-            & Pick<Image, 'url'>
+            & Pick<Image, 'id' | 'url'>
           )>> }
         ) }
       )>> }
@@ -9368,6 +9368,7 @@ export const TripsByUserIdFragmentDoc = gql`
   endDate
   imagesByTripId(condition: {type: BANNER}, first: 1) {
     nodes {
+      id
       url
     }
   }
@@ -10291,6 +10292,8 @@ export const PostByIdDocument = gql`
                 id
                 title
                 createdAt
+                publishedDate
+                content
                 accountByAuthor {
                   ...AccountByAuthor
                 }
@@ -10403,6 +10406,7 @@ export const RecentUserActivityDocument = gql`
         id
         imagesByPostId(condition: {type: LEAD_SMALL}) {
           nodes {
+            id
             url
           }
         }

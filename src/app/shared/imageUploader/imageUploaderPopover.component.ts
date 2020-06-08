@@ -60,9 +60,9 @@ export class ImageUploaderPopoverComponent {
       formData,
       sizes,
       quality,
-      isJuncture && this.params.get('existingPhotos') === 0 ? true : false
+      !!(isJuncture && this.params.get('existingPhotos') === 0)
     ).subscribe(
-      result => {
+      (result) => {
         this.isProcessing = false;
         this.popoverCtrl.dismiss(result);
       }

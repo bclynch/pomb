@@ -9,7 +9,7 @@ import { SubscriptionLike } from 'rxjs';
 @Component({
   selector: 'app-explore',
   templateUrl: './explore.component.html',
-  styleUrls: ['./explore.component.scss'],
+  styleUrls: ['./explore.component.scss']
 })
 export class ExploreComponent implements OnDestroy {
   countryCodes: string[][];

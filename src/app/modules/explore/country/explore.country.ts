@@ -1,5 +1,5 @@
 import { Component, AfterViewInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { ModalController } from '@ionic/angular';
 import { DomSanitizer } from '@angular/platform-browser';
 import { MapsAPILoader, AgmMap } from '@agm/core';
@@ -24,7 +24,8 @@ interface CityMarker {
 
 @Component({
   selector: 'page-explore-country',
-  templateUrl: 'explore.country.html'
+  templateUrl: 'explore.country.html',
+  styleUrls: ['./explore.country.scss']
 })
 export class ExploreCountryPage implements AfterViewInit {
 
@@ -69,7 +70,6 @@ export class ExploreCountryPage implements AfterViewInit {
 
   constructor(
     private apiService: APIService,
-    private router: Router,
     public settingsService: SettingsService,
     private modalController: ModalController,
     private utilService: UtilService,
@@ -96,19 +96,19 @@ export class ExploreCountryPage implements AfterViewInit {
   }
 
   init() {
+    const selectedCountry = this.exploreService.countryNameObj[this.country];
     // check if country exists
-    if (this.exploreService.countryNameObj[this.country]) {
+    if (selectedCountry) {
       // grab flickr images for the carousel
       this.apiService.getFlickrPhotos(this.country, 'landscape', 5).subscribe(
-        result => {
-          console.log(result.photos.photo);
-          const photos = result.photos.photo.slice(0, 5);
-          this.carouselImages = photos.map((photo) => {
+        ({ photos: flikrPhotos }: any) => {
+          const photos = flikrPhotos.photo.slice(0, 5);
+          this.carouselImages = photos.map(({ farm, server, id, secret, title }) => {
             // _b is 'large' img request so 1024 x 768. We'll go with this for now
             // _o is 'original' which is 2400 x 1800
             return {
-              imgURL: `https://farm${photo.farm}.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}_b.jpg`,
-              tagline: photo.title
+              imgURL: `https://farm${farm}.staticflickr.com/${server}/${id}_${secret}_b.jpg`,
+              tagline: title
             };
           });
         }
@@ -117,12 +117,14 @@ export class ExploreCountryPage implements AfterViewInit {
       // bounds data for map
       this.mapsAPILoader.load().then(() => {
         this.apiService.geocodeCoords(this.country).subscribe(
-          result => {
-            const viewport = result.geometry.viewport;
-            const viewportBounds = [{lat: viewport.f.b, lon: viewport.b.b}, {lat: viewport.f.f, lon: viewport.b.f}];
-            console.log(viewportBounds);
+          ({ geometry }) => {
+            const { viewport } = geometry;
+            const viewportBounds = [
+              { lat: viewport.Ua.i, lon: viewport.Ya.j },
+              { lat: viewport.Ua.j, lon: viewport.Ya.i }
+            ];
 
-            this.latlngBounds = result.geometry.viewport;
+            this.latlngBounds = viewport;
 
             // grab map style
             this.utilService.getJSON('../../assets/mapStyles/unsaturated.json').subscribe((data) => {
@@ -132,19 +134,17 @@ export class ExploreCountryPage implements AfterViewInit {
 
             // grab cities for modal
             this.modalData[0].items = [];
-            this.apiService.getCities(this.exploreService.countryNameObj[this.country].alpha2Code).subscribe(
-              ({ geonames }) => {
-                console.log(geonames);
-                geonames.forEach((city) => {
-                  this.modalData[0].items.push(city.name);
+            this.apiService.getCities(selectedCountry.alpha2Code).subscribe(
+              ({ geonames }: any) => {
+                geonames.forEach(({ name, lat, lng, population }) => {
+                  this.modalData[0].items.push(name);
                   this.cityMarkers.push({
-                    lat: +city.lat,
-                    lon: +city.lng,
-                    name: city.name,
-                    population: city.population
+                    lat: +lat,
+                    lon: +lng,
+                    name,
+                    population
                   });
                 });
-                console.log(this.cityMarkers);
               }, err => console.log(err)
             );
           }

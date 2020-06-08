@@ -14,7 +14,7 @@ import { PostByIdGQL, DeletePostByIdGQL, AllPostsByUserGQL } from 'src/app/gener
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.scss'],
+  styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnDestroy {
   tabOptions: string[] = ['all', 'drafts', 'published']; // scheduled removed for now
@@ -126,7 +126,7 @@ export class DashboardComponent implements OnDestroy {
         if (data.type === 'deleted') {
           self.deletePost(post);
         } else {
-          this.toast(`Post ${data.title} ${data.type}`);
+          self.toast(`Post ${data.title} ${data.type}`);
         }
       }
     }
@@ -138,9 +138,8 @@ export class DashboardComponent implements OnDestroy {
       this.deletePostByIdGQL.mutate({
         id: post.id
       }).subscribe(
-        result => {
-          const deleteData = result as any;
-          this.toast(`Post "${deleteData.data.deletePostById.post.title}" successfully deleted`);
+        ({ data }) => {
+          this.toast(`Post "${data.deletePostById.post.title}" successfully deleted`);
         }
       );
     }

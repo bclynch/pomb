@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ExploreComponent } from './explore/explore.component';
 import { ExploreRegionPage } from './region/explore.region';
@@ -6,6 +6,8 @@ import { ExploreCountryPage } from './country/explore.country';
 import { ExploreCityPage } from './city/explore.city';
 import { Routes, RouterModule } from '@angular/router';
 import { SharedModule } from '../../shared/shared.module';
+import { ExploreSubnavComponent } from './exploreSubnav/exploreSubnav.component';
+import { PlaceGuideComponent } from './placeGuide/placeGuide.component';
 
 const routes: Routes = [
   { path: '',
@@ -62,11 +64,19 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [ExploreComponent],
+  declarations: [
+    ExploreComponent,
+    ExploreRegionPage,
+    ExploreCountryPage,
+    ExploreCityPage,
+    ExploreSubnavComponent,
+    PlaceGuideComponent
+  ],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
     SharedModule
-  ]
+  ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class ExploreModule { }

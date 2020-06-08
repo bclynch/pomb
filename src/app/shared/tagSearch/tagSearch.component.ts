@@ -9,8 +9,9 @@ interface Tag {
 }
 
 @Component({
-  selector: 'TagSearch',
-  templateUrl: 'tagSearch.component.html'
+  selector: 'app-tag-search',
+  templateUrl: 'tagSearch.component.html',
+  styleUrls: ['./tagSearch.component.scss']
 })
 export class TagSearchComponent {
   @Output() selectTag: EventEmitter<Tag> = new EventEmitter<Tag>();

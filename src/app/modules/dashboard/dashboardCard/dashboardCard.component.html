@@ -1,0 +1,18 @@
+<div 
+  class="dashboardCardContainer"
+  [ngClass]="isActive ? 'active' : ''" 
+>
+  <div class="postInfoContainer" (click)="selectActive()">
+    <h2>{{data.title}}</h2>
+    <div class="btmRow">
+      <div class="boldFont cardTag" *ngIf="data.isDraft">Draft</div>
+      <!-- <div class="boldFont cardTag" *ngIf="data.isScheduled">Scheduled</div> -->
+      <div>{{data.publishedDate | date: 'short'}}</div>
+    </div>
+  </div>
+  <div class="btnsContainer" *ngIf="isActive">
+    <div class="boldFont editBtn" (click)="editItem()">Edit</div>
+    <div class="boldFont previewBtn" (click)="previewItem()">Preview</div>
+    <div class="boldFont deleteBtn" (click)="deleteItem()">Delete</div>
+  </div>
+</div>

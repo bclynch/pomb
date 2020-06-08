@@ -49,7 +49,6 @@ export class PhotosComponent implements OnDestroy {
           userId: this.userService.user ? this.userService.user.id : null
         }).subscribe(({ data }) => {
           const user = data.accountByUsername;
-          console.log(user);
           this.userId = user.id;
         }, (error) => {
           console.log('there was an error sending the query', error);

@@ -3,9 +3,10 @@ import { PopoverController, NavParams } from '@ionic/angular';
 
 @Component({
   selector: 'JunctureSaveTypePopover',
-  templateUrl: 'junctureSaveTypePopover.component.html'
+  templateUrl: 'junctureSaveTypePopover.component.html',
+  styleUrls: ['./junctureSaveTypePopover.component.scss']
 })
-export class JunctureSaveTypePopover {
+export class JunctureSaveTypePopoverComponent {
 
   options;
 

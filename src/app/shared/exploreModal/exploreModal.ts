@@ -9,7 +9,8 @@ import { RouterService } from '../../services/router.service';
 
 @Component({
   selector: 'ExploreModal',
-  templateUrl: 'exploreModal.html'
+  templateUrl: 'exploreModal.html',
+  styleUrls: ['./exploreModal.scss']
 })
 export class ExploreModalComponent {
 
@@ -37,8 +38,8 @@ export class ExploreModalComponent {
       section.top.forEach((place, placeIndex) => {
         // grab flickr images for the modal
         this.apiService.getFlickrPhotos(this.utilService.formatURLString(place.label), 'landscape', 1).subscribe(
-          result => {
-            const photo = result.photos.photo[0];
+          ({ photos }: any) => {
+            const photo = photos.photo[0];
             // using square photo size 75 x 75
             this.modalData[sectionIndex].top[placeIndex].img =
               `https://farm${photo.farm}.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}_s.jpg`;

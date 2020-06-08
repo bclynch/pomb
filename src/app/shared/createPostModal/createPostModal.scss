@@ -103,8 +103,8 @@
 
         .tagsContainer {
 
-          tagsearch {
-            .tagSearchContainer {
+          app-tag-search {
+            ::ng-deep .tagSearchContainer {
               margin-bottom: 10px;
             }
           }

@@ -40,7 +40,7 @@
         </div>
       </div>
       <div class="postsList">
-        <app-dash-card 
+        <app-dashboard-card 
           [data]="post" 
           [isActive]="i === activePost" 
           *ngFor="let post of displayedPosts; let i = index"
@@ -48,7 +48,7 @@
           (editPost)="launchPostEditor(post)"
           (deletePost)="deleteConfirm(post)"
           (previewPost)="previewPost(post)"
-        ></app-dash-card>
+        ></app-dashboard-card>
       </div>
     </div>
     <div class="previewContainer">

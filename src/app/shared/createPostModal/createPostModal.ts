@@ -1,4 +1,4 @@
-import { Component, NgZone } from '@angular/core';
+import { Component, NgZone, OnChanges } from '@angular/core';
 import {
   NavParams,
   AlertController,
@@ -11,7 +11,6 @@ import { MapsAPILoader } from '@agm/core'; // using to spin up google ready for 
 import FroalaEditor from 'froala-editor';
 
 import { APIService } from '../../services/api.service';
-import { SettingsService } from '../../services/settings.service';
 import { AlertService } from '../../services/alert.service';
 import { UserService } from '../../services/user.service';
 import { UtilService } from '../../services/util.service';
@@ -72,7 +71,7 @@ interface LeadPhoto {
   templateUrl: './createPostModal.html',
   styleUrls: ['./createPostModal.scss']
 })
-export class CreatePostModalComponent {
+export class CreatePostModalComponent implements OnChanges {
 
   containerOptions: string[] = ['Content', 'Options', 'Gallery'];
   activeContainerOption = 0;
@@ -102,7 +101,7 @@ export class CreatePostModalComponent {
     // { name: 'Scheduled', description: 'Publish this post in the future', secondaryDescription: 'Schedule for ' },
     {
       name: 'Draft',
-      description: 'Save this post for later editing',
+      description: 'Save this post for later',
       secondaryDescription: 'This post will not be visible'
     }
   ];
@@ -126,7 +125,6 @@ export class CreatePostModalComponent {
     private alertCtrl: AlertController,
     private params: NavParams,
     private popoverCtrl: PopoverController,
-    private settingsService: SettingsService,
     private modalController: ModalController,
     private alertService: AlertService,
     private toastCtrl: ToastController,
@@ -264,6 +262,10 @@ export class CreatePostModalComponent {
     };
   }
 
+  ngOnChanges(e) {
+    console.log(e);
+  }
+
   selectSmallLeadPhoto(arr: LeadPhoto[]): LeadPhoto {
     let smallPhoto: LeadPhoto;
     arr.forEach((photo) => {
@@ -372,8 +374,8 @@ export class CreatePostModalComponent {
       title: this.postModel.postTitle,
       subtitle: this.postModel.postSubtitle,
       content: this.postModel.content,
-      tripId: this.postModel.tripId,
-      junctureId: this.postModel.junctureId,
+      tripId: +this.postModel.tripId,
+      junctureId: +this.postModel.junctureId,
       city: this.postModel.city,
       country: this.postModel.country,
       isDraft: this.activePostOption === 1,
@@ -411,8 +413,8 @@ export class CreatePostModalComponent {
       isDraft: this.activePostOption === 1,
       isScheduled: this.activePostOption === 123,
       isPublished: this.activePostOption === 0,
-      tripId: this.postModel.tripId,
-      junctureId: this.postModel.junctureId,
+      tripId: +this.postModel.tripId,
+      junctureId: +this.postModel.junctureId,
       city: this.postModel.city,
       country: this.postModel.country,
       scheduledDate: this.activePostOption === 123 ? this.scheduledModel.value : null,
@@ -458,8 +460,8 @@ export class CreatePostModalComponent {
             a${i}: createImage(
               input: {
                 image: {
-                  ${this.postModel.tripId ? 'tripId: ' + this.postModel.tripId : ''},
-                  ${this.postModel.junctureId ? 'junctureId: ' + this.postModel.junctureId : ''},
+                  ${this.postModel.tripId ? 'tripId: ' + +this.postModel.tripId : ''},
+                  ${this.postModel.junctureId ? 'junctureId: ' + +this.postModel.junctureId : ''},
                   postId: ${postId},
                   userId: ${this.userService.user.id},
                   type: ${i === 0 ? ImageType.LEAD_SMALL : ImageType.LEAD_LARGE},
@@ -496,8 +498,8 @@ export class CreatePostModalComponent {
         query += `a${i}: createImage(
           input: {
             image:{
-              ${this.postModel.tripId ? 'tripId: ' + this.postModel.tripId : ''},
-              ${this.postModel.junctureId ? 'junctureId: ' + this.postModel.junctureId : ''},
+              ${this.postModel.tripId ? 'tripId: ' + +this.postModel.tripId : ''},
+              ${this.postModel.junctureId ? 'junctureId: ' + +this.postModel.junctureId : ''},
               postId: ${postId},
               userId: ${this.userService.user.id},
               type: ${ImageType.GALLERY},
@@ -731,17 +733,18 @@ export class CreatePostModalComponent {
     });
   }
 
-  async presentPopover(e) {
+  async presentPopover(event) {
     const popover = await this.popoverCtrl.create({
       component: PostTypePopoverComponent,
       componentProps: { options: this.postOptions },
       cssClass: 'postTypePopover',
+      event
     });
 
     await popover.present();
 
     const { data } = await popover.onWillDismiss();
-    if (data) {
+    if (typeof data !== 'undefined') {
       this.activePostOption = data;
     }
   }

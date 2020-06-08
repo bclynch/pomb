@@ -17,7 +17,7 @@ export class PostTypePopoverComponent {
     this.options = params.get('options');
   }
 
-  selectOption(option: string) {
+  selectOption(option: number) {
     this.popoverCtrl.dismiss(option);
   }
 }

@@ -36,7 +36,8 @@ export class AppService {
           this.userService.init().then(() => {
             this._subject.next(true);
             this.firstTry = false;
-          });
+          },
+          err => console.log('err', err));
         } else {
           // if it doesnt exist dump the token
           if (this.firstTry) {

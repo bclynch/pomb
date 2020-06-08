@@ -42,8 +42,7 @@ export class PostWrapperComponent implements OnChanges {
       this.tags = this.post.postToTagsByPostId.nodes.map((tag) => tag.postTagByPostTagId.name);
 
       this.analyticsService.getPageViews().then(
-        result => {
-          const data = result as any;
+        ({ data }) => {
           this.views = data.views;
         }
       );
@@ -57,14 +56,16 @@ export class PostWrapperComponent implements OnChanges {
   populateRelatedPosts(): void {
     this.relatedPosts = [];
     if (this.tags.length) {
-      this.post.postToTagsByPostId.nodes[0].postTagByPostTagId.postToTagsByPostTagId.nodes.forEach((post) => {
-        if (this.relatedPosts
-              .map(obj => obj.id)
-              .indexOf(post.postByPostId.id) === -1 && post.postByPostId.id !== this.post.id
-            ) {
-          this.relatedPosts.push(post.postByPostId);
+      this.post.postToTagsByPostId.nodes[0].postTagByPostTagId.postToTagsByPostTagId.nodes.forEach(
+        ({ postByPostId }) => {
+          if (this.relatedPosts
+            .map(({ id }) => id)
+            .indexOf(postByPostId.id) === -1 && postByPostId.id !== this.post.id
+          ) {
+            this.relatedPosts.push(postByPostId);
+          }
         }
-      });
+      );
     }
   }
 }

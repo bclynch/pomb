@@ -109,9 +109,8 @@ app-profile-hero-banner {
 .tripCardContainer {
   width: 100%;
 
-  tripcard {
-
-    .tripCardContainer {
+  app-trip-card {
+    ::ng-deep .tripCardContainer {
       margin: 10px auto;
     }
   }
@@ -152,13 +151,13 @@ app-profile-hero-banner {
     justify-content: space-between;
     flex-wrap: wrap;
 
-    tripcard {
+    app-trip-card {
       width: 50%;
     }
-    tripcard:nth-child(odd) {
+    app-trip-card:nth-child(odd) {
       padding-right: 10px;
     }
-    tripcard:nth-child(even) {
+    app-trip-card:nth-child(even) {
       padding-left: 10px;
     }
   }

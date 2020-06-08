@@ -16,7 +16,7 @@
       }
     }
     .resultsPane {
-      background: mapGet($basecolor, white);
+      background: var(--white);
       position: absolute;
       width: 100%;
       box-shadow: 0 3px 9px 0 rgba(0,0,0, 0.1);

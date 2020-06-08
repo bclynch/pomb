@@ -161,8 +161,8 @@ export class TripModalComponent {
 
     const { data } = await popover.onWillDismiss();
     if (data) {
-      this.tripModel.bannerImages = data.map((img) => {
-        return { id: null, url: img.url, title: null };
+      this.tripModel.bannerImages = data.map(({ url }) => {
+        return { id: null, url, title: null };
       });
     }
   }

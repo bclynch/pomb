@@ -5,23 +5,19 @@
   .popover-content {
     // @extend %popoverContent;
     width: 150px !important;
+  }
+}
+.popoverContainer {
+  background: var(--white);
+  width: 100%;
+  border-radius: 2px;
+  overflow: hidden;
 
-    juncturesavetypepopover {
+  .popoverItem {
+    padding: 10px!important;
 
-      .popoverContainer {
-        background: var(--white);
-        width: 100%;
-        border-radius: 2px;
-        overflow: hidden;
-
-        .popoverItem {
-          padding: 10px!important;
-
-          .popoverLabel {
-            font-size: 20px;
-          }
-        }
-      }
+    .popoverLabel {
+      font-size: 20px;
     }
   }
 }

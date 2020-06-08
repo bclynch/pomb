@@ -8,20 +8,24 @@ export class ExploreService {
   regions = {
     africa: {
       northern_africa: ['DZ', 'EG', 'EH', 'LY', 'MA', 'SD', 'SS', 'TN'],
-      western_africa: ['BF', 'BJ', 'CI', 'CV', 'GH', 'GM', 'GN', 'GW', 'LR', 'ML', 'MR', 'NE', 'NG', 'SH', 'SL', 'SN', 'TG'],
+      western_africa: ['BF', 'BJ', 'CI', 'CV', 'GH', 'GM', 'GN', 'GW', 'LR',
+        'ML', 'MR', 'NE', 'NG', 'SH', 'SL', 'SN', 'TG'],
       middle_africa: ['AO', 'CD', 'ZR', 'CF', 'CG', 'CM', 'GA', 'GQ', 'ST', 'TD'],
-      eastern_africa: ['BI', 'DJ', 'ER', 'ET', 'KE', 'KM', 'MG', 'MU', 'MW', 'MZ', 'RE', 'RW', 'SC', 'SO', 'TZ', 'UG', 'YT', 'ZM', 'ZW'],
+      eastern_africa: ['BI', 'DJ', 'ER', 'ET', 'KE', 'KM', 'MG', 'MU', 'MW',
+        'MZ', 'RE', 'RW', 'SC', 'SO', 'TZ', 'UG', 'YT', 'ZM', 'ZW'],
       southern_africa: ['BW', 'LS', 'NA', 'SZ', 'ZA']
     },
     europe: {
       northern_europe: ['GG', 'JE', 'AX', 'DK', 'EE', 'FI', 'FO', 'GB', 'IE', 'IM', 'IS', 'LT', 'LV', 'NO', 'SE', 'SJ'],
       western_europe: ['AT', 'BE', 'CH', 'DE', 'DD', 'FR', 'FX', 'LI', 'LU', 'MC', 'NL'],
       eastern_europe: ['BG', 'BY', 'CZ', 'HU', 'MD', 'PL', 'RO', 'RU', 'SU', 'SK', 'UA'],
-      southern_europe: ['AD', 'AL', 'BA', 'ES', 'GI', 'GR', 'HR', 'IT', 'ME', 'MK', 'MT', 'CS', 'RS', 'PT', 'SI', 'SM', 'VA', 'YU']
+      southern_europe: ['AD', 'AL', 'BA', 'ES', 'GI', 'GR', 'HR', 'IT', 'ME', 'MK', 'MT',
+        'CS', 'RS', 'PT', 'SI', 'SM', 'VA', 'YU']
     },
     americas: {
       north_america: ['BM', 'CA', 'GL', 'PM', 'US'],
-      caribbean: ['AG', 'AI', 'AN', 'AW', 'BB', 'BL', 'BS', 'CU', 'DM', 'DO', 'GD', 'GP', 'HT', 'JM', 'KN', 'KY', 'LC', 'MF', 'MQ', 'MS', 'PR', 'TC', 'TT', 'VC', 'VG', 'VI'],
+      caribbean: ['AG', 'AI', 'AN', 'AW', 'BB', 'BL', 'BS', 'CU', 'DM', 'DO', 'GD', 'GP', 'HT',
+        'JM', 'KN', 'KY', 'LC', 'MF', 'MQ', 'MS', 'PR', 'TC', 'TT', 'VC', 'VG', 'VI'],
       central_america: ['BZ', 'CR', 'GT', 'HN', 'MX', 'NI', 'PA', 'SV'],
       south_america: ['AR', 'BO', 'BR', 'CL', 'CO', 'EC', 'FK', 'GF', 'GY', 'PE', 'PY', 'SR', 'UY', 'VE']
     },
@@ -30,7 +34,8 @@ export class ExploreService {
       eastern_asia: ['CN', 'HK', 'JP', 'KP', 'KR', 'MN', 'MO', 'TW'],
       southern_asia: ['AF', 'BD', 'BT', 'IN', 'IR', 'LK', 'MV', 'NP', 'PK'],
       south_eastern_asia: ['BN', 'ID', 'KH', 'LA', 'MM', 'BU', 'MY', 'PH', 'SG', 'TH', 'TL', 'TP', 'VN'],
-      western_asia: ['AE', 'AM', 'AZ', 'BH', 'CY', 'GE', 'IL', 'IQ', 'JO', 'KW', 'LB', 'OM', 'PS', 'QA', 'SA', 'NT', 'SY', 'TR', 'YE', 'YD']
+      western_asia: ['AE', 'AM', 'AZ', 'BH', 'CY', 'GE', 'IL', 'IQ', 'JO', 'KW', 'LB', 'OM', 'PS',
+        'QA', 'SA', 'NT', 'SY', 'TR', 'YE', 'YD']
     },
     oceania: {
       australasia: ['AU', 'NF', 'NZ'],
@@ -86,11 +91,11 @@ export class ExploreService {
       // this.processRegions();
       // this.createCountryObjects().then(() => resolve());
       this.getAllCountriesGQL.fetch().subscribe(
-        result => {
+        ({ data }) => {
           // create object by code
-          // console.log(result);
-          result.data.allCountries.nodes.forEach((country) => {
-            this.countryCodeObj[country.code] = { name: country.name };
+          data.allCountries.nodes.forEach(({ code, name }) => {
+            this.countryCodeObj[code] = { name };
+            this.countryNameObj[name] = { alpha2Code: code };
           });
           resolve();
         }
@@ -113,7 +118,9 @@ export class ExploreService {
     let countryCode: string;
 
     Object.keys(this.googleRegionCodes).forEach((code) => {
-      if (this.googleRegionCodes[code] === name) countryCode = code;
+      if (this.googleRegionCodes[code] === name) {
+        countryCode = code;
+      }
     });
     return countryCode;
   }
@@ -145,9 +152,13 @@ export class ExploreService {
   requestCountryCodes(region: string, subregion?: string) {
     // check cache first
     if (subregion) {
-      if (this.countryCodeCache[subregion]) return this.countryCodeCache[subregion];
+      if (this.countryCodeCache[subregion]) {
+        return this.countryCodeCache[subregion];
+      }
     } else {
-      if (this.countryCodeCache[region]) return this.countryCodeCache[region];
+      if (this.countryCodeCache[region]) {
+        return this.countryCodeCache[region];
+      }
     }
 
     // geochart likes having country keyword first
@@ -158,7 +169,11 @@ export class ExploreService {
         countryCodeArr = countryCodeArr.concat(this.combineSubregions(region));
       });
     } else {
-      countryCodeArr = subregion ? countryCodeArr.concat(this.formatSubregion(this.regions[region][subregion.split(' ').join('_').toLowerCase()])) : countryCodeArr.concat(this.combineSubregions(region.toLowerCase()));
+      countryCodeArr = subregion
+        ? countryCodeArr.concat(
+          this.formatSubregion(this.regions[region][subregion.split(' ').join('_').toLowerCase()])
+        )
+        : countryCodeArr.concat(this.combineSubregions(region.toLowerCase()));
     }
     console.log(countryCodeArr);
 
@@ -182,7 +197,9 @@ export class ExploreService {
   private formatSubregion(arr: string[]) {
     const subregionArr: string[][] = [];
     arr.forEach((code) => {
-      if (this.countryCodeObj[code]) subregionArr.push([this.countryCodeObj[code].name]);
+      if (this.countryCodeObj[code]) {
+        subregionArr.push([this.countryCodeObj[code].name]);
+      }
     });
     return subregionArr;
   }

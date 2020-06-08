@@ -40,6 +40,8 @@ import { MobileNavModalComponent } from './mobileNavModal/mobileNavModal';
 import { ImageUploaderPopoverComponent } from './imageUploader/imageUploaderPopover.component';
 import { GradientPopoverComponent } from './gradientPopover/gradientPopover.component';
 import { DeleteAccountModalComponent } from './deleteAccountModal/deleteAccountModal';
+import { JunctureSaveTypePopoverComponent } from './junctureSaveType/junctureSaveTypePopover.component';
+import { PostTypePopoverComponent } from './postType/postTypePopover.component';
 import { TripModalComponent } from './tripModal/tripModal';
 import { JunctureModalComponent } from './junctureModal/junctureModal';
 import { DatePickerModalComponent } from './datepickerModal/datepickerModal';
@@ -90,6 +92,8 @@ import { CountrySearchComponent } from './countrySearch/countrySearch.component'
     ImageUploaderPopoverComponent,
     GradientPopoverComponent,
     DeleteAccountModalComponent,
+    JunctureSaveTypePopoverComponent,
+    PostTypePopoverComponent,
     TripModalComponent,
     JunctureModalComponent,
     DatePickerModalComponent,
@@ -155,6 +159,8 @@ import { CountrySearchComponent } from './countrySearch/countrySearch.component'
     ImageUploaderPopoverComponent,
     GradientPopoverComponent,
     DeleteAccountModalComponent,
+    JunctureSaveTypePopoverComponent,
+    PostTypePopoverComponent,
     TripModalComponent,
     JunctureModalComponent,
     DatePickerModalComponent,
@@ -185,9 +191,12 @@ import { CountrySearchComponent } from './countrySearch/countrySearch.component'
     ImageUploaderPopoverComponent,
     GradientPopoverComponent,
     DeleteAccountModalComponent,
+    JunctureSaveTypePopoverComponent,
+    PostTypePopoverComponent,
     TripModalComponent,
     JunctureModalComponent,
-    DatePickerModalComponent
+    DatePickerModalComponent,
+    GalleryImgActionPopoverComponent
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

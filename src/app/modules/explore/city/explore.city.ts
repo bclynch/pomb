@@ -45,15 +45,14 @@ export class ExploreCityPage implements OnDestroy {
   init() {
     // grab flickr images for the carousel
     this.apiService.getFlickrPhotos(this.city, 'architecture', 5).subscribe(
-      result => {
-        console.log(result.photos.photo);
-        const photos = result.photos.photo.slice(0, 5);
-        this.carouselImages = photos.map((photo) => {
+      ({ photos: flickrPhotos }: any) => {
+        const photos = flickrPhotos.photo.slice(0, 5);
+        this.carouselImages = photos.map(({ farm, server, id, secret, title }) => {
           // _b is 'large' img request so 1024 x 768. We'll go with this for now
           // _o is 'original' which is 2400 x 1800
           return {
-            imgURL: `https://farm${photo.farm}.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}_b.jpg`,
-            tagline: photo.title
+            imgURL: `https://farm${farm}.staticflickr.com/${server}/${id}_${secret}_b.jpg`,
+            tagline: title
           };
         });
       }

@@ -78,6 +78,10 @@ const routes: Routes = [
     path: 'tracking',
     loadChildren: () => import('./modules/tracking/tracking.module').then( m => m.TrackingModule)
   },
+  {
+    path: 'explore',
+    loadChildren: () => import('./modules/explore/explore.module').then( m => m.ExploreModule)
+  }
 ];
 
 @NgModule({

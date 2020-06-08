@@ -18,7 +18,7 @@ import { GeoService } from '../../services/geo.service';
 
 import { Juncture } from '../../models/Juncture.model';
 
-import { JunctureSaveTypePopover } from '../junctureSaveType/junctureSaveTypePopover.component';
+import { JunctureSaveTypePopoverComponent } from '../junctureSaveType/junctureSaveTypePopover.component';
 import { DatePickerModalComponent } from '../datepickerModal/datepickerModal';
 import { ImageUploaderPopoverComponent } from '../imageUploader/imageUploaderPopover.component';
 import { GalleryImgActionPopoverComponent } from '../galleryImgAction/galleryImgActionPopover.component';
@@ -248,11 +248,12 @@ export class JunctureModalComponent {
     });
   }
 
-  async presentPopover(e) {
+  async presentPopover(event) {
     const popover = await this.popoverCtrl.create({
-      component: JunctureSaveTypePopover,
+      component: JunctureSaveTypePopoverComponent,
       componentProps: { options: ['Draft', 'Publish'] },
-      cssClass: 'junctureSaveTypePopover'
+      cssClass: 'junctureSaveTypePopover',
+      event
     });
 
     await popover.present();
@@ -388,9 +389,9 @@ export class JunctureModalComponent {
     }
   }
 
-  moveCenter(e) {
-    this.coords.lat = e.lat;
-    this.coords.lon = e.lng;
+  moveCenter({ lat, lng }) {
+    this.coords.lat = lat;
+    this.coords.lon = lng;
   }
 
   deleteJuncture() {
@@ -402,7 +403,7 @@ export class JunctureModalComponent {
         this.deleteJunctureByIdGQL.mutate({
           junctureId: this.params.data.junctureId
         }).subscribe(
-          result => {
+          () => {
             this.toastDelete('Juncture deleted');
             this.modalCtrl.dismiss();
           }

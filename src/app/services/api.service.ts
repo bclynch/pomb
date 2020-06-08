@@ -1,17 +1,12 @@
 import { Injectable, Inject } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { map, catchError } from 'rxjs/operators';
-import { Observable, Subscription, throwError } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 import { ENV } from '../../environments/environment';
 declare var google: any;
 
 import { Apollo } from 'apollo-angular';
 import gql from 'graphql-tag';
-
-import { AlertService } from './alert.service';
-
-import { ImageType } from '../models/Image.model';
-import { JunctureType } from '../models/Juncture.model';
 
 // needs to be an env var
 const flickrKey = ENV.flickrAPIKey;
@@ -22,19 +17,15 @@ export class APIService {
 
   constructor(
     private http: HttpClient,
-    private apollo: Apollo,
-    private alertService: AlertService
+    private apollo: Apollo
   ) {}
 
   // flickr photos
   getFlickrPhotos(place: string, tag: string, results: number, additionalTag?: string) {
-    return this.http.get(`https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=${flickrKey}&tags=${place},${tag}${additionalTag ? ', ' + additionalTag : ''}&tag_mode=all&per_page=${results}&content_type=1&sort=interestingness-desc&format=json&nojsoncallback=1`)
+    return this.http.get(`https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=${flickrKey}&tags=${place},${tag}${additionalTag ? ', ' + additionalTag : ''}&tag_mode=all&per_page=${results}&content_type=1&sort=interestingness-desc&format=json&nojsoncallback=1`
+  )
     .pipe(map(
-      (response: Response) => {
-        const responseData = response as any;
-        return JSON.parse(responseData._body);
-      }
-    )
+      (response) => response)
     ).pipe(catchError(
       (error: HttpErrorResponse) => throwError(error.message || 'server error.')
     ));
@@ -42,13 +33,11 @@ export class APIService {
 
   // city info
   getCities(countryCode: string) {
-    return this.http.get(`http://api.geonames.org/searchJSON?formatted=true&country=${countryCode}&cities=cities15000&orderby=population&featureClass=p&username=${geonamesUser}&maxRows=10`)
+    return this.http.get(`http://api.geonames.org/searchJSON?formatted=true&country=${countryCode}&cities=cities15000\
+    &orderby=population&featureClass=p&username=${geonamesUser}&maxRows=10`
+  )
     .pipe(map(
-      (response: Response) => {
-        const responseData = <any>response;
-        return JSON.parse(responseData._body);
-      }
-    )
+      (response) => response)
     ).pipe(catchError(
       (error: HttpErrorResponse) => throwError(error.message || 'server error.')
     ));
@@ -59,12 +48,12 @@ export class APIService {
     const formattedSizes = sizes.map((size) => {
       return [size.width, 'x', size.height].join('');
     }).join(';');
-    return this.http.post(`${ENV.apiBaseURL}/upload-images?sizes=${formattedSizes}&quality=${quality}&isJuncture=${isJuncture}`, formData)
+    return this.http.post(
+      `${ENV.apiBaseURL}/upload-images?sizes=${formattedSizes}&quality=${quality}&isJuncture=${isJuncture}`,
+      formData
+    )
       .pipe(map(
-        (response: Response) => {
-          const data = response.json();
-          return data;
-        }
+        (response) => response // [{ url: string; size: number; }]
       )
       ).pipe(catchError(
         (error: HttpErrorResponse) => throwError(error.message || 'server error.')
@@ -78,11 +67,7 @@ export class APIService {
     }).join(';');
     return this.http.post(`${ENV.apiBaseURL}/upload-images/local?sizes=${formattedSizes}&quality=${quality}`, formData)
       .pipe(map(
-        (response: Response) => {
-          const data = response.json();
-          return data;
-        }
-      )
+        (response) => response)
       ).pipe(catchError(
         (error: HttpErrorResponse) => throwError(error.message || 'server error.')
       ));
@@ -92,11 +77,7 @@ export class APIService {
   processGPX(formData: FormData) {
     return this.http.post(`${ENV.apiBaseURL}/process-gpx`, formData)
       .pipe(map(
-        (response: Response) => {
-          const data = response.json();
-          return data;
-        }
-      )
+        (response) => response)
       ).pipe(catchError(
         (error: HttpErrorResponse) => throwError(error.message || 'server error.')
       ));
@@ -106,12 +87,7 @@ export class APIService {
   uploadGPX(geoJSON, junctureId: number) {
     return this.http.post(`${ENV.apiBaseURL}/process-gpx/upload?juncture=${junctureId}`, geoJSON)
       .pipe(map(
-        (response: Response) => {
-          console.log('GPX RESP: ', response);
-          const data = response.json();
-          return data;
-        }
-      )
+        (response) => response)
       ).pipe(catchError(
         (error: HttpErrorResponse) => throwError(error.message || 'server error.')
       ));
@@ -121,11 +97,7 @@ export class APIService {
   getViews(path: string) {
     return this.http.get(`${ENV.apiBaseURL}/analytics/getViews?path=${path}`)
       .pipe(map(
-        (response: Response) => {
-          const data = response.json();
-          return data;
-        }
-      )
+        (response: Response) => response)
       ).pipe(catchError(
         (error: HttpErrorResponse) => throwError(error.message || 'server error.')
       ));
@@ -172,11 +144,7 @@ export class APIService {
   sendResetEmail(user: string, pw: string) {
     return this.http.post(`${ENV.apiBaseURL}/mailing/reset`, { user, pw })
       .pipe(map(
-        (response: Response) => {
-          const data = response.json();
-          return data;
-        }
-      )
+        (response) => response)
       ).pipe(catchError(
         (error: HttpErrorResponse) => throwError(error.message || 'server error.')
       ));
@@ -185,11 +153,7 @@ export class APIService {
   sendRegistrationEmail(user: string) {
     return this.http.post(`${ENV.apiBaseURL}/mailing/registration`, { user })
       .pipe(map(
-        (response: Response) => {
-          const data = response.json();
-          return data;
-        }
-      )
+        (response: Response) => response)
       ).pipe(catchError(
         (error: HttpErrorResponse) => throwError(error.message || 'server error.')
       ));
@@ -198,8 +162,7 @@ export class APIService {
   sendContactEmail(data: { why: string; name: string; email: string; content: string; }) {
     return this.http.post(`${ENV.apiBaseURL}/mailing/contact`, { data })
       .pipe(map(
-        (response: Response) => response.json()
-      )
+        (response: Response) => response)
       ).pipe(catchError(
         (error: HttpErrorResponse) => throwError(error.message || 'server error.')
       ));

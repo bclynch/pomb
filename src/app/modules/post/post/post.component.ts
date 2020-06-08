@@ -44,14 +44,12 @@ export class PostComponent implements OnDestroy {
   }
 
   init() {
-    console.log(this.userService.user);
     this.postByIdGQL.fetch({
       id: +this.postId,
       userId: this.userService.user ? this.userService.user.id : null
     }).subscribe(
       ({ data }) => {
         this.post = data.postById;
-        console.log(this.post);
         this.settingsService.modPageMeta(
           this.post.title,
           this.utilService.truncateString(this.utilService.stripHTMLTags(this.post.content), 145)

@@ -10,6 +10,7 @@ fragment TripsByUserId on Trip {
     first: 1
   ) {
     nodes {
+      id,
       url
     }
   }
