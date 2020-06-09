@@ -6,7 +6,8 @@ import { LocalStorageService } from '../../services/localStorage.service';
 
 @Component({
   selector: 'app-unit-toggle',
-  templateUrl: 'unitToggle.component.html'
+  templateUrl: 'unitToggle.component.html',
+  styleUrls: ['./unitToggle.component.scss']
 })
 export class UnitToggleComponent {
 

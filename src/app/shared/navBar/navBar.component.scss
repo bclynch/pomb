@@ -1,6 +1,6 @@
 $navbarHeight: 40px;
 
-.navBarBruh {
+::ng-deep app-navbar {
   width: 100%;
 
   .navBarContainer {

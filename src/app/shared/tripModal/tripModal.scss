@@ -112,9 +112,10 @@
       .timeContainer {
         display: flex;
         justify-content: space-between;
+        flex-direction: column;
 
         .timeDisplay {
-          width: 40%;
+          width: 100%;
 
           .dateWrapper {
             display: flex;
@@ -233,13 +234,20 @@
       }
     }
   }
-}
-@media (min-width: 768px) {
-  .modalSection {
-    width: 80% !important;
-  }
-  .overlay {
-    opacity: 0 !important;
+  @media (min-width: 768px) {
+    .modalSection {
+      width: 80% !important;
+    }
+    .timeContainer {
+      flex-direction: row !important;
+
+      .timeDisplay {
+        width: 40% !important;
+      }
+    }
+    .overlay {
+      opacity: 0 !important;
+    }
   }
 }
 

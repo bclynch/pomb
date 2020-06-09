@@ -12,6 +12,11 @@
     - ~~Juncure~~
     - ~~Post~~
     - ~~Pics~~
+- Fine tune UI experience against current prod
+    - Hub module / trip posts bug
+- Launch!
+    - Push new build to vps
+    - Update server
 
 ### Top Priorities
 

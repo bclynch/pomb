@@ -22,11 +22,18 @@
           <div class="headerWrapper">
             <div class="glanceHeader">Explore {{tripData?.name}}</div>
             <div class="infoContainer" *ngIf="tripData">
-              <div class="tripStatus"><div>Trip Status:</div> {{tripService.tripStatus(+this.tripData.startDate, this.tripData.endDate ? +this.tripData.endDate : null)}}</div>
+              <div class="tripStatus">
+                <div>Trip Status:</div>
+                 {{tripService.tripStatus(+this.tripData.startDate, this.tripData.endDate ? +this.tripData.endDate : null)}}
+              </div>
               <div class="userWrapper">
                 <div (click)="routerService.navigateToPage('/user/' + tripData.accountByUserId.username)">
-                  <div class="name" *ngIf="tripData.accountByUserId.firstName">{{tripData.accountByUserId.firstName}} {{tripData.accountByUserId.lastName}}</div>
-                  <div class="name" *ngIf="!tripData.accountByUserId.firstName">{{tripData.accountByUserId.username}}</div>
+                  <div class="name" *ngIf="tripData.accountByUserId.firstName">
+                    {{tripData.accountByUserId.firstName}} {{tripData.accountByUserId.lastName}}
+                  </div>
+                  <div class="name" *ngIf="!tripData.accountByUserId.firstName">
+                    {{tripData.accountByUserId.username}}
+                  </div>
                   <app-profile-picture [photo]="tripData.accountByUserId.profilePhoto"></app-profile-picture>
                 </div>
                 <app-track-user [trackUserId]="tripData.accountByUserId.id"></app-track-user>
@@ -70,14 +77,19 @@
             >
               <agm-data-layer [geoJson]="geoJsonObject" [style]="dataLayerStyle"></agm-data-layer>
             </agm-map>
-            <div class="mapBtn" (click)="routerService.navigateToPage('/trip/' + tripId + '/map')"><ion-icon name="trending-up-outline"></ion-icon>Launch Map Explorer</div>
+            <div class="mapBtn" (click)="routerService.navigateToPage('/trip/' + tripId + '/map')">
+              <ion-icon name="trending-up-outline"></ion-icon>
+              Launch Map Explorer
+            </div>
           </div>
         </div>
         <div class="section junctures" id="Junctures">
           <div class="sectionHeader">Junctures</div>
           <div class="sectionContent" *ngIf="tripData?.juncturesByTripId.nodes.length">
             <app-juncture-bubbles [junctures]="tripData?.juncturesByTripId.nodes"></app-juncture-bubbles>
-            <div class="navLink" (click)="routerService.navigateToPage('/trip/' + tripId + '/junctures')">Check out all of this trip's junctures</div>
+            <div class="navLink" (click)="routerService.navigateToPage('/trip/' + tripId + '/junctures')">
+              Check out all of this trip's junctures
+            </div>
           </div>
           <div class="noResultsContainer" *ngIf="!tripData?.juncturesByTripId.nodes.length">
             <ion-icon name="git-merge"></ion-icon>
@@ -90,7 +102,9 @@
             <div class="postsContainer">
               <app-post-card [data]="post" *ngFor="let post of tripPosts"></app-post-card>
             </div>
-            <div class="navLink" (click)="routerService.navigateToPage('/trip/' + tripId + '/posts')">Check out all of this trip's posts</div>
+            <div class="navLink" (click)="routerService.navigateToPage('/trip/' + tripId + '/posts')">
+              Check out all of this trip's posts
+            </div>
           </div>
           <div class="noResultsContainer" *ngIf="!tripPosts.length">
             <ion-icon name="albums"></ion-icon>
@@ -101,7 +115,9 @@
           <div class="sectionHeader">Photos</div>
           <div class="sectionContent" *ngIf="gallery.length">
             <app-gallery [data]="gallery" gutterWidth="2px"></app-gallery>
-            <div class="navLink" (click)="routerService.navigateToPage('/trip/' + tripId + '/photos')">Check out all of this trip's photos</div>
+            <div class="navLink" (click)="routerService.navigateToPage('/trip/' + tripId + '/photos')">
+              Check out all of this trip's photos
+            </div>
           </div>
           <div class="noResultsContainer" *ngIf="!gallery.length">
             <ion-icon name="images"></ion-icon>

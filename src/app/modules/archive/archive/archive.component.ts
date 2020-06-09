@@ -60,7 +60,9 @@ export class ArchiveComponent implements OnDestroy {
       offset: 20 * this.archivePage
     }).subscribe(
       ({ data }) => {
-        this.totalPages = Math.ceil((data.allPosts.totalCount - 20) / 20);
+        const totalPosts = data.allPosts.totalCount;
+        const postsPerPage = 20;
+        this.totalPages = totalPosts > postsPerPage ? Math.ceil((totalPosts - postsPerPage) / postsPerPage) : 1;
         this.posts = data.allPosts.nodes;
         this.gridPosts = this.posts.slice(0, this.gridConfiguration.length);
         this.otherPosts = this.posts.slice(this.gridConfiguration.length);

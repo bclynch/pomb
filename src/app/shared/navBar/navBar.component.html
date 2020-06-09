@@ -1,48 +1,46 @@
-<div class="navBarBruh">
-  <div 
-    class="navBarContainer" 
-    [ngClass]="collapsibleNav ? (utilService.scrollDirection === 'down' ? 'hidden' : null) : null" 
-    [style.height]="isExpanded ? '520px' : '40px'"
-    [style.background]="isExpanded || searchActive ? 'black' : ''"
-    (mouseleave)="navHover($event)"
-    id="navBar"
-  >
-    <div class="navBarWrapper" [attr.style]="sanitizer.bypassSecurityTrustStyle('--secondary:' + settingsService.secondaryColor)">
-      <div class="barWrapper">
-        <div class="logoWrapper">
-          <span 
-            class="boldFont gradientText" 
-            [style.background-image]="'linear-gradient(to right, ' + settingsService.primaryColor + ', ' + settingsService.secondaryColor + ')'" 
-            (click)="routerService.navigateToPage('/')"
-          >POMB</span>
+<div 
+  class="navBarContainer" 
+  [ngClass]="collapsibleNav ? (utilService.scrollDirection === 'down' ? 'hidden' : null) : null" 
+  [style.height]="isExpanded ? '520px' : '40px'"
+  [style.background]="isExpanded || searchActive ? 'black' : ''"
+  (mouseleave)="navHover($event)"
+  id="navBar"
+>
+  <div class="navBarWrapper" [attr.style]="sanitizer.bypassSecurityTrustStyle('--secondary:' + settingsService.secondaryColor)">
+    <div class="barWrapper">
+      <div class="logoWrapper">
+        <span 
+          class="boldFont gradientText" 
+          [style.background-image]="'linear-gradient(to right, ' + settingsService.primaryColor + ', ' + settingsService.secondaryColor + ')'" 
+          (click)="routerService.navigateToPage('/')"
+        >POMB</span>
+      </div>
+      <div class="sectionsWrapper">
+        <div 
+          *ngFor="let option of sectionOptions; let i = index;" 
+          class="boldFont sectionOption"
+          (click)="navigate(option.value)"
+          (mouseenter)="navHover($event, i)"
+          [ngClass]="option.value === activeSection?.value ? 'active' : ''"
+        >{{option.label}}</div>
+      </div>
+      <div class="searchWrapper" [ngClass]="searchActive ? 'active' : ''">
+        <div (click)="openSearch()">
+          <ion-icon class="searchBtn" name="search-outline"></ion-icon>
         </div>
-        <div class="sectionsWrapper">
-          <div 
-            *ngFor="let option of sectionOptions; let i = index;" 
-            class="boldFont sectionOption"
-            (click)="navigate(option.value)"
-            (mouseenter)="navHover($event, i)"
-            [ngClass]="option.value === activeSection?.value ? 'active' : ''"
-          >{{option.label}}</div>
-        </div>
-        <div class="searchWrapper" [ngClass]="searchActive ? 'active' : ''">
-          <div (click)="openSearch()">
-            <ion-icon class="searchBtn" name="search-outline"></ion-icon>
-          </div>
-          <app-search [isActive]="searchActive" (close)="searchActive = false" [canToggle]="true"></app-search>
-        </div>
-        <div class="mobilePrompt" (click)="openMobileNav()">
-          <div>
-            <ion-icon name="menu-outline"></ion-icon>
-          </div>
+        <app-search [isActive]="searchActive" (close)="searchActive = false" [canToggle]="true"></app-search>
+      </div>
+      <div class="mobilePrompt" (click)="openMobileNav()">
+        <div>
+          <ion-icon name="menu-outline"></ion-icon>
         </div>
       </div>
     </div>
-    <div class="sectionInfoPane">
-      <app-community-nav-section *ngIf="activeSection?.label === 'Community'" [socialOptions]="socialOptions"></app-community-nav-section>
-      <!-- <app-explore-nav-section *ngIf="activeSection?.label === 'Explore'"></ExploreNavSection> -->
-      <app-stories-nav-section *ngIf="activeSection?.label === 'Stories'"></app-stories-nav-section>  
-      <app-my-pack-nav-section *ngIf="activeSection?.label === 'My Pack'"></app-my-pack-nav-section>    
-    </div>
+  </div>
+  <div class="sectionInfoPane">
+    <app-community-nav-section *ngIf="activeSection?.label === 'Community'" [socialOptions]="socialOptions"></app-community-nav-section>
+    <!-- <app-explore-nav-section *ngIf="activeSection?.label === 'Explore'"></ExploreNavSection> -->
+    <app-stories-nav-section *ngIf="activeSection?.label === 'Stories'"></app-stories-nav-section>  
+    <app-my-pack-nav-section *ngIf="activeSection?.label === 'My Pack'"></app-my-pack-nav-section>    
   </div>
 </div>

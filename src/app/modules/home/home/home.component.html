@@ -18,7 +18,7 @@
         </span>
       </div>
       <div>{{gridPosts[0].publishedDate | date: 'mediumDate'}}</div>
-      <!-- <div class="content">{{utilService.stripHTMLTags(gridPosts[0].content) | truncate:[200, '...']}}</div> -->
+      <div class="content">{{utilService.stripHTMLTags(gridPosts[0].content) | truncate:[200, '...']}}</div>
     </div>
   </div>
   <app-grid [elements]="gridPosts" [gridConfig]="gridConfiguration" *ngIf="gridPosts.length"></app-grid>

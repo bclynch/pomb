@@ -14,6 +14,10 @@
     &.fullscreen {
       height: 100vh;
       width: 100vw;
+
+      app-share-btns {
+        bottom: 45px;
+      }
     }
     agm-map {
       height: 100%;
@@ -278,7 +282,7 @@
               }
             }
           }
-          Gallery {
+          app-gallery {
             .galleryContainer {
               margin: 10px 0;
             }

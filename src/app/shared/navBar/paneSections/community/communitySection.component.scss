@@ -32,10 +32,10 @@
       width: 100%;
       min-width: 350px;
 
-      app-grid {
+      ::ng-deep app-grid {
         width: 80%;
 
-        ::ng-deep .card {
+        .card {
           height: 175px;
         }
       }

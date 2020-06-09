@@ -1,4 +1,4 @@
-.heroBannerBruh {
+::ng-deep app-hero-banner {
   width: 100vw;
   display: none;
 
@@ -29,9 +29,7 @@
       text-shadow: 2px 2px var(--black);
     }
   }
-}
-@media (min-width: 600px) {
-  .heroBannerBruh {
+  @media (min-width: 600px) {
     display: block;
-  } 
+  }
 }

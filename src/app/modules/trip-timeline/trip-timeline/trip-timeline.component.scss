@@ -1,9 +1,11 @@
 // modding the nav bar for this page
-.pageWrapperContainer {
-  margin: 0;
-
-  .navBarContainer {
-    position: absolute;
+::ng-deep app-trip-timeline {
+  .pageWrapperContainer {
+    margin: 0;
+  
+    #navBar {
+      position: absolute;
+    }
   }
 }
 .contentWrapper {
@@ -36,40 +38,44 @@
         width: 80%;
         padding-top: 40px !important;
         margin: 0 auto;
-    
-        .range-bar-active {
-          background: var(--secondary);
-        }
-        .range-knob-handle {
-          border: solid 1px #ddd !important;
-          padding: 5px !important;
-          border-radius: 50% !important;
-          background: white !important;
-          z-index: 10;
-        }
-        .range-knob {
-          background: transparent !important;
-          background-image: url('https://www.svgrepo.com/show/9394/backpack.svg') !important;
-          border-radius: 0 !important;
-          height: 40px !important;
-          width: 40px !important;
-          left: 0 !important;
-          top: 0 !important;
-        }
-        .range-pin {
-          left: -10px;
-          top: -40px !important;
-          width: 50px !important;
-          border-radius: 10% !important;
-          background: var(--secondary) !important;
-        }
-        .range-pin:before {
-            content: "Stop " !important;
-            position: static !important;
-            transform: none !important;
-            margin-left: 0 !important;
-            background: var(--secondary) !important;
-        }
+        --knob-background: url('https://www.svgrepo.com/show/9394/backpack.svg');
+        --bar-background-active: var(--secondary);
+        --bar-background: #bdbdbd;
+        --knob-size: 40px;
+        --knob-border-radius: 50%;
+        --knob-handle-size: 40px;
+
+        // legacy
+        // .range-knob-handle {
+        //   border: solid 1px #ddd !important;
+        //   padding: 5px !important;
+        //   border-radius: 50% !important;
+        //   background: white !important;
+        //   z-index: 10;
+        // }
+        // .range-knob {
+        //   background: transparent !important;
+        //   background-image: url('https://www.svgrepo.com/show/9394/backpack.svg') !important;
+        //   border-radius: 0 !important;
+        //   height: 40px !important;
+        //   width: 40px !important;
+        //   left: 0 !important;
+        //   top: 0 !important;
+        // }
+        // .range-pin {
+        //   left: -10px;
+        //   top: -40px !important;
+        //   width: 50px !important;
+        //   border-radius: 10% !important;
+        //   background: var(--secondary) !important;
+        // }
+        // .range-pin:before {
+        //     content: "Stop " !important;
+        //     position: static !important;
+        //     transform: none !important;
+        //     margin-left: 0 !important;
+        //     background: var(--secondary) !important;
+        // }
       }
       .startCircle,
       .endCircle {

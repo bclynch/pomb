@@ -28,14 +28,14 @@
     }
   }
 }
-app-grid {
+::ng-deep app-grid {
   width: 100%;
   max-width: 1280px;
-}
-.gridContainer {
 
-  gridCard:first-child {
-    display: none;
+  .gridContainer {
+    app-grid-card:first-child {
+      display: none;
+    }
   }
 }
 app-trip-card {
@@ -54,7 +54,7 @@ app-trip-card {
   margin: 15px 0;
   color: white;
 }
-tripcard {
+app-trip-card {
   margin-bottom: 15px;
 }
 
@@ -62,10 +62,12 @@ tripcard {
   .mobileTopPost {
     display: none;
   }
-  .gridContainer {
-
-    gridCard:first-child {
-      display: block;
+  ::ng-deep app-grid {
+  
+    .gridContainer {
+      app-grid-card:first-child {
+        display: block;
+      }
     }
   }
   .rightColumn {

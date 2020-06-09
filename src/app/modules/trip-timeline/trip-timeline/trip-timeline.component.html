@@ -16,6 +16,7 @@
           [(ngModel)]="saturation" 
           [pin]="true"
           (ionChange)="rangeChange($event)"
+          [snaps]="true"
         ></ion-range>
         <div class="startCircle"></div>
         <div class="endCircle"></div>
@@ -30,7 +31,7 @@
         <div class="imgGroup" (click)="routerService.navigateToPage('/juncture/' + juncture.id)">
           <div class="junctureDate">{{juncture.arrivalDate | date:'mediumDate'}}</div>
           <div class="junctureImg" [ngStyle]="{ 'background-image': 'url(' + junctureImage(juncture) + ')'}">
-            <img class="typeIcon" [src]="'../../assets/images/junctureTypes/' + juncture.type + '.svg'" />
+            <img class="typeIcon" [src]="'../../../../assets/images/junctureTypes/' + juncture.type + '.svg'" />
           </div>
           <div class="connector"></div>
         </div>

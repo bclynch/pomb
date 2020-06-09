@@ -172,7 +172,7 @@
         text-align: center;
         margin-bottom: 15px;
       }
-      unittoggle {
+      ::ng-deep app-unit-toggle {
         .toggle {
           margin: 0 auto 20px;
         }

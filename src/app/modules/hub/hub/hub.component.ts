@@ -64,7 +64,8 @@ export class HubComponent implements OnDestroy {
           this.currentHub = `${tripData.data.tripById.name} Posts`;
           this.settingsService.modPageMeta(
             `${tripData.data.tripById.name} Posts`,
-            `See all posts from the trip, ${tripData.data.tripById.name}, as it chronicles a journey with Pack On My Back`
+            `See all posts from the trip, ${tripData.data.tripById.name}, as it \
+            chronicles a journey with Pack On My Back`
           );
           const junctures = tripData.data.tripById.juncturesByTripId.nodes;
           junctures.forEach((juncture) => {
@@ -82,7 +83,7 @@ export class HubComponent implements OnDestroy {
       );
     } else {
       this.allPostToTagsGQL.fetch({
-        tagId: this.currentHub
+        tagId: this.currentHub.toLowerCase()
       }).subscribe(({ data }) => {
         this.settingsService.modPageMeta(this.currentHub, `See all posts from the ${this.currentHub} tag`);
         this.posts = data.allPostToTags.nodes.map((node) => node.postByPostId);

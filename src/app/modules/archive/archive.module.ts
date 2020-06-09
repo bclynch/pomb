@@ -6,6 +6,10 @@ import { SharedModule } from '../../shared/shared.module';
 
 const routes: Routes = [
   {
+    path: ':page',
+    component: ArchiveComponent
+  },
+  {
     path: '',
     component: ArchiveComponent
   }

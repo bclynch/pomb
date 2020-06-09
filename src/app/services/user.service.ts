@@ -83,8 +83,8 @@ export class UserService {
     window.location.reload();
   }
 
-  loginAdminUser(model) {
-    this.authAdminAccount({ email: model.email, password: model.password }).then((token) => {
+  loginAdminUser({ email, password }) {
+    this.authAdminAccount({ email, password }).then((token) => {
       // need to get current user function rolling for other pertinent info
       const userObj: any = {};
       userObj.token = token;
@@ -97,8 +97,9 @@ export class UserService {
       window.location.reload();
     }, () => {
       this.alertService.alert(
-        'Invalid Login',
-        'The email or password is incorrect. Please check your account information and login again'
+        'Invalid Login Or Logged In As Other User',
+        `The email or password is incorrect. Please check your account information and \
+        login again OR log out of current account before logging in here`
       );
     });
   }

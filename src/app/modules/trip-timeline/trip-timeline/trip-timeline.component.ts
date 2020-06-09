@@ -51,11 +51,10 @@ export class TripTimelineComponent implements OnDestroy {
 
   init() {
     this.tripByIdGQL.fetch({
-      id: this.tripId,
+      id: +this.tripId,
       userId: this.userService.user ? this.userService.user.id : null
     }).subscribe(({ data }) => {
       this.tripData = data.tripById;
-      console.log('got trip data: ', this.tripData);
       this.settingsService.modPageMeta(
         `${this.tripData.name} Timeline`,
         `Follow along and see the junctures that made ${this.tripData.name} an experience of a lifetime.`
@@ -68,8 +67,9 @@ export class TripTimelineComponent implements OnDestroy {
   }
 
   rangeChange(e) {
-    if (e._value !== 0) {
-      this.scrollTo(`juncture${e._value - 1}`);
+    const junctureNumber = e.detail.value;
+    if (junctureNumber !== 0) {
+      this.scrollTo(`juncture${junctureNumber - 1}`);
     }
   }
 

@@ -93,7 +93,7 @@ export class PhotosComponent implements OnDestroy {
     console.log('load more');
     if (this.isTrip) {
       this.allImagesByTripGQL.fetch({
-        tripId: this.tripId,
+        tripId: +this.tripId,
         first: this.callQuant,
         offset: this.index,
         userId: this.userService.user ? this.userService.user.id : null

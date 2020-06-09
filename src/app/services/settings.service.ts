@@ -96,8 +96,8 @@ export class SettingsService {
             last: 5,
             userId: this.userService.user ? this.userService.user.id : null
           }).subscribe(
-            result => {
-              this.recentPhotos = result.data.allImages.nodes;
+            ({ data }) => {
+              this.recentPhotos = data.allImages.nodes;
               resolve();
             }
           );
