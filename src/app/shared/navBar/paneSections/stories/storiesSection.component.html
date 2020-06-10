@@ -10,7 +10,7 @@
   >
     <div class="paneSectionHeader">{{story.title}}</div>
     <div [ngStyle]="{ 'background-image': 'url(' + story.imgURL + ')'}" class="storyImage"></div>
-    <div class="storyDescription">{{story.subtitle | truncate:[200, '...']}}</div>
+    <div class="storyDescription">{{story.subtitle | truncate:['200', '...']}}</div>
   </div>
   <div class="paneSection categories">
     <div class="paneSectionHeader">Popular Categories</div>

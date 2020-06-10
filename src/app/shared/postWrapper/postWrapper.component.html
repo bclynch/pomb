@@ -39,7 +39,7 @@
       <div class="header">You may also like</div>
       <app-post-card *ngFor="let post of relatedPosts;" [data]="post"></app-post-card>
     </div>
-    <div class="signupWrapper" *ngIf="userService.SignedIn">
+    <div class="signupWrapper" *ngIf="userService.signedIn">
       <app-newsletter></app-newsletter>
     </div>
   </div>

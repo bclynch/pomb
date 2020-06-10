@@ -24,7 +24,7 @@
             <div class="infoContainer" *ngIf="tripData">
               <div class="tripStatus">
                 <div>Trip Status:</div>
-                 {{tripService.tripStatus(+this.tripData.startDate, this.tripData.endDate ? +this.tripData.endDate : null)}}
+                 {{tripService.tripStatus(+this.tripData.startDate, +this.tripData.endDate ? +this.tripData.endDate : null)}}
               </div>
               <div class="userWrapper">
                 <div (click)="routerService.navigateToPage('/user/' + tripData.accountByUserId.username)">

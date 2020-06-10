@@ -7,7 +7,7 @@
         (click)="dismiss('home')"
       >POMB</span>
     </div>
-    <div class="mobilePromptClose" (click)="dismiss()">
+    <div class="mobilePromptClose" (click)="dismiss(null)">
       <div><ion-icon name="close"></ion-icon></div>
     </div>
   </div>
@@ -26,7 +26,7 @@
       <div class="loginDescription">Looks like you aren't signed into an account yet. Login or signup to become a POMB member and start chronicling your journey.</div>
       <div class="paneSectionBtn">Get Started</div>
     </div>
-    <app-search (searchSubmit)="modalCtrl.dismiss()" [hasBorder]="true"></app-search>
+    <app-search (searchSubmit)="modalCtrl.dismiss(null)" [hasBorder]="true"></app-search>
     <div class="section" *ngFor="let option of sectionOptions; let i = index;" [ngClass]="[activeSection === i ? 'active' : '', i === 2 && !userService.signedIn ? 'signedIn' : '']">
       <div class="sectionHeader" (click)="activeSection === i ? activeSection = null : activeSection = i" *ngIf="i !== 2 || userService.signedIn">
         <div class="sectionName">{{option.label}}</div>

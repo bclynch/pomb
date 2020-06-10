@@ -36,7 +36,7 @@ export class UserAdminPage {
 
   constructor(
     private menuCtrl: MenuController,
-    private router: Router,
+    public router: Router,
     private userService: UserService,
     private apollo: Apollo,
     public settingsService: SettingsService,

@@ -1,6 +1,5 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
-import { Router } from '@angular/router';
 import { NavParams, PopoverController, ModalController, ToastController } from '@ionic/angular';
 import { MapsAPILoader } from '@agm/core';
 import * as moment from 'moment';
@@ -15,8 +14,6 @@ import { SettingsService } from '../../services/settings.service';
 import { UtilService } from '../../services/util.service';
 import { AlertService } from '../../services/alert.service';
 import { GeoService } from '../../services/geo.service';
-
-import { Juncture } from '../../models/Juncture.model';
 
 import { JunctureSaveTypePopoverComponent } from '../junctureSaveType/junctureSaveTypePopover.component';
 import { DatePickerModalComponent } from '../datepickerModal/datepickerModal';
@@ -95,14 +92,13 @@ export class JunctureModalComponent {
 
   constructor(
     private userService: UserService,
-    private params: NavParams,
-    private router: Router,
+    public params: NavParams,
     public settingsService: SettingsService,
     private mapsAPILoader: MapsAPILoader,
     private utilService: UtilService,
     private popoverCtrl: PopoverController,
     private alertService: AlertService,
-    private modalCtrl: ModalController,
+    public modalCtrl: ModalController,
     private toastCtrl: ToastController,
     public sanitizer: DomSanitizer,
     private geoService: GeoService,

@@ -17,7 +17,7 @@ export class DeleteAccountModalComponent {
 
   constructor(
     public modalCtrl: ModalController,
-    private userService: UserService,
+    public userService: UserService,
     private routerService: RouterService,
     private apollo: Apollo,
     private deleteAccountGQL: DeleteAccountGQL

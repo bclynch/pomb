@@ -5,15 +5,13 @@ import { SettingsService } from '../../services/settings.service';
 import { RouterService } from '../../services/router.service';
 import { UtilService } from '../../services/util.service';
 
-import { Post } from '../../models/Post.model';
-
 @Component({
   selector: 'app-post-card',
   templateUrl: './postCard.component.html',
   styleUrls: ['./postCard.component.scss']
 })
 export class PostCardComponent {
-  @Input() data: Post;
+  @Input() data;
   @Input() displayAuthor = true;
   @Input() displayImage = true;
   @Input() displayDescription = false;

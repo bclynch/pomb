@@ -3,7 +3,6 @@ import { Component, Input, OnInit } from '@angular/core';
 import { SettingsService } from '../../../services/settings.service';
 import { RouterService } from '../../../services/router.service';
 
-import { Post } from '../../../models/Post.model';
 import { ImageType } from '../../../models/Image.model';
 
 @Component({
@@ -12,14 +11,14 @@ import { ImageType } from '../../../models/Image.model';
   styleUrls: ['./gridCard.component.scss']
 })
 export class GridCardComponent implements OnInit {
-  @Input() data: Post;
+  @Input() data;
   @Input() size: number;
 
   thumbnailImage: string;
 
   constructor(
-    private settingsService: SettingsService,
-    private routerService: RouterService
+    public settingsService: SettingsService,
+    public routerService: RouterService
   ) { }
 
   ngOnInit() {

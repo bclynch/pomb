@@ -162,7 +162,7 @@
           .tripContainer {
             height: 200px;
 
-            .tripCardContainer {
+            ::ng-deep .tripCardContainer {
               height: 170px;
             }
           }
@@ -172,7 +172,7 @@
             .bubblesWrapper {
               display: flex;
 
-              juncturebubble {
+              ::ng-deep app-juncture-bubble {
                 .bubbleContainer {
                   height: 175px;
                   width: 175px;
@@ -206,7 +206,7 @@
         }
       }
     }
-    profilepicture {
+    ::ng-deep app-profile-picture {
       .profileContainer {
         margin: 15px 0;
       }

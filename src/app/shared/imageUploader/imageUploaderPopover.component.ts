@@ -16,7 +16,7 @@ export class ImageUploaderPopoverComponent {
   capitalizedType: string;
   isProcessing = false;
   filesToUpload: Array<File> = [];
-  urlArr: string[] = [];
+  urlArr = [];
   imgSize: { width: number, height: number };
   maxImgs: number;
   postSize: 'small' | 'large' = null;

@@ -54,12 +54,12 @@
               </div>
             </div>
           </div>
-          <div class="rightContainer" *ngIf="userService.recentPosts?.length">
+          <!-- <div class="rightContainer" *ngIf="userService.recentPosts?.length">
             <div class="postsContainer">
               <div class="miniSectionLabel">Recent Posts</div>
               <app-post-card *ngFor="let post of userService.recentPosts;" [data]="post" [displayAuthor]="false"></app-post-card>
             </div>
-          </div>
+          </div> -->
           <div class="emptyContainer" *ngIf="!userService.recentPosts?.length && !userService.recentTrip">
             <ion-icon name="images"></ion-icon>
             <div>Looks like you don't have any recent activity yet. Spin up a trip or post a story to start seeing content here!</div>

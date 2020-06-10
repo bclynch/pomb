@@ -3,7 +3,7 @@
   [ngClass]="collapsibleNav ? (utilService.scrollDirection === 'down' ? 'hidden' : null) : null" 
   [style.height]="isExpanded ? '520px' : '40px'"
   [style.background]="isExpanded || searchActive ? 'black' : ''"
-  (mouseleave)="navHover($event)"
+  (mouseleave)="navHover($event, null)"
   id="navBar"
 >
   <div class="navBarWrapper" [attr.style]="sanitizer.bypassSecurityTrustStyle('--secondary:' + settingsService.secondaryColor)">

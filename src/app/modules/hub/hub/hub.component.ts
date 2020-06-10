@@ -2,7 +2,6 @@ import { Component, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { SettingsService } from '../../../services/settings.service';
 
-import { Post } from '../../../models/Post.model';
 import { SubscriptionLike } from 'rxjs';
 import { AppService } from '../../../services/app.service';
 import { PostsByTripGQL, AllPostToTagsGQL } from 'src/app/generated/graphql';
@@ -17,8 +16,8 @@ export class HubComponent implements OnDestroy {
   currentHub: string;
   hubDescription = null;
   posts = [];
-  gridPosts: Post[] = [];
-  otherPosts: Post[] = [];
+  gridPosts = [];
+  otherPosts = [];
   gridConfiguration: number[] = [ 5, 5 ];
 
   initSubscription: SubscriptionLike;

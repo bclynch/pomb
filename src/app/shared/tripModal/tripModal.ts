@@ -10,8 +10,6 @@ import { DatePickerModalComponent } from '../datepickerModal/datepickerModal';
 import { ImageUploaderPopoverComponent } from '../imageUploader/imageUploaderPopover.component';
 import { GalleryImgActionPopoverComponent } from '../galleryImgAction/galleryImgActionPopover.component';
 
-import { Trip } from '../../models/Trip.model';
-
 @Component({
   selector: 'app-trip-modal',
   templateUrl: 'tripModal.html',
@@ -61,7 +59,7 @@ export class TripModalComponent {
 
   constructor(
     private userService: UserService,
-    private params: NavParams,
+    public params: NavParams,
     private utilService: UtilService,
     private popoverCtrl: PopoverController,
     private alertService: AlertService,

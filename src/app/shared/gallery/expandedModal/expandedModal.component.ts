@@ -13,7 +13,7 @@ import { GalleryPhoto } from '../../../models/GalleryPhoto.model';
 })
 export class ExpandedModalComponent {
 
-  photos: GalleryPhoto[];
+  photos;
   currentIndex: number;
   tempPanStart: number;
 

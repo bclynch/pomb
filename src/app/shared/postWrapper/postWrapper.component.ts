@@ -5,7 +5,6 @@ import { SettingsService } from '../../services/settings.service';
 import { AnalyticsService } from '../../services/analytics.service';
 import { UserService } from '../../services/user.service';
 
-import { Post } from '../../models/Post.model';
 import { ImageType } from '../../models/Image.model';
 
 @Component({
@@ -14,7 +13,7 @@ import { ImageType } from '../../models/Image.model';
   styleUrls: ['./postWrapper.component.scss']
 })
 export class PostWrapperComponent implements OnChanges {
-  @Input() post: Post;
+  @Input() post;
   @Input() isPreview = false;
 
   galleryImages = [];
@@ -22,7 +21,7 @@ export class PostWrapperComponent implements OnChanges {
   views: number;
   disqusId: string;
 
-  relatedPosts: Post[] = [];
+  relatedPosts = [];
 
   constructor(
     public routerService: RouterService,

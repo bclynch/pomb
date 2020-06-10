@@ -15,7 +15,6 @@ import { AlertService } from '../../services/alert.service';
 import { UserService } from '../../services/user.service';
 import { UtilService } from '../../services/util.service';
 
-import { Post } from '../../models/Post.model';
 import { ImageType } from '../../models/Image.model';
 import { GalleryPhoto } from '../../models/GalleryPhoto.model';
 
@@ -86,7 +85,7 @@ export class CreatePostModalComponent implements OnChanges {
     city: null,
     country: null
   };
-  data: Post;
+  data;
 
   // https://www.froala.com/wysiwyg-editor/docs/options#toolbarButtons
   editorOptions: object;

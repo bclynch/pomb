@@ -45,7 +45,7 @@ export class AdminPage implements OnDestroy {
     private apollo: Apollo,
     private appService: AppService,
     public settingsService: SettingsService,
-    private routerService: RouterService,
+    public routerService: RouterService,
     public sanitizer: DomSanitizer,
   ) {
     this.activeDashView = this.routerService.fragment || 'dashboard';

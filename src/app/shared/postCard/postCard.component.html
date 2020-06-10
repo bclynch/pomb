@@ -27,7 +27,7 @@
       <div>{{ data.publishedDate | date:'mediumDate' }}</div>
     </div>
     <div class="descriptionWrapper" *ngIf="displayDescription">
-      {{ utilService.stripHTMLTags(data.content) | truncate:[225, '...'] }}
+      {{ utilService.stripHTMLTags(data.content) | truncate:['225', '...'] }}
     </div>
   </div>
 </div>

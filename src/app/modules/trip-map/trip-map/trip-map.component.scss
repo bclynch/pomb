@@ -19,7 +19,7 @@
         bottom: 45px;
       }
     }
-    agm-map {
+    ::ng-deep agm-map {
       height: 100%;
 
       .si-wrapper-left {
@@ -69,6 +69,7 @@
           }
           .contentWrapper {
             padding: 10px;
+            background: var(--white);
 
             .topWrapper {
               display: flex;

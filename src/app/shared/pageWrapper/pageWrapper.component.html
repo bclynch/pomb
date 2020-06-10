@@ -10,7 +10,6 @@
   <app-hero-banner *ngIf="displayHeroBanner"></app-hero-banner>
   <app-navbar 
     *ngIf="displayNav"
-    (searchTrigger)="searchIsActive = !searchIsActive"
     [collapsibleNav]="collapsibleNav"
   ></app-navbar>
   <ng-content></ng-content>

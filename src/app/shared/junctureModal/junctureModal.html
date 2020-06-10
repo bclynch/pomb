@@ -25,7 +25,7 @@
         >{{btn}}</div>
       </div>
       <div class="uploadContainer" *ngIf="selectedIndex === 0">
-        <app-upload-gpx [junctureId]="junctureId" (gpxProcessed)="onGPXProcessed($event)"></app-upload-gpx>
+        <app-upload-gpx [junctureId]="params.data.junctureId" (gpxProcessed)="onGPXProcessed($event)"></app-upload-gpx>
         <div class="mapContainer" *ngIf="gpxLoaded">
           <div class="mapInited">
             <agm-map

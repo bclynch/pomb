@@ -33,7 +33,7 @@ export class UserAdminTripsPage implements OnDestroy {
     private utilService: UtilService,
     public routerService: RouterService,
     public sanitizer: DomSanitizer,
-    private tripService: TripService,
+    public tripService: TripService,
     private junctureService: JunctureService,
     private tripsByUserDashboardGQL: TripsByUserDashboardGQL
   ) {

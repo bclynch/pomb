@@ -24,8 +24,7 @@ export class MobileNavModalComponent {
 
   constructor(
     public modalCtrl: ModalController,
-    private params: NavParams,
-    private settingsService: SettingsService,
+    public settingsService: SettingsService,
     public sanitizer: DomSanitizer,
     public userService: UserService
   ) {

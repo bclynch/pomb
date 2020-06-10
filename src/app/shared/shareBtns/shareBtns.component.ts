@@ -9,6 +9,7 @@ export class ShareBtnsComponent {
   @Input() title: string;
   @Input() description: string;
   @Input() size = -1;
+  @Input() justIcons = false;
 
   address = window.location.href;
 

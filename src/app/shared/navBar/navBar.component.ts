@@ -52,8 +52,8 @@ export class NavBarComponent implements OnDestroy {
   initSubscription: SubscriptionLike;
 
   constructor(
-    private settingsService: SettingsService,
-    private routerService: RouterService,
+    public settingsService: SettingsService,
+    public routerService: RouterService,
     private userService: UserService,
     private modalCtrl: ModalController,
     private exploreService: ExploreService,

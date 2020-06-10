@@ -18,8 +18,8 @@ interface DateItem {
 })
 export class DatePickerModalComponent {
 
-  private currentMoment: moment.Moment;
-  private daysGroupedByWeek = [];
+  currentMoment: moment.Moment;
+  daysGroupedByWeek = [];
   private selectedDateItem: DateItem;
   private daysOfMonth: DateItem[];
   private calendarModal;
@@ -93,7 +93,7 @@ export class DatePickerModalComponent {
 
   }
 
-  private selectDate(day: DateItem) {
+  selectDate(day: DateItem) {
 
     if (!day.isEnabled) {
       return;
@@ -126,34 +126,34 @@ export class DatePickerModalComponent {
     return momentDate.month() + 1 === month;
   }
 
-  private setMonthBack() {
+  setMonthBack() {
     this.currentMoment.subtract(1, 'month');
     this.renderCalender();
 
   }
 
-  private setMonthForward() {
+  setMonthForward() {
     this.currentMoment.add(1, 'month');
     this.renderCalender();
   }
 
-  private setYearBack() {
+  setYearBack() {
     this.currentMoment.subtract(1, 'year');
     this.renderCalender();
   }
-  private setYearForward() {
+  setYearForward() {
     this.currentMoment.add(1, 'year');
     this.renderCalender();
   }
 
-  private confirmDateSelection() {
+  confirmDateSelection() {
     const combinedDate = this.selectedDateItem.momentDate
       .add(this.timeModel.hour, 'hours')
       .add(this.timeModel.minutes, 'minutes');
     this.modalCtrl.dismiss(combinedDate.toDate());
   }
 
-  private cancel() {
+  cancel() {
     this.modalCtrl.dismiss();
   }
 

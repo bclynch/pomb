@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnChanges } from '@angular/core';
 import { RouterService } from '../../services/router.service';
 import { UtilService } from '../../services/util.service';
 import { TripService } from '../../services/trip.service';
@@ -9,16 +9,26 @@ import { Trip } from '../../models/Trip.model';
   templateUrl: './tripCard.component.html',
   styleUrls: ['./tripCard.component.scss']
 })
-export class TripCardComponent {
+export class TripCardComponent implements OnChanges {
   @Input() trip: Trip;
 
   defaultPhoto = '../../assets/images/trip-default.jpg';
+  tripStatus: string;
 
   constructor(
     private routerService: RouterService,
     private utilService: UtilService,
-    public tripService: TripService
+    private tripService: TripService
   ) { }
+
+  ngOnChanges() {
+    if (this.trip) {
+      this.tripStatus = this.tripService.tripStatus(+this.trip.startDate, +this.trip.endDate
+        ? +this.trip.endDate
+        : null
+      );
+    }
+  }
 
   navigateToTrip() {
     this.routerService.navigateToPage(`/trip/${this.trip.id}`);

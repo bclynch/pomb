@@ -7,8 +7,10 @@
 
   @media (min-width: 768px) {
     .modal-wrapper {
-      left: calc(50% - (370px \ 2));
-      top: calc(50% - (250px \ 2));
+      // 370 / 2
+      left: calc(50% - 185px);
+      // 250 / 2
+      top: calc(50% - 125px);
       width: 750px;
       height: 500px;
 
@@ -21,8 +23,10 @@
   }
   @media (min-width: 1024px) {
     .modal-wrapper {
-      left: calc(50% - (500px \ 2));
-      top: calc(50% - (333px \ 2));
+      // 500 / 2
+      left: calc(50% - 250px);
+      // 333 / 2
+      top: calc(50% - 166.5px);
       width: 1000px;
       height: 666px;
     }
@@ -55,8 +59,9 @@
     position: relative;
 
     .forwardBtn, .backBtn {
-      position: absolute; 
-      top: calc(50% - (50px / 2));
+      position: absolute;
+      // 50 / 2
+      top: calc(50% - 25px);
       cursor: pointer;
       background: rgba(0,0,0,.4);
       padding: 0 5px;

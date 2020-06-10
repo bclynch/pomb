@@ -2,7 +2,6 @@ import { Component, OnDestroy } from '@angular/core';
 import { SettingsService } from '../../../services/settings.service';
 import { UtilService } from '../../../services/util.service';
 import { RouterService } from '../../../services/router.service';
-import { Post } from '../../../models/Post.model';
 import { AllPublishedPostsGQL } from '../../../generated/graphql';
 import { AppService } from 'src/app/services/app.service';
 import { SubscriptionLike } from 'rxjs';
@@ -15,9 +14,9 @@ import { SubscriptionLike } from 'rxjs';
 export class HomeComponent implements OnDestroy {
 
   posts = [];
-  gridPosts: Post[] = [];
-  compactHeroPost: Post = null;
-  otherPosts: Post[] = [];
+  gridPosts = [];
+  compactHeroPost = null;
+  otherPosts = [];
   gridConfiguration: number[] = [ 6.5, 3.5, 3.5, 6.5, 3, 3, 3 ];
 
   initSubscription: SubscriptionLike;
@@ -62,7 +61,7 @@ export class HomeComponent implements OnDestroy {
     });
   }
 
-  navigateToPost(post: Post) {
+  navigateToPost(post) {
     this.routerService.navigateToPage(`/stories/post/${post.id}/${post.title.split(' ').join('-')}`);
   }
 

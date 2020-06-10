@@ -1,5 +1,4 @@
 import { Component, Input } from '@angular/core';
-import { GalleryPhoto } from '../../../models/GalleryPhoto.model';
 
 @Component({
   selector: 'app-gallery-card',
@@ -7,7 +6,7 @@ import { GalleryPhoto } from '../../../models/GalleryPhoto.model';
   styleUrls: ['./galleryCard.component.scss']
 })
 export class GalleryCardComponent {
-  @Input() cardData: GalleryPhoto;
+  @Input() cardData;
   @Input() isSquare: boolean;
 
   constructor() {}

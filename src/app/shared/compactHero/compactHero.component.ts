@@ -3,18 +3,16 @@ import { Component, Input } from '@angular/core';
 import { SettingsService } from '../../services/settings.service';
 import { RouterService } from '../../services/router.service';
 
-import { Post } from '../../models/Post.model';
-
 @Component({
   selector: 'app-compact-hero',
   templateUrl: './compactHero.component.html',
   styleUrls: ['./compactHero.component.scss']
 })
 export class CompactHeroComponent {
-  @Input() post: Post;
+  @Input() post;
 
   constructor(
-    private settingsService: SettingsService,
+    public settingsService: SettingsService,
     private routerService: RouterService
   ) { }
 

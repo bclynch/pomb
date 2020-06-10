@@ -60,7 +60,7 @@ export class TripMapComponent implements OnDestroy {
     public sanitizer: DomSanitizer,
     private route: ActivatedRoute,
     public junctureService: JunctureService,
-    private userService: UserService,
+    public userService: UserService,
     private appService: AppService,
     private tripByIdGQL: TripByIdGQL,
     private partialJunctureByIdGQL: PartialJunctureByIdGQL

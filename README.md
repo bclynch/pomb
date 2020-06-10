@@ -2,7 +2,7 @@
 
 ## Todos
 
-### Migration Todos
+### Ivy Migration Todos
 
 - ~~Fix forms (bleh)~~
 - ~~Hide disqus like edmflare~~
@@ -14,9 +14,8 @@
     - ~~Pics~~
 - ~~Fine tune UI experience against current prod~~
     - ~~Hub module / trip posts bug~~
-- Launch!
-    - Push new build to vps
-    - Update server
+- ~~Launch!~~
+    - ~~Push new build to vps~~
 
 ### Top Priorities
 

@@ -474,9 +474,11 @@ export class JunctureComponent implements OnDestroy {
     };
   }
 
-  editJuncture(index: number) {
+  editJuncture() {
     this.junctureService.openJunctureModal(this.junctureData.id).then(
-      result => console.log(result)
+      (result) => {
+        console.log(result);
+      }
     );
   }
 }

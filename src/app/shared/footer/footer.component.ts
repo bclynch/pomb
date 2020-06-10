@@ -21,8 +21,8 @@ export class FooterComponent {
   ];
 
   constructor(
-    private settingsService: SettingsService,
-    private sanitizer: DomSanitizer,
+    public settingsService: SettingsService,
+    public sanitizer: DomSanitizer,
     private router: Router,
     private routerService: RouterService
   ) { }

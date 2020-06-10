@@ -22,7 +22,7 @@
             required
             id="currentPassword"
             name="currentPassword"
-            [(ngModel)]="changeModel.current"
+            [(ngModel)]="changeModel.currentPassword"
             minlength="8" 
           />
           <div class="forgot">Forgot your password? 
@@ -39,7 +39,7 @@
             required
             id="newPassword"
             name="newPassword"
-            [(ngModel)]="changeModel.password"
+            [(ngModel)]="changeModel.newPassword"
             validateEqual="confirmPassword" 
             reverse="true" 
             minlength="8" 
@@ -51,7 +51,7 @@
             name="confirmPassword"
             id="confirmPassword"
             required
-            [(ngModel)]="changeModel.confirm"
+            [(ngModel)]="changeModel.confirmPassword"
             validateEqual="newPassword" 
             reverse="false"
           />
