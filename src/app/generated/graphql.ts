@@ -8908,7 +8908,7 @@ export type PostsByTripQuery = (
   { __typename?: 'Query' }
   & { tripById?: Maybe<(
     { __typename?: 'Trip' }
-    & Pick<Trip, 'id'>
+    & Pick<Trip, 'id' | 'name'>
     & { postsByTripId: (
       { __typename?: 'PostsConnection' }
       & Pick<PostsConnection, 'totalCount'>
@@ -10353,6 +10353,7 @@ export const PostsByTripDocument = gql`
     query postsByTrip($id: Int!) {
   tripById(id: $id) {
     id
+    name
     postsByTripId(first: 10, orderBy: ID_DESC) {
       totalCount
       nodes {

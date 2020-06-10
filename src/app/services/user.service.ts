@@ -94,7 +94,7 @@ export class UserService {
 
       this.router.navigateByUrl('/admin');
       // reload window to update db role
-      window.location.reload();
+      setTimeout(() => window.location.reload(), 2000);
     }, () => {
       this.alertService.alert(
         'Invalid Login Or Logged In As Other User',

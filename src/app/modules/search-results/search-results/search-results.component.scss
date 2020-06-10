@@ -6,8 +6,6 @@
 
   .searchComponentContainer {
     padding: 40px 0;
-    width: 50%;
-    min-width: 400px;
     margin: 0 auto;
   }
   .resultsContainer {
@@ -95,6 +93,10 @@
 }
 
 @media (min-width: 1024px) {
+  .searchComponentContainer {
+    width: 50%;
+    min-width: 400px;
+  }
   .resultsContainer {
     display: flex;
 

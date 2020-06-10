@@ -4,7 +4,6 @@ import { HomeComponent } from './home/home.component';
 import { Routes, RouterModule } from '@angular/router';
 import { SharedModule } from '../../shared/shared.module';
 import { PostComponent } from '../post/post/post.component';
-import { HubComponent } from '../hub/hub/hub.component';
 import { PipesModule } from '../../pipes/pipes.module';
 
 const routes: Routes = [
@@ -30,7 +29,7 @@ const routes: Routes = [
         children: [
           {
             path: '',
-            component: HubComponent
+            loadChildren: () => import('../hub/hub.module').then(m => m.HubModule)
           }
         ]
       },
@@ -49,8 +48,7 @@ const routes: Routes = [
 @NgModule({
   declarations: [
     HomeComponent,
-    PostComponent,
-    HubComponent
+    PostComponent
   ],
   imports: [
     CommonModule,

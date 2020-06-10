@@ -58,25 +58,15 @@ export class HubComponent implements OnDestroy {
       this.postsByTripGQL.fetch({
         id: +this.currentHub
       }).subscribe(
-        data => {
-          const tripPosts = [];
-          const tripData = data as any;
-          this.currentHub = `${tripData.data.tripById.name} Posts`;
+        ({ data }) => {
+          this.currentHub = `${data.tripById.name} Posts`;
           this.settingsService.modPageMeta(
-            `${tripData.data.tripById.name} Posts`,
-            `See all posts from the trip, ${tripData.data.tripById.name}, as it \
+            `${data.tripById.name} Posts`,
+            `See all posts from the trip, ${data.tripById.name}, as it \
             chronicles a journey with Pack On My Back`
           );
-          const junctures = tripData.data.tripById.juncturesByTripId.nodes;
-          junctures.forEach((juncture) => {
-            const juncturePosts = juncture.junctureToPostsByJunctureId.nodes;
-            if (juncturePosts.length) {
-              juncturePosts.forEach(({ postByPostId }) => {
-                tripPosts.push(postByPostId);
-              });
-          }
-          });
-          this.posts = tripPosts;
+
+          this.posts = data.tripById.postsByTripId.nodes;
           this.gridPosts = this.posts.slice(0, this.gridConfiguration.length);
           this.otherPosts = this.posts.slice(this.gridConfiguration.length);
         }

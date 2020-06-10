@@ -79,7 +79,7 @@ $navbarHeight: 40px;
         font-size: 36px;
       }
     }
-    search {
+    ::ng-deep app-search {
       
       .searchContainer {
         margin: 50px 0 20px;

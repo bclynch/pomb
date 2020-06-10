@@ -6,7 +6,7 @@
   max-width: 1000px;
   overflow: hidden;
 
-  juncturebubble {
+  ::ng-deep app-juncture-bubble {
 
     .bubbleContainer {
 
@@ -88,7 +88,7 @@
   .juncturesContainer {
     height: 325px;
 
-    juncturebubble {
+    ::ng-deep app-juncture-bubble {
 
       .bubbleContainer {
 
@@ -107,7 +107,7 @@
   .juncturesContainer {
     height: 400px;
 
-    juncturebubble {
+    ::ng-deep app-juncture-bubble {
 
       .bubbleContainer {
 
