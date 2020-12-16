@@ -29,7 +29,6 @@ export class AppService {
 
       this.currentAccountGQL.fetch().subscribe(({ data }: any) => {
         // checking in to snag user data
-        console.log('got user data', data);
         if (data.currentAccount) {
           this.userService.signedIn = true;
           this.userService.user = data.currentAccount;
