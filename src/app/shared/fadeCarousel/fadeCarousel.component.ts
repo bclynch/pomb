@@ -35,7 +35,7 @@ export class FadeCarouselComponent implements OnChanges {
 
   ngOnChanges() {
     if (this.data && !this.data.length) {
-      this.data = [{ imgURL: '../../assets/images/trip-default.jpg', tagline: '' }];
+      this.data = [{ imgURL: '', tagline: '' }];
     }
     // console.log(this.data);
   }

@@ -1,11 +1,16 @@
 <div class="postCardContainer" [attr.style]="sanitizer.bypassSecurityTrustStyle('--secondary:' + settingsService.secondaryColor)">
   <div class="imgWrapper" (click)="navigateToPost()" *ngIf="displayImage">
-    <!-- First url in the arr should be the small version so no need for further filtering on the below card img -->
-    <div  
-      class="cardImg"
-      [ngStyle]="{ 'background-image': 'url(' + data.imagesByPostId.nodes[0].url + ')'}"
+    <cl-image
       *ngIf="data.imagesByPostId.nodes.length"
-    ></div>
+      [public-id]="data.imagesByPostId.nodes[0].url"
+      type="fetch"
+      loading="lazy"
+      quality="auto"
+      fetch-format="auto"
+      width="260"
+    >
+      <cl-placeholder type="blur"></cl-placeholder>
+    </cl-image>
   </div>
   <div class="cardWrapper">
     <div class="cardTitle" (click)="navigateToPost()">{{data.title}}</div>

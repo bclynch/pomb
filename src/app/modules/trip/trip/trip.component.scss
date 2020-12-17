@@ -183,48 +183,6 @@
             margin-bottom: 25px;
           }
         }
-        &.map {
-          width: 100%;
-          
-          .mapContainer {
-            margin-top: 20px;
-            position: relative;
-
-            agm-map {
-              width: 100vw;
-              height: calc(90vh - 80px);
-            }
-            .mapBtn {
-              width: 300px;
-              position: absolute;
-              bottom: 10%;
-              left: calc(50% - 150px);
-              background: var(--secondary);
-              color: white;
-              text-align: center;
-              padding: 20px 0;
-              text-transform: uppercase;
-              cursor: pointer;
-              font-weight: bold;
-              display: flex;
-              align-items: center;
-              justify-content: center;
-              transition: .2s;
-
-              ion-icon {
-                margin-right: 20px;
-                font-size: 24px;
-                transition: .2s;
-              }
-            }
-            .mapBtn:hover {
-
-              ion-icon {
-                transform: translate(-5px, 0);
-              }
-            }
-          }
-        }
         &.posts {
 
           .sectionContent {

@@ -14,7 +14,7 @@
     <ion-icon name="close"></ion-icon>
   </div>
   <div class="imgWrapper">
-    <img [src]="photos[currentIndex].url" />
+    <img [src]="photos[currentIndex].url" loading="lazy" />
     <div class="forwardBtn" (click)="pan('forward')">
       <ion-icon name="arrow-forward"></ion-icon>
     </div>

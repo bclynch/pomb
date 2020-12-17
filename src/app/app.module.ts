@@ -36,6 +36,7 @@ import { SettingsService } from './services/settings.service';
 import { SplashGuardService } from './services/splashGuard.service';
 import { TripService } from './services/trip.service';
 import { AppService } from './services/app.service';
+import { VisibilityService } from './services/visibility.service';
 
 @NgModule({
   declarations: [
@@ -73,7 +74,8 @@ import { AppService } from './services/app.service';
     SettingsService,
     SplashGuardService,
     TripService,
-    AppService
+    AppService,
+    VisibilityService
   ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]

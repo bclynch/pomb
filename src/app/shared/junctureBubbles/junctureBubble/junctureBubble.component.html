@@ -3,8 +3,23 @@
   [attr.style]="sanitizer.bypassSecurityTrustStyle('--secondary:' + settingsService.secondaryColor)"
   (click)="routerService.navigateToPage('/juncture/' + juncture.id)"
 >
-  <div class="junctureImg" [ngStyle]="{ 'background-image': 'url(' + junctureImage(juncture) + ')'}">
-    <img class="typeIcon" [src]="'../../../assets/images/junctureTypes/' + juncture.type + '.svg'" />
+  <div class="junctureImg">
+    <cl-image
+      [public-id]="junctureImage(juncture)"
+      type="fetch"
+      loading="lazy"
+    >
+      <cl-placeholder type="blur"></cl-placeholder>
+      <cl-transformation
+        quality="auto"
+        fetch-format="auto"
+        height="150"
+        width="150"
+        crop="fit"
+        radius="max"
+      ></cl-transformation>
+    </cl-image>
+    <img class="typeIcon" [src]="'../../../assets/images/junctureTypes/' + juncture.type + '.svg'" loading="lazy" />
   </div>
   <div class="infoWrapper">
     <div class="junctureName">{{juncture.name}}</div>

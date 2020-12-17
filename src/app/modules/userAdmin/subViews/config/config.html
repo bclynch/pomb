@@ -114,7 +114,7 @@
         <div class="countriesContainer">
           <div class="countryWrapper" *ngFor="let country of visitedCountries; let i = index;">
             <div class="flagWrapper">
-              <img [src]="'https://lipis.github.io/flag-icon-css/flags/1x1/' + country.code + '.svg'" [title]="country.name" />
+              <img loading="lazy" [src]="'https://lipis.github.io/flag-icon-css/flags/1x1/' + country.code + '.svg'" [title]="country.name" />
               <ion-icon 
                 class="removeBtn" 
                 name="close" 

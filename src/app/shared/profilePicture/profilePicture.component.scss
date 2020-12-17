@@ -3,19 +3,19 @@
   justify-content: center;
   text-align: center;
 
-  .photo {
-    height: 125px;
-    width: 125px;
+  ::ng-deep img {
     border-radius: 5px;
-    background: black;
-  }
-  .profilePhoto {
-    background-position: center;
-    background-size: contain;
   }
   .defaultPhoto {
     display: flex;
     align-items: center;
+
+    &.photo {
+      height: 125px;
+      width: 125px;
+      border-radius: 5px;
+      background: black;
+    }
 
     app-backpack-icon {
       ::ng-deep svg {

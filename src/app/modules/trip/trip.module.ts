@@ -9,6 +9,8 @@ import { AgmCoreModule } from '@agm/core';
 import { AgmSnazzyInfoWindowModule } from '@agm/snazzy-info-window';
 import { AgmJsMarkerClustererModule } from '@agm/js-marker-clusterer';
 import { ENV } from '../../../environments/environment';
+import { MapSectionComponent } from './sections/map/map.component';
+import { DirectivesModule } from '../../directives/directives.module';
 
 const routes: Routes = [
   {
@@ -39,7 +41,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [TripComponent],
+  declarations: [TripComponent, MapSectionComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
@@ -50,7 +52,8 @@ const routes: Routes = [
       apiKey: ENV.googleAPIKey,
     }),
     AgmSnazzyInfoWindowModule,
-    AgmJsMarkerClustererModule
+    AgmJsMarkerClustererModule,
+    DirectivesModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

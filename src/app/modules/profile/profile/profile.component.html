@@ -8,7 +8,7 @@
     <div class="innerWrapper">
       <div class="statWrapper" *ngFor="let stat of stats;">
         <ion-icon [name]="stat.icon" *ngIf="!stat.customIcon"></ion-icon>
-        <img [src]="stat.icon" *ngIf="stat.customIcon" />
+        <img [src]="stat.icon" *ngIf="stat.customIcon" loading="lazy" />
         <div class="statValue">{{stat.value | number}}</div>
         <div class="statLabel">{{stat.label}}</div>
       </div>
@@ -37,9 +37,19 @@
     </div>
     <!-- <div class="subHeader">Click a visited country on the map or its flag down below to see any content {{user.username}} has posted about it</div> -->
     <div class="flagsContainer">
-      <div class="flagWrapper" *ngFor="let flag of countriesVisited | slice:1">
-        <img [src]="'https://lipis.github.io/flag-icon-css/flags/1x1/' + flag[0] + '.svg'" [title]="flag[1]" />
-        <div>{{flag[1]}}</div>
+      <div class="flagWrapper" *ngFor="let countryFlag of countryFlags;">
+        <cl-image
+          [public-id]="countryFlag.url"
+          type="fetch"
+          loading="lazy"
+          responsive
+          width="auto"
+          [title]="countryFlag.name"
+        >
+          <cl-placeholder type="blur"></cl-placeholder>
+          <cl-transformation quality="auto" fetch-format="auto"></cl-transformation>
+        </cl-image>
+        <div>{{countryFlag.name}}</div>
       </div>
     </div>
   </div>

@@ -58,30 +58,13 @@
             *ngIf="glanceExpanded"
           >Less <ion-icon name="arrow-up"></ion-icon></div> -->
         </div>
-        <div class="section map" id="Map">
+        <div #wrapper class="section">
           <div class="sectionHeader">Map</div>
-          <div class="mapContainer">
-            <agm-map 
-              [zoomControl]="false"
-              [latitude]="coords.lat" 
-              [longitude]="coords.lon"
-              [disableDefaultUI]="true"
-              [streetViewControl]="false"
-              [mapDraggable]="false"
-              [scrollwheel]="false"
-              [fitBounds]="latlngBounds"
-              [styles]=mapStyle
-              [zoom]="zoomLevel"
-              mapTypeId="terrain"
-              #AgmMap
-            >
-              <agm-data-layer [geoJson]="geoJsonObject" [style]="dataLayerStyle"></agm-data-layer>
-            </agm-map>
-            <div class="mapBtn" (click)="routerService.navigateToPage('/trip/' + tripId + '/map')">
-              <ion-icon name="trending-up-outline"></ion-icon>
-              Launch Map Explorer
-            </div>
-          </div>
+          <app-map-section
+            [tripData]="tripData"
+            [junctureMarkers]="junctureMarkers"
+            *visibleWith="wrapper"
+          ></app-map-section>
         </div>
         <div class="section junctures" id="Junctures">
           <div class="sectionHeader">Junctures</div>

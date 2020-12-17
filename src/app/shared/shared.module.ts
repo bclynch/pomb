@@ -9,6 +9,8 @@ import { AgmCoreModule } from '@agm/core';
 import { ENV } from '../../environments/environment';
 import { ShareButtonsModule } from 'ngx-sharebuttons/buttons';
 import { ShareIconsModule } from 'ngx-sharebuttons/icons';
+import { CloudinaryModule, CloudinaryConfiguration } from '@cloudinary/angular-5.x';
+import * as Cloudinary from 'cloudinary-core';
 
 // components
 import { ChartComponent } from './chart/chart.component';
@@ -129,6 +131,7 @@ import { CountrySearchComponent } from './countrySearch/countrySearch.component'
     AgmCoreModule.forRoot({
       apiKey: ENV.googleAPIKey,
     }),
+    CloudinaryModule.forRoot(Cloudinary, { cloud_name: ENV.cloudinaryCloudName } as CloudinaryConfiguration)
   ],
   exports: [
     ChartComponent,

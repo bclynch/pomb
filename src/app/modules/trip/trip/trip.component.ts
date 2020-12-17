@@ -39,8 +39,6 @@ export class TripComponent implements OnDestroy, AfterViewInit {
   tripId: number;
   tripData;
 
-  dataLayerStyle;
-
   glanceExpanded = false;
 
   stats: { icon: string; label: string; value: number }[] = [];
@@ -50,6 +48,7 @@ export class TripComponent implements OnDestroy, AfterViewInit {
   zoomLevel = 6;
   latlngBounds;
   geoJsonObject: any = null;
+  junctureMarkers;
   mapStyle;
   boundedZoom: number;
 
@@ -103,7 +102,6 @@ export class TripComponent implements OnDestroy, AfterViewInit {
       userId: this.userService.user ? this.userService.user.id : null
     }).subscribe(({ data }) => {
       this.tripData = data.tripById;
-      console.log('got trip data: ', this.tripData);
       this.disqusId = `trip/${this.tripData.id}`;
       this.settingsService.modPageMeta(
         this.tripData.name,
@@ -156,13 +154,7 @@ export class TripComponent implements OnDestroy, AfterViewInit {
         coordTime: new Date(+this.tripData.startDate).toString()
       }]);
       this.geoJsonObject = this.geoService.generateGeoJSON(junctureArr);
-      const junctureMarkers = this.tripData.juncturesByTripId.nodes;
-
-      this.dataLayerStyle = {
-        clickable: false,
-        strokeColor: this.settingsService.secondaryColor,
-        strokeWeight: 3
-      };
+      this.junctureMarkers = this.tripData.juncturesByTripId.nodes;
 
       // // populate flags array
       this.tripData.juncturesByTripId.nodes.forEach((juncture) => {
@@ -180,28 +172,12 @@ export class TripComponent implements OnDestroy, AfterViewInit {
         id: this.tripData.id
       }).subscribe(
         ({ data }) => {
-          console.log(data);
           this.postCount = data.tripById.postsByTripId.totalCount;
           this.tripPosts = data.tripById.postsByTripId.nodes.slice(0, 5);
 
           this.populateStats();
         }
       );
-
-      // fitting the map to the markers
-      this.mapsAPILoader.load().then(() => {
-        this.latlngBounds = new window.google.maps.LatLngBounds();
-        junctureMarkers.forEach((juncture) => {
-          this.latlngBounds.extend(new window.google.maps.LatLng(juncture.lat, juncture.lon));
-        });
-        // making sure to check trip start point to compensate for it
-        this.latlngBounds.extend(new window.google.maps.LatLng(this.tripData.startLat, this.tripData.startLon));
-
-        // grab map style
-        this.utilService.getJSON('../../assets/mapStyles/darkTheme.json').subscribe((data) => {
-          this.mapStyle = data;
-        });
-      });
     }, (error) => {
       console.log('there was an error sending the query', error);
     });

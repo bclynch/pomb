@@ -1,9 +1,17 @@
 <div class="profileContainer">
-  <div 
-    class="profilePhoto photo"
-    *ngIf="photo" 
-    [ngStyle]="{ 'background-image': 'url(' + photo + ')'}"
-  ></div>
+  <cl-image
+    *ngIf="photo"
+    [public-id]="photo"
+    type="fetch"
+    loading="lazy"
+    quality="auto"
+    fetch-format="auto"
+    height="125"
+    width="125"
+    class="photo"
+  >
+    <cl-placeholder type="blur"></cl-placeholder>
+  </cl-image>
   <div class="defaultPhoto photo" *ngIf="!photo">
     <app-backpack-icon [color]="settingsService.secondaryColor"></app-backpack-icon>
   </div>

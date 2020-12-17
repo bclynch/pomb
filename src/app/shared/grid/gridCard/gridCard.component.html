@@ -1,9 +1,21 @@
 <div class="gridCardContainer" [ngClass]="size < 6 ? 'smallCard' : 'largeCard'">
   <div 
     class="cardThumb" 
-    [ngStyle]="{ 'background-image': 'url(' + thumbnailImage + ')'}"
     (click)="navigateToPost()"
-  ></div>
+  >
+  <cl-image
+    [public-id]="thumbnailImage"
+    type="fetch"
+    loading="lazy"
+    quality="auto"
+    fetch-format="auto"
+    crop="fill"
+    responsive
+    width="auto"
+  >
+    <cl-placeholder type="blur"></cl-placeholder>
+  </cl-image>
+  </div>
   <div class="contentContainer">
     <div class="contentTitle" (click)="navigateToPost()">{{data.title}}</div>
     <div class="boldFont authorContainer" (click)="routerService.navigateToPage('/user/' + data.accountByAuthor.username)">By 

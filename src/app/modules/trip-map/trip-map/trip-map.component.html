@@ -48,7 +48,7 @@
                   <div class="contentWrapper">
                     <div class="topWrapper">
                       <div class="windowCity">{{junctureContentArr[i - 1].city}}</div>
-                      <img class="typeIcon" [src]="'../../assets/images/junctureTypes/' + junctureContentArr[i - 1].type + '.svg'" />
+                      <img class="typeIcon" loading="lazy" [src]="'../../assets/images/junctureTypes/' + junctureContentArr[i - 1].type + '.svg'" />
                     </div>
                     <div class="windowCountry">{{junctureContentArr[i - 1].country}}</div>
                     <div>{{utilService.stripHTMLTags(junctureContentArr[i - 1].description) | truncate:['200', '...']}}</div>
@@ -123,7 +123,7 @@
                   <div class="junctureTimeRow">
                     <div class="junctureNumber">Juncture #{{i + 1}}</div>
                     <div>{{juncture?.arrivalDate | date: 'MMM d, y'}}</div>
-                    <img class="typeIcon" [src]="'../../assets/images/junctureTypes/' + juncture?.type + '.svg'" />
+                    <img class="typeIcon" loading="lazy" [src]="'../../assets/images/junctureTypes/' + juncture?.type + '.svg'" />
                   </div>
                   <app-like-counter  
                     [totalLikes]="juncture.totalLikes.totalCount" 

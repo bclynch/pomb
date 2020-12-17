@@ -1,5 +1,10 @@
 <div class="galleryCardContainer">
-  <div [ngClass]="isSquare ? 'square' : 'rectangle'" class="imgWrapper">
-    <div [style.background-size]="isSquare ? 'cover' : 'contain'" [ngStyle]="{ 'background-image': 'url(' + cardData.url + ')'}"></div>
-  </div>
+  <cl-image
+    [public-id]="cardData.url"
+    type="fetch"
+    loading="lazy"
+  >
+    <cl-placeholder type="blur"></cl-placeholder>
+    <cl-transformation quality="auto" fetch-format="auto"></cl-transformation>
+  </cl-image>
 </div>

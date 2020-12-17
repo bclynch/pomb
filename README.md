@@ -24,6 +24,7 @@
 - Performance of imgs is shit. Move to Cloudinary
     - [Frontend stuff](https://cloudinary.com/blog/advanced_image_component_for_cloudinary_s_front_end_sdks)
     - [CDN usage](https://cloudinary.com/documentation/fetch_remote_images)
+- [Update angular-apollo](https://apollo-angular.com/docs/migration/) some time
 - Fix defaulting end date when updating a trip and allowing to set back to null
 - Update postgraphile to the beta. Otherwise check versioning across the board. Ionic when it goes to 4 (after it's stable... seriously wait its broken to update to prod)
 - gallery photos are starting at end. Need to reverse the arr

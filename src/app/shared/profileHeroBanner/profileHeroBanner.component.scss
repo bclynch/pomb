@@ -1,12 +1,18 @@
 .heroBannerContainer {
-  background-size: cover;
-  background-position: center;
-  height: 300px;
   text-align: center;
   color: var(--white);
   border-bottom: solid 1px var(--border);
   position: relative;
+  height: 300px;
 
+  .bannerWrapper {
+    position: absolute;
+    top: 0;
+
+    ::ng-deep img {
+      max-width: none;
+    }
+  }
   .overlay {
     background: rgba(0,0,0,.2);
     width: 100%;
@@ -15,9 +21,11 @@
     flex-direction: column;
     justify-content: flex-end;
     align-items: center;
+    position: relative;
 
     app-profile-picture {
-      ::ng-deep .photo {
+      ::ng-deep img.photo,
+      ::ng-deep div.photo {
         border: 3px solid var(--white);
       }
     }

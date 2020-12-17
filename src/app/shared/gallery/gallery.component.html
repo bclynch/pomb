@@ -2,7 +2,8 @@
   <div 
     class="cardWrapper" 
     *ngFor="let galleryPhoto of data; let i = index;" 
-    [style.padding]="gutterWidth"
+    [style.padding-left]="gutterWidth"
+    [style.padding-right]="gutterWidth"
     [style.width]="perRow ? 1 / perRow * 100 + '%' : null"
   >
     <app-gallery-card [isSquare]="isSquare" [cardData]="galleryPhoto" (click)="expandCarousel(i)"></app-gallery-card>

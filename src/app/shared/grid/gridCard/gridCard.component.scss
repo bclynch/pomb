@@ -9,11 +9,14 @@
 
   .cardThumb {
     flex: 4;
-    background-position: center;
-    background-size: cover;
     height: 100%;
     width: 100%;
     cursor: pointer;
+
+    ::ng-deep img {
+      object-fit: cover;
+      height: 100%;
+    }
   }
   .cardThumb:hover + .contentContainer {
     .contentTitle {

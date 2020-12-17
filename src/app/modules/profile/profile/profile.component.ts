@@ -40,7 +40,8 @@ export class ProfileComponent implements OnDestroy {
   inited = false;
 
   stats: { icon: string; label: string; value: number, customIcon?: boolean }[] = [];
-  countriesVisited: [string, string][] = [['Country', 'Name']];
+  countriesVisited = [['Country', 'Name']];
+  countryFlags = [];
   mapWidth: string;
 
   initSubscription: SubscriptionLike;
@@ -57,6 +58,7 @@ export class ProfileComponent implements OnDestroy {
     this.route.params.subscribe((params) => {
       // reset arrays
       this.countriesVisited = [['Country', 'Name']];
+      this.countryFlags = [];
       this.gallery = [];
 
       this.username = params.username;
@@ -85,7 +87,6 @@ export class ProfileComponent implements OnDestroy {
       userId: this.userService.user ? this.userService.user.id : null
     }).subscribe(({ data }) => {
       this.user = data.accountByUsername;
-      console.log('got user data: ', this.user);
       if (this.user) {
         this.posts = this.user.postsByAuthor.nodes;
         this.gridPosts = this.posts.slice(0, this.gridConfiguration.length);
@@ -142,9 +143,14 @@ export class ProfileComponent implements OnDestroy {
   }
 
   populateCountriesVisited() {
-    this.countriesVisited = [['Country', 'Name']];
-    this.user.userToCountriesByUserId.nodes.forEach((country) => {
-      this.countriesVisited.push([ country.countryByCountry.code.toLowerCase(), country.countryByCountry.name ]);
+    const countriesVisited = [['Country', 'Name']];
+    const countryFlags = [];
+    this.user.userToCountriesByUserId.nodes.forEach(({ countryByCountry: { code = '', name = '' } = {} }) => {
+      const countryCode = code.toLowerCase();
+      countriesVisited.push([ countryCode, name ]);
+      countryFlags.push({ url: `https://lipis.github.io/flag-icon-css/flags/1x1/${countryCode}.svg`, name });
     });
+    this.countriesVisited = countriesVisited;
+    this.countryFlags = countryFlags;
   }
 }

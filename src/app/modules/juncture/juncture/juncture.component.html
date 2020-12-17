@@ -7,7 +7,8 @@
         <img 
           *ngIf="flag" 
           [src]="'https://lipis.github.io/flag-icon-css/flags/4x3/' + flag.code + '.svg'" 
-          [title]="flag.name" 
+          [title]="flag.name"
+          loading="lazy"
         />
         <div class="viewsContainer" title="Views">
           <ion-icon name="eye"></ion-icon>
