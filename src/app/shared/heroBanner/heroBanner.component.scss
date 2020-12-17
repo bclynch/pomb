@@ -10,6 +10,14 @@
     color: var(--white);
     border-bottom: solid 1px var(--border);
 
+    .bannerWrapper {
+      position: absolute;
+      top: 0;
+  
+      ::ng-deep img {
+        max-width: 100%;
+      }
+    }
     .overlay {
       background: rgba(0,0,0,.2);
       width: 100%;
@@ -18,6 +26,7 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
+      position: relative;
     }
 
     .siteTitle {

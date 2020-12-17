@@ -19,9 +19,9 @@ import { ImageType } from '../../models/Image.model';
 import { GalleryPhoto } from '../../models/GalleryPhoto.model';
 
 import { PostTypePopoverComponent } from '../postType/postTypePopover.component';
-import { ImageUploaderPopoverComponent } from '../imageUploader/imageUploaderPopover.component';
-import { GalleryImgActionPopoverComponent } from '../galleryImgAction/galleryImgActionPopover.component';
-import { DatePickerModalComponent } from '../datepickerModal/datepickerModal';
+import { ImageUploaderPopoverComponent } from '../../modules/imageUploader/imageUploader/imageUploaderPopover.component';
+import { GalleryImgActionPopoverComponent } from '../../modules/galleryImgActionPopover/galleryImgAction/galleryImgActionPopover.component';
+import { DatePickerModalComponent } from '../../modules/datepickerModal/datepickerModal/datepickerModal';
 import {
   TripsByUserGQL,
   GetAllCountriesGQL,

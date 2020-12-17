@@ -24,6 +24,17 @@
 - Performance of imgs is shit. Move to Cloudinary
     - [Frontend stuff](https://cloudinary.com/blog/advanced_image_component_for_cloudinary_s_front_end_sdks)
     - [CDN usage](https://cloudinary.com/documentation/fetch_remote_images)
+- ~~Update to angular 11~~
+- Trip page
+    - SLOW AS FUCK
+    - Fix route not showing on trip page map
+    - Juncture bubbles not showing
+    - Post card img sized badly on mobile
+    - Hero not full width desktop
+- ~~Still a 2mb img on front page~~
+    - Start fixing some containers heights so less UI sliding around. Experimental
+- Main bundle is too big -- 2.35 mb. Thinking the way we bundle up all the shared stuff and pass around is inefficient. Maybe only pull in certain components where needed more even if on multiple modules.
+    - Remove shared and froala modules from app module should help
 - [Update angular-apollo](https://apollo-angular.com/docs/migration/) some time
 - Fix defaulting end date when updating a trip and allowing to set back to null
 - Update postgraphile to the beta. Otherwise check versioning across the board. Ionic when it goes to 4 (after it's stable... seriously wait its broken to update to prod)

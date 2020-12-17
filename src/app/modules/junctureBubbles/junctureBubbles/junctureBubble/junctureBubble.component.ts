@@ -1,9 +1,9 @@
 import { Component, Input } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
-import { SettingsService } from '../../../services/settings.service';
-import { JunctureService } from '../../../services/juncture.service';
-import { RouterService } from '../../../services/router.service';
-import { Juncture } from '../../../models/Juncture.model';
+import { SettingsService } from '../../../../services/settings.service';
+import { JunctureService } from '../../../../services/juncture.service';
+import { RouterService } from '../../../../services/router.service';
+import { Juncture } from '../../../../models/Juncture.model';
 
 @Component({
   selector: 'app-juncture-bubble',

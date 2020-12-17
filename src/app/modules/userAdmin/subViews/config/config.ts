@@ -6,7 +6,7 @@ import { APIService } from '../../../../services/api.service';
 import { UserService } from '../../../../services/user.service';
 
 import { GradientPopoverComponent } from '../../../../shared/gradientPopover/gradientPopover.component';
-import { ImageUploaderPopoverComponent } from '../../../../shared/imageUploader/imageUploaderPopover.component';
+import { ImageUploaderPopoverComponent } from '../../../imageUploader/imageUploader/imageUploaderPopover.component';
 import { SubscriptionLike } from 'rxjs';
 import { UpdateAccountByIdGQL } from 'src/app/generated/graphql';
 

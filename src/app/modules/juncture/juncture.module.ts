@@ -6,9 +6,10 @@ import { SharedModule } from '../../shared/shared.module';
 import { AgmCoreModule } from '@agm/core';
 import { AgmSnazzyInfoWindowModule } from '@agm/snazzy-info-window';
 import { AgmJsMarkerClustererModule } from '@agm/js-marker-clusterer';
-import { ENV } from '../../../environments/environment';
 import { DisqusModule } from 'ngx-disqus';
 import { FroalaViewModule } from 'angular-froala-wysiwyg';
+import { ChartComponent } from '../../components/chart/chart.component';
+import { UnitToggleComponent } from '../../components/unitToggle/unitToggle.component';
 
 const routes: Routes = [
   {
@@ -18,15 +19,17 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [JunctureComponent],
+  declarations: [
+    JunctureComponent,
+    ChartComponent,
+    UnitToggleComponent
+  ],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
     SharedModule,
-    FroalaViewModule.forRoot(),
-    AgmCoreModule.forRoot({
-      apiKey: ENV.googleAPIKey,
-    }),
+    FroalaViewModule,
+    AgmCoreModule,
     AgmSnazzyInfoWindowModule,
     AgmJsMarkerClustererModule,
     DisqusModule

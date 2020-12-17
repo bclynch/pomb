@@ -1,7 +1,7 @@
 import { Component, OnDestroy } from '@angular/core';
 import { AlertController, ModalController, ToastController } from '@ionic/angular';
 
-import { CreatePostModalComponent } from '../../../shared/createPostModal/createPostModal';
+import { CreatePostModalComponent } from '../../../components/createPostModal/createPostModal';
 
 import { RouterService } from '../../../services/router.service';
 import { SettingsService } from '../../../services/settings.service';

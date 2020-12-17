@@ -8,17 +8,17 @@ import {
   TripsByUserIdGQL,
   DeleteImageByIdGQL,
   DeleteJunctureByIdGQL
-} from '../../generated/graphql';
-import { UserService } from '../../services/user.service';
-import { SettingsService } from '../../services/settings.service';
-import { UtilService } from '../../services/util.service';
-import { AlertService } from '../../services/alert.service';
-import { GeoService } from '../../services/geo.service';
+} from '../../../generated/graphql';
+import { UserService } from '../../../services/user.service';
+import { SettingsService } from '../../../services/settings.service';
+import { UtilService } from '../../../services/util.service';
+import { AlertService } from '../../../services/alert.service';
+import { GeoService } from '../../../services/geo.service';
 
-import { JunctureSaveTypePopoverComponent } from '../junctureSaveType/junctureSaveTypePopover.component';
-import { DatePickerModalComponent } from '../datepickerModal/datepickerModal';
-import { ImageUploaderPopoverComponent } from '../imageUploader/imageUploaderPopover.component';
-import { GalleryImgActionPopoverComponent } from '../galleryImgAction/galleryImgActionPopover.component';
+import { JunctureSaveTypePopoverComponent } from '../../../components/junctureSaveType/junctureSaveTypePopover.component';
+import { DatePickerModalComponent } from '../../datepickerModal/datepickerModal/datepickerModal';
+import { ImageUploaderPopoverComponent } from '../../imageUploader/imageUploader/imageUploaderPopover.component';
+import { GalleryImgActionPopoverComponent } from '../../galleryImgActionPopover/galleryImgAction/galleryImgActionPopover.component';
 
 @Component({
   selector: 'JunctureModal',

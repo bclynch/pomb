@@ -5,6 +5,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { SharedModule } from '../../shared/shared.module';
 import { RoleGuardService as RoleGuard } from '../../services/roleGuard.service';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { CountrySearchComponent } from '../../components/countrySearch/countrySearch.component';
+import { ImageUploaderModule } from '../imageUploader/imageUploader.module';
 
 import { UserAdminDashboardPage } from './subViews/dashboard/dashboard';
 import { UserAdminConfigPage } from './subViews/config/config';
@@ -28,14 +30,16 @@ const routes: Routes = [
     UserAdminConfigPage,
     UserAdminDashboardPage,
     UserAdminSettingsPage,
-    UserAdminTripsPage
+    UserAdminTripsPage,
+    CountrySearchComponent
   ],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
     SharedModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    ImageUploaderModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

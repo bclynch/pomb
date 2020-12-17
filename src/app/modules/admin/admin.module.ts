@@ -10,6 +10,7 @@ import { AdminConfigPage } from './subViews/config/config';
 import { AdminDashboardPage } from './subViews/dashboard/dashboard';
 import { AdminPostsPage } from './subViews/posts/posts';
 import { AdminUsersPage } from './subViews/users/users';
+import { ImageUploaderModule } from '../imageUploader/imageUploader.module';
 
 const routes: Routes = [
   { path: '',
@@ -60,7 +61,8 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     SharedModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    ImageUploaderModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

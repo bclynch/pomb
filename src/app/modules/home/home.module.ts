@@ -5,6 +5,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { SharedModule } from '../../shared/shared.module';
 import { PostComponent } from '../post/post/post.component';
 import { PipesModule } from '../../pipes/pipes.module';
+import { CompactHeroComponent } from '../../components/compactHero/compactHero.component';
 
 const routes: Routes = [
   {
@@ -48,7 +49,8 @@ const routes: Routes = [
 @NgModule({
   declarations: [
     HomeComponent,
-    PostComponent
+    PostComponent,
+    CompactHeroComponent
   ],
   imports: [
     CommonModule,

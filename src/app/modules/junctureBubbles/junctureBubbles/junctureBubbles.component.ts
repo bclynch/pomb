@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Juncture } from '../../models/Juncture.model';
+import { Juncture } from '../../../models/Juncture.model';
 
 @Component({
   selector: 'app-juncture-bubbles',

@@ -6,8 +6,10 @@ import { SharedModule } from '../../shared/shared.module';
 import { AgmCoreModule } from '@agm/core';
 import { AgmSnazzyInfoWindowModule } from '@agm/snazzy-info-window';
 import { AgmJsMarkerClustererModule } from '@agm/js-marker-clusterer';
-import { ENV } from '../../../environments/environment';
 import { PipesModule } from '../../pipes/pipes.module';
+import { ShareButtonsModule } from 'ngx-sharebuttons/buttons';
+import { ShareIconsModule } from 'ngx-sharebuttons/icons';
+import { ShareBtnsComponent } from '../../components/shareBtns/shareBtns.component';
 
 const routes: Routes = [
   {
@@ -17,17 +19,20 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [TripMapComponent],
+  declarations: [
+    TripMapComponent,
+    ShareBtnsComponent
+  ],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
     SharedModule,
-    AgmCoreModule.forRoot({
-      apiKey: ENV.googleAPIKey,
-    }),
+    AgmCoreModule,
     AgmSnazzyInfoWindowModule,
     AgmJsMarkerClustererModule,
-    PipesModule
+    PipesModule,
+    ShareButtonsModule,
+    ShareIconsModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { PopoverController, NavParams } from '@ionic/angular';
 
-import { APIService } from '../../services/api.service';
-import { AlertService } from '../../services/alert.service';
+import { APIService } from '../../../services/api.service';
+import { AlertService } from '../../../services/alert.service';
 
 @Component({
   selector: 'app-image-uploader-popover',

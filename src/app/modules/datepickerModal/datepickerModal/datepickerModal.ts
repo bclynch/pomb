@@ -2,7 +2,7 @@
 import { Component } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ModalController, NavParams } from '@ionic/angular';
-import { SettingsService } from '../../services/settings.service';
+import { SettingsService } from '../../../services/settings.service';
 import * as moment from 'moment';
 
 interface DateItem {

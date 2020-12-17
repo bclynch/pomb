@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { PopoverController, NavParams } from '@ionic/angular';
 
-import { GalleryPhoto } from '../../models/GalleryPhoto.model';
+import { GalleryPhoto } from '../../../models/GalleryPhoto.model';
 
 @Component({
   selector: 'app-gallery-img-action-popover',

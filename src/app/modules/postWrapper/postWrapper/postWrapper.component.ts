@@ -1,11 +1,11 @@
 import { Component, Input, OnChanges } from '@angular/core';
 
-import { RouterService } from '../../services/router.service';
-import { SettingsService } from '../../services/settings.service';
-import { AnalyticsService } from '../../services/analytics.service';
-import { UserService } from '../../services/user.service';
+import { RouterService } from '../../../services/router.service';
+import { SettingsService } from '../../../services/settings.service';
+import { AnalyticsService } from '../../../services/analytics.service';
+import { UserService } from '../../../services/user.service';
 
-import { ImageType } from '../../models/Image.model';
+import { ImageType } from '../../../models/Image.model';
 
 @Component({
   selector: 'app-post-wrapper',

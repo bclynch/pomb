@@ -8,9 +8,9 @@ import { DisqusModule } from 'ngx-disqus';
 import { AgmCoreModule } from '@agm/core';
 import { AgmSnazzyInfoWindowModule } from '@agm/snazzy-info-window';
 import { AgmJsMarkerClustererModule } from '@agm/js-marker-clusterer';
-import { ENV } from '../../../environments/environment';
 import { MapSectionComponent } from './sections/map/map.component';
 import { DirectivesModule } from '../../directives/directives.module';
+import { JunctureBubblesModule } from '../junctureBubbles/junctureBubbles.module';
 
 const routes: Routes = [
   {
@@ -41,19 +41,21 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [TripComponent, MapSectionComponent],
+  declarations: [
+    TripComponent,
+    MapSectionComponent
+  ],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
     SharedModule,
-    FroalaViewModule.forRoot(),
+    FroalaViewModule,
     DisqusModule,
-    AgmCoreModule.forRoot({
-      apiKey: ENV.googleAPIKey,
-    }),
+    AgmCoreModule,
     AgmSnazzyInfoWindowModule,
     AgmJsMarkerClustererModule,
-    DirectivesModule
+    DirectivesModule,
+    JunctureBubblesModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

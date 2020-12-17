@@ -2,8 +2,16 @@ import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { Routes, RouterModule } from '@angular/router';
-import { SharedModule } from '../../shared/shared.module';
 import { DashboardCardComponent } from './dashboardCard/dashboardCard.component';
+import { PostWrapperModule } from '../postWrapper/postWrapper.module';
+import { FroalaEditorModule } from 'angular-froala-wysiwyg';
+import { CreatePostModalComponent } from '../../components/createPostModal/createPostModal';
+import { PostTypePopoverComponent } from '../../components/postType/postTypePopover.component';
+import { ImageUploaderModule } from '../imageUploader/imageUploader.module';
+import { DatepickerModalModule } from '../datepickerModal/datepickerModal.module';
+import { GalleryImgActionPopoverModule } from '../galleryImgActionPopover/galleryImgAction.module';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { AgmCoreModule } from '@agm/core';
 
 const routes: Routes = [
   {
@@ -15,12 +23,21 @@ const routes: Routes = [
 @NgModule({
   declarations: [
     DashboardComponent,
-    DashboardCardComponent
+    DashboardCardComponent,
+    CreatePostModalComponent,
+    PostTypePopoverComponent
   ],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
-    SharedModule
+    FroalaEditorModule,
+    ImageUploaderModule,
+    DatepickerModalModule,
+    GalleryImgActionPopoverModule,
+    ReactiveFormsModule,
+    FormsModule,
+    AgmCoreModule,
+    PostWrapperModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

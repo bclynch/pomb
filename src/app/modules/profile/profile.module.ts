@@ -4,9 +4,8 @@ import { ProfileComponent } from './profile/profile.component';
 import { Routes, RouterModule } from '@angular/router';
 import { SharedModule } from '../../shared/shared.module';
 import { RoleGuardService as RoleGuard } from '../../services/roleGuard.service';
-import { ENV } from '../../../environments/environment';
-import { CloudinaryModule, CloudinaryConfiguration } from '@cloudinary/angular-5.x';
-import * as Cloudinary from 'cloudinary-core';
+import { CloudinaryModule } from '@cloudinary/angular-5.x';
+import { ProfileHeroBannerComponent } from '../../components/profileHeroBanner/profileHeroBanner.component';
 
 const routes: Routes = [
   {
@@ -46,12 +45,15 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [ProfileComponent],
+  declarations: [
+    ProfileComponent,
+    ProfileHeroBannerComponent
+  ],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
     SharedModule,
-    CloudinaryModule.forRoot(Cloudinary, { cloud_name: ENV.cloudinaryCloudName } as CloudinaryConfiguration)
+    CloudinaryModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

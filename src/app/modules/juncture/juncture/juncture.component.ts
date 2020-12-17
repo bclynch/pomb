@@ -141,7 +141,6 @@ export class JunctureComponent implements OnDestroy {
       id: this.junctureId,
       userId: this.userService.user ? this.userService.user.id : null
     }).subscribe(({ data }) => {
-      console.log(data.junctureById);
       this.settingsService.modPageMeta(
         `Juncture ${data.junctureById.name}`,
         `Check out the posts, photos, and impressions that make up the juncture, ${data.junctureById.name}`
@@ -248,11 +247,9 @@ export class JunctureComponent implements OnDestroy {
 
   createLineCharts() {
     this.geoJsonObject = this.geoService.generateGeoJSON([this.junctureData.coordsByJunctureId.nodes]);
-    console.log(this.geoJsonObject);
 
     // take our generated geojson and process into arras for charts
     const gpxData = this.geoService.crunchGPXData(this.geoJsonObject);
-    console.log('CRUNCHED DATA: ', gpxData);
 
     // We want roughly 80-120 points per graph to be mindful of performance / look.
     // Creating a filter number to arrive there
@@ -264,7 +261,6 @@ export class JunctureComponent implements OnDestroy {
         break;
       }
     }
-    console.log('FILTER Number: ', this.geoJsonObject.geometry.coordinates.length / filterDivisor);
 
     // set up statistics
     this.stats = [

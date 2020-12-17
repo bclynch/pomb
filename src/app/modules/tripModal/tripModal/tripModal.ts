@@ -1,18 +1,18 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component } from '@angular/core';
 import { NavParams, PopoverController, ModalController, ToastController } from '@ionic/angular';
-import { TripByIdGQL, DeleteImageByIdGQL, DeleteTripByIdGQL } from '../../generated/graphql';
-import { UserService } from '../../services/user.service';
-import { UtilService } from '../../services/util.service';
-import { AlertService } from '../../services/alert.service';
-import { JunctureService } from '../../services/juncture.service';
+import { TripByIdGQL, DeleteImageByIdGQL, DeleteTripByIdGQL } from '../../../generated/graphql';
+import { UserService } from '../../../services/user.service';
+import { UtilService } from '../../../services/util.service';
+import { AlertService } from '../../../services/alert.service';
+import { JunctureService } from '../../../services/juncture.service';
 
-import { DatePickerModalComponent } from '../datepickerModal/datepickerModal';
-import { ImageUploaderPopoverComponent } from '../imageUploader/imageUploaderPopover.component';
-import { GalleryImgActionPopoverComponent } from '../galleryImgAction/galleryImgActionPopover.component';
+import { DatePickerModalComponent } from '../../datepickerModal/datepickerModal/datepickerModal';
+import { ImageUploaderPopoverComponent } from '../../imageUploader/imageUploader/imageUploaderPopover.component';
+import { GalleryImgActionPopoverComponent } from '../../galleryImgActionPopover/galleryImgAction/galleryImgActionPopover.component';
 
 @Component({
   selector: 'app-trip-modal',
-  templateUrl: 'tripModal.html',
+  templateUrl: './tripModal.html',
   styleUrls: ['./tripModal.scss']
 })
 export class TripModalComponent {

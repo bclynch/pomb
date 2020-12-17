@@ -12,11 +12,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { ENV } from '../environments/environment';
 
-// Apollo
+// 3rd party modules
 import { GraphQLModule } from './graphql.module';
-
 import 'froala-editor/js/froala_editor.pkgd.min.js';
 import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
+import { AgmCoreModule } from '@agm/core';
+import { CloudinaryModule, CloudinaryConfiguration } from '@cloudinary/angular-5.x';
+import * as Cloudinary from 'cloudinary-core';
 
 // Services
 import { RoleGuardService } from './services/roleGuard.service';
@@ -53,6 +55,10 @@ import { VisibilityService } from './services/visibility.service';
     HttpClientModule,
     FroalaEditorModule.forRoot(),
     FroalaViewModule.forRoot(),
+    AgmCoreModule.forRoot({
+      apiKey: ENV.googleAPIKey
+    }),
+    CloudinaryModule.forRoot(Cloudinary, { cloud_name: ENV.cloudinaryCloudName } as CloudinaryConfiguration),
     // enhancing the ngsw http://jakubcodes.pl/2018/06/13/enhancing-angular-ngsw/
     ServiceWorkerModule.register('/sw-master.js', { enabled: ENV.production }),
   ],
