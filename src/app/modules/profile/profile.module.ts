@@ -10,6 +10,7 @@ import { GalleryModule } from '../gallery/gallery.module';
 import { GridModule } from '../grid/grid.module';
 import { TripCardModule } from '../tripCard/tripCard.module';
 import { GeoChartModule } from '../geoChart/geoChart.module';
+import { ProfilePictureModule } from '../profilePicture/profilePicture.module';
 
 const routes: Routes = [
   {
@@ -61,7 +62,8 @@ const routes: Routes = [
     GalleryModule,
     GridModule,
     TripCardModule,
-    GeoChartModule
+    GeoChartModule,
+    ProfilePictureModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

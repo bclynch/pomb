@@ -21,7 +21,7 @@
       <div class="content">{{utilService.stripHTMLTags(gridPosts[0].content) | truncate:['200', '...']}}</div>
     </div>
   </div>
-  <app-grid [elements]="gridPosts" [gridConfig]="gridConfiguration" *ngIf="gridPosts.length"></app-grid>
+  <app-grid [elements]="gridPosts" [gridConfig]="gridConfiguration"></app-grid>
   <app-compact-hero [post]="compactHeroPost" *ngIf="compactHeroPost"></app-compact-hero>
   <div class="featuredTitle boldFont">Featured Trip</div>
   <app-trip-card [trip]="settingsService.featuredTrip"></app-trip-card>

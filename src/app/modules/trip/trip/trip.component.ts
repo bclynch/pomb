@@ -1,16 +1,11 @@
 import { Component, AfterViewInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ModalController } from '@ionic/angular';
 import { DomSanitizer } from '@angular/platform-browser';
-import { MapsAPILoader } from '@agm/core';
 
-import { APIService } from '../../../services/api.service';
 import { SettingsService } from '../../../services/settings.service';
 import { UtilService } from '../../../services/util.service';
 import { RouterService } from '../../../services/router.service';
-import { GeoService } from '../../../services/geo.service';
 import { TripService } from '../../../services/trip.service';
-import { AlertService } from '../../../services/alert.service';
 import { ExploreService } from '../../../services/explore.service';
 import { AnalyticsService } from '../../../services/analytics.service';
 import { UserService } from '../../../services/user.service';
@@ -43,14 +38,7 @@ export class TripComponent implements OnDestroy, AfterViewInit {
 
   stats: { icon: string; label: string; value: number }[] = [];
 
-  // map props
-  coords: { lat: number; lon: number; } = { lat: null, lon: null };
-  zoomLevel = 6;
-  latlngBounds;
-  geoJsonObject: any = null;
-  junctureMarkers;
-  mapStyle;
-  boundedZoom: number;
+  junctureMarkers = [];
 
   countryFlags: { code: string; name: string; }[] = [];
 
@@ -60,17 +48,12 @@ export class TripComponent implements OnDestroy, AfterViewInit {
   initSubscription: SubscriptionLike;
 
   constructor(
-    private apiService: APIService,
     public settingsService: SettingsService,
-    private modalController: ModalController,
     private utilService: UtilService,
     public routerService: RouterService,
-    private geoService: GeoService,
     private route: ActivatedRoute,
-    private alertService: AlertService,
     public tripService: TripService,
     public sanitizer: DomSanitizer,
-    private mapsAPILoader: MapsAPILoader,
     private exploreService: ExploreService,
     private analyticsService: AnalyticsService,
     private userService: UserService,
@@ -101,21 +84,30 @@ export class TripComponent implements OnDestroy, AfterViewInit {
       id: this.tripId,
       userId: this.userService.user ? this.userService.user.id : null
     }).subscribe(({ data }) => {
-      this.tripData = data.tripById;
-      this.disqusId = `trip/${this.tripData.id}`;
+      this.tripData = data.tripById || {};
+      const {
+        id: tripId,
+        name,
+        banners = {},
+        gallery = {},
+        totalLikes: tripTotalLikes = {},
+        likesByUser: tripLikesByUser = {},
+        juncturesByTripId = {}
+      } = this.tripData;
+      this.disqusId = `trip/${tripId}`;
       this.settingsService.modPageMeta(
-        this.tripData.name,
-        `The main page for ${this.tripData.name}. Follow in their footsteps and see the junctures,
+        name,
+        `The main page for ${name}. Follow in their footsteps and see the junctures,
           photos, and posts that made up this journey.`
       );
 
       this.carouselImages = [];
       this.gallery = [];
       // populate img arrays
-      this.tripData.banners.nodes.forEach(({ url, title }) => {
+      banners.nodes.forEach(({ url, title }) => {
         this.carouselImages.push({ imgURL: url, tagline: title });
       });
-      this.tripData.gallery.nodes.forEach(({ url, description, accountByUserId, totalLikes, likesByUser, id }) => {
+      gallery.nodes.forEach(({ url, description, accountByUserId, totalLikes, likesByUser, id }) => {
         this.gallery.push({
           url,
           description,
@@ -126,38 +118,15 @@ export class TripComponent implements OnDestroy, AfterViewInit {
         });
       });
       this.carouselTripData = {
-        totalLikes: this.tripData.totalLikes.totalCount,
-        likesArr: this.tripData.likesByUser.nodes,
-        tripId: this.tripData.id
+        totalLikes: tripTotalLikes.totalCount,
+        likesArr: tripLikesByUser.nodes,
+        tripId
       };
 
-      // trip coords
-      const junctureArr = this.tripData.juncturesByTripId.nodes.map((juncture) => {
-        // if its got gpx coords add them
-        if (juncture.coordsByJunctureId.nodes.length) {
-          return juncture.coordsByJunctureId.nodes;
-        }
-
-        // else add its manual marker coords
-        return [{
-          lat: juncture.lat,
-          lon: juncture.lon,
-          elevation: 0,
-          coordTime: new Date(+juncture.arrivalDate).toString()
-        }];
-      });
-      // push starting trip marker to front of arr
-      junctureArr.unshift([{
-        lat: this.tripData.startLat,
-        lon: this.tripData.startLon,
-        elevation: 0,
-        coordTime: new Date(+this.tripData.startDate).toString()
-      }]);
-      this.geoJsonObject = this.geoService.generateGeoJSON(junctureArr);
-      this.junctureMarkers = this.tripData.juncturesByTripId.nodes;
+      this.junctureMarkers = juncturesByTripId.nodes;
 
       // // populate flags array
-      this.tripData.juncturesByTripId.nodes.forEach((juncture) => {
+      this.junctureMarkers.forEach((juncture) => {
         if (this.countryFlags.map(obj => obj.code).indexOf(juncture.country.toLowerCase()) === -1) {
           this.countryFlags.push({
             code: juncture.country.toLowerCase(),
@@ -169,11 +138,11 @@ export class TripComponent implements OnDestroy, AfterViewInit {
       // populate posts arr
       // Separated it out so we don't make the posts call for other pages that use this endpoint
       this.postsByTripGQL.fetch({
-        id: this.tripData.id
+        id: tripId
       }).subscribe(
-        ({ data }) => {
-          this.postCount = data.tripById.postsByTripId.totalCount;
-          this.tripPosts = data.tripById.postsByTripId.nodes.slice(0, 5);
+        ({ data: { tripById: { postsByTripId } = {} } = {} }) => {
+          this.postCount = postsByTripId.totalCount;
+          this.tripPosts = postsByTripId.nodes.slice(0, 5);
 
           this.populateStats();
         }

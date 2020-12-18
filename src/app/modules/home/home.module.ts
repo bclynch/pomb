@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { HomeComponent } from './home/home.component';
 import { Routes, RouterModule } from '@angular/router';
 import { SharedModule } from '../../shared/shared.module';
-import { PostComponent } from '../post/post/post.component';
 import { PipesModule } from '../../pipes/pipes.module';
 import { CompactHeroComponent } from './compactHero/compactHero.component';
 import { GridModule } from '../grid/grid.module';
@@ -22,7 +21,7 @@ const routes: Routes = [
             children: [
               {
                 path: ':title',
-                component: PostComponent
+                loadChildren: () => import('../post/post.module').then(m => m.PostModule)
               }
             ]
           }
@@ -52,7 +51,6 @@ const routes: Routes = [
 @NgModule({
   declarations: [
     HomeComponent,
-    PostComponent,
     CompactHeroComponent
   ],
   imports: [

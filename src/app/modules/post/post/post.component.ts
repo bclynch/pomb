@@ -48,7 +48,8 @@ export class PostComponent implements OnDestroy {
       id: +this.postId,
       userId: this.userService.user ? this.userService.user.id : null
     }).subscribe(
-      ({ data: { postById } }) => {
+      ({ data: { postById } = {} }) => {
+        console.log('postById', postById);
         this.post = postById;
         this.settingsService.modPageMeta(
           this.post.title,

@@ -31,6 +31,7 @@
 ::ng-deep app-grid {
   width: 100%;
   max-width: 1280px;
+  min-height: 375px;
 
   .gridContainer {
     app-grid-card:first-child {

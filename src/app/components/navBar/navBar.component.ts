@@ -10,7 +10,6 @@ import { JunctureModalComponent } from '../../modules/junctureModal/junctureModa
 import { SettingsService } from '../../services/settings.service';
 import { RouterService } from '../../services/router.service';
 import { UserService } from '../../services/user.service';
-import { ExploreService } from '../../services/explore.service';
 import { UtilService } from '../../services/util.service';
 import { AlertService } from '../../services/alert.service';
 import { TripService } from '../../services/trip.service';
@@ -58,7 +57,6 @@ export class NavBarComponent implements OnDestroy {
     public routerService: RouterService,
     private userService: UserService,
     private modalCtrl: ModalController,
-    private exploreService: ExploreService,
     public utilService: UtilService,
     public sanitizer: DomSanitizer,
     private alertService: AlertService,

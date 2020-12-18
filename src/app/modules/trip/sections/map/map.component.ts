@@ -6,6 +6,7 @@ import { AppService } from '../../../../services/app.service';
 import { RouterService } from '../../../../services/router.service';
 import { UtilService } from '../../../../services/util.service';
 import { SettingsService } from '../../../../services/settings.service';
+import { GeoService } from '../../../../services/geo.service';
 import { SubscriptionLike } from 'rxjs';
 
 @Component({
@@ -15,7 +16,7 @@ import { SubscriptionLike } from 'rxjs';
 })
 export class MapSectionComponent implements OnDestroy {
   @Input() junctureMarkers = [];
-  @Input() tripData = { startLat: null, startLon: null };
+  @Input() tripData = { startLat: null, startLon: null, startDate: null };
   tripId: number;
 
   dataLayerStyle;
@@ -36,7 +37,8 @@ export class MapSectionComponent implements OnDestroy {
     private mapsAPILoader: MapsAPILoader,
     private appService: AppService,
     private utilService: UtilService,
-    private settingsService: SettingsService
+    private settingsService: SettingsService,
+    private geoService: GeoService
   ) {
     this.route.params.subscribe((params) => {
       this.tripId = +params.tripId;
@@ -73,6 +75,30 @@ export class MapSectionComponent implements OnDestroy {
       this.utilService.getJSON('../../assets/mapStyles/darkTheme.json').subscribe((data) => {
         this.mapStyle = data;
       });
+
+      // trip coords
+      const junctureArr = this.junctureMarkers.map((juncture) => {
+        // if its got gpx coords add them
+        if (juncture.coordsByJunctureId.nodes.length) {
+          return juncture.coordsByJunctureId.nodes;
+        }
+
+        // else add its manual marker coords
+        return [{
+          lat: juncture.lat,
+          lon: juncture.lon,
+          elevation: 0,
+          coordTime: new Date(+juncture.arrivalDate).toString()
+        }];
+      });
+      // push starting trip marker to front of arr
+      junctureArr.unshift([{
+        lat: this.tripData.startLat,
+        lon: this.tripData.startLon,
+        elevation: 0,
+        coordTime: new Date(+this.tripData.startDate).toString()
+      }]);
+      this.geoJsonObject = this.geoService.generateGeoJSON(junctureArr);
     });
   }
 }

@@ -10,17 +10,18 @@
     right: 0;
     bottom: 0;
     transition: opacity 3s;
-    background-position: center;
-    background-size: cover;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     color: var(--white);
+    overflow: hidden;
 
     .bannerWrapper {
       position: absolute;
       top: 0;
+      left: 0;
+      right: 0;
 
       ::ng-deep img {
         max-width: none;
@@ -28,6 +29,10 @@
     }
     .overlay {
       position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
     }
     .slideTitle {
       font-size: 80px;
@@ -131,13 +136,21 @@
       }
     }
   }
-}
 
-@media (min-width: 768px) {
-  .flagsContainer {
-    width: 30% !important;
-  }
-  .statLabel, ::ng-deep .likeLabel {
-    display: block !important;
+  @media (min-width: 768px) {
+    > .slide {
+      .bannerWrapper {
+  
+        ::ng-deep img {
+          width: 100%;
+        }
+      }
+      .flagsContainer {
+        width: 30%;
+      }
+    }
+    .statLabel, ::ng-deep .likeLabel {
+      display: block !important;
+    }
   }
 }

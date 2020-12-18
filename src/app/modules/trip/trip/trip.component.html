@@ -58,7 +58,7 @@
             *ngIf="glanceExpanded"
           >Less <ion-icon name="arrow-up"></ion-icon></div> -->
         </div>
-        <div #wrapper class="section">
+        <div #wrapper class="section" *ngIf="tripData">
           <div class="sectionHeader">Map</div>
           <app-map-section
             [tripData]="tripData"
