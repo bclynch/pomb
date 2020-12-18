@@ -1,6 +1,6 @@
+import { Apollo } from 'apollo-angular';
 import { Component } from '@angular/core';
 import { ModalController } from '@ionic/angular';
-import { Apollo } from 'apollo-angular';
 
 import { UserService } from '../../../services/user.service';
 import { RouterService } from '../../../services/router.service';

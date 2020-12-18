@@ -1,12 +1,10 @@
+import { Apollo, gql } from 'apollo-angular';
 import { Injectable, Inject } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { map, catchError } from 'rxjs/operators';
 import { Observable, throwError } from 'rxjs';
 import { ENV } from '../../environments/environment';
 declare var google: any;
-
-import { Apollo } from 'apollo-angular';
-import gql from 'graphql-tag';
 
 // needs to be an env var
 const flickrKey = ENV.flickrAPIKey;

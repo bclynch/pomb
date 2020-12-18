@@ -17,16 +17,13 @@
 - ~~Launch!~~
     - ~~Push new build to vps~~
 
-### Top Priorities
+## Top Priorities
 
-### Front end fixes live prod
-
-- Performance of imgs is shit. Move to Cloudinary
-    - [Frontend stuff](https://cloudinary.com/blog/advanced_image_component_for_cloudinary_s_front_end_sdks)
-    - [CDN usage](https://cloudinary.com/documentation/fetch_remote_images)
+### Optimizations
+- ~~Performance of imgs is shit. Move to Cloudinary~~
 - ~~Update to angular 11~~
-- Trip page
-    - SLOW AS FUCK
+- ~~Trip page~~
+    - ~~SLOW AS FUCK~~
     - ~~Fix route not showing on trip page map~~
     - ~~Juncture bubbles not showing~~
     - ~~Post card img sized badly on mobile~~
@@ -37,7 +34,10 @@
     - ~~Remove shared and froala modules from app module should help~~
     - ~~Post page isn't working...~~
     - ~~Profile pic not showing profile page~~
-- [Update angular-apollo](https://apollo-angular.com/docs/migration/) some time
+- ~~[Update angular-apollo](https://apollo-angular.com/docs/migration/) some time~~
+
+### Front end fixes live prod
+
 - Fix defaulting end date when updating a trip and allowing to set back to null
 - Update postgraphile to the beta. Otherwise check versioning across the board. Ionic when it goes to 4 (after it's stable... seriously wait its broken to update to prod)
 - gallery photos are starting at end. Need to reverse the arr

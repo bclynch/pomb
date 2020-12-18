@@ -1,5 +1,5 @@
-import { Injectable } from '@angular/core';
 import { Apollo } from 'apollo-angular';
+import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import {
   RecentUserActivityGQL,
@@ -39,14 +39,14 @@ export class UserService {
   ) { }
 
   init() {
-    return new Promise<string>((resolve, reject) => {
+    return new Promise<void>((resolve, reject) => {
       this.recentUserActivityGQL.fetch({
         username: this.user.username
       }).subscribe(
-        ({ data }) => {
-          this.recentTrip = data.accountByUsername.tripsByUserId.nodes[0];
-          this.recentJunctures = data.accountByUsername.juncturesByUserId.nodes;
-          this.recentPosts = data.accountByUsername.postsByAuthor.nodes;
+        ({ data: { accountByUsername } = {} }) => {
+          this.recentTrip = accountByUsername.tripsByUserId.nodes[0];
+          this.recentJunctures = accountByUsername.juncturesByUserId.nodes;
+          this.recentPosts = accountByUsername.postsByAuthor.nodes;
           resolve();
         },
         (err) => reject(err)

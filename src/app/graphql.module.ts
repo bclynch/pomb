@@ -1,8 +1,9 @@
+import { APOLLO_OPTIONS } from 'apollo-angular';
+import { InMemoryCache } from '@apollo/client/core';
+import { HttpLink } from 'apollo-angular/http';
+import { setContext } from '@apollo/client/link/context';
 import { NgModule } from '@angular/core';
-import { ApolloModule, APOLLO_OPTIONS } from 'apollo-angular';
-import { InMemoryCache } from 'apollo-cache-inmemory';
-import { HttpLinkModule, HttpLink } from 'apollo-angular-link-http';
-import { setContext } from 'apollo-link-context';
+
 import { ENV } from '../environments/environment';
 import { HttpHeaders } from '@angular/common/http';
 
@@ -28,7 +29,6 @@ export function createApollo(httpLink: HttpLink) {
 }
 
 @NgModule({
-  exports: [ApolloModule, HttpLinkModule],
   providers: [
     {
       provide: APOLLO_OPTIONS,
