@@ -2,9 +2,9 @@ import { ViewChild, Component, ElementRef, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AgmMap, AgmDataLayer, MapsAPILoader } from '@agm/core';
 import { DomSanitizer } from '@angular/platform-browser';
+import { ModalController } from '@ionic/angular';
 
 import { SettingsService } from '../../../services/settings.service';
-import { APIService } from '../../../services/api.service';
 import { GeoService } from '../../../services/geo.service';
 import { UtilService } from '../../../services/util.service';
 import { RouterService } from '../../../services/router.service';
@@ -12,11 +12,12 @@ import { ExploreService } from '../../../services/explore.service';
 import { AnalyticsService } from '../../../services/analytics.service';
 import { UserService } from '../../../services/user.service';
 import { JunctureService } from '../../../services/juncture.service';
+import { AppService } from '../../../services/app.service';
 
 import { Juncture } from '../../../models/Juncture.model';
 import { SubscriptionLike } from 'rxjs';
-import { AppService } from 'src/app/services/app.service';
 import { FullJunctureByIdGQL } from 'src/app/generated/graphql';
+import { JunctureModalComponent } from '../../junctureModal/junctureModal/junctureModal';
 
 @Component({
   selector: 'app-juncture',
@@ -98,8 +99,8 @@ export class JunctureComponent implements OnDestroy {
 
   constructor(
     public settingsService: SettingsService,
-    private apiService: APIService,
-    private router: Router,
+    private modalCtrl: ModalController,
+    public router: Router,
     private geoService: GeoService,
     private mapsAPILoader: MapsAPILoader,
     private utilService: UtilService,
@@ -470,11 +471,18 @@ export class JunctureComponent implements OnDestroy {
     };
   }
 
-  editJuncture() {
-    this.junctureService.openJunctureModal(this.junctureData.id).then(
-      (result) => {
-        console.log(result);
-      }
-    );
+  async editJuncture() {
+    const junctureId = this.junctureData.id;
+    const modal = await this.modalCtrl.create({
+      component: JunctureModalComponent,
+      componentProps: { markerImg: this.junctureService.defaultMarkerImg, junctureId },
+      cssClass: 'junctureModal',
+      backdropDismiss: false
+    });
+
+    await modal.present();
+
+    const { data } = await modal.onWillDismiss();
+    this.junctureService.handleOpenJunctureModal(data, junctureId);
   }
 }

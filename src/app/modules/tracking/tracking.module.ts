@@ -4,6 +4,8 @@ import { TrackingComponent } from './tracking/tracking.component';
 import { Routes, RouterModule } from '@angular/router';
 import { SharedModule } from '../../shared/shared.module';
 import { RoleGuardService as RoleGuard } from '../../services/roleGuard.service';
+import { TripCardModule } from '../tripCard/tripCard.module';
+import { ProfilePictureModule } from '../profilePicture/profilePicture.module';
 
 const routes: Routes = [
   {
@@ -21,7 +23,9 @@ const routes: Routes = [
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
-    SharedModule
+    SharedModule,
+    TripCardModule,
+    ProfilePictureModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

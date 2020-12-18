@@ -2,15 +2,17 @@ import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientModule, HttpHeaders } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { ServiceWorkerModule } from '@angular/service-worker';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-import { SharedModule } from 'src/app/shared/shared.module';
 import { ENV } from '../environments/environment';
+import { DirectivesModule } from './directives/directives.module';
+import { PipesModule } from './pipes/pipes.module';
 
 // 3rd party modules
 import { GraphQLModule } from './graphql.module';
@@ -40,18 +42,36 @@ import { TripService } from './services/trip.service';
 import { AppService } from './services/app.service';
 import { VisibilityService } from './services/visibility.service';
 
+// components
+// import { PageWrapperComponent } from './components/pageWrapper/pageWrapper.component';
+// import { FooterComponent } from './components/footer/footer.component';
+// import { NavBarComponent } from './components/navBar/navBar.component';
+// import { CommunityNavSectionComponent } from './components/navBar/paneSections/community/communitySection.component';
+// import { StoriesNavSectionComponent } from './components/navBar/paneSections/stories/storiesSection.component';
+// import { MyPackNavSectionComponent } from './components/navBar/paneSections/myPack/myPackSection.component';
+// import { RegistrationModalComponent } from './components/registrationModal/registrationModal';
+// import { MobileNavModalComponent } from './components/mobileNavModal/mobileNavModal';
+// import { HeroBannerComponent } from './components/heroBanner/heroBanner.component';
+
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    // PageWrapperComponent,
+    // FooterComponent,
+    // NavBarComponent,
+    // CommunityNavSectionComponent,
+    // StoriesNavSectionComponent,
+    // MyPackNavSectionComponent,
+    // RegistrationModalComponent,
+    // MobileNavModalComponent,
+    // HeroBannerComponent
   ],
-  entryComponents: [],
   imports: [
     BrowserModule,
     IonicModule.forRoot(),
     AppRoutingModule,
     GraphQLModule,
     BrowserAnimationsModule,
-    SharedModule,
     HttpClientModule,
     FroalaEditorModule.forRoot(),
     FroalaViewModule.forRoot(),
@@ -61,6 +81,10 @@ import { VisibilityService } from './services/visibility.service';
     CloudinaryModule.forRoot(Cloudinary, { cloud_name: ENV.cloudinaryCloudName } as CloudinaryConfiguration),
     // enhancing the ngsw http://jakubcodes.pl/2018/06/13/enhancing-angular-ngsw/
     ServiceWorkerModule.register('/sw-master.js', { enabled: ENV.production }),
+    ReactiveFormsModule,
+    FormsModule,
+    DirectivesModule,
+    PipesModule
   ],
   providers: [
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
@@ -84,6 +108,17 @@ import { VisibilityService } from './services/visibility.service';
     VisibilityService
   ],
   bootstrap: [AppComponent],
+  exports: [
+    // PageWrapperComponent,
+    // FooterComponent,
+    // NavBarComponent,
+    // CommunityNavSectionComponent,
+    // StoriesNavSectionComponent,
+    // MyPackNavSectionComponent,
+    // RegistrationModalComponent,
+    // MobileNavModalComponent,
+    // HeroBannerComponent
+  ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppModule {}

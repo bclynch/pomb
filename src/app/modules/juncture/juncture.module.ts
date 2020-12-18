@@ -8,8 +8,12 @@ import { AgmSnazzyInfoWindowModule } from '@agm/snazzy-info-window';
 import { AgmJsMarkerClustererModule } from '@agm/js-marker-clusterer';
 import { DisqusModule } from 'ngx-disqus';
 import { FroalaViewModule } from 'angular-froala-wysiwyg';
-import { ChartComponent } from '../../components/chart/chart.component';
-import { UnitToggleComponent } from '../../components/unitToggle/unitToggle.component';
+import { ChartComponent } from './chart/chart.component';
+import { UnitToggleComponent } from './unitToggle/unitToggle.component';
+import { GalleryModule } from '../../modules/gallery/gallery.module';
+import { PostListModule } from '../../modules/postList/postList.module';
+import { LikeCounterModule } from '../../modules/likeCounter/likeCounter.module';
+import { CommentsModule } from '../../modules/comments/comments.module';
 
 const routes: Routes = [
   {
@@ -32,7 +36,11 @@ const routes: Routes = [
     AgmCoreModule,
     AgmSnazzyInfoWindowModule,
     AgmJsMarkerClustererModule,
-    DisqusModule
+    DisqusModule,
+    GalleryModule,
+    PostListModule,
+    LikeCounterModule,
+    CommentsModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

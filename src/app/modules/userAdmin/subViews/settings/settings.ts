@@ -6,7 +6,7 @@ import { RouterService } from '../../../../services/router.service';
 import { UserService } from '../../../../services/user.service';
 import { AlertService } from '../../../../services/alert.service';
 
-import { DeleteAccountModalComponent } from '../../../../shared/deleteAccountModal/deleteAccountModal';
+import { DeleteAccountModalComponent } from '../../deleteAccountModal/deleteAccountModal';
 import { UpdatePasswordGQL } from '../../../../generated/graphql';
 
 @Component({

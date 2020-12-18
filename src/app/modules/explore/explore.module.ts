@@ -8,6 +8,12 @@ import { Routes, RouterModule } from '@angular/router';
 import { SharedModule } from '../../shared/shared.module';
 import { ExploreSubnavComponent } from './exploreSubnav/exploreSubnav.component';
 import { PlaceGuideComponent } from './placeGuide/placeGuide.component';
+import { FadeCarouselModule } from '../fadeCarousel/fadeCarousel.module';
+import { GeoChartModule } from '../geoChart/geoChart.module';
+import { AgmCoreModule } from '@agm/core';
+import { AgmSnazzyInfoWindowModule } from '@agm/snazzy-info-window';
+import { AgmJsMarkerClustererModule } from '@agm/js-marker-clusterer';
+import { ExploreModalComponent } from './exploreModal/exploreModal';
 
 const routes: Routes = [
   { path: '',
@@ -70,12 +76,18 @@ const routes: Routes = [
     ExploreCountryPage,
     ExploreCityPage,
     ExploreSubnavComponent,
-    PlaceGuideComponent
+    PlaceGuideComponent,
+    ExploreModalComponent
   ],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
-    SharedModule
+    SharedModule,
+    FadeCarouselModule,
+    AgmCoreModule,
+    AgmSnazzyInfoWindowModule,
+    AgmJsMarkerClustererModule,
+    GeoChartModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

@@ -11,6 +11,12 @@ import { AgmJsMarkerClustererModule } from '@agm/js-marker-clusterer';
 import { MapSectionComponent } from './sections/map/map.component';
 import { DirectivesModule } from '../../directives/directives.module';
 import { JunctureBubblesModule } from '../junctureBubbles/junctureBubbles.module';
+import { GalleryModule } from '../gallery/gallery.module';
+import { PostListModule } from '../postList/postList.module';
+import { FadeCarouselModule } from '../fadeCarousel/fadeCarousel.module';
+import { ProfilePictureModule } from '../profilePicture/profilePicture.module';
+import { CommentsModule } from '../comments/comments.module';
+import { TrackUserModule } from '../trackUser/trackUser.module';
 
 const routes: Routes = [
   {
@@ -55,7 +61,13 @@ const routes: Routes = [
     AgmSnazzyInfoWindowModule,
     AgmJsMarkerClustererModule,
     DirectivesModule,
-    JunctureBubblesModule
+    JunctureBubblesModule,
+    GalleryModule,
+    PostListModule,
+    FadeCarouselModule,
+    ProfilePictureModule,
+    CommentsModule,
+    TrackUserModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

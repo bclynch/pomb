@@ -5,7 +5,6 @@ import { AppService } from '../../../../services/app.service';
 import { APIService } from '../../../../services/api.service';
 import { UserService } from '../../../../services/user.service';
 
-import { GradientPopoverComponent } from '../../../../shared/gradientPopover/gradientPopover.component';
 import { ImageUploaderPopoverComponent } from '../../../imageUploader/imageUploader/imageUploaderPopover.component';
 import { SubscriptionLike } from 'rxjs';
 import { UpdateAccountByIdGQL } from 'src/app/generated/graphql';
@@ -211,7 +210,7 @@ export class UserAdminConfigPage implements OnDestroy {
 
     // // Has diff existing so run a for each and delete
     if (diffExisting.length) {
-      const promise = new Promise((resolve, reject) => {
+      const promise = new Promise<void>((resolve, reject) => {
         let query = `mutation {`;
         diffExisting.forEach((country, i) => {
           query += `a${i}: deleteUserToCountryById(
@@ -225,7 +224,7 @@ export class UserAdminConfigPage implements OnDestroy {
         query += `}`;
 
         this.apiService.genericCall(query).subscribe(
-          result => resolve(),
+          () => resolve(),
           err => reject(err)
         );
       });

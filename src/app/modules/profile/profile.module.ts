@@ -5,7 +5,11 @@ import { Routes, RouterModule } from '@angular/router';
 import { SharedModule } from '../../shared/shared.module';
 import { RoleGuardService as RoleGuard } from '../../services/roleGuard.service';
 import { CloudinaryModule } from '@cloudinary/angular-5.x';
-import { ProfileHeroBannerComponent } from '../../components/profileHeroBanner/profileHeroBanner.component';
+import { ProfileHeroBannerComponent } from './profileHeroBanner/profileHeroBanner.component';
+import { GalleryModule } from '../gallery/gallery.module';
+import { GridModule } from '../grid/grid.module';
+import { TripCardModule } from '../tripCard/tripCard.module';
+import { GeoChartModule } from '../geoChart/geoChart.module';
 
 const routes: Routes = [
   {
@@ -53,7 +57,11 @@ const routes: Routes = [
     CommonModule,
     RouterModule.forChild(routes),
     SharedModule,
-    CloudinaryModule
+    CloudinaryModule,
+    GalleryModule,
+    GridModule,
+    TripCardModule,
+    GeoChartModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

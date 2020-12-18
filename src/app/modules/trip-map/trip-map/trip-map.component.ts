@@ -91,7 +91,6 @@ export class TripMapComponent implements OnDestroy {
       userId: this.userService.user ? this.userService.user.id : null
     }).subscribe(({ data }) => {
       this.tripData = data.tripById;
-      console.log('got trip data: ', this.tripData);
       this.settingsService.modPageMeta(
         `${this.tripData.name} Map`,
         `An interactive map plotting the route for ${this.tripData.name}. Follow in their footsteps and
@@ -219,7 +218,7 @@ export class TripMapComponent implements OnDestroy {
   // Adding content one at a time so as not to make a big ass call every time that would take forever.
   // One ahead so its always ready
   modJunctureContentArr(index: number, id: number) {
-    return new Promise((resolve, reject) => {
+    return new Promise<void>((resolve) => {
 
       // make sure it doesn't already exist
       if (!this.junctureContentArr[index]) {

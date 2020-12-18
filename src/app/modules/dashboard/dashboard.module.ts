@@ -5,8 +5,9 @@ import { Routes, RouterModule } from '@angular/router';
 import { DashboardCardComponent } from './dashboardCard/dashboardCard.component';
 import { PostWrapperModule } from '../postWrapper/postWrapper.module';
 import { FroalaEditorModule } from 'angular-froala-wysiwyg';
-import { CreatePostModalComponent } from '../../components/createPostModal/createPostModal';
-import { PostTypePopoverComponent } from '../../components/postType/postTypePopover.component';
+import { CreatePostModalComponent } from './createPostModal/createPostModal';
+import { TagSearchComponent } from './tagSearch/tagSearch.component';
+import { PostTypePopoverComponent } from './postType/postTypePopover.component';
 import { ImageUploaderModule } from '../imageUploader/imageUploader.module';
 import { DatepickerModalModule } from '../datepickerModal/datepickerModal.module';
 import { GalleryImgActionPopoverModule } from '../galleryImgActionPopover/galleryImgAction.module';
@@ -25,7 +26,8 @@ const routes: Routes = [
     DashboardComponent,
     DashboardCardComponent,
     CreatePostModalComponent,
-    PostTypePopoverComponent
+    PostTypePopoverComponent,
+    TagSearchComponent
   ],
   imports: [
     CommonModule,

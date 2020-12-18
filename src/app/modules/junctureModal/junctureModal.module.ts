@@ -4,19 +4,26 @@ import { JunctureModalComponent } from './junctureModal/junctureModal';
 import { ImageUploaderModule } from '../imageUploader/imageUploader.module';
 import { DatepickerModalModule } from '../datepickerModal/datepickerModal.module';
 import { GalleryImgActionPopoverModule } from '../galleryImgActionPopover/galleryImgAction.module';
+import { JunctureSaveTypePopoverComponent } from './junctureSaveType/junctureSaveTypePopover.component';
+import { UploadGPXComponent } from './uploadGPX/uploadGPX.component';
 import { FroalaEditorModule } from 'angular-froala-wysiwyg';
 import { AgmCoreModule } from '@agm/core';
-import { ENV } from '../../../environments/environment';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [JunctureModalComponent],
+  declarations: [
+    JunctureModalComponent,
+    JunctureSaveTypePopoverComponent,
+    UploadGPXComponent
+  ],
   imports: [
     CommonModule,
     ImageUploaderModule,
     DatepickerModalModule,
     GalleryImgActionPopoverModule,
     FroalaEditorModule,
-    AgmCoreModule
+    AgmCoreModule,
+    FormsModule
   ],
   exports: [JunctureModalComponent],
   entryComponents: [

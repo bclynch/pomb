@@ -7,7 +7,7 @@ import { ExploreService } from '../../../services/explore.service';
 import { UtilService } from '../../../services/util.service';
 import { RouterService } from '../../../services/router.service';
 import { AlertService } from '../../../services/alert.service';
-import { ExploreModalComponent } from '../../../shared/exploreModal/exploreModal';
+import { ExploreModalComponent } from '../exploreModal/exploreModal';
 import { AppService } from '../../../services/app.service';
 import { SubscriptionLike } from 'rxjs';
 

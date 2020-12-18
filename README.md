@@ -35,6 +35,8 @@
     - Start fixing some containers heights so less UI sliding around. Experimental
 - Main bundle is too big -- 2.35 mb. Thinking the way we bundle up all the shared stuff and pass around is inefficient. Maybe only pull in certain components where needed more even if on multiple modules.
     - Remove shared and froala modules from app module should help
+    - Post page isn't working...
+    - Profile pic not showing profile page
 - [Update angular-apollo](https://apollo-angular.com/docs/migration/) some time
 - Fix defaulting end date when updating a trip and allowing to set back to null
 - Update postgraphile to the beta. Otherwise check versioning across the board. Ionic when it goes to 4 (after it's stable... seriously wait its broken to update to prod)

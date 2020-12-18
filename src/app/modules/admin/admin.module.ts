@@ -11,6 +11,7 @@ import { AdminDashboardPage } from './subViews/dashboard/dashboard';
 import { AdminPostsPage } from './subViews/posts/posts';
 import { AdminUsersPage } from './subViews/users/users';
 import { ImageUploaderModule } from '../imageUploader/imageUploader.module';
+import { GradientPopoverModule } from '../gradientPopover/gradientPopover.module';
 
 const routes: Routes = [
   { path: '',
@@ -62,7 +63,8 @@ const routes: Routes = [
     SharedModule,
     ReactiveFormsModule,
     FormsModule,
-    ImageUploaderModule
+    ImageUploaderModule,
+    GradientPopoverModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

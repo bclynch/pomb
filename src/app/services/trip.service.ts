@@ -1,7 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ModalController, ToastController } from '@ionic/angular';
-
-// import { TripModalComponent } from '../modules/tripModal/tripModal/tripModal';
+import { ToastController } from '@ionic/angular';
 import { APIService } from './api.service';
 import { UserService } from './user.service';
 import { UpdateTripByIdGQL, CreateTripGQL } from '../generated/graphql';
@@ -14,7 +12,6 @@ export class TripService {
   displayTripNav: boolean;
 
   constructor(
-    private modalCtrl: ModalController,
     private apiService: APIService,
     private toastCtrl: ToastController,
     private userService: UserService,
@@ -22,79 +19,69 @@ export class TripService {
     private createTripGQL: CreateTripGQL
   ) { }
 
-  openTripModal(tripId): Promise<void> {
-    return new Promise(async (resolve, reject) => {
-
+  handleOpenTripModal(data, tripId): Promise<void> {
+    return new Promise((resolve, reject) => {
+      if (data) {
+        const {
+          isExisting,
+          name,
+          description,
+          timeStart,
+          timeEnd,
+          startLat,
+          startLon,
+          bannerImages,
+          photoHasChanged
+        } = data;
+        if (isExisting) {
+          this.updateTripByIdGQL.mutate({
+            tripId,
+            name,
+            description,
+            startDate: +timeStart,
+            endDate: +timeEnd,
+            startLat,
+            startLon
+          }).subscribe(
+            result => {
+              // update banner images as required
+              this.comparePhotos(bannerImages, photoHasChanged, tripId).then(
+                () => resolve()
+              );
+            },
+            err => {
+              console.log(err);
+              reject();
+            }
+          );
+        } else {
+          // create trip
+          this.createTripGQL.mutate({
+            userId: this.userService.user.id,
+            name,
+            description,
+            startDate: timeStart,
+            endDate: timeEnd,
+            startLat,
+            startLon
+          }).subscribe(
+            (result: any) => {
+              // save banner photos
+              this.saveBannerPhotos(bannerImages, result.data.createTrip.trip.id).then(
+                () => {
+                  this.toast(`New trip '${name}' successfully created`);
+                  resolve();
+                },
+                err => {
+                  console.log(err);
+                  reject();
+                }
+              );
+            }
+          );
+        }
+      }
     });
-    // return new Promise(async (resolve, reject) => {
-    //   const modal = await this.modalCtrl.create({
-    //     component: TripModalComponent,
-    //     componentProps: { tripId },
-    //     cssClass: 'tripModal',
-    //     backdropDismiss: false
-    //   });
-
-    //   await modal.present();
-
-    //   const { data } = await modal.onWillDismiss();
-    //   if (data) {
-    //     const {
-    //       isExisting,
-    //       name,
-    //       description,
-    //       timeStart,
-    //       timeEnd,
-    //       startLat,
-    //       startLon,
-    //       bannerImages,
-    //       photoHasChanged
-    //     } = data;
-    //     if (isExisting) {
-    //       this.updateTripByIdGQL.mutate({
-    //         tripId,
-    //         name,
-    //         description,
-    //         startDate: +timeStart,
-    //         endDate: +timeEnd,
-    //         startLat,
-    //         startLon
-    //       }).subscribe(
-    //         result => {
-    //           // update banner images as required
-    //           this.comparePhotos(bannerImages, photoHasChanged, tripId).then(
-    //             () => resolve()
-    //           );
-    //         },
-    //         err => {
-    //           console.log(err);
-    //           reject();
-    //         }
-    //       );
-    //     } else {
-    //       // create trip
-    //       this.createTripGQL.mutate({
-    //         userId: this.userService.user.id,
-    //         name,
-    //         description,
-    //         startDate: timeStart,
-    //         endDate: timeEnd,
-    //         startLat,
-    //         startLon
-    //       }).subscribe(
-    //         (result: any) => {
-    //           // save banner photos
-    //           this.saveBannerPhotos(bannerImages, result.data.createTrip.trip.id).then(
-    //             () => {
-    //               this.toast(`New trip '${name}' successfully created`);
-    //               resolve();
-    //             },
-    //             err => reject()
-    //           );
-    //         }
-    //       );
-    //     }
-    //   }
-    // });
   }
 
   async toast(message: string) {

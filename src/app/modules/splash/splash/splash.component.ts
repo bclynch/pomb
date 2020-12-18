@@ -6,7 +6,7 @@ import { UserService } from '../../../services/user.service';
 import { SettingsService } from '../../../services/settings.service';
 import { AppService } from '../../../services/app.service';
 
-import { RegistrationModalComponent } from '../../../shared/registrationModal/registrationModal';
+import { RegistrationModalComponent } from '../../../components/registrationModal/registrationModal';
 import { SubscriptionLike } from 'rxjs';
 
 @Component({

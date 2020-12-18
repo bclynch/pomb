@@ -1,5 +1,6 @@
 import { Component, OnDestroy } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
+import { ModalController } from '@ionic/angular';
 
 import { UserService } from '../../../../services/user.service';
 import { SettingsService } from '../../../../services/settings.service';
@@ -8,6 +9,8 @@ import { UtilService } from '../../../../services/util.service';
 import { RouterService } from '../../../../services/router.service';
 import { TripService } from '../../../../services/trip.service';
 import { JunctureService } from '../../../../services/juncture.service';
+import { TripModalComponent } from '../../../tripModal/tripModal/tripModal';
+import { JunctureModalComponent } from '../../../junctureModal/junctureModal/junctureModal';
 
 // import { Trip } from '../../../../models/Trip.model';
 import { SubscriptionLike } from 'rxjs';
@@ -27,6 +30,7 @@ export class UserAdminTripsPage implements OnDestroy {
   initSubscription: SubscriptionLike;
 
   constructor(
+    private modalCtrl: ModalController,
     private userService: UserService,
     public settingsService: SettingsService,
     private appService: AppService,
@@ -66,11 +70,33 @@ export class UserAdminTripsPage implements OnDestroy {
     return days === 1 ? `${days} day` : `${days} days`;
   }
 
-  editTrip(index: number) {
-    this.tripService.openTripModal(this.tripsData[index].id);
+  async editTrip(index: number) {
+    const tripId = this.tripsData[index].id;
+    const modal = await this.modalCtrl.create({
+      component: TripModalComponent,
+      componentProps: { tripId },
+      cssClass: 'tripModal',
+      backdropDismiss: false
+    });
+
+    await modal.present();
+
+    const { data } = await modal.onWillDismiss();
+    this.tripService.handleOpenTripModal(data, tripId);
   }
 
-  editJuncture(index: number) {
-    this.junctureService.openJunctureModal(this.tripsData[this.activeTrip].juncturesByTripId.nodes[index].id);
+  async editJuncture(index: number) {
+    const junctureId = this.tripsData[this.activeTrip].juncturesByTripId.nodes[index].id;
+    const modal = await this.modalCtrl.create({
+      component: JunctureModalComponent,
+      componentProps: { markerImg: this.junctureService.defaultMarkerImg, junctureId },
+      cssClass: 'junctureModal',
+      backdropDismiss: false
+    });
+
+    await modal.present();
+
+    const { data } = await modal.onWillDismiss();
+    this.junctureService.handleOpenJunctureModal(data, junctureId);
   }
 }

@@ -86,7 +86,7 @@ export class ImageUploaderPopoverComponent {
   }
 
   fileChangeEvent(fileInput: any) {
-    this.filesToUpload = <Array<File>>fileInput.target.files;
+    this.filesToUpload = fileInput.target.files as Array<File>;
 
     switch (this.type) {
       case 'banner':

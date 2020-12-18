@@ -4,7 +4,7 @@ import { PopoverController, ToastController } from '@ionic/angular';
 import { SettingsService } from '../../../../services/settings.service';
 import { AppService } from '../../../../services/app.service';
 
-import { GradientPopoverComponent } from '../../../../shared/gradientPopover/gradientPopover.component';
+import { GradientPopoverComponent } from '../../../gradientPopover/gradientPopover/gradientPopover.component';
 import { ImageUploaderPopoverComponent } from '../../../imageUploader/imageUploader/imageUploaderPopover.component';
 import { SubscriptionLike } from 'rxjs';
 import { UpdateConfigGQL } from '../../../../generated/graphql';
@@ -47,7 +47,7 @@ export class AdminConfigPage implements OnDestroy {
     this.styleModel.heroBanner = this.settingsService.heroBanner;
   }
 
-  async presentGradientPopover(e: Event) {
+  async presentGradientPopover() {
     const popover = await this.popoverCtrl.create({
       component: GradientPopoverComponent,
       cssClass: 'gradientPopover',

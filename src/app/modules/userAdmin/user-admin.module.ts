@@ -5,8 +5,11 @@ import { Routes, RouterModule } from '@angular/router';
 import { SharedModule } from '../../shared/shared.module';
 import { RoleGuardService as RoleGuard } from '../../services/roleGuard.service';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { CountrySearchComponent } from '../../components/countrySearch/countrySearch.component';
+import { CountrySearchComponent } from './countrySearch/countrySearch.component';
 import { ImageUploaderModule } from '../imageUploader/imageUploader.module';
+import { TripModalModule } from '../tripModal/tripModal.module';
+import { ProfilePictureModule } from '../profilePicture/profilePicture.module';
+import { DeleteAccountModalComponent } from './deleteAccountModal/deleteAccountModal';
 
 import { UserAdminDashboardPage } from './subViews/dashboard/dashboard';
 import { UserAdminConfigPage } from './subViews/config/config';
@@ -31,7 +34,8 @@ const routes: Routes = [
     UserAdminDashboardPage,
     UserAdminSettingsPage,
     UserAdminTripsPage,
-    CountrySearchComponent
+    CountrySearchComponent,
+    DeleteAccountModalComponent
   ],
   imports: [
     CommonModule,
@@ -39,7 +43,9 @@ const routes: Routes = [
     SharedModule,
     ReactiveFormsModule,
     FormsModule,
-    ImageUploaderModule
+    ImageUploaderModule,
+    TripModalModule,
+    ProfilePictureModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

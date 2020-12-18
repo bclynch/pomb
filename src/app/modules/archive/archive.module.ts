@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { ArchiveComponent } from './archive/archive.component';
 import { Routes, RouterModule } from '@angular/router';
 import { SharedModule } from '../../shared/shared.module';
+import { GridModule } from '../grid/grid.module';
+import { PostListModule } from '../postList/postList.module';
 
 const routes: Routes = [
   {
@@ -20,7 +22,9 @@ const routes: Routes = [
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
-    SharedModule
+    SharedModule,
+    GridModule,
+    PostListModule
   ]
 })
 export class ArchiveModule { }

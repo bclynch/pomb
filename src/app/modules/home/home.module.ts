@@ -5,7 +5,10 @@ import { Routes, RouterModule } from '@angular/router';
 import { SharedModule } from '../../shared/shared.module';
 import { PostComponent } from '../post/post/post.component';
 import { PipesModule } from '../../pipes/pipes.module';
-import { CompactHeroComponent } from '../../components/compactHero/compactHero.component';
+import { CompactHeroComponent } from './compactHero/compactHero.component';
+import { GridModule } from '../grid/grid.module';
+import { PostListModule } from '../postList/postList.module';
+import { TripCardModule } from '../tripCard/tripCard.module';
 
 const routes: Routes = [
   {
@@ -56,7 +59,10 @@ const routes: Routes = [
     CommonModule,
     RouterModule.forChild(routes),
     SharedModule,
-    PipesModule
+    PipesModule,
+    GridModule,
+    PostListModule,
+    TripCardModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

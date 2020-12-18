@@ -1,133 +1,76 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { DirectivesModule } from '../directives/directives.module';
-import { PipesModule } from '../pipes/pipes.module';
-import { DisqusModule } from 'ngx-disqus';
 import { CloudinaryModule } from '@cloudinary/angular-5.x';
 
-// components
-import { FooterComponent } from './footer/footer.component';
-import { GalleryComponent } from './gallery/gallery.component';
-import { GridComponent } from './grid/grid.component';
-import { HeroBannerComponent } from './heroBanner/heroBanner.component';
-import { NavBarComponent } from './navBar/navBar.component';
-import { PageWrapperComponent } from './pageWrapper/pageWrapper.component';
-import { ProfilePictureComponent } from './profilePicture/profilePicture.component';
-import { UploadGPXComponent } from './uploadGPX/uploadGPX.component';
-import { TrackUserComponent } from './trackUser/trackUser.component';
-import { SearchComponent } from './search/search';
-import { GalleryCardComponent } from './gallery/galleryCard/galleryCard.component';
-import { GridCardComponent } from './grid/gridCard/gridCard.component';
-import { CommunityNavSectionComponent } from './navBar/paneSections/community/communitySection.component';
-import { StoriesNavSectionComponent } from './navBar/paneSections/stories/storiesSection.component';
-import { MyPackNavSectionComponent } from './navBar/paneSections/myPack/myPackSection.component';
-import { BackpackIconComponent } from './svgs/backpack/backpack.component';
-import { TrackIconComponent } from './svgs/track/track.component';
-import { TripCardComponent } from './tripCard/tripCard.component';
-import { ExpandedModalComponent } from './gallery/expandedModal/expandedModal.component';
-import { RegistrationModalComponent } from './registrationModal/registrationModal';
-import { ExploreModalComponent } from './exploreModal/exploreModal';
-import { MobileNavModalComponent } from './mobileNavModal/mobileNavModal';
-import { GradientPopoverComponent } from './gradientPopover/gradientPopover.component';
-import { DeleteAccountModalComponent } from './deleteAccountModal/deleteAccountModal';
-import { NewsletterComponent } from './newsletter/newsletter.component';
-import { PostCardComponent } from './postCard/postCard.component';
-import { LikeCounterComponent } from './likeCounter/likeCounter.component';
-import { PostListComponent } from './postList/postList.component';
-import { TagSearchComponent } from './tagSearch/tagSearch.component';
-import { FadeCarouselComponent } from './fadeCarousel/fadeCarousel.component';
-import { CommentsComponent } from './comments/comments.component';
-import { GoogleChartComponent } from './charts/geoChart.component';
-import { TagsComponent } from './tags/tags.component';
+// modules
+import { JunctureModalModule } from '../modules/junctureModal/junctureModal.module';
+import { TripModalModule } from '../modules/tripModal/tripModal.module';
+import { GridModule } from '../modules/grid/grid.module';
+import { NewsletterModule } from '../modules/newsletter/newsletter.module';
+import { PostListModule } from '../modules/postList/postList.module';
+import { TripCardModule } from '../modules/tripCard/tripCard.module';
+import { ProfilePictureModule } from '../modules/profilePicture/profilePicture.module';
+import { SearchModule } from '../modules/search/search.module';
+import { DirectivesModule } from '../directives/directives.module';
+import { PipesModule } from '../pipes/pipes.module';
+
+// testing...
+import { PageWrapperComponent } from '../components/pageWrapper/pageWrapper.component';
+import { FooterComponent } from '../components/footer/footer.component';
+import { NavBarComponent } from '../components/navBar/navBar.component';
+import { CommunityNavSectionComponent } from '../components/navBar/paneSections/community/communitySection.component';
+import { StoriesNavSectionComponent } from '../components/navBar/paneSections/stories/storiesSection.component';
+import { MyPackNavSectionComponent } from '../components/navBar/paneSections/myPack/myPackSection.component';
+import { RegistrationModalComponent } from '../components/registrationModal/registrationModal';
+import { MobileNavModalComponent } from '../components/mobileNavModal/mobileNavModal';
+import { HeroBannerComponent } from '../components/heroBanner/heroBanner.component';
+import { TrackIconComponent } from '../components/navBar/track/track.component';
 
 @NgModule({
   declarations: [
-    FooterComponent,
-    GalleryComponent,
-    GridComponent,
-    HeroBannerComponent,
-    NavBarComponent,
+    TrackIconComponent,
     PageWrapperComponent,
-    ProfilePictureComponent,
-    UploadGPXComponent,
-    TrackUserComponent,
-    SearchComponent,
-    GalleryCardComponent,
-    GridCardComponent,
+    FooterComponent,
+    NavBarComponent,
     CommunityNavSectionComponent,
     StoriesNavSectionComponent,
     MyPackNavSectionComponent,
-    BackpackIconComponent,
-    TripCardComponent,
-    ExpandedModalComponent,
     RegistrationModalComponent,
-    ExploreModalComponent,
     MobileNavModalComponent,
-    GradientPopoverComponent,
-    DeleteAccountModalComponent,
-    NewsletterComponent,
-    TrackIconComponent,
-    PostCardComponent,
-    LikeCounterComponent,
-    PostListComponent,
-    TagSearchComponent,
-    FadeCarouselComponent,
-    CommentsComponent,
-    GoogleChartComponent,
-    TagsComponent
+    HeroBannerComponent
   ],
   imports: [
     CommonModule,
     ReactiveFormsModule,
     FormsModule,
+    CloudinaryModule,
+    JunctureModalModule,
+    TripModalModule,
+    GridModule,
+    PostListModule,
     DirectivesModule,
     PipesModule,
-    DisqusModule,
-    CloudinaryModule
+    NewsletterModule,
+    TripCardModule,
+    ProfilePictureModule,
+    SearchModule
   ],
   exports: [
-    FooterComponent,
-    GalleryComponent,
-    GridComponent,
-    HeroBannerComponent,
-    NavBarComponent,
+    TrackIconComponent,
     PageWrapperComponent,
-    ProfilePictureComponent,
-    UploadGPXComponent,
-    TrackUserComponent,
-    SearchComponent,
-    GalleryCardComponent,
-    GridCardComponent,
+    FooterComponent,
+    NavBarComponent,
     CommunityNavSectionComponent,
     StoriesNavSectionComponent,
     MyPackNavSectionComponent,
-    BackpackIconComponent,
-    TripCardComponent,
-    ExpandedModalComponent,
     RegistrationModalComponent,
-    ExploreModalComponent,
     MobileNavModalComponent,
-    GradientPopoverComponent,
-    DeleteAccountModalComponent,
-    NewsletterComponent,
-    TrackIconComponent,
-    PostCardComponent,
-    LikeCounterComponent,
-    PostListComponent,
-    TagSearchComponent,
-    FadeCarouselComponent,
-    CommentsComponent,
-    GoogleChartComponent,
-    TagsComponent
+    HeroBannerComponent
   ],
   entryComponents: [
     RegistrationModalComponent,
-    ExpandedModalComponent,
-    ExploreModalComponent,
-    MobileNavModalComponent,
-    GradientPopoverComponent,
-    DeleteAccountModalComponent,
+    MobileNavModalComponent
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

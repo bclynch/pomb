@@ -2,7 +2,7 @@ import { Component, OnDestroy } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { SettingsService } from '../../../services/settings.service';
 
-import { ExploreModalComponent } from '../../../shared/exploreModal/exploreModal';
+import { ExploreModalComponent } from '../exploreModal/exploreModal';
 import { AppService } from 'src/app/services/app.service';
 import { SubscriptionLike } from 'rxjs';
 

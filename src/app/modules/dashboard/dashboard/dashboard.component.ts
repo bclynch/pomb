@@ -1,7 +1,7 @@
 import { Component, OnDestroy } from '@angular/core';
 import { AlertController, ModalController, ToastController } from '@ionic/angular';
 
-import { CreatePostModalComponent } from '../../../components/createPostModal/createPostModal';
+import { CreatePostModalComponent } from '../createPostModal/createPostModal';
 
 import { RouterService } from '../../../services/router.service';
 import { SettingsService } from '../../../services/settings.service';
@@ -95,6 +95,27 @@ export class DashboardComponent implements OnDestroy {
     // bit of a dumb hack, but it keeps launch modal on update otherwise
     let launch = true;
     const self = this;
+
+    const launchModal = async (datPost) => {
+      const modal = await self.modalCtrl.create({
+        component: CreatePostModalComponent,
+        componentProps: { post: datPost },
+        cssClass: 'createPostModal',
+        backdropDismiss: false
+      });
+
+      await modal.present();
+
+      const { data } = await modal.onWillDismiss();
+      if (data) {
+        if (data.type === 'deleted') {
+          self.deletePost(datPost);
+        } else {
+          self.toast(`Post ${data.title} ${data.type}`);
+        }
+      }
+    };
+
     if (post) {
       this.postByIdGQL.fetch({
         id: post.id,
@@ -109,26 +130,6 @@ export class DashboardComponent implements OnDestroy {
       );
     } else {
       launchModal(null);
-    }
-
-    async function launchModal(post: any) {
-      const modal = await self.modalCtrl.create({
-        component: CreatePostModalComponent,
-        componentProps: { post },
-        cssClass: 'createPostModal',
-        backdropDismiss: false
-      });
-
-      await modal.present();
-
-      const { data } = await modal.onWillDismiss();
-      if (data) {
-        if (data.type === 'deleted') {
-          self.deletePost(post);
-        } else {
-          self.toast(`Post ${data.title} ${data.type}`);
-        }
-      }
     }
   }
 

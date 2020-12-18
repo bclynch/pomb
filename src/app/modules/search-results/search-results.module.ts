@@ -3,6 +3,9 @@ import { CommonModule } from '@angular/common';
 import { SearchResultsComponent } from './search-results/search-results.component';
 import { Routes, RouterModule } from '@angular/router';
 import { SharedModule } from '../../shared/shared.module';
+import { PostListModule } from '../postList/postList.module';
+import { ProfilePictureModule } from '../profilePicture/profilePicture.module';
+import { SearchModule } from '../search/search.module';
 
 const routes: Routes = [
   {
@@ -16,7 +19,10 @@ const routes: Routes = [
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
-    SharedModule
+    SharedModule,
+    PostListModule,
+    ProfilePictureModule,
+    SearchModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

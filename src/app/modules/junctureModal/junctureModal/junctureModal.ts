@@ -15,7 +15,7 @@ import { UtilService } from '../../../services/util.service';
 import { AlertService } from '../../../services/alert.service';
 import { GeoService } from '../../../services/geo.service';
 
-import { JunctureSaveTypePopoverComponent } from '../../../components/junctureSaveType/junctureSaveTypePopover.component';
+import { JunctureSaveTypePopoverComponent } from '../junctureSaveType/junctureSaveTypePopover.component';
 import { DatePickerModalComponent } from '../../datepickerModal/datepickerModal/datepickerModal';
 import { ImageUploaderPopoverComponent } from '../../imageUploader/imageUploader/imageUploaderPopover.component';
 import { GalleryImgActionPopoverComponent } from '../../galleryImgActionPopover/galleryImgAction/galleryImgActionPopover.component';

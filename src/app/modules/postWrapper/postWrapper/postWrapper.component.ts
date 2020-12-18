@@ -31,6 +31,7 @@ export class PostWrapperComponent implements OnChanges {
   ) { }
 
   ngOnChanges() {
+    console.log('changes...');
     if (this.post) {
       this.disqusId = `post/${this.post.id}`;
       this.post.imagesByPostId.nodes.forEach((image) => {
@@ -38,7 +39,7 @@ export class PostWrapperComponent implements OnChanges {
           this.galleryImages.push(image);
         }
       });
-      this.tags = this.post.postToTagsByPostId.nodes.map((tag) => tag.postTagByPostTagId.name);
+      this.tags = this.post.postToTagsByPostId.nodes.map(({ postTagByPostTagId: { name = '' } = {} }) => name);
 
       this.analyticsService.getPageViews().then(
         ({ data }) => {

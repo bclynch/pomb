@@ -31,7 +31,7 @@ export class WindowScrollDirective implements OnInit, OnDestroy {
       let supportsPassive = false;
       try {
         const opts = Object.defineProperty({}, 'passive', {
-          get: function() {
+          get: () => {
             supportsPassive = true;
           }
         });

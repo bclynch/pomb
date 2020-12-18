@@ -6,6 +6,7 @@ import { DatepickerModalModule } from '../datepickerModal/datepickerModal.module
 import { GalleryImgActionPopoverModule } from '../galleryImgActionPopover/galleryImgAction.module';
 import { FroalaEditorModule } from 'angular-froala-wysiwyg';
 import { AgmCoreModule } from '@agm/core';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [TripModalComponent],
@@ -15,7 +16,8 @@ import { AgmCoreModule } from '@agm/core';
     DatepickerModalModule,
     GalleryImgActionPopoverModule,
     FroalaEditorModule,
-    AgmCoreModule
+    AgmCoreModule,
+    FormsModule
   ],
   exports: [TripModalComponent],
   entryComponents: [

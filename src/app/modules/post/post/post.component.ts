@@ -1,5 +1,5 @@
 import { Component, OnDestroy } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 
 import { SettingsService } from '../../../services/settings.service';
 import { UserService } from '../../../services/user.service';
@@ -48,8 +48,8 @@ export class PostComponent implements OnDestroy {
       id: +this.postId,
       userId: this.userService.user ? this.userService.user.id : null
     }).subscribe(
-      ({ data }) => {
-        this.post = data.postById;
+      ({ data: { postById } }) => {
+        this.post = postById;
         this.settingsService.modPageMeta(
           this.post.title,
           this.utilService.truncateString(this.utilService.stripHTMLTags(this.post.content), 145)

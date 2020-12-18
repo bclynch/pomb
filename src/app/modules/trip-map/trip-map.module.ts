@@ -7,9 +7,12 @@ import { AgmCoreModule } from '@agm/core';
 import { AgmSnazzyInfoWindowModule } from '@agm/snazzy-info-window';
 import { AgmJsMarkerClustererModule } from '@agm/js-marker-clusterer';
 import { PipesModule } from '../../pipes/pipes.module';
-import { ShareButtonsModule } from 'ngx-sharebuttons/buttons';
-import { ShareIconsModule } from 'ngx-sharebuttons/icons';
-import { ShareBtnsComponent } from '../../components/shareBtns/shareBtns.component';
+import { ShareBtnsModule } from '../shareBtns/shareBtns.module';
+import { GalleryModule } from '../gallery/gallery.module';
+import { PostListModule } from '../postList/postList.module';
+import { LikeCounterModule } from '../likeCounter/likeCounter.module';
+import { ProfilePictureModule } from '../profilePicture/profilePicture.module';
+import { TrackUserModule } from '../trackUser/trackUser.module';
 
 const routes: Routes = [
   {
@@ -20,8 +23,7 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [
-    TripMapComponent,
-    ShareBtnsComponent
+    TripMapComponent
   ],
   imports: [
     CommonModule,
@@ -31,8 +33,12 @@ const routes: Routes = [
     AgmSnazzyInfoWindowModule,
     AgmJsMarkerClustererModule,
     PipesModule,
-    ShareButtonsModule,
-    ShareIconsModule
+    ShareBtnsModule,
+    GalleryModule,
+    PostListModule,
+    LikeCounterModule,
+    ProfilePictureModule,
+    TrackUserModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

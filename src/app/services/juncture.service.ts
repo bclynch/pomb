@@ -32,183 +32,168 @@ export class JunctureService {
     private createUserToCountryGQL: CreateUserToCountryGQL
   ) { }
 
-  openJunctureModal(junctureId): Promise<void> {
+  handleOpenJunctureModal(data, junctureId): Promise<void> {
     return new Promise(async (resolve, reject) => {
+      let country = null;
+      if (data) {
+        const {
+          location,
+          isExisting,
+          selectedTrip,
+          geoJSON,
+          gpxChanged,
+          type,
+          name,
+          time,
+          description,
+          saveType,
+          markerImg,
+          photos,
+          changedPhotos
+        } = data;
+        const { lat, lon } = location;
+        this.apiService.reverseGeocodeCoords(lat, lon).subscribe(
+          result => {
+            console.log(result);
+            const city = this.utilService.extractCity(result.formattedAddress.address_components);
+            for (let i = 0; i < result.country.address_components.length; i++) {
+              if (result.country.address_components[i].types.indexOf('country') !== -1) {
+                country = result.country.address_components[i].short_name;
+                break;
+              }
+            }
 
+            // check if country exists in user list. If not then add
+            this.checkCountry(country);
+
+            if (isExisting) {
+              this.updateJunctureGQL.mutate({
+                junctureId,
+                userId: this.userService.user.id,
+                tripId: selectedTrip,
+                type,
+                name,
+                arrivalDate: +time,
+                description,
+                lat, 
+                lon,
+                city,
+                country,
+                isDraft: saveType === 'Draft',
+                markerImg
+              }).subscribe(
+                () => {
+                  // upload new gpx if requred
+                  if (gpxChanged) {
+                    this.apiService.uploadGPX(geoJSON, junctureId).subscribe(
+                      jsonData => {
+                        // update gallery images as required
+                        this.comparePhotos(photos, changedPhotos, junctureId, selectedTrip).then(
+                          () => resolve()
+                        );
+                      },
+                      err => {
+                        console.log(err);
+                        reject();
+                      }
+                    );
+                  } else {
+                    // update banner images as required
+                    this.comparePhotos(photos, changedPhotos, junctureId, selectedTrip).then(
+                      () => resolve()
+                    );
+                    resolve();
+                  }
+                },
+                err => {
+                  console.log(err);
+                  reject();
+                }
+              );
+            } else {
+              this.createJunctureGQL.mutate({
+                userId: this.userService.user.id,
+                tripId: selectedTrip,
+                type,
+                name,
+                arrivalDate: time,
+                description,
+                lat,
+                lon,
+                city,
+                country,
+                isDraft: saveType === 'Draft',
+                markerImg
+              }).subscribe(
+                () => {
+                  // check setting to update user location -- if so update
+                  if (this.userService.user.autoUpdateLocation) {
+                    const {
+                      id,
+                      firstName,
+                      lastName,
+                      userStatus,
+                      heroPhoto,
+                      profilePhoto,
+                      autoUpdateLocation
+                    } = this.userService.user;
+                    this.updateAccountByIdGQL.mutate({
+                      id,
+                      firstName,
+                      lastName,
+                      userStatus,
+                      heroPhoto,
+                      profilePhoto,
+                      city,
+                      country,
+                      autoUpdate: autoUpdateLocation
+                    }).subscribe(
+                      ({ data: updateAccountData }: any) => {
+                        // set user service to new returned user
+                        this.userService.user = updateAccountData.updateAccountById.account;
+                      }
+                    );
+                  }
+
+                  // upload gpx data
+                  if (geoJSON) {
+                    this.apiService.uploadGPX(geoJSON, data.createJuncture.juncture.id).subscribe(
+                      jsonData => {
+                        this.saveGalleryPhotos(
+                          data.createJuncture.juncture.id,
+                          photos,
+                          selectedTrip
+                        ).then(() => {
+                          this.toast(
+                            saveType === 'Draft'
+                              ? 'Juncture draft successfully saved'
+                              : 'Juncture successfully published'
+                          );
+                          resolve();
+                        });
+                      },
+                      err => {
+                        console.log(err);
+                        reject();
+                      }
+                    );
+                  } else {
+                    this.saveGalleryPhotos(data.createJuncture.juncture.id, photos, selectedTrip).then(() => {
+                      this.toast(
+                        saveType === 'Draft'
+                          ? 'Juncture draft successfully saved'
+                          : 'Juncture successfully published'
+                      );
+                      resolve();
+                    });
+                  }
+                }
+              );
+            }
+          }
+        );
+      }
     });
-    // return new Promise(async (resolve, reject) => {
-    //   let country = null;
-    //   const modal = await this.modalCtrl.create({
-    //     // component: JunctureModalComponent,
-    //     componentProps: { markerImg: this.defaultMarkerImg, junctureId },
-    //     cssClass: 'junctureModal',
-    //     backdropDismiss: false
-    //   });
-
-    //   await modal.present();
-
-    //   const { data } = await modal.onWillDismiss();
-    //   if (data) {
-    //     const {
-    //       location,
-    //       isExisting,
-    //       selectedTrip,
-    //       geoJSON,
-    //       gpxChanged,
-    //       type,
-    //       name,
-    //       time,
-    //       description,
-    //       saveType,
-    //       markerImg,
-    //       photos,
-    //       changedPhotos
-    //     } = data;
-    //     const { lat, lon } = location;
-    //     this.apiService.reverseGeocodeCoords(lat, lon).subscribe(
-    //       result => {
-    //         console.log(result);
-    //         const city = this.utilService.extractCity(result.formattedAddress.address_components);
-    //         for (let i = 0; i < result.country.address_components.length; i++) {
-    //           if (result.country.address_components[i].types.indexOf('country') !== -1) {
-    //             country = result.country.address_components[i].short_name;
-    //             break;
-    //           }
-    //         }
-
-    //         // check if country exists in user list. If not then add
-    //         this.checkCountry(country);
-
-    //         if (isExisting) {
-    //           this.updateJunctureGQL.mutate({
-    //             junctureId,
-    //             userId: this.userService.user.id,
-    //             tripId: selectedTrip,
-    //             type,
-    //             name,
-    //             arrivalDate: +time,
-    //             description,
-    //             lat, 
-    //             lon,
-    //             city,
-    //             country,
-    //             isDraft: saveType === 'Draft',
-    //             markerImg
-    //           }).subscribe(
-    //             () => {
-    //               // upload new gpx if requred
-    //               if (gpxChanged) {
-    //                 this.apiService.uploadGPX(geoJSON, junctureId).subscribe(
-    //                   jsonData => {
-    //                     // update gallery images as required
-    //                     this.comparePhotos(photos, changedPhotos, junctureId, selectedTrip).then(
-    //                       () => resolve()
-    //                     );
-    //                   },
-    //                   err => {
-    //                     console.log(err);
-    //                     reject();
-    //                   }
-    //                 );
-    //               } else {
-    //                 // update banner images as required
-    //                 this.comparePhotos(photos, changedPhotos, junctureId, selectedTrip).then(
-    //                   () => resolve()
-    //                 );
-    //                 resolve();
-    //               }
-    //             },
-    //             err => {
-    //               console.log(err);
-    //               reject();
-    //             }
-    //           );
-    //         } else {
-    //           this.createJunctureGQL.mutate({
-    //             userId: this.userService.user.id,
-    //             tripId: selectedTrip,
-    //             type,
-    //             name,
-    //             arrivalDate: time,
-    //             description,
-    //             lat,
-    //             lon,
-    //             city,
-    //             country,
-    //             isDraft: saveType === 'Draft',
-    //             markerImg
-    //           }).subscribe(
-    //             ({ data }: any) => {
-    //               console.log(data);
-
-    //               // check setting to update user location -- if so update
-    //               if (this.userService.user.autoUpdateLocation) {
-    //                 const {
-    //                   id,
-    //                   firstName,
-    //                   lastName,
-    //                   userStatus,
-    //                   heroPhoto,
-    //                   profilePhoto,
-    //                   autoUpdateLocation
-    //                 } = this.userService.user;
-    //                 this.updateAccountByIdGQL.mutate({
-    //                   id,
-    //                   firstName,
-    //                   lastName,
-    //                   userStatus,
-    //                   heroPhoto,
-    //                   profilePhoto,
-    //                   city,
-    //                   country,
-    //                   autoUpdate: autoUpdateLocation
-    //                 }).subscribe(
-    //                   ({ data }: any) => {
-    //                     // set user service to new returned user
-    //                     this.userService.user = data.updateAccountById.account;
-    //                   }
-    //                 );
-    //               }
-
-    //               // upload gpx data
-    //               if (geoJSON) {
-    //                 this.apiService.uploadGPX(geoJSON, data.createJuncture.juncture.id).subscribe(
-    //                   jsonData => {
-    //                     this.saveGalleryPhotos(
-    //                       data.createJuncture.juncture.id,
-    //                       photos,
-    //                       selectedTrip
-    //                     ).then(() => {
-    //                       this.toast(
-    //                         saveType === 'Draft'
-    //                           ? 'Juncture draft successfully saved'
-    //                           : 'Juncture successfully published'
-    //                       );
-    //                       resolve();
-    //                     });
-    //                   },
-    //                   err => {
-    //                     console.log(err);
-    //                     reject();
-    //                   }
-    //                 );
-    //               } else {
-    //                 this.saveGalleryPhotos(data.createJuncture.juncture.id, photos, selectedTrip).then(() => {
-    //                   this.toast(
-    //                     saveType === 'Draft'
-    //                       ? 'Juncture draft successfully saved'
-    //                       : 'Juncture successfully published'
-    //                   );
-    //                   resolve();
-    //                 });
-    //               }
-    //             }
-    //           );
-    //         }
-    //       }
-    //     );
-    //   }
-    // });
   }
 
   saveGalleryPhotos(junctureId: number, photoArr, tripId: number) {
